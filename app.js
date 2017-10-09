@@ -4,52 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://127.0.0.1/ID-dev');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var admin = require('./routes/admin/admin');
 
 var app = express();
-
-// Configure passport
-
-var passport = require('passport');
-var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var session = require('express-session');
-var keys = require('./auth.js');
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	return done(null, {
-		'status': 'logged in'
-	});
-});
-
-
-passport.use(new googleStrategy({
-	clientID:     keys.clientID,
-    clientSecret: keys.clientSecret,
-    callbackURL: keys.callbackURL,
-    passReqToCallback   : true
-	}, function(request, accessToken, refreshToken, profile, done){
-		return done(null, profile);
-}));
-
-app.use(session({ secret: 'ID-BITS-HYD BPHC BITS' }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/login', passport.authenticate('google', { scope: ['openid', 'profile', 'email']}));
-
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-  	console.log("****** Logged in ******");
-  	console.log(req.user);
-    res.redirect('/');
- });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -64,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

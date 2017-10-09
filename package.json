@@ -12,6 +12,7 @@
     "express": "~4.15.2",
     "express-session": "^1.15.6",
     "jade": "~1.11.0",
+    "mongoose": "^4.12.3",
     "morgan": "~1.8.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
