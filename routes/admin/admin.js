@@ -7,7 +7,7 @@ var adminsModel = require('./schemas/admins');
 var passport = require('passport');
 var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require('express-session');
-var keys = require('../../auth.js');
+var keys = require('../../config');
 
 passport.serializeUser(function(user, done) {
   done(null, user.emails[0].value);
@@ -21,9 +21,9 @@ passport.deserializeUser(function(id, done) {
 
 
 passport.use(new googleStrategy({
-	clientID:     keys.clientID,
-    clientSecret: keys.clientSecret,
-    callbackURL: keys.adminCallback,
+	clientID:     keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
+    callbackURL: keys.googleAdminCallback,
     passReqToCallback   : true
 	}, function(request, accessToken, refreshToken, profile, done){
 		return done(null, profile);
