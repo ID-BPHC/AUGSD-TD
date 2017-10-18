@@ -15,7 +15,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
 	adminsModel.find({email: id}, function(err, result){
-		done(err, result);
+		done(err, result[0]);
 	});
 });
 
@@ -41,11 +41,11 @@ router.get('/auth/google/callback',
 
     adminsModel.find({email: req.user.emails[0].value}, function(err, result){
     	if(err){
-    		res.render('custom_errors', {message: "Server error"});
+    		res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
     	}
     	if(result.length == 0){
     		req.session.destroy(function(){
-    			res.render('custom_errors', {message: "You are not an administrator"});
+    			res.render('custom_errors', {message: "You are not an administrator", details: "This google account is not registered as an administrator"});
     		});
     	} else {
     		res.redirect('/admin');
@@ -74,7 +74,7 @@ router.use(function(req, res, next){
 
 /* Below end points are availible only to logged in users */
 router.get('/', function(req, res, next) {
- 	res.render('custom_errors', {message: "Welcome, " + req.user[0].name});
+ 	res.render('custom_errors', {message: "Welcome, " + req.user.name});
 });
 
 module.exports = router;
