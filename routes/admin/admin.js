@@ -48,7 +48,7 @@ router.get('/auth/google/callback',
     			res.render('custom_errors', {message: "You are not an administrator", details: "This google account is not registered as an administrator"});
     		});
     	} else {
-    		res.redirect('/admin');
+    		res.redirect('/admin' + result[0].home);
     	}
     });
  });
@@ -67,8 +67,9 @@ router.get('/logout', function(req, res){
 router.use(function(req, res, next){
 	if(!(req.user)){
 		res.redirect('/admin/login');
-	}	
-	next();
+	} else {
+        next();
+    }	
 });
 
 
