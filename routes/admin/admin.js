@@ -45,7 +45,7 @@ router.get('/auth/google/callback',
     	}
     	if(result.length == 0){
     		req.session.destroy(function(){
-    			res.render('custom_errors', {message: "You are not an administrator", details: "This google account is not registered as an administrator"});
+    			res.render('custom_errors', {message: "You are not an administrator", details: "This google account is not registered as an administrator."});
     		});
     	} else {
     		res.redirect('/admin' + result[0].home);
@@ -72,8 +72,18 @@ router.use(function(req, res, next){
     }	
 });
 
-
 /* Below end points are availible only to logged in users */
+
+router.get('/:portal', function(req, res, next){
+    
+    if(req.user.portals.indexOf(req.params.portal) == -1 && !req.user.superUser){
+        res.render('custom_errors', {message: 'You do not have permission to access this portal', details: 'Contact Instruction Division software team for assistance.'});
+    } else {
+        res.render('admin/' + req.params.portal + '/index');
+    }
+
+});
+
 router.get('/', function(req, res, next) {
  	res.render('custom_errors', {message: "Welcome, " + req.user.name});
 });
