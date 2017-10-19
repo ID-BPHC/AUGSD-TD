@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var adminsModel = require('./schemas/admins');
-
+var adminsModel = require('../../schemas/admins');
 
 /********* Configure Passport *********/
 var passport = require('passport');
