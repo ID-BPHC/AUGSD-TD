@@ -10,7 +10,7 @@ var config = require('./config')
 mongoose.connect(config.mongooseConnection);
 
 var index = require('./routes/index');
-var admin = require('./routes/admin/admin');
+var admin = require('./routes/admin');
 
 var app = express();
 
