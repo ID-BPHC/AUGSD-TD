@@ -1,6 +1,39 @@
 var express = require('express');
 var router = express.Router();
+
 var adminsModel = require('../../schemas/admins');
+var portalsModel = require('../../schemas/portals');
+
+/* Configure middleware for portal permissions */
+
+let securityCheck = function(req, res, next){
+
+    var reqPortal = (req.originalUrl.split('/'))[2];
+
+    portalsModel.find({ name: reqPortal, active: true }, function(err, result){
+        if(err) {
+            res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
+        }
+        if(result.length > 0 || req.user.superUser) {
+            if(req.user.portals.indexOf(reqPortal) >= 0 || req.user.superUser){
+                next();
+            } else {
+                res.render('custom_errors', {message: 'You do not have permission to access this portal', details: 'Contact Instruction Division software team for assistance.'});
+            }
+        } else {
+            res.render('custom_errors', {message: 'This portal has been disabled by the Administrator', details: 'Contact Instruction Division software team for assistance.'});
+        }
+    });
+};
+
+portalsModel.find({ admin: true }, function(err, portals){
+    portals.forEach(function(portal) {
+        var portalPath = require('./portals/' + portal.name);
+        router.use('/' + portal.name, securityCheck, portalPath);
+    });
+});
+
+/* Portal Middleware Configuration End */
 
 /********* Configure Passport *********/
 var passport = require('passport');
@@ -61,7 +94,7 @@ router.get('/logout', function(req, res){
 /********* Passport Config End *********/
 
 
-/*Add end points for non logged in users here*/
+/*Add end points for non logged in users above this line*/
 
 router.use(function(req, res, next){
 	if(!(req.user)){
@@ -72,16 +105,6 @@ router.use(function(req, res, next){
 });
 
 /* Below end points are availible only to logged in users */
-
-router.get('/:portal', function(req, res, next){
-    
-    if(req.user.portals.indexOf(req.params.portal) == -1 && !req.user.superUser){
-        res.render('custom_errors', {message: 'You do not have permission to access this portal', details: 'Contact Instruction Division software team for assistance.'});
-    } else {
-        res.render('admin/' + req.params.portal + '/index');
-    }
-
-});
 
 router.get('/', function(req, res, next) {
  	res.render('custom_errors', {message: "Welcome, " + req.user.name});
