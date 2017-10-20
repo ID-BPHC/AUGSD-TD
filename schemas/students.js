@@ -6,7 +6,7 @@ var studentSchema = new Schema({
 	email: String,
 	idNumber: String,
 	courses: [{
-		id: String,
+		courseId: String,
 		section: String
 	}]
 });
