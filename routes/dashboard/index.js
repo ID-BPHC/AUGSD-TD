@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var adminsModel = require('../../schemas/admins');
+var studentsModel = require('../../schemas/students');
 var portalsModel = require('../../schemas/portals');
 
 /* Configure middleware for portal permissions */
@@ -10,23 +10,19 @@ let securityCheck = function(req, res, next){
 
     var reqPortal = (req.originalUrl.split('/'))[2];
 
-    portalsModel.find({ name: reqPortal, active: true, admin: true }, function(err, result){
+    portalsModel.find({ name: reqPortal, active: true, admin: false }, function(err, result){
         if(err) {
             res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
         }
-        if(result.length > 0 || req.user.superUser) {
-            if(req.user.portals.indexOf(reqPortal) >= 0 || req.user.superUser){
-                next();
-            } else {
-                res.render('custom_errors', {message: 'You do not have permission to access this portal', details: 'Contact Instruction Division software team for assistance.'});
-            }
+        if(result.length > 0) {
+        	next();
         } else {
             res.render('custom_errors', {message: 'This portal has been disabled by the Administrator', details: 'Contact Instruction Division software team for assistance.'});
         }
     });
 };
 
-portalsModel.find({ admin: true }, function(err, portals){
+portalsModel.find({ admin: false }, function(err, portals){
     portals.forEach(function(portal) {
         var portalPath = require('./portals/' + portal.name);
         router.use('/' + portal.name, securityCheck, portalPath);
@@ -35,20 +31,20 @@ portalsModel.find({ admin: true }, function(err, portals){
 
 /* Portal Middleware Configuration End */
 
-/********* Configure adminPassport *********/
+/********* Configure studentPassport *********/
 var passport = require('passport');
-var adminPassport = new passport.Passport();
+var studentPassport = new passport.Passport();
 var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require('express-session');
 var keys = require('../../config');
 
-adminPassport.serializeUser(function(user, done) {
-    return done(null, user.emails[0].value);
+studentPassport.serializeUser(function(user, done) {
+	return done(null, user.emails[0].value);
 });
 
-adminPassport.deserializeUser(function(id, done) {
-	adminsModel.find({email: id}, function(err, result){
-        if(err) {
+studentPassport.deserializeUser(function(id, done) {
+	studentsModel.find({email: id}, function(err, result){
+		if(err) {
             console.log(err);
         }
 		return done(err, result[0]);
@@ -56,35 +52,35 @@ adminPassport.deserializeUser(function(id, done) {
 });
 
 
-adminPassport.use(new googleStrategy({
+studentPassport.use(new googleStrategy({
 	clientID:     keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: keys.googleAdminCallback,
+    callbackURL: keys.googleCallback,
     passReqToCallback   : true
 	}, function(request, accessToken, refreshToken, profile, done){
 		return done(null, profile);
 }));
 
-router.use(session({ secret: 'ADMIN-BPHC-ID' }));
-router.use(adminPassport.initialize());
-router.use(adminPassport.session());
+router.use(session({ secret: 'STUDENT-BPHC-ID' }));
+router.use(studentPassport.initialize());
+router.use(studentPassport.session());
 
-router.get('/login', adminPassport.authenticate('google', { scope: ['profile', 'email']}));
+router.get('/login', studentPassport.authenticate('google', { scope: ['profile', 'email']}));
 
 router.get('/auth/google/callback', 
-  adminPassport.authenticate('google', { failureRedirect: '/login' }),
+  studentPassport.authenticate('google', { failureRedirect: '/dashboard/login' }),
   function(req, res) {
 
-    adminsModel.find({email: req.user.emails[0].value}, function(err, result){
+    studentsModel.find({email: req.user.emails[0].value}, function(err, result){
     	if(err){
     		res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
     	}
     	if(result.length == 0){
     		req.session.destroy(function(){
-    			res.render('custom_errors', {message: "You are not an administrator", details: "This google account is not registered as an administrator."});
+    			res.render('custom_errors', {message: "Invalid Email.", details: "Please use your institute provided email only."});
     		});
     	} else {
-    		res.redirect('/admin' + result[0].home);
+    		res.redirect('/dashboard');
     	}
     });
  });
@@ -95,14 +91,14 @@ router.get('/logout', function(req, res){
 	});
 });
 
-/********* adminPassport Config End *********/
+/********* studentPassport Config End *********/
 
 
 /*Add end points for non logged in users above this line*/
 
 router.use(function(req, res, next){
 	if(!(req.user)){
-		res.redirect('/admin/login');
+		res.redirect('/dashboard/login');
 	} else {
         next();
     }	
