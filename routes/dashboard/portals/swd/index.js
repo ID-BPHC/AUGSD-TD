@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next){
-	res.send("ESD Portal ADMIN");
+	console.log(req.user);
+	res.send("SWD Portal STUDENT");
 });
 
 module.exports = router;

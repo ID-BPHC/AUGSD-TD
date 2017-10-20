@@ -9,8 +9,9 @@ var config = require('./config')
 
 mongoose.connect(config.mongooseConnection);
 
-var index = require('./routes/index');
 var admin = require('./routes/admin');
+var dashboard = require('./routes/dashboard');
+var index = require('./routes');
 
 var app = express();
 
@@ -26,8 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
 app.use('/admin', admin);
+app.use('/dashboard', dashboard);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
