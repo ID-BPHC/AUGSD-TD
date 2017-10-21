@@ -7,7 +7,7 @@ var studentSchema = new Schema({
 	idNumber: String,
 	courses: [{
 		courseId: String,
-		section: String
+		sections: [String]
 	}]
 });
 
