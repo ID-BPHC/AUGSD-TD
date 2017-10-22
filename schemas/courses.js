@@ -7,7 +7,7 @@ var coursesSchema = new Schema({
 	ic: String, // Stores email id of the course's IC
 	sections: [{
 		section: String,
-		instructors: [String] //This will store emails of intstructors for a particular section
+		instructors: [String] // This will store emails of intstructors for a particular section
 	}]
 });
 
