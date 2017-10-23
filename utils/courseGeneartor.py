@@ -1,5 +1,7 @@
 # WARNING: There should be no commas in the file except csv delimiters
 
+# This generates data for courses schema.
+
 import json
 
 f = open('Timetable.csv', 'r')
@@ -58,6 +60,6 @@ for line in f.readlines():
 
 # Dump the final JSON to output file
 f.close()
-f = open('Timetable.json', 'w')
+f = open('courses.json', 'w')
 json.dump(finalList, f)
 f.close()

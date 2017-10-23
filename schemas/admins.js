@@ -7,10 +7,6 @@ var adminsSchema = new Schema({
 	portals: [String],
 	home: String,
 	superUser: Boolean,
-	courses: [{
-		courseID: String,
-		sections: [String]
-	}]
 });
 
 var model = mongoose.model('admins', adminsSchema);
