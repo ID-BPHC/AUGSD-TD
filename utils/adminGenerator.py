@@ -23,7 +23,7 @@ for line in f.readlines():
 	data[facultyNameIndex] = data[facultyNameIndex].strip().strip('.').strip().title()
 	data[facultyEmailIndex] = data[facultyEmailIndex].strip()
 
-	#Check if already added faculty to final list
+	#Check if not already added faculty to final list
 	if data[facultyEmailIndex] not in addedFaculty:
 
 		# Add if not added
@@ -41,3 +41,4 @@ for line in f.readlines():
 f.close()
 f = open('admin.json', 'w')
 json.dump(finalList, f)
+f.close()
