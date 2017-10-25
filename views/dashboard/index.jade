@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		block content
+			h1 Welcome, #{user.name}
+			h4 #{user.idNumber}
+
+			ul
+				each course in user.courses
+					li
+						=course['courseId']
+						ul
+							each section in course.sections
+								li= section
+					br

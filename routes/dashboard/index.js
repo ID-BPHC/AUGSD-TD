@@ -107,7 +107,7 @@ router.use(function(req, res, next){
 /* Below end points are availible only to logged in users */
 
 router.get('/', function(req, res, next) {
- 	res.render('custom_errors', {message: "Welcome, " + req.user.name});
+ 	res.render('dashboard/index', {user: req.user});
 });
 
 module.exports = router;
