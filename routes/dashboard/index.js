@@ -104,10 +104,25 @@ router.use(function(req, res, next){
     }	
 });
 
+router.use(function(req, res, next) {
+    res.renderState = function(view, params = {}){
+        portalsModel.find({admin: false, active: true}, function(err, portals){
+            if(err){
+                res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
+            }
+            params['portals'] = portals;
+            params['user'] = req.user;
+
+            res.render(view, params);
+        });
+    };
+    next();
+});
+
 /* Below end points are availible only to logged in users */
 
 router.get('/', function(req, res, next) {
- 	res.render('dashboard/index', {user: req.user});
+ 	res.renderState('dashboard/index');
 });
 
 module.exports = router;
