@@ -110,8 +110,10 @@ router.use(function(req, res, next) {
             if(err){
                 res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
             }
+
             params['portals'] = portals;
             params['user'] = req.user;
+            params['logoutRoute'] = '/dashboard/logout';
 
             res.render(view, params);
         });
