@@ -113,7 +113,7 @@ router.use(function(req, res, next) {
 
             params['portals'] = portals;
             params['user'] = req.user;
-            params['logoutRoute'] = '/dashboard/logout';
+            params['rootURL'] = '/dashboard';
 
             res.render(view, params);
         });

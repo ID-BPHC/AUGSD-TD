@@ -34,13 +34,13 @@ html
 					button#account-menu.mdl-button.mdl-js-button.mdl-button--icon
 						i.material-icons arrow_drop_down
 					ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for='account-menu')
-						li(class="mdl-menu__item" onclick="window.location.replace('#{logoutRoute}')") Logout					
+						li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout					
 				//Side Drawer Navigation
 				nav.mdl-navigation
 					each portal in portals
-						a.mdl-navigation__link(href='#')
-							i.material-icons cake
-							|  #{portal.name}
+						a.mdl-navigation__link(href='#{rootURL}/#{portal.name}')
+							i.material-icons #{portal.icon}
+							|  #{portal.displayName}
 							
 
 			// Main Content
