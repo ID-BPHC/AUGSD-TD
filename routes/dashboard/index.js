@@ -12,12 +12,12 @@ let securityCheck = function(req, res, next){
 
     portalsModel.find({ name: reqPortal, active: true, admin: false }, function(err, result){
         if(err) {
-            res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
+            res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance.", callback: "/"});
         }
         if(result.length > 0) {
         	next();
         } else {
-            res.render('custom_errors', {message: 'This portal has been disabled by the Administrator', details: 'Contact Instruction Division software team for assistance.'});
+            res.render('custom_errors', {message: 'This portal has been disabled by the Administrator', details: 'Contact Instruction Division software team for assistance.', callback: "/dashboard"});
         }
     });
 };
@@ -73,11 +73,11 @@ router.get('/auth/google/callback',
 
     studentsModel.find({email: req.user.emails[0].value}, function(err, result){
     	if(err){
-    		res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."});
+    		res.render('custom_errors', {message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance.", callback: "/"});
     	}
     	if(result.length == 0){
     		req.session.destroy(function(){
-    			res.render('custom_errors', {message: "Invalid Email.", details: "Please use your institute provided email only."});
+    			res.render('custom_errors', {message: "Invalid Email.", details: "Please use your institute provided email only.", callback: "/"});
     		});
     	} else {
     		res.redirect('/dashboard');
