@@ -1,0 +1,14 @@
+extends ../../nav
+
+block content
+	div.mdl-cell.mdl-cell--12-col
+		h2 24x7 Feedbacks
+
+	div.mdl-cell.mdl-cell--12-col
+		select
+			each course in user.courses
+				option= course.courseID
+
+	div.mdl-cell.mdl-cell--12-col.center
+
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary Continue
