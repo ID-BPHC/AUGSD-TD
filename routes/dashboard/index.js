@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var studentsModel = require('../../schemas/students');
-var portalsModel = require('../../schemas/portals');
+var studentsModel = require('schemas/students');
+var portalsModel = require('schemas/portals');
 
 /* Configure middleware for portal permissions */
 

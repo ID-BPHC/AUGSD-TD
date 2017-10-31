@@ -10,7 +10,7 @@ finalList = []
 added = []
 
 # Index of the corresponding columns in the csv
-courseIdIndex = 1
+courseIDIndex = 1
 courseNameIndex = 2
 sectionIndex = 3
 instructorEmailIndex = 5
@@ -25,10 +25,10 @@ for line in f.readlines():
 	data = [item.strip() for item in dataRaw]
 
 	# Add the course to final list if not present
-	if(data[courseIdIndex] not in added):
+	if(data[courseIDIndex] not in added):
 
 		course = {}
-		course['courseID'] = data[courseIdIndex]
+		course['courseID'] = data[courseIDIndex]
 		course['name'] = data[courseNameIndex]
 		course['ic'] = ''
 		course['sections'] = [{"section": data[sectionIndex], "instructors": [data[instructorEmailIndex]]}]
@@ -41,7 +41,7 @@ for line in f.readlines():
 
 		# Find the course
 		for course in finalList:
-			if(course['courseID'] == data[courseIdIndex]):
+			if(course['courseID'] == data[courseIDIndex]):
 
 				# Found the course in list
 				flag = 0
