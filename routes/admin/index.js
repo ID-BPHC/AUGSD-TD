@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var adminsModel = require('../../schemas/admins');
-var portalsModel = require('../../schemas/portals');
-var settingsModel = require('../../schemas/settings');
-
-
+var adminsModel = require('schemas/admins');
+var portalsModel = require('schemas/portals');
+var settingsModel = require('schemas/settings');
 
 /* Configure middleware for portal permissions */
 

@@ -31,7 +31,7 @@ for line in f.readlines():
 		student['name'] = data[nameIndex]
 		student['email'] = data[emailIndex]
 		student['idNumber'] = data[idNumberIndex]
-		student['courses'] = [{'courseId': data[courseIndex], 'sections': [data[sectionIndex]]}]
+		student['courses'] = [{'courseID': data[courseIndex], 'sections': [data[sectionIndex]]}]
 
 		added.append(student['idNumber'])
 		finalList.append(student)
@@ -52,7 +52,7 @@ for line in f.readlines():
 
 					# Search if current course is already in student's courses array
 
-					if course['courseId'] == data[courseIndex]:
+					if course['courseID'] == data[courseIndex]:
 
 						# Add new section if course is found
 						flag = 1
@@ -61,7 +61,7 @@ for line in f.readlines():
 				if flag == 0:
 					
 					# Create a new course in student's array if not already there
-					student['courses'].append({'courseId': data[courseIndex], 'sections': [data[sectionIndex]]})
+					student['courses'].append({'courseID': data[courseIndex], 'sections': [data[sectionIndex]]})
 
 f.close()
 f = open('students.json', 'w')
