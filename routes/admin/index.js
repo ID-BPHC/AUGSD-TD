@@ -151,10 +151,7 @@ router.get('/auth/google/callback',
 
 router.get('/logout', function (req, res) {
     req.session.destroy(function (err) {
-        res.render('custom_errors', {
-            message: "Logout",
-            details: "You logged out successfully"
-        });
+        res.redirect('/');
     });
 });
 
@@ -173,12 +170,27 @@ router.use(function (req, res, next) {
 
 /* Below end points are availible only to logged in users */
 
+router.use(function(req, res, next) {
+    res.renderState = function(view, params = {}){
+        portalsModel.find({admin: true, active: true}, function(err, portals){
+            if(err){
+                res.render('custom_errors', {
+                    message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
+                });
+            }
+
+            params['portals'] = portals;
+            params['user'] = req.user;
+            params['rootURL'] = '/admin';
+
+            res.render(view, params);
+        });
+    };
+    next();
+});
+
 router.get('/', function (req, res, next) {
-    res.render('dashboard/index', {
-        name: req.user.name,logoutRoute: '/admin/logout',portals:{
-            name:" Admin Dashboard"
-        }
-    });
+    res.renderState('dashboard/index');
 });
 
 module.exports = router;
