@@ -153,7 +153,10 @@ router.get('/auth/google/callback',
 
 router.get('/logout', function (req, res) {
     req.session.destroy(function (err) {
-        res.redirect('/');
+        res.render('custom_errors', {
+            message: "Logout",
+            details: "You logged out successfully"
+        });
     });
 });
 
@@ -173,8 +176,10 @@ router.use(function (req, res, next) {
 /* Below end points are availible only to logged in users */
 
 router.get('/', function (req, res, next) {
-    res.render('custom_errors', {
-        message: "Welcome, " + req.user.name
+    res.render('dashboard/index', {
+        name: req.user.name,logoutRoute: '/admin/logout',portals:{
+            name:" Admin Dashboard"
+        }
     });
 });
 
