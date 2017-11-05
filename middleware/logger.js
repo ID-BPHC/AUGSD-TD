@@ -1,4 +1,4 @@
-var logsModel = require('schemas/logs');
+var logsModel = require('../schemas/logs');
 
 module.exports = {
     logsHandler: function(req, res, next){

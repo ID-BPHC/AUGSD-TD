@@ -8,6 +8,17 @@ html
 		link(rel='stylesheet', href='/stylesheets/dashboard.css')
 		script(defer='', src='https://code.getmdl.io/1.3.0/material.min.js')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		style.
+			.custom-style{
+				border-left: solid 4px transparent;
+				color: rgba(0,0,0,0.87);
+				display: block;
+				font-size: 16px;
+				font-weight: 500;
+				padding-left: 20px;
+				padding-bottom: 10px;
+				margin-top: 16px;
+			}
 
 	body
 		// Layout start
@@ -18,32 +29,28 @@ html
 			header.mdl-layout__header
 				.mdl-layout-icon
 				.mdl-layout__header-row
-					span.mdl-layout__title Dashboard
+					span.mdl-layout__title 
+						| #{dashboard.type} Dashboard
 					.mdl-layout-spacer
-
-
-			// Side Drawer Start
-			.mdl-layout__drawer
-
-				// Side drawer header
-				.side-header
-					img(src='/images/user.png', width='20%')
-					span #{user.name}
-
-					// Side drawer account menu
-					button#account-menu.mdl-button.mdl-js-button.mdl-button--icon
-						i.material-icons arrow_drop_down
-					ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for='account-menu')
-						li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout					
-				//Side Drawer Navigation
-				nav.mdl-navigation
-					each portal in portals
-						a.mdl-navigation__link(href='#{rootURL}/#{portal.name}')
-							i.material-icons #{portal.icon}
-							|  #{portal.displayName}
-							
+					nav.mdl-navigation
+						a.mdl-navigation__link(href='') My Profile
+						button#demo-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
+							i.material-icons more_vert
+						ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='demo-menu-lower-right')
+							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
+							li.mdl-menu__item #{user.name}
+					
 
 			// Main Content
+			main.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer
+				.mdl-layout__drawer
+					span.mdl-layout__title Instruction Division
+					nav.mdl-navigation
+						div.custom-style Portals
+						each portal in portals
+							a.mdl-navigation__link(href='#{rootURL}/#{portal.name}')
+								i.material-icons(style='padding-right:20px') #{portal.icon}
+								| #{portal.displayName}
 			main.mdl-layout__content
-				.mdl-grid
+				div.mdl-grid
 					block content

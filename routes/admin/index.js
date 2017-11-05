@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var adminsModel = require('schemas/admins');
-var portalsModel = require('schemas/portals');
-var settingsModel = require('schemas/settings');
+var adminsModel = require('../../schemas/admins');
+var portalsModel = require('../../schemas/portals');
+var settingsModel = require('../../schemas/settings');
 
 /* Configure middleware for portal permissions */
 
@@ -170,18 +170,25 @@ router.use(function (req, res, next) {
 
 /* Below end points are availible only to logged in users */
 
-router.use(function(req, res, next) {
-    res.renderState = function(view, params = {}){
-        portalsModel.find({admin: true, active: true}, function(err, portals){
-            if(err){
+router.use(function (req, res, next) {
+    res.renderState = function (view, params = {}) {
+        portalsModel.find({
+            admin: true,
+            active: true
+        }, function (err, portals) {
+            if (err) {
                 res.render('custom_errors', {
-                    message: "Server error", details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
+                    message: "Server error",
+                    details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
 
             params['portals'] = portals;
             params['user'] = req.user;
             params['rootURL'] = '/admin';
+            params['dashboard'] = {
+                type: "Adminstrator"
+            }
 
             res.render(view, params);
         });
