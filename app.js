@@ -11,7 +11,6 @@ mongoose.connect(config.mongooseConnection);
 
 var admin = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
-var feedback_24x7 = require('./routes/dashboard/portals/feedbacks-24x7');
 var index = require('./routes');
 var loggermiddleware = require('./middleware/logger');
 
@@ -35,7 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', admin);
 app.use('/dashboard', dashboard);
-app.use('/dashboard/portals/feedbacks-24x7',feedback_24x7);
 app.use('/', index);
 
 // catch 404 and forward to error handler
