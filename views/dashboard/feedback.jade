@@ -1,0 +1,20 @@
+extends nav
+block content
+    main.mdl-components__pages
+        section#index-section.mdl-components-index.mdl-components__page.mdl-components-index-text.mdl-grid
+            .mdl-cell.mdl-cell--12-col
+                .docs-text-styling.component-title
+                    h3 Feedback
+                    p Though we tried our best fixing as many bugs as possible some bugs might have crept in. As a user we appreciate you providing us feedback for the bug you have faced. Please describe the bug and we shall try solving it as soon as possible.
+            .mdl-cell.mdl-cell--12-col
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fullwidth
+                    input#feedbackissue.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1')
+                    label.mdl-textfield__label(for='feedbackissue') Select your Issue
+                    ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='feedbackissue')
+                        li.mdl-menu__item Bug Issues
+                        li.mdl-menu__item User Interface Issues
+                        li.mdl-menu__item Other Issues
+            .mdl-cell.mdl-cell--12-col
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                    textarea#feedbacktext.mdl-textfield__input(type='text', rows='5')
+                    label.mdl-textfield__label(for='feedbacktext') Feedback
