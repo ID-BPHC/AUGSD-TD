@@ -180,4 +180,9 @@ router.get('/', function (req, res, next) {
     res.renderState('dashboard/index');
 });
 
+
+router.get('/feedback', function (req, res, next) {
+    res.renderState('dashboard/feedback');
+});
+
 module.exports = router;

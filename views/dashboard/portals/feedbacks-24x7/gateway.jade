@@ -3,12 +3,12 @@ extends ../../nav
 block content
 	div.mdl-cell.mdl-cell--12-col
 		h2 24x7 Feedbacks
-
-	div.mdl-cell.mdl-cell--12-col
-		select
-			each course in user.courses
-				option= course.courseID
-
 	div.mdl-cell.mdl-cell--12-col.center
-
+		.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fullwidth
+			input#feedbacklist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1')
+			label.mdl-textfield__label(for='feedbacklist') Select your course
+			ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='feedbacklist')
+				each course in user.courses
+					li.mdl-menu__item #{course.courseID}
+	div.mdl-cell.mdl-cell--12-col.center
 		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary Continue
