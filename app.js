@@ -13,7 +13,7 @@ var admin = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var index = require('./routes');
 var loggermiddleware = require('./middleware/logger');
-
+// var referermiddleware = require('./middleware/referer');
 var app = express();
 
 // view engine setup
@@ -24,10 +24,11 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(loggermiddleware.logsHandler);
+// app.use(referermiddleware.referHandler);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

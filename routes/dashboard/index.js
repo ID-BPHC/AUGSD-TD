@@ -87,8 +87,7 @@ router.get('/login', studentPassport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
-router.get('/auth/google/callback',
-    studentPassport.authenticate('google', {
+router.get('/auth/google/callback', studentPassport.authenticate('google', {
         failureRedirect: '/dashboard/login'
     }),
     function (req, res) {
@@ -122,6 +121,7 @@ router.get('/auth/google/callback',
                     });
                 }
             } else {
+                console.log(req.session);
                 res.redirect('/dashboard');
             }
         });
@@ -166,7 +166,9 @@ router.use(function (req, res, next) {
             params['portals'] = portals;
             params['user'] = req.user;
             params['rootURL'] = '/dashboard';
-            params['dashboard'] = {type:"Student"};
+            params['dashboard'] = {
+                type: "Student"
+            };
 
             res.render(view, params);
         });
