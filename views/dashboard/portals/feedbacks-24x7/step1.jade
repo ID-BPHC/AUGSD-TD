@@ -11,6 +11,7 @@ block content
 			.mdl-step__content
 				div.mdl-grid
 					div.mdl-cell.mdl-cell--12-col.center
+						h4 24x7 Feedback
 						p Select the course for which you want to write feedback.
 						form(action="#{rootURL}/feedbacks-24x7/step-2", method="post", id="form1").mdc-form-field
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
@@ -26,7 +27,7 @@ block content
 					| Continue
 					span.mdl-button__ripple-container
 						span.mdl-ripple
-				button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple')
+				button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
 					| Cancel
 					span.mdl-button__ripple-container
 						span.mdl-ripple
