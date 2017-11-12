@@ -121,7 +121,6 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
                     });
                 }
             } else {
-                console.log(req.session);
                 res.redirect('/dashboard');
             }
         });
