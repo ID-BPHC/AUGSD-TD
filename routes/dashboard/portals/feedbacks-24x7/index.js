@@ -1,4 +1,6 @@
 var express = require('express');
+var filter = require('profanity-filter');
+var badwordslist = require('badwords-list');
 var router = express.Router();
 
 var coursesModel = require('../../../../schemas/courses');
@@ -124,6 +126,21 @@ router.post('/step-4', function (req, res, next) {
 			instructoremail = element.email;
 		}
 	});
+	filter.setReplacementMethod('grawlix');
+	badwordslist.array.forEach(function (item) {
+		filter.addWord(item);
+		filter.addWord(item.replace(/\w\S*/g, function (txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		}));
+		filter.addWord(item.toUpperCase());
+	});
+	let customfilter = [];
+	customfilter.forEach(function (item) {
+		filter.addWord(item);
+	});
+	filter.setGrawlixChars(['']);
+	feedback = filter.clean(feedback);
+	console.log(feedback);
 	let dataStore = {
 		courseID: courseID,
 		section: courseSection,
