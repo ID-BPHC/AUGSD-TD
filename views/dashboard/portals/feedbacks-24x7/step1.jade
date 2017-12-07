@@ -1,16 +1,16 @@
 extends ../../nav
 
 block content
-	div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
-		div.mdl-step.is-active
-			span.mdl-step__label
-				span.mdl-step__title
-					span.mdl-step__title-text Select Course
-				span.mdl-step__label-indicator
-					span.mdl-step__label-indicator-content 1
-			.mdl-step__content
-				div.mdl-grid
-					div.mdl-cell.mdl-cell--12-col.center
+	div.mdl-cell.mdl-cell--12-col.center
+		div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
+			div.mdl-step.is-active
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Select Course
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 1
+				.mdl-step__content
+					div
 						h4 24x7 Feedback
 						p Select the course for which you want to write feedback.
 						form(action="#{rootURL}/feedbacks-24x7/step-2", method="post", id="form1").mdc-form-field
@@ -22,24 +22,24 @@ block content
 								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='courselist')
 									each course in user.courses
 										li.mdl-menu__item(data-val='#{course.courseID}') #{course.courseID} 
-			.mdl-step__actions
-				button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
-					| Continue
-					span.mdl-button__ripple-container
-						span.mdl-ripple
-				button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
-					| Cancel
-					span.mdl-button__ripple-container
-						span.mdl-ripple
-		div.mdl-step
-			span.mdl-step__label
-				span.mdl-step__title
-					span.mdl-step__title-text Select Class
-				span.mdl-step__label-indicator
-					span.mdl-step__label-indicator-content 2
-		div.mdl-step
-			span.mdl-step__label
-				span.mdl-step__title
-					span.mdl-step__title-text Provide Feedback
-				span.mdl-step__label-indicator
-					span.mdl-step__label-indicator-content 3
+				.mdl-step__actions
+					button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
+						| Continue
+						span.mdl-button__ripple-container
+							span.mdl-ripple
+					button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
+						| Cancel
+						span.mdl-button__ripple-container
+							span.mdl-ripple
+			div.mdl-step
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Select Class
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 2
+			div.mdl-step
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Provide Feedback
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 3
