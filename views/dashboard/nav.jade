@@ -1,6 +1,6 @@
 doctype html
 html
-	
+
 	head
 		title Dashboard
 		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
@@ -13,15 +13,14 @@ html
 		//- script(defer='', src='/scripts/stepper.min.js')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		style.
-			.custom-style{
-				border-left: solid 4px transparent;
-				color: rgba(0,0,0,0.87);
-				display: block;
-				font-size: 16px;
-				font-weight: 500;
+			.pushit{
 				padding-left: 20px;
-				padding-bottom: 10px;
-				margin-top: 16px;
+			}
+			.grayify{
+				background-color: rgba(243,243,243,1);
+			}
+			.menuselectify{
+				background-color: rgba(224,224,224,1);
 			}
 		//- script.
 		//- 	var stepperElement = document.querySelector('ul.mdl-stepper');
@@ -52,18 +51,43 @@ html
 							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
 							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
 							li.mdl-menu__item #{user.name}
-					
+
 
 			// Main Content
 			main.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer
 				.mdl-layout__drawer
 					span.mdl-layout__title Instruction Division
 					nav.mdl-navigation
-						div.custom-style Portals
+						a.mdl-navigation__link.menuselectify(href=rootURL,id='dashboard')
+							i.material-icons(style='padding-right:20px') dashboard
+							| Dashboard
+						a.mdl-navigation__link(href=rootURL + '/profile',id='profile')
+							i.material-icons(style='padding-right:20px') account_circle
+							| My Profile
+						a.mdl-navigation__link(href='http://id.bits-hyderabad.ac.in/moodle/mod/forum/view.php?id=1',id='web')
+							i.material-icons(style='padding-right:20px') web
+							| Site News
+						a.mdl-navigation__link(href=rootURL + '/bug',id='bugreport')
+							i.material-icons(style='padding-right:20px') bug_report
+							| Bug Report
+						hr
+						h6.center Portals
 						each portal in portals
-							a.mdl-navigation__link(href='#{rootURL}/#{portal.name}')
+							a.mdl-navigation__link(href=rootURL + '/' + portal.name,id=portal.name)
 								i.material-icons(style='padding-right:20px') #{portal.icon}
 								| #{portal.displayName}
-			main.mdl-layout__content
+			main.mdl-layout__content.grayify
 				div.mdl-grid
 					block content
+			//- main.docs-layout-content.mdl-layout__content.mdl-color-text--grey-600
+			//- 	footer.mdl-mini-footer
+			//- 		.mdl-mini-footer__left-section
+			//- 			.mdl-logo
+			//- 				| More Information
+			//- 			ul.mdl-mini-footer__link-list
+			//- 				li
+			//- 					a(href='#') Help
+			//- 				li
+			//- 					a(href='#') Privacy and Terms
+			//- 				li
+			//- 					a(href='#') User Agreement

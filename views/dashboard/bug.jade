@@ -1,0 +1,32 @@
+extends nav
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('bugreport').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col.center
+		div.mdl-grid
+			div.mdl-cell.mdl-cell--12-col.center
+				h4 Bug Report
+				p Found a bug? Need help with a portal? Wanna say thank you. Fill up this form.
+				form(action="#{rootURL}/bug", method="post", id="form1").mdc-form-field
+					div.mdl-grid
+						div.mdl-cell.mdl-cell--12-col
+							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+								input#feedbacklist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='feedbacklist')
+								label(for='sample2')
+									i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+								label.mdl-textfield__label(for='feedbacklist') Select Category of Feedback
+								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='feedbacklist')
+									each item in categories
+										li.mdl-menu__item(data-val='#{item}') #{item}
+									li.mdl-menu__item(data-val='Other') Other
+									each portal in portals
+										li.mdl-menu__item(data-val='#{portal.name}') #{portal.displayName}
+						div.mdl-cell.mdl-cell--12-col
+							.mdl-textfield.mdl-js-textfield
+								textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedback')
+								label.mdl-textfield__label(for='feedback') Enter Feedback
+						div.mdl-cell.mdl-cell--12-col
+							button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1") Submit Report
+				a(href='#{rootURL}/bug/policy') Bug Report Privacy & Terms
