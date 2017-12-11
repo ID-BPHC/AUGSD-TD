@@ -3,6 +3,7 @@ var router = express.Router();
 
 var studentsModel = require('../../schemas/students');
 var portalsModel = require('../../schemas/portals');
+var bugsModel = require('../../schemas/bugs');
 
 /* Configure middleware for portal permissions */
 
@@ -150,7 +151,10 @@ router.use(function (req, res, next) {
 });
 
 router.use(function (req, res, next) {
-    res.renderState = function (view, params = {}) {
+    res.renderState = function (view, params) {
+        if (params == undefined || params == null) {
+            params = {};
+        };
         portalsModel.find({
             admin: false,
             active: true
@@ -179,6 +183,37 @@ router.use(function (req, res, next) {
 
 router.get('/', function (req, res, next) {
     res.renderState('dashboard/index');
+});
+
+router.get('/bug', function (req, res, next) {
+    let params = req.params;
+    params['categories'] = ['User Interface', 'Feature Request', 'Site Performance', 'Site Operationality', 'Thank You']
+    res.renderState('dashboard/bug', params);
+});
+
+router.post('/bug', function (req, res, next) {
+    let dataStore = {
+        category: req.sanitize(req.body.feedbacklist),
+        report: req.sanitize(req.body.feedback),
+        useragent: req.sanitize(req.headers['user-agent']),
+        student: req.session.passport.user
+    };
+    bugsModel.create(dataStore, function (err, response) {
+        if (err) {
+            res.renderState('custom_errors', {
+                message: "Failure",
+                details: err
+            });
+        }
+        res.renderState('custom_errors', {
+            message: "Success",
+            details: "Stored Report"
+        });
+    });
+});
+
+router.get('/bug/policy', function (req, res, next) {
+    res.renderState('dashboard/bug_policy');
 });
 
 module.exports = router;

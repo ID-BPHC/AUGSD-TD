@@ -1,72 +1,73 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='description', content='Introducing Lollipop, a sweet new take on Android.')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0')
-    title Android
-    // Page styles
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet', href='https://code.getmdl.io/1.3.0/material.min.css')
-    link(rel='stylesheet', href='/stylesheets/indexstyle.css')
-    script(defer='', src='https://code.getmdl.io/1.3.0/material.min.js')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    style.
-      .custom-title {
-        font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-        line-height: 1;
-        color: #767777;
-        font-weight: 500;
-        margin: unset;
-      }
-      .custom-title2 {
-        font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-        line-height: 1;
-        color: #767777;
-        font-weight: 500;
-        margin: 10px -20px;
-      }
-      
-  body
-    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-      .android-header.mdl-layout__header.mdl-layout__header--waterfall
-        .mdl-layout__header-row
-          span.android-title.mdl-layout-title
-            p.custom-title BITS Pilani Hyderabad Campus
-          // Add spacer, to align navigation to the right in desktop
-          .android-header-spacer.mdl-layout-spacer
-          // Navigation
-          .android-navigation-container
-            nav.android-navigation.mdl-navigation
-              a.mdl-navigation__link.mdl-typography--text-uppercase(href='http://172.16.3.20/impartus/login.aspx') Impartus
-              a.mdl-navigation__link.mdl-typography--text-uppercase(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
-              a.mdl-navigation__link.mdl-typography--text-uppercase(href='/dashboard') Access Dashboard
-          span.android-mobile-title.mdl-layout-title
-            p.custom-title2 BITS Pilani Hyderabad Campus
-      .android-drawer.mdl-layout__drawer
-        span.mdl-layout-title
-          img.android-logo-image(src='images/logo-white.png')
-        nav.mdl-navigation
-          a.mdl-navigation__link(href='http://172.16.3.20/impartus/login.aspx') Impartus
-          a.mdl-navigation__link(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
-          a.mdl-navigation__link(href='/dashboard') Access Dashboard
-      .android-content.mdl-layout__content
-        a(name='top')
-        .android-be-together-section.mdl-typography--text-center
-          .logo-font.android-slogan Instruction Division.
-          .logo-font.android-sub-slogan welcome to instruction division.
-        footer.android-footer.mdl-mega-footer
-          .mdl-mega-footer--top-section
-            .mdl-mega-footer--right-section
-              a.mdl-typography--font-light(href='#top')
-                | Back to Top
-                i.material-icons expand_less
-          .mdl-mega-footer--middle-section
-            p.mdl-typography--font-light Instruction Division
-            p.mdl-typography--font-light BITS Pilani Hyderabad Campus
-          .mdl-mega-footer--bottom-section
-            a.android-link.mdl-typography--font-light(href='http://172.16.3.20/impartus/login.aspx') Impartus
-            a.android-link.mdl-typography--font-light(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
-            a.android-link.mdl-typography--font-light(href='/dashboard') Access Dashboard
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='description', content='Introducing Lollipop, a sweet new take on Android.')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0')
+		title Android
+		// Page styles
+		link(rel='icon', href='images/favicon.ico')
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en')
+		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+		link(rel='stylesheet', href='https://code.getmdl.io/1.3.0/material.min.css')
+		link(rel='stylesheet', href='/stylesheets/indexstyle.css')
+		script(defer='', src='https://code.getmdl.io/1.3.0/material.min.js')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		style.
+			.custom-title {
+				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+				line-height: 1;
+				color: #767777;
+				font-weight: 500;
+				margin: unset;
+			}
+			.custom-title2 {
+				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+				line-height: 1;
+				color: #767777;
+				font-weight: 500;
+				margin: 10px -20px;
+			}
+
+	body
+		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+			.android-header.mdl-layout__header.mdl-layout__header--waterfall
+				.mdl-layout__header-row
+					span.android-title.mdl-layout-title
+						p.custom-title BITS Pilani Hyderabad Campus
+					// Add spacer, to align navigation to the right in desktop
+					.android-header-spacer.mdl-layout-spacer
+					// Navigation
+					.android-navigation-container
+						nav.android-navigation.mdl-navigation
+							a.mdl-navigation__link.mdl-typography--text-uppercase(href='http://172.16.3.20/impartus/login.aspx') Impartus
+							a.mdl-navigation__link.mdl-typography--text-uppercase(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
+							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/dashboard') Access Dashboard
+					span.android-mobile-title.mdl-layout-title
+						p.custom-title2 BITS Pilani Hyderabad Campus
+			.android-drawer.mdl-layout__drawer
+				span.mdl-layout-title
+					img.android-logo-image(src='images/logo-white.png')
+				nav.mdl-navigation
+					a.mdl-navigation__link(href='http://172.16.3.20/impartus/login.aspx') Impartus
+					a.mdl-navigation__link(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
+					a.mdl-navigation__link(href='/dashboard') Access Dashboard
+			.android-content.mdl-layout__content
+				a(name='top')
+				.android-be-together-section.mdl-typography--text-center
+					.logo-font.android-slogan Instruction Division.
+					.logo-font.android-sub-slogan welcome to instruction division.
+				footer.android-footer.mdl-mega-footer
+					.mdl-mega-footer--top-section
+						.mdl-mega-footer--right-section
+							a.mdl-typography--font-light(href='#top')
+								| Back to Top
+								i.material-icons expand_less
+					.mdl-mega-footer--middle-section
+						p.mdl-typography--font-light Instruction Division
+						p.mdl-typography--font-light BITS Pilani Hyderabad Campus
+					.mdl-mega-footer--bottom-section
+						a.android-link.mdl-typography--font-light(href='http://172.16.3.20/impartus/login.aspx') Impartus
+						a.android-link.mdl-typography--font-light(href='http://id.bits-hyderabad.ac.in/moodle/') CMS
+						a.android-link.mdl-typography--font-light(href='/dashboard') Access Dashboard

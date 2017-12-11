@@ -1,6 +1,9 @@
 extends ../../nav
 
 block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-24x7').classList.add('menuselectify')
 	div.mdl-cell.mdl-cell--12-col
 		h2 24x7 Feedbacks
 
