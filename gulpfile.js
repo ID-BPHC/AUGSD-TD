@@ -4,7 +4,7 @@ var jshint = require('gulp-jshint');
 var nodemon = require('gulp-nodemon');
 
 gulp.task('prettify', function () {
-    gulp.src(['./*.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
+    gulp.src(['./*.js', '!./gulpfile.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
             base: './'
         })
         .pipe(prettify())
@@ -12,8 +12,9 @@ gulp.task('prettify', function () {
 });
 
 gulp.task('lint', function () {
-    gulp.src(['./*.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
+    gulp.src(['./*.js', './middleware/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
             base: './'
         })
-        .pipe(jshint());
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
