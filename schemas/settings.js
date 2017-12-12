@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var settingsSchema = new Schema({
-	name: String,
+    name: String,
     description: String,
     value: [String]
 });

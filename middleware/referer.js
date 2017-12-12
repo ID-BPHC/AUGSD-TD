@@ -1,5 +1,5 @@
 module.exports = {
-    referHandler: function (req, res, next) {
+    referHandler: function(req, res, next) {
         res.send(req.session);
         console.log(req)
         if (!req.session.Session.passport.user) {
