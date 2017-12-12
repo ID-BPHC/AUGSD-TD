@@ -2,11 +2,11 @@ var siteRoot = "http://localhost:3000";
 
 module.exports = {
 
-	//Misc
-	siteRoot: siteRoot,
+    //Misc
+    siteRoot: siteRoot,
 
-	//Google APIs
-	googleClientID:     '167265165056-dfi5tagvfb79360nngjlhhbocte9kf1t.apps.googleusercontent.com',
+    //Google APIs
+    googleClientID: '167265165056-dfi5tagvfb79360nngjlhhbocte9kf1t.apps.googleusercontent.com',
     googleClientSecret: '9tLO5NZmi-UFmfdP9AbvmT72',
     googleCallback: siteRoot + "/dashboard/auth/google/callback",
     googleAdminCallback: siteRoot + "/admin/auth/google/callback",
