@@ -22,6 +22,20 @@ html
 			.menuselectify{
 				background-color: rgba(224,224,224,1);
 			}
+			.avatar {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				margin-right: -2px;
+				display:inline;
+			}
+			@media (max-width: 768px) {
+				.avatar  {
+					display:none;
+				}
+			}
+
+
 		//- script.
 		//- 	var stepperElement = document.querySelector('ul.mdl-stepper');
 		//- 	var Stepper;
@@ -44,7 +58,8 @@ html
 						| #{dashboard.type} Dashboard
 					.mdl-layout-spacer
 					nav.mdl-navigation
-						a.mdl-navigation__link(href='') My Profile
+						img.avatar(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')")
+						a.mdl-navigation__link(href=rootURL + '/profile') My Profile
 						button#demo-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
 							i.material-icons more_vert
 						ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='demo-menu-lower-right')

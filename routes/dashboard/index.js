@@ -7,7 +7,7 @@ var bugsModel = require('../../schemas/bugs');
 
 /* Configure middleware for portal permissions */
 
-let securityCheck = function(req, res, next) {
+let securityCheck = function (req, res, next) {
 
     var reqPortal = (req.originalUrl.split('/'))[2];
 
@@ -15,7 +15,7 @@ let securityCheck = function(req, res, next) {
         name: reqPortal,
         active: true,
         admin: false
-    }, function(err, result) {
+    }, function (err, result) {
         if (err) {
             res.render('custom_errors', {
                 message: "Server error",
@@ -37,8 +37,8 @@ let securityCheck = function(req, res, next) {
 
 portalsModel.find({
     admin: false
-}, function(err, portals) {
-    portals.forEach(function(portal) {
+}, function (err, portals) {
+    portals.forEach(function (portal) {
         var portalPath = require('./portals/' + portal.name);
         router.use('/' + portal.name, securityCheck, portalPath);
     });
@@ -53,14 +53,14 @@ var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require('express-session');
 var keys = require('../../config');
 
-studentPassport.serializeUser(function(user, done) {
+studentPassport.serializeUser(function (user, done) {
     return done(null, user.emails[0].value);
 });
 
-studentPassport.deserializeUser(function(id, done) {
+studentPassport.deserializeUser(function (id, done) {
     studentsModel.find({
         email: id
-    }, function(err, result) {
+    }, function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -74,7 +74,7 @@ studentPassport.use(new googleStrategy({
     clientSecret: keys.googleClientSecret,
     callbackURL: keys.googleCallback,
     passReqToCallback: true
-}, function(request, accessToken, refreshToken, profile, done) {
+}, function (request, accessToken, refreshToken, profile, done) {
     return done(null, profile);
 }));
 
@@ -91,11 +91,11 @@ router.get('/login', studentPassport.authenticate('google', {
 router.get('/auth/google/callback', studentPassport.authenticate('google', {
         failureRedirect: '/dashboard/login'
     }),
-    function(req, res) {
+    function (req, res) {
 
         studentsModel.find({
             email: req.user.emails[0].value
-        }, function(err, result) {
+        }, function (err, result) {
             if (err) {
                 res.render('custom_errors', {
                     message: "Server error",
@@ -105,7 +105,7 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
             }
             if (result.length == 0) {
                 if (req.user.emails[0].value.endsWith("hyderabad.bits-pilani.ac.in")) {
-                    req.session.destroy(function() {
+                    req.session.destroy(function () {
                         res.render('custom_errors', {
                             message: "Un-authorized User",
                             details: "This user is not authorized to access dashboard.",
@@ -113,7 +113,7 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
                         });
                     });
                 } else {
-                    req.session.destroy(function() {
+                    req.session.destroy(function () {
                         res.render('custom_errors', {
                             message: "Invalid Email.",
                             details: "Please use your institute provided email only.",
@@ -122,18 +122,21 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
                     });
                 }
             } else {
+                // console.log(req.user);
+                req.session['profileImage'] = req.sanitize(req.user._json.image.url);
+                req.session.save();
                 res.redirect('/dashboard');
             }
         });
     });
 
-router.get('/logout', function(req, res) {
-    req.session.destroy(function(err) {
+router.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
         res.redirect('/');
     });
 });
 
-router.get('/portals', function(req, res) {
+router.get('/portals', function (req, res) {
     res.redirect('/dashboard');
 });
 
@@ -142,7 +145,7 @@ router.get('/portals', function(req, res) {
 
 /*Add end points for non logged in users above this line*/
 
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
     if (!(req.user)) {
         res.redirect('/dashboard/login');
     } else {
@@ -150,22 +153,22 @@ router.use(function(req, res, next) {
     }
 });
 
-router.use(function(req, res, next) {
-    res.renderState = function(view, params) {
+router.use(function (req, res, next) {
+    res.renderState = function (view, params) {
         if (params == undefined || params == null) {
             params = {};
         };
         portalsModel.find({
             admin: false,
             active: true
-        }, function(err, portals) {
+        }, function (err, portals) {
             if (err) {
                 res.render('custom_errors', {
                     message: "Server error",
                     details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
-
+            params['profileImage'] = req.session['profileImage'];
             params['portals'] = portals;
             params['user'] = req.user;
             params['rootURL'] = '/dashboard';
@@ -181,24 +184,24 @@ router.use(function(req, res, next) {
 
 /* Below end points are availible only to logged in users */
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.renderState('dashboard/index');
 });
 
-router.get('/bug', function(req, res, next) {
+router.get('/bug', function (req, res, next) {
     let params = req.params;
     params['categories'] = ['User Interface', 'Feature Request', 'Site Performance', 'Site Operationality', 'Thank You']
     res.renderState('dashboard/bug', params);
 });
 
-router.post('/bug', function(req, res, next) {
+router.post('/bug', function (req, res, next) {
     let dataStore = {
         category: req.sanitize(req.body.feedbacklist),
         report: req.sanitize(req.body.feedback),
         useragent: req.sanitize(req.headers['user-agent']),
         student: req.session.passport.user
     };
-    bugsModel.create(dataStore, function(err, response) {
+    bugsModel.create(dataStore, function (err, response) {
         if (err) {
             res.renderState('custom_errors', {
                 message: "Failure",
@@ -212,7 +215,7 @@ router.post('/bug', function(req, res, next) {
     });
 });
 
-router.get('/bug/policy', function(req, res, next) {
+router.get('/bug/policy', function (req, res, next) {
     res.renderState('dashboard/bug_policy');
 });
 
