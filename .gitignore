@@ -151,7 +151,8 @@ $RECYCLE.BIN/
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-utils/*.csv
-utils/*.json
+utils/**/*.csv
+utils/**/*.json
+utils/**/*.pdf
 
 !node_modules/schemas
