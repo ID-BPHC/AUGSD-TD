@@ -19,6 +19,7 @@
     "gulp-jsbeautifier": "^2.1.1",
     "gulp-jshint": "^2.0.4",
     "gulp-nodemon": "^2.2.1",
+    "https-proxy-agent": "^2.1.1",
     "jade": "~1.11.0",
     "jshint": "^2.9.5",
     "material-components-web": "^0.26.0",
