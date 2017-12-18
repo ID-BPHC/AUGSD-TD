@@ -23,27 +23,27 @@ block content
 						form(action="#{rootURL}/room-booking-student/step-2", method="post", id="form1").mdc-form-field
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 								input#capacity.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?')
-								label.mdl-textfield__label(for='capacity') Seating Capacity
+								label.mdl-textfield__label(for='capacity', name='capacity') Seating Capacity
 								span.mdl-textfield__error Input is not a number!
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								input#date.mdl-textfield__input(type='text')
+								input#date.mdl-textfield__input(type='text', name='date')
 								label.mdl-textfield__label(for='date') Date
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								input#time-start.mdl-textfield__input(type='text')
+								input#time-start.mdl-textfield__input(type='text', name='time-start')
 								label.mdl-textfield__label(for='time-start') Start Time
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								input#time-end.mdl-textfield__input(type='text')
+								input#time-end.mdl-textfield__input(type='text', name='time-end')
 								label.mdl-textfield__label(for='time-end') End Time
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								textarea#purpose.mdl-textfield__input(type='text', rows='3')
-								label.mdl-textfield__label(for='sample5') Room Booking Purpose
+								textarea#purpose.mdl-textfield__input(type='text', rows='3', name='purpose')
+								label.mdl-textfield__label(for='purpose') Room Booking Purpose
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								input#phone.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?')
+								input#phone.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='phone')
 								label.mdl-textfield__label(for='phone') Phone Number
 								span.mdl-textfield__error Input is not a number!
 							br
