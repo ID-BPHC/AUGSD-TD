@@ -15,10 +15,6 @@ h2 {
 	height:100%; 
 }
 
-.mdl-step__content { 
-	overflow: inherit; 
-}
-
 .mdl-stepper--horizontal {
 	max-width: 100%;
 }
