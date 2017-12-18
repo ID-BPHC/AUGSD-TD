@@ -5,6 +5,8 @@ var nodemon = require('gulp-nodemon');
 var exec = require('child_process').exec;
 var mongodbData = require('gulp-mongodb-data');
 var gulp = require('gulp-help')(require('gulp'));
+var runSequence = require('run-sequence');
+var gulp = require('gulp-npm-run')(require('gulp-help')(require('gulp')));
 
 function runCommand(command) {
     return function (cb) {
@@ -13,7 +15,7 @@ function runCommand(command) {
             console.log(stderr);
             cb(err);
         });
-    }
+    };
 }
 
 gulp.task('prettify', 'Prettify all server side js.', function () {
@@ -39,5 +41,13 @@ gulp.task('metadata', 'Imports default portals definitions.', function () {
             mongoUrl: 'mongodb://localhost/ID-dev',
             collectionName: 'portals',
             dropCollection: true
-        }))
+        }));
+});
+
+gulp.task('start', 'Runs npm server.', function () {
+    runCommand('npm start');
+});
+
+gulp.task('run', 'Runs node after prettifying and linting.', function () {
+    runSequence('prettify', 'run');
 });
