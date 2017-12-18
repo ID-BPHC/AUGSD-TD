@@ -22,8 +22,8 @@ block content
 						p Provide the following details before proceeding.
 						form(action="#{rootURL}/room-booking-student/step-2", method="post", id="form1").mdc-form-field
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-								input#capacity.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?')
-								label.mdl-textfield__label(for='capacity', name='capacity') Seating Capacity
+								input#capacity.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='capacity')
+								label.mdl-textfield__label(for='capacity') Seating Capacity
 								span.mdl-textfield__error Input is not a number!
 							br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -126,12 +126,12 @@ block content
 		});
 
 		document.getElementById('time-start').addEventListener('onOk', function() {
-			this.value = moment(startTimePicker.time).format('HH : mm');
+			this.value = moment(startTimePicker.time).format('HH:mm');
 			this.parentNode.classList.add('is-dirty');
 		});
 
 		document.getElementById('time-end').addEventListener('onOk', function() {
-			this.value = moment(endTimePicker.time).format('HH : mm');
+			this.value = moment(endTimePicker.time).format('HH:mm');
 			this.parentNode.classList.add('is-dirty');
 		});
 		}).call(this);
