@@ -35,6 +35,10 @@
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-help": "^1.6.1",
+    "gulp-mongodb-data": "^3.0.0",
+    "gulp-npm-run": "^0.0.3",
+    "run-sequence": "^2.2.0"
   }
 }
