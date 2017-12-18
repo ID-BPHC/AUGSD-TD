@@ -7,16 +7,16 @@ router.get('/', function(req, res, next) {
     res.renderState('dashboard/portals/room-booking-student');
 });
 
-router.get('/step-1', function(req, res, next){
-	res.renderState('dashboard/portals/room-booking-student/step1');
+router.get('/step-1', function(req, res, next) {
+    res.renderState('dashboard/portals/room-booking-student/step1');
 });
 
-router.get('/step-2', function(req, res, next){
-	res.renderState('dashboard/portals/room-booking-student');
+router.get('/step-2', function(req, res, next) {
+    res.renderState('dashboard/portals/room-booking-student');
 });
 
-router.get('/step-3', function(req, res, next){
-	res.renderState('dashboard/portals/room-booking-student');
+router.get('/step-3', function(req, res, next) {
+    res.renderState('dashboard/portals/room-booking-student');
 });
 
 
