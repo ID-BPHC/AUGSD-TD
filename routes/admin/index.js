@@ -183,12 +183,12 @@ router.use(function(req, res, next) {
                 });
             }
 
-            params['portals'] = portals;
-            params['user'] = req.user;
-            params['rootURL'] = '/admin';
-            params['dashboard'] = {
+            params.portals = portals;
+            params.user = req.user;
+            params.rootURL = '/admin';
+            params.dashboard = {
                 type: "Adminstrator"
-            }
+            };
 
             res.render(view, params);
         });
