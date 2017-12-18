@@ -123,7 +123,7 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
                 }
             } else {
                 // console.log(req.user);
-                req.session['profileImage'] = req.sanitize(req.user._json.image.url);
+                req.session.profileImage = req.sanitize(req.user._json.image.url);
                 req.session.save();
                 res.redirect('/dashboard');
             }
@@ -168,11 +168,11 @@ router.use(function(req, res, next) {
                     details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
-            params['profileImage'] = req.session['profileImage'];
-            params['portals'] = portals;
-            params['user'] = req.user;
-            params['rootURL'] = '/dashboard';
-            params['dashboard'] = {
+            params.profileImage = req.session['profileImage'];
+            params.portals = portals;
+            params.user = req.user;
+            params.rootURL = '/dashboard';
+            params.dashboard = {
                 type: "Student"
             };
 
@@ -190,7 +190,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/bug', function(req, res, next) {
     let params = req.params;
-    params['categories'] = ['User Interface', 'Feature Request', 'Site Performance', 'Site Operationality', 'Thank You']
+    params.categories = ['User Interface', 'Feature Request', 'Site Performance', 'Site Operationality', 'Thank You'];
     res.renderState('dashboard/bug', params);
 });
 
