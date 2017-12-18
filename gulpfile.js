@@ -48,6 +48,6 @@ gulp.task('start', 'Runs npm server.', function () {
     runCommand('npm start');
 });
 
-gulp.task('run', 'Runs node after prettifying and linting.', function () {
-    runSequence('prettify', 'run');
+gulp.task('check', 'Prettifying and checks linting.', function () {
+    runSequence('prettify', 'lint');
 });
