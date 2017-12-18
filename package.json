@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp check & node ./bin/www"
+    "start": "gulp check"
   },
   "dependencies": {
     "badwords-list": "^1.0.0",

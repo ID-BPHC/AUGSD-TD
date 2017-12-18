@@ -1,21 +1,12 @@
 var gulp = require('gulp');
+var os = require('os');
 var prettify = require('gulp-jsbeautifier');
 var jshint = require('gulp-jshint');
 var nodemon = require('gulp-nodemon');
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 var mongodbData = require('gulp-mongodb-data');
 var gulp = require('gulp-help')(require('gulp'));
 var runSequence = require('run-sequence');
-
-function runCommand(command) {
-    return function (cb) {
-        exec(command, function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
-            cb(err);
-        });
-    };
-}
 
 gulp.task('prettify', 'Prettify all server side js.', function () {
     gulp.src(['./*.js', '!./gulpfile.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
@@ -43,10 +34,40 @@ gulp.task('metadata', 'Imports default portals definitions.', function () {
         }));
 });
 
-gulp.task('start', 'Runs npm server.', function () {
-    runCommand('npm start');
+gulp.task('install', 'Install packages using yarn.', function (cb) {
+    if (os.platform() === 'win32') {
+        var command = 'yarn.cmd'
+    } else {
+        var command = 'yarn'
+    }
+    var cmd = spawn(command, ['install'], {
+        stdio: 'inherit'
+    });
+    cmd.on('close', function (code) {
+        console.log('install exited with code ' + code);
+        cb(code);
+    });
+});
+
+gulp.task('run', 'Run node server.', function (cb) {
+    var cmd = spawn('node', ['./bin/www'], {
+        stdio: 'inherit'
+    });
+    cmd.on('close', function (code) {
+        console.log('run exited with code ' + code);
+        cb(code);
+    });
+    cmd.on('error', function (err) {
+        console.error(err);
+        process.exit(1);
+    });
+    cmd.on('exit', function (code) {
+        if (code !== 0) {
+            console.log('Bower failed.');
+        }
+    });
 });
 
 gulp.task('check', 'Prettifying and checks linting.', function () {
-    runSequence('prettify', 'lint');
+    runSequence('install', 'prettify', 'lint', 'run');
 });
