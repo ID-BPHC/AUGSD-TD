@@ -109,9 +109,76 @@ router.post('/step-2', function(req, res, next) {
 
         });
 
+        req.session.rooms = rooms;
+        req.session.startTime = startTime;
+        req.session.endTime = endTime;
+        req.session.av = req.sanitize(req.body.av);
+        req.session.purpose = req.sanitize(req.body.purpose);
+        req.session.phone = req.sanitize(req.body.phone);
+        req.session.save();
+
         res.renderState('dashboard/portals/room-booking-student/step2', {
             rooms: rooms
         });
+    });
+
+});
+
+router.post('/step-3', function(req, res, next) {
+
+    var room = req.sanitize(req.body.room);
+
+    req.session.rooms.forEach(function(roomL, index) {
+
+        if (roomL.number == room && roomL.availible) {
+
+            bookingsModel.find({
+                number: room,
+                start: {
+                    "$lt": req.session.endTime
+                },
+                end: {
+                    "$gt": req.session.startTime
+                }
+            }, function(err, results) {
+
+                if (err) {
+                    res.renderState('custom_errors', {
+                        message: "An unexpected error occoured",
+                        details: "Contact Instruction Division software team for assistance"
+                    });
+                }
+
+                if (results.length == 0) {
+                    bookingsModel.create({
+                        number: room,
+                        start: req.session.startTime,
+                        end: req.session.endTime,
+                        bookedBy: req.user.email,
+                        av: req.session.av,
+                        purpose: req.session.purpose,
+                        phone: req.session.phone,
+                        approved: false
+
+                    }, function(err, result) {
+                        if (err) {
+                            res.renderState('custom_errors', {
+                                message: "An unexpected error occoured",
+                                details: "Contact Instruction Division software team for assistance"
+                            });
+                        }
+                        res.send("Booking Done");
+                    });
+                } else {
+                    res.renderState('custom_errors', {
+                        message: "Oops.. Room already booked.",
+                        details: "Someone else booked this room while you were booking. Please book some other room."
+                    });
+                }
+
+            });
+
+        }
     });
 
 });
