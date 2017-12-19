@@ -64,7 +64,7 @@ router.post('/step-2', function(req, res, next) {
             if (startHour >= 0 && startHour <= 9) {
                 for (i = startHour; i <= endHour; i++) {
 
-                    if (room.fixedClasses[weekDay][i] !== '') {
+                    if (typeof room.fixedClasses[weekDay][i] !== 'undefined' && room.fixedClasses[weekDay][i] !== '') {
                         room.availible = false;
                         break;
                     }
