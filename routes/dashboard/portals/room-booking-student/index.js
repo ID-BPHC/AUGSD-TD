@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
 var roomsModel = fq('schemas/rooms');
+var bookingsModel = fq('schemas/room-bookings');
 var moment = require('moment');
 
 var weekDayHash = {
@@ -67,17 +68,49 @@ router.post('/step-2', function(req, res, next) {
                         room.availible = false;
                         break;
                     }
-
                 }
             }
-
         });
         return rooms;
     });
 
     roomRegularSearch.then(function(rooms) {
-        rooms.forEach(function(element, index) {
-            console.log(element.availible + " " + element.number);
+
+        var startTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-start']), 'ddd DD MMM YYYY HH:mm').toDate();
+        var endTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-end']), 'ddd DD MMM YYYY HH:mm').toDate();
+
+        console.log(typeof startTime + " " + typeof d + ' ' + startTime.toString());
+        rooms.forEach(function(room, index) {
+
+            if (room.availible) {
+                bookingsModel.find({
+                    number: room.number,
+                    start: {
+                        "$lt": endTime
+                    },
+                    end: {
+                        "$gt": startTime
+                    }
+                }, function(err, results) {
+
+                    if (err) {
+                        res.renderState('custom_errors', {
+                            message: "An unexpected error occoured",
+                            details: "Contact Instruction Division software team for assistance"
+                        });
+                    }
+
+                    if (results.length != 0) {
+                        room.availible = false;
+                    }
+
+                });
+            }
+
+        });
+
+        res.renderState('dashboard/portals/room-booking-student/step2', {
+            rooms: rooms
         });
     });
 
