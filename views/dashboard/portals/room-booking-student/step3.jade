@@ -1,0 +1,55 @@
+extends ../../nav
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('room-booking-student').classList.add('menuselectify')
+
+	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
+	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
+
+	div.mdl-cell.mdl-cell--12-col.center
+		div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
+			div.mdl-step
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Provide Details
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 1				
+			div.mdl-step
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Select Room
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 2			
+				
+			div.mdl-step.is-active
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Confirm
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 3
+				.mdl-step__content
+					div
+						h4 Room Booking
+						p Your request for room booking has been placed. Wait for the confirmation mail from Instruction Division
+						ul
+							li Room #{number}
+							li From #{startDate}
+							li To #{endDate}
+							li Phone #{phone}
+							li AV #{av}
+				.mdl-step__actions
+					button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple', onclick='window.location.replace("#{rootURL}")')
+						| Done
+						span.mdl-button__ripple-container
+							span.mdl-ripple					
+	script.
+
+		var listItems = Array.prototype.slice.call(document.getElementsByClassName('mdl-list__item'));
+
+		listItems.forEach(function(item){
+			item.onclick = function() {
+				item.getElementsByTagName('input')[0].parentNode.MaterialRadio.check();
+			}
+		});
