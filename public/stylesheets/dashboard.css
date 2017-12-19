@@ -18,3 +18,8 @@ h2 {
 .mdl-stepper--horizontal {
 	max-width: 100%;
 }
+
+.mdl-list__item:hover {
+	background: rgb(250, 250, 250);
+	cursor: pointer;
+}
