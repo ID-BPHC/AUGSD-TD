@@ -39,7 +39,7 @@ block content
 											span.mdl-list__item-secondary-content
 												span.mdl-list__item-secondary-action
 													label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
-														input.mdl-radio__button(type='radio', name='room', value='#{room.number}', checked='', id='room-#{room.number}')
+														input.mdl-radio__button(type='radio', name='room', value='#{room.number}', id='room-#{room.number}')
 											
 					
 				.mdl-step__actions
@@ -57,3 +57,12 @@ block content
 						span.mdl-step__title-text Confirm
 					span.mdl-step__label-indicator
 						span.mdl-step__label-indicator-content 3
+	script.
+
+		var listItems = Array.prototype.slice.call(document.getElementsByClassName('mdl-list__item'));
+
+		listItems.forEach(function(item){
+			item.onclick = function() {
+				item.getElementsByTagName('input')[0].parentNode.MaterialRadio.check();
+			}
+		});
