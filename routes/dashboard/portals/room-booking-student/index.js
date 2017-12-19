@@ -3,6 +3,7 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var roomsModel = fq('schemas/rooms');
 var bookingsModel = fq('schemas/room-bookings');
+var mailer = fq('utils/mailer');
 var moment = require('moment');
 
 var weekDayHash = {
@@ -167,7 +168,18 @@ router.post('/step-3', function(req, res, next) {
                                 details: "Contact Instruction Division software team for assistance"
                             });
                         }
-                        res.send("Booking Done");
+                        mailer.send({
+                            email: req.user.email,
+                            subject: "Room Booking",
+                            body: "Your request for room booking has been submitted. Please wait for approval. Room No : " + room + "\nFrom: " + req.session.startTime.toString() + "\nTo: " + req.session.endTime
+                        });
+                        res.renderState('dashboard/portals/room-booking-student/step3', {
+                            number: room,
+                            start: req.session.startTime,
+                            end: req.session.endTime,
+                            phone: req.session.phone,
+                            av: req.session.av
+                        });
                     });
                 } else {
                     res.renderState('custom_errors', {
