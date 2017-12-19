@@ -30,9 +30,23 @@ html
 				display:inline;
 			}
 			@media (max-width: 768px) {
-				.avatar  {
+				.avatar, .profile-header, .profile-subheader, .stuff  {
 					display:none;
 				}
+			}
+			.profile-header{
+				margin:0 0 -4px!important; 
+				padding-top:20px!important;
+			}
+			.profile-subheader{
+				font-size:10px!important;
+				color:rgb(225,225,225);
+			}
+			.dropdown-header {
+				padding: 0px 0px 0px 20px;
+				font-size: 10px;
+				font-weight: 500;
+				opacity: .6;
 			}
 
 
@@ -59,8 +73,10 @@ html
 					.mdl-layout-spacer
 					nav.mdl-navigation
 						img.avatar(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')")
-						a.mdl-navigation__link(href=rootURL + '/profile') My Profile
-						button#demo-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon
+						a.mdl-navigation__link(href=rootURL + '/profile')
+							p.profile-header #{user.name}
+							p.profile-subheader #{dashboard.type}
+						button#demo-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon.stuff
 							i.material-icons more_vert
 						ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='demo-menu-lower-right')
 							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
@@ -84,6 +100,10 @@ html
 						a.mdl-navigation__link(href=rootURL + '/bug',id='bugreport')
 							i.material-icons(style='padding-right:20px') bug_report
 							| Bug Report
+						hr
+						a.mdl-navigation__link(href=rootURL + '/logout',id='bugreport')
+							i.material-icons(style='padding-right:20px') power_settings_new
+							| Log Out
 						hr
 						h6.center Portals
 						each portal in portals

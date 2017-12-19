@@ -188,7 +188,7 @@ router.use(function(req, res, next) {
             params.user = req.user;
             params.rootURL = '/admin';
             params.dashboard = {
-                type: "Adminstrator"
+                type: "Administrator"
             };
 
             res.render(view, params);
