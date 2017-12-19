@@ -1,0 +1,26 @@
+extends nav
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('profile').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col.center
+		div.mdl-grid
+			div.mdl-cell.mdl-cell--12-col.center
+				h3 My Profile
+				p Welcome, #{user.name}
+				div.mdl-grid
+					.mdl-cell.mdl-cell--12-col.center
+						.mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
+							.mdl-tabs__tab-bar
+								a.mdl-tabs__tab.is-active(href='#test') Test
+								a.mdl-tabs__tab(href='#test2') Test2
+							#test.mdl-tabs__panel.is-active
+								ul
+									p fg
+									p fdg
+							#test2.mdl-tabs__panel
+								ul
+									p fgasd
+									p fdgasd
+									p dfgasd

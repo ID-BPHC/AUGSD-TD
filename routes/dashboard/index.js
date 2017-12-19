@@ -124,7 +124,6 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
             } else {
                 // console.log(req.user);
                 req.session.profileImage = req.sanitize(req.user._json.image.url);
-                req.session.save();
                 res.redirect('/dashboard');
             }
         });
@@ -217,6 +216,10 @@ router.post('/bug', function(req, res, next) {
 
 router.get('/bug/policy', function(req, res, next) {
     res.renderState('dashboard/bug_policy');
+});
+
+router.get('/profile', function(req, res, next) {
+    res.renderState('dashboard/profile');
 });
 
 module.exports = router;
