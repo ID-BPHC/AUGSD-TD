@@ -8,7 +8,8 @@ var bookingSchema = new Schema({
     bookedBy: String,
     purpose: String,
     phone: String,
-    av: Boolean
+    av: Boolean,
+    approved: Boolean
 });
 
 var model = mongoose.model('room-bookings', bookingSchema);
