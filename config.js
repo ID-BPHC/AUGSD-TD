@@ -18,6 +18,6 @@ module.exports = {
     //Get these from http://masashi-k.blogspot.in/2013/06/sending-mail-with-gmail-using-xoauth2.html
     mailUser: "idfeedback@hyderabad.bits-pilani.ac.in",
     mailRefreshToken: "1/ZTdjl-PG6XmwqN4QuJKvBgDxd4Zvg-VlKaacaIUmGyU",
-    mailPort: 587,
-    mailSecure: false //true for only 465
+    mailPort: 465,
+    mailSecure: true //true for only 465
 };
