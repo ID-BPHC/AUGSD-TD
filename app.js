@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 var config = require('./config')
+var session = require('express-session');
 
 mongoose.connect(config.mongooseConnection);
 
@@ -15,6 +16,7 @@ var admin = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var index = require('./routes');
 var loggermiddleware = require('./middleware/logger');
+var auth = require('./middleware/auth');
 // var referermiddleware = require('./middleware/referer');
 var app = express();
 
@@ -35,6 +37,14 @@ app.use(bodyParser.urlencoded({
 app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    secret: 'ID-BPHC-ID'
+}));
+app.use(auth.adminPassport.initialize());
+app.use(auth.userPassport.initialize());
+app.use(auth.adminPassport.session());
+app.use(auth.userPassport.session());
 
 app.use('/admin', admin);
 app.use('/dashboard', dashboard);
