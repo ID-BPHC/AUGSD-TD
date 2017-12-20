@@ -6,6 +6,7 @@ var auth = require('../../middleware/auth');
 var studentsModel = require('../../schemas/students');
 var coursesModel = require('../../schemas/courses');
 var adminsModel = require('../../schemas/admins');
+var feedbacksModel = require('../../schemas/feedbacks');
 
 router.use(function(req, res, next) {
     if (!(req.user)) {
@@ -33,6 +34,12 @@ router.get('/getCourses', function(req, res, next) {
             if (err) {}
             res.json(result[0]);
         });
+    } else {
+        let response = {
+            code: 401,
+            message: "Unauthorized"
+        };
+        res.json(response);
     }
 });
 
@@ -71,6 +78,26 @@ router.get('/getCourse/:course/:section', function(req, res, next) {
                 instructors: data
             }));
         });
+    } else {
+        let response = {
+            code: 401,
+            message: "Unauthorized"
+        };
+        res.json(response);
+    }
+});
+
+router.get('/getFeedback/:email/:skip', function(req, res, next) {
+    if (req.session.userType === "admin") {
+        Promise.all([getInstructorFeedback(req.params.email, req.params.skip)]).then(data => res.json({
+            feedback: data[0]
+        }));
+    } else {
+        let response = {
+            code: 401,
+            message: "Unauthorized"
+        };
+        res.json(response);
     }
 });
 
@@ -91,4 +118,60 @@ let getInstructorName = function(email) {
     });
 };
 
+let getInstructorFeedback = function(email, skip) {
+    return new Promise((resolve, reject) => {
+        feedbacksModel.aggregate({
+                $match: {
+                    instructor: email
+                }
+            }, {
+                "$project": {
+                    _id: 0,
+                    type: 0,
+                    instructor: 0,
+                    student: 0,
+                    __v: 0
+                }
+            }, {
+                "$group": {
+                    "_id": null,
+                    "count": {
+                        "$sum": 1
+                    },
+                    "docs": {
+                        "$push": "$$ROOT"
+                    }
+                }
+            }, {
+                "$unwind": "$docs"
+            }, {
+                "$skip": skip * 20
+            }, {
+                "$limit": 20
+            }, {
+                "$group": {
+                    "_id": "$_id",
+                    "count": {
+                        "$first": "$count"
+                    },
+                    "docs": {
+                        "$push": "$docs"
+                    }
+                }
+            },
+            function(err, feedback) {
+                if (err) {
+                    reject(err);
+                }
+                resolve(feedback);
+            });
+    });
+};
+
 module.exports = router;
+
+// //                instruction: 0,
+// type: 0,
+//     __v: 0,
+//     _id: 0,
+//     student: 0,
