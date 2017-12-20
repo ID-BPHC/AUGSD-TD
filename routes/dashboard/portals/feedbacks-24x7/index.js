@@ -152,13 +152,19 @@ router.post('/step-4', function(req, res, next) {
     feedbacksModel.create(dataStore, function(err, response) {
         if (err) {
             res.renderState('custom_errors', {
+                redirect: "/dashboard",
+                timeout: 5,
+                supertitle: "Couldn't submit feedback",
                 message: "Failure",
                 details: err
             });
         }
         res.renderState('custom_errors', {
+            redirect: "/dashboard",
+            timeout: 2,
+            supertitle: "Submitted Feedback.",
             message: "Success",
-            details: "Stored Feedback"
+            details: "Stored Feedback. Redirecting"
         });
     });
 });
