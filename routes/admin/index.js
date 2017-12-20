@@ -5,6 +5,8 @@ var adminsModel = require('../../schemas/admins');
 var portalsModel = require('../../schemas/portals');
 var settingsModel = require('../../schemas/settings');
 
+var auth = require('../../middleware/auth');
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
@@ -52,49 +54,13 @@ portalsModel.find({
 /* Portal Middleware Configuration End */
 
 /********* Configure adminPassport *********/
-var passport = require('passport');
-var adminPassport = new passport.Passport();
-var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var session = require('express-session');
-var keys = require('../../config');
 
-adminPassport.serializeUser(function(user, done) {
-    return done(null, user.emails[0].value);
-});
-
-adminPassport.deserializeUser(function(id, done) {
-    adminsModel.find({
-        email: id
-    }, function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        return done(err, result[0]);
-    });
-});
-
-
-adminPassport.use(new googleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret,
-    callbackURL: keys.googleAdminCallback,
-    passReqToCallback: true
-}, function(request, accessToken, refreshToken, profile, done) {
-    return done(null, profile);
-}));
-
-router.use(session({
-    secret: 'ADMIN-BPHC-ID'
-}));
-router.use(adminPassport.initialize());
-router.use(adminPassport.session());
-
-router.get('/login', adminPassport.authenticate('google', {
+router.get('/login', auth.adminPassport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
 router.get('/auth/google/callback',
-    adminPassport.authenticate('google', {
+    auth.adminPassport.authenticate('google', {
         failureRedirect: '/login'
     }),
     function(req, res) {
@@ -143,6 +109,7 @@ router.get('/auth/google/callback',
                         });
                     } else {
                         req.session.profileImage = req.sanitize(req.user._json.image.url);
+                        req.session.userType = "admin";
                         res.redirect('/admin');
                     }
                 });
@@ -164,6 +131,16 @@ router.get('/logout', function(req, res) {
 router.use(function(req, res, next) {
     if (!(req.user)) {
         res.redirect('/admin/login');
+    } else {
+        next();
+    }
+});
+
+router.use(function(req, res, next) {
+    if (!(req.session.userType === "admin")) {
+        req.session.destroy(function(err) {
+            res.redirect('/admin/login');
+        });
     } else {
         next();
     }
