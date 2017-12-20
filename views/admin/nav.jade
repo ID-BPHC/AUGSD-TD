@@ -72,6 +72,7 @@ html
 						| #{dashboard.type} Dashboard
 					.mdl-layout-spacer
 					nav.mdl-navigation
+						div(style="padding-right:12px")
 						img.avatar(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')")
 						a.mdl-navigation__link(href=rootURL + '/profile')
 							p.profile-header #{user.name}
