@@ -66,11 +66,14 @@ html(lang='en')
 		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
 			.android-customized-section
 				.android-customized-section-text
-					.mdl-typography--font-light.mdl-typography--display-1-color-contrast Whoops
+					.mdl-typography--font-light.mdl-typography--display-1-color-contrast=supertitle || 'Whoops'
 					p.mdl-typography--font-light
 						.mdl-grid
 							.mdl-layout-spacer
-							.mdl-cell.mdl-cell--12-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('/admin')")
+							.mdl-cell.mdl-cell--12-col.mdl-card.mdl-shadow--2dp
 								h4.custom=message
 								p.custom=details
 							.mdl-layout-spacer
+							if(redirect)
+								meta(http-equiv="refresh" content="#{timeout}; url=#{redirect}")
+			
