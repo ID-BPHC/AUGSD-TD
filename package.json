@@ -16,9 +16,13 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
     "fuzzquire": "0.0.6",
+    "gulp": "^3.9.1",
+    "gulp-help": "^1.6.1",
     "gulp-jsbeautifier": "^2.1.1",
     "gulp-jshint": "^2.0.4",
+    "gulp-mongodb-data": "^3.0.0",
     "gulp-nodemon": "^2.2.1",
+    "gulp-npm-run": "^0.0.3",
     "https-proxy-agent": "^2.1.1",
     "jade": "~1.11.0",
     "jshint": "^2.9.5",
@@ -32,12 +36,8 @@
     "passport-google-oauth2": "^0.1.6",
     "profanity-filter": "^0.2.1",
     "promise": "^8.0.1",
+    "run-sequence": "^2.2.0",
     "serve-favicon": "~2.4.2",
-    "xoauth2": "^1.2.0",
-    "gulp": "^3.9.1",
-    "gulp-help": "^1.6.1",
-    "gulp-mongodb-data": "^3.0.0",
-    "gulp-npm-run": "^0.0.3",
-    "run-sequence": "^2.2.0"
+    "xoauth2": "^1.2.0"
   }
 }
