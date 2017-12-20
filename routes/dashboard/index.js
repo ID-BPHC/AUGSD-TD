@@ -5,6 +5,8 @@ var studentsModel = require('../../schemas/students');
 var portalsModel = require('../../schemas/portals');
 var bugsModel = require('../../schemas/bugs');
 
+var auth = require('../../middleware/auth');
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
@@ -53,48 +55,12 @@ portalsModel.find({
 /* Portal Middleware Configuration End */
 
 /********* Configure studentPassport *********/
-var passport = require('passport');
-var studentPassport = new passport.Passport();
-var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var session = require('express-session');
-var keys = require('../../config');
 
-studentPassport.serializeUser(function(user, done) {
-    return done(null, user.emails[0].value);
-});
-
-studentPassport.deserializeUser(function(id, done) {
-    studentsModel.find({
-        email: id
-    }, function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        return done(err, result[0]);
-    });
-});
-
-
-studentPassport.use(new googleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret,
-    callbackURL: keys.googleCallback,
-    passReqToCallback: true
-}, function(request, accessToken, refreshToken, profile, done) {
-    return done(null, profile);
-}));
-
-router.use(session({
-    secret: 'STUDENT-BPHC-ID'
-}));
-router.use(studentPassport.initialize());
-router.use(studentPassport.session());
-
-router.get('/login', studentPassport.authenticate('google', {
+router.get('/login', auth.userPassport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
-router.get('/auth/google/callback', studentPassport.authenticate('google', {
+router.get('/auth/google/callback', auth.userPassport.authenticate('google', {
         failureRedirect: '/dashboard/login'
     }),
     function(req, res) {
@@ -139,6 +105,7 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
             } else {
                 // console.log(req.user);
                 req.session.profileImage = req.sanitize(req.user._json.image.url);
+                req.session.userType = "user";
                 res.redirect('/dashboard');
             }
         });
@@ -162,6 +129,16 @@ router.get('/portals', function(req, res) {
 router.use(function(req, res, next) {
     if (!(req.user)) {
         res.redirect('/dashboard/login');
+    } else {
+        next();
+    }
+});
+
+router.use(function(req, res, next) {
+    if (!(req.session.userType === "user")) {
+        req.session.destroy(function(err) {
+            res.redirect('/dashboard/login');
+        });
     } else {
         next();
     }
