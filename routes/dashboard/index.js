@@ -17,19 +17,25 @@ let securityCheck = function(req, res, next) {
         admin: false
     }, function(err, result) {
         if (err) {
-            res.render('custom_errors', {
-                message: "Server error",
-                details: "An unexpected error occoured. Contact Instruction Division software team for assistance.",
-                callback: "/"
+            res.renderState('custom_errors', {
+                redirect: "/dashboard",
+                timeout: 5,
+                supertitle: "Critical Breakdown.",
+                callback: "/",
+                message: "Server Error",
+                details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
             });
         }
         if (result.length > 0) {
             next();
         } else {
-            res.render('custom_errors', {
-                message: 'This portal has been disabled by the Administrator',
-                details: 'Contact Instruction Division software team for assistance.',
-                callback: "/dashboard"
+            res.renderState('custom_errors', {
+                redirect: "/dashboard",
+                timeout: 5,
+                supertitle: "Portal.",
+                callback: "/dashboard",
+                message: "Disabled Portal",
+                details: "This portal has been disabled by the Administrator. Please contact Instruction Division for assistance."
             });
         }
     });
@@ -97,19 +103,25 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
             email: req.user.emails[0].value
         }, function(err, result) {
             if (err) {
-                res.render('custom_errors', {
-                    message: "Server error",
-                    details: "An unexpected error occoured. Contact Instruction Division software team for assistance.",
-                    callback: "/"
+                res.renderState('custom_errors', {
+                    redirect: "/dashboard",
+                    timeout: 5,
+                    supertitle: "Critical Breakdown.",
+                    callback: "/",
+                    message: "Server Error",
+                    details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
             if (result.length == 0) {
                 if (req.user.emails[0].value.endsWith("hyderabad.bits-pilani.ac.in")) {
                     req.session.destroy(function() {
                         res.render('custom_errors', {
-                            message: "Un-authorized User",
-                            details: "This user is not authorized to access dashboard.",
-                            callback: "/"
+                            message: "Invalid User.",
+                            details: "Are you sure you selected your role properly?",
+                            callback: "/",
+                            redirect: "/dashboard",
+                            timeout: 15,
+                            supertitle: "Unauthorized User."
                         });
                     });
                 } else {
@@ -117,7 +129,10 @@ router.get('/auth/google/callback', studentPassport.authenticate('google', {
                         res.render('custom_errors', {
                             message: "Invalid Email.",
                             details: "Please use your institute provided email only.",
-                            callback: "/"
+                            callback: "/",
+                            redirect: "/dashboard",
+                            timeout: 15,
+                            supertitle: "Unauthorized Domain."
                         });
                     });
                 }
@@ -162,8 +177,11 @@ router.use(function(req, res, next) {
             active: true
         }, function(err, portals) {
             if (err) {
-                res.render('custom_errors', {
-                    message: "Server error",
+                res.renderState('custom_errors', {
+                    redirect: "/dashboard",
+                    timeout: 5,
+                    supertitle: "Critical Breakdown.",
+                    message: "Server Error",
                     details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
@@ -203,13 +221,19 @@ router.post('/bug', function(req, res, next) {
     bugsModel.create(dataStore, function(err, response) {
         if (err) {
             res.renderState('custom_errors', {
-                message: "Failure",
+                redirect: "/dashboard",
+                timeout: 2,
+                supertitle: "Submitted Feedback.",
+                message: "Success",
                 details: err
             });
         }
         res.renderState('custom_errors', {
+            redirect: "/dashboard",
+            timeout: 2,
+            supertitle: "Submitted Report.",
             message: "Success",
-            details: "Stored Report"
+            details: "Report has been submitted"
         });
     });
 });
