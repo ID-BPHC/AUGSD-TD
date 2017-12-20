@@ -12,6 +12,7 @@ var session = require('express-session');
 
 mongoose.connect(config.mongooseConnection);
 
+var api = require('./routes/api');
 var admin = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var index = require('./routes');
@@ -47,6 +48,7 @@ app.use(auth.adminPassport.session());
 app.use(auth.userPassport.session());
 
 app.use('/admin', admin);
+app.use('/api', api);
 app.use('/dashboard', dashboard);
 app.use('/', index);
 
