@@ -52,7 +52,15 @@ app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+    res.locals.development = (req.app.get('env') === 'development');
+    res.locals.missing = false;
+    res.locals.title = "Oh noes";
+    res.locals.subtitle = "Our guys have been notified about this.";
+    if (err.status == 404) {
+        res.locals.missing == true;
+        res.locals.title = "404 Couldn't find it"
+        res.locals.subtitle = "You sure you typed the link correctly?";
+    }
     // render the error page
     res.status(err.status || 500);
     res.render('error');

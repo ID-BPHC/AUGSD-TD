@@ -49,6 +49,7 @@ html
 				opacity: .6;
 			}
 
+
 		//- script.
 		//- 	var stepperElement = document.querySelector('ul.mdl-stepper');
 		//- 	var Stepper;
@@ -71,6 +72,7 @@ html
 						| #{dashboard.type} Dashboard
 					.mdl-layout-spacer
 					nav.mdl-navigation
+						div(style="padding-right:12px")
 						img.avatar(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')")
 						a.mdl-navigation__link(href=rootURL + '/profile')
 							p.profile-header #{user.name}
@@ -100,6 +102,10 @@ html
 							i.material-icons(style='padding-right:20px') bug_report
 							| Bug Report
 						hr
+						a.mdl-navigation__link(href=rootURL + '/logout',id='bugreport')
+							i.material-icons(style='padding-right:20px') power_settings_new
+							| Log Out
+						hr
 						h6.center Portals
 						each portal in portals
 							a.mdl-navigation__link(href=rootURL + '/' + portal.name,id=portal.name)
@@ -108,15 +114,3 @@ html
 			main.mdl-layout__content.grayify
 				div.mdl-grid
 					block content
-			//- main.docs-layout-content.mdl-layout__content.mdl-color-text--grey-600
-			//- 	footer.mdl-mini-footer
-			//- 		.mdl-mini-footer__left-section
-			//- 			.mdl-logo
-			//- 				| More Information
-			//- 			ul.mdl-mini-footer__link-list
-			//- 				li
-			//- 					a(href='#') Help
-			//- 				li
-			//- 					a(href='#') Privacy and Terms
-			//- 				li
-			//- 					a(href='#') User Agreement

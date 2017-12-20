@@ -142,6 +142,7 @@ router.get('/auth/google/callback',
                             });
                         });
                     } else {
+                        req.session.profileImage = req.sanitize(req.user._json.image.url);
                         res.redirect('/admin');
                     }
                 });
@@ -182,12 +183,12 @@ router.use(function(req, res, next) {
                     details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
                 });
             }
-
+            params.profileImage = req.session['profileImage'];
             params.portals = portals;
             params.user = req.user;
             params.rootURL = '/admin';
             params.dashboard = {
-                type: "Adminstrator"
+                type: "Administrator"
             };
 
             res.render(view, params);
@@ -197,7 +198,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    res.renderState('dashboard/index');
+    res.renderState('admin/index');
 });
 
 module.exports = router;

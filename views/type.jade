@@ -1,14 +1,3 @@
-//- extends layout
-
-//- block content
-//-   h1= message
-//-   h2= error.status
-//-   pre #{error.stack}
-//- extends layout
-
-//- block content
-//-   h1= message
-//-   h4= details
 doctype html
 html(lang='en')
 	head
@@ -70,19 +59,26 @@ html(lang='en')
 			.custom{
 				opacity: .68;
 			}
-			.mdl-grid.center-items {
-				justify-content: center;
-			}
 
 	body
 		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
 			.android-customized-section
 				.android-customized-section-text
-					.mdl-typography--font-light.mdl-typography--display-1-color-contrast=title
-					p.custom=subtitle
-						.mdl-layout-spacer
-							if development==true && missing==false
-								h4.custom=message
-								h5.custom=error.status
-								p.custom.mdl-grid.center-items=error.stack
-						.mdl-layout-spacer
+					.mdl-typography--font-light.mdl-typography--display-1-color-contrast Choose your role
+					p.mdl-typography--font-light
+						.mdl-grid
+							.mdl-layout-spacer
+							.mdl-cell.mdl-cell--6-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('/admin')")
+								img.profile(src='/images/login/professor.png')
+								h4.custom Professor
+								p.custom Paid to be here?
+							.mdl-cell.mdl-cell--6-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('/dashboard')")
+								img.profile(src='/images/login/student.png')
+								h4.custom Student
+								p.custom Pay to be here?
+							.mdl-layout-spacer
+						.mdl-grid
+							.mdl-layout-spacer
+							p.signin Login Provided by
+							img.signin-image.center-align(src='/images/login/login.png')
+							.mdl-layout-spacer
