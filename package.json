@@ -33,9 +33,7 @@
     "profanity-filter": "^0.2.1",
     "promise": "^8.0.1",
     "serve-favicon": "~2.4.2",
-    "xoauth2": "^1.2.0"
-  },
-  "devDependencies": {
+    "xoauth2": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
     "gulp-mongodb-data": "^3.0.0",
