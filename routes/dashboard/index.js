@@ -9,7 +9,7 @@ var auth = require('../../middleware/auth');
 
 /* Configure middleware for portal permissions */
 
-let securityCheck = function (req, res, next) {
+let securityCheck = function(req, res, next) {
 
     var reqPortal = (req.originalUrl.split('/'))[2];
 
@@ -17,7 +17,7 @@ let securityCheck = function (req, res, next) {
         name: reqPortal,
         active: true,
         admin: false
-    }, function (err, result) {
+    }, function(err, result) {
         if (err) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard",
@@ -45,8 +45,8 @@ let securityCheck = function (req, res, next) {
 
 portalsModel.find({
     admin: false
-}, function (err, portals) {
-    portals.forEach(function (portal) {
+}, function(err, portals) {
+    portals.forEach(function(portal) {
         var portalPath = require('./portals/' + portal.name);
         router.use('/' + portal.name, securityCheck, portalPath);
     });
@@ -63,11 +63,11 @@ router.get('/login', auth.userPassport.authenticate('google', {
 router.get('/auth/google/callback', auth.userPassport.authenticate('google', {
         failureRedirect: '/dashboard/login'
     }),
-    function (req, res) {
+    function(req, res) {
 
         studentsModel.find({
             email: req.user.emails[0].value
-        }, function (err, result) {
+        }, function(err, result) {
             if (err) {
                 res.renderState('custom_errors', {
                     redirect: "/dashboard",
@@ -80,7 +80,7 @@ router.get('/auth/google/callback', auth.userPassport.authenticate('google', {
             }
             if (result.length == 0) {
                 if (req.user.emails[0].value.endsWith("hyderabad.bits-pilani.ac.in")) {
-                    req.session.destroy(function () {
+                    req.session.destroy(function() {
                         res.render('custom_errors', {
                             message: "Invalid User.",
                             details: "Are you sure you selected your role properly?",
@@ -91,7 +91,7 @@ router.get('/auth/google/callback', auth.userPassport.authenticate('google', {
                         });
                     });
                 } else {
-                    req.session.destroy(function () {
+                    req.session.destroy(function() {
                         res.render('custom_errors', {
                             message: "Invalid Email.",
                             details: "Please use your institute provided email only.",
@@ -111,13 +111,13 @@ router.get('/auth/google/callback', auth.userPassport.authenticate('google', {
         });
     });
 
-router.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
         res.redirect('/');
     });
 });
 
-router.get('/portals', function (req, res) {
+router.get('/portals', function(req, res) {
     res.redirect('/dashboard');
 });
 
@@ -126,7 +126,7 @@ router.get('/portals', function (req, res) {
 
 /*Add end points for non logged in users above this line*/
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     if (!(req.user)) {
         res.redirect('/dashboard/login');
     } else {
@@ -134,9 +134,9 @@ router.use(function (req, res, next) {
     }
 });
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     if ((req.session.userType !== "user")) {
-        req.session.destroy(function (err) {
+        req.session.destroy(function(err) {
             res.redirect('/dashboard/login');
         });
     } else {
@@ -144,15 +144,15 @@ router.use(function (req, res, next) {
     }
 });
 
-router.use(function (req, res, next) {
-    res.renderState = function (view, params) {
+router.use(function(req, res, next) {
+    res.renderState = function(view, params) {
         if (params == undefined || params == null) {
             params = {};
         }
         portalsModel.find({
             admin: false,
             active: true
-        }, function (err, portals) {
+        }, function(err, portals) {
             if (err) {
                 res.renderState('custom_errors', {
                     redirect: "/dashboard",
@@ -178,24 +178,24 @@ router.use(function (req, res, next) {
 
 /* Below end points are availible only to logged in users */
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.renderState('dashboard/index');
 });
 
-router.get('/bug', function (req, res, next) {
+router.get('/bug', function(req, res, next) {
     let params = req.params;
     params.categories = ['User Interface', 'Feature Request', 'Site Performance', 'Site Operationality', 'Thank You'];
     res.renderState('dashboard/bug', params);
 });
 
-router.post('/bug', function (req, res, next) {
+router.post('/bug', function(req, res, next) {
     let dataStore = {
         category: req.sanitize(req.body.feedbacklist),
         report: req.sanitize(req.body.feedback),
         useragent: req.sanitize(req.headers['user-agent']),
         student: req.session.passport.user
     };
-    bugsModel.create(dataStore, function (err, response) {
+    bugsModel.create(dataStore, function(err, response) {
         if (err) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard",
@@ -215,11 +215,11 @@ router.post('/bug', function (req, res, next) {
     });
 });
 
-router.get('/bug/policy', function (req, res, next) {
+router.get('/bug/policy', function(req, res, next) {
     res.renderState('dashboard/bug_policy');
 });
 
-router.get('/profile', function (req, res, next) {
+router.get('/profile', function(req, res, next) {
     res.renderState('dashboard/profile');
 });
 
