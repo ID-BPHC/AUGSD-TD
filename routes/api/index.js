@@ -88,8 +88,12 @@ router.get('/getCourse/:course/:section', function (req, res, next) {
 });
 
 router.get('/getFeedback/:email/:skip', function (req, res, next) {
-    if (req.session.userType === "admin") {
+    if (req.session.userType === "adminSuper") {
         Promise.all([getInstructorFeedback(req.params.email, req.params.skip)]).then(data => res.json({
+            feedback: data[0]
+        }));
+    } else if (req.session.userType === "admin") {
+        Promise.all([getInstructorFeedback(req.session.passport.user, req.params.skip)]).then(data => res.json({
             feedback: data[0]
         }));
     } else {
