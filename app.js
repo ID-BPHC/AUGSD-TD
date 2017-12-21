@@ -7,7 +7,7 @@ var expressSanitizer = require('express-sanitizer');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
-var config = require('./config')
+var config = require('./config');
 var session = require('express-session');
 
 mongoose.connect(config.mongooseConnection);
@@ -53,14 +53,14 @@ app.use('/dashboard', dashboard);
 app.use('/', index);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -69,8 +69,8 @@ app.use(function(err, req, res, next) {
     res.locals.title = "Oh noes";
     res.locals.subtitle = "Our guys have been notified about this.";
     if (err.status == 404) {
-        res.locals.missing == true;
-        res.locals.title = "404 Couldn't find it"
+        res.locals.missing = true;
+        res.locals.title = "404 Couldn't find it";
         res.locals.subtitle = "You sure you typed the link correctly?";
     }
     // render the error page

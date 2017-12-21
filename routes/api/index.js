@@ -8,7 +8,7 @@ var coursesModel = require('../../schemas/courses');
 var adminsModel = require('../../schemas/admins');
 var feedbacksModel = require('../../schemas/feedbacks');
 
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
     if (!(req.user)) {
         let response = {
             code: 401,
@@ -20,7 +20,7 @@ router.use(function(req, res, next) {
     }
 });
 
-router.get('/getCourses', function(req, res, next) {
+router.get('/getCourses', function (req, res, next) {
     if (req.session.userType === "user") {
         // console.log(req.session);
         studentsModel.find({
@@ -30,7 +30,7 @@ router.get('/getCourses', function(req, res, next) {
             idNumber: 0,
             _id: 0,
             email: 0
-        }, function(err, result) {
+        }, function (err, result) {
             if (err) {}
             res.json(result[0]);
         });
@@ -43,7 +43,7 @@ router.get('/getCourses', function(req, res, next) {
     }
 });
 
-router.get('/getCourse/:course/:section', function(req, res, next) {
+router.get('/getCourse/:course/:section', function (req, res, next) {
     if (req.session.userType === "user") {
         // console.log(req.session);
         let query = coursesModel.aggregate({
@@ -67,7 +67,7 @@ router.get('/getCourse/:course/:section', function(req, res, next) {
                 },
                 _id: 0
             }
-        }, function(err, result) {
+        }, function (err, result) {
             let instructors = result[0].sections[0].instructors;
             let promises = [];
             instructors.forEach(element => {
@@ -87,7 +87,7 @@ router.get('/getCourse/:course/:section', function(req, res, next) {
     }
 });
 
-router.get('/getFeedback/:email/:skip', function(req, res, next) {
+router.get('/getFeedback/:email/:skip', function (req, res, next) {
     if (req.session.userType === "admin") {
         Promise.all([getInstructorFeedback(req.params.email, req.params.skip)]).then(data => res.json({
             feedback: data[0]
@@ -101,11 +101,11 @@ router.get('/getFeedback/:email/:skip', function(req, res, next) {
     }
 });
 
-let getInstructorName = function(email) {
+let getInstructorName = function (email) {
     return new Promise((resolve, reject) => {
         adminsModel.find({
             email: email
-        }, function(err, email) {
+        }, function (err, email) {
             if (err) {
                 reject(err);
             }
@@ -114,11 +114,11 @@ let getInstructorName = function(email) {
             };
             // console.log(newdata);
             resolve(newdata);
-        })
+        });
     });
 };
 
-let getInstructorFeedback = function(email, skip) {
+let getInstructorFeedback = function (email, skip) {
     return new Promise((resolve, reject) => {
         feedbacksModel.aggregate({
                 $match: {
@@ -159,7 +159,7 @@ let getInstructorFeedback = function(email, skip) {
                     }
                 }
             },
-            function(err, feedback) {
+            function (err, feedback) {
                 if (err) {
                     reject(err);
                 }
@@ -169,9 +169,3 @@ let getInstructorFeedback = function(email, skip) {
 };
 
 module.exports = router;
-
-// //                instruction: 0,
-// type: 0,
-//     __v: 0,
-//     _id: 0,
-//     student: 0,

@@ -35,10 +35,9 @@ gulp.task('metadata', 'Imports default portals definitions.', function () {
 });
 
 gulp.task('install', 'Install packages using yarn.', function (cb) {
+    var command = 'yarn';
     if (os.platform() === 'win32') {
-        var command = 'yarn.cmd'
-    } else {
-        var command = 'yarn'
+        command = 'yarn.cmd';
     }
     var cmd = spawn(command, ['install'], {
         stdio: 'inherit'
