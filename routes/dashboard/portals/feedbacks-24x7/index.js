@@ -8,26 +8,26 @@ var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
 var feedbacksModel = require('../../../../schemas/feedbacks');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.renderState('dashboard/portals/feedbacks-24x7');
 });
 
-router.get('/step-1', function (req, res, next) {
+router.get('/step-1', function(req, res, next) {
     res.renderState('dashboard/portals/feedbacks-24x7/step1');
 });
 
-router.get('/step-2', function (req, res, next) {
+router.get('/step-2', function(req, res, next) {
     res.redirect('/dashboard/feedbacks-24x7');
 });
 
-router.get('/step-3', function (req, res, next) {
+router.get('/step-3', function(req, res, next) {
     res.redirect('/dashboard/feedbacks-24x7');
 });
 
-router.post('/step-2', function (req, res, next) {
+router.post('/step-2', function(req, res, next) {
     let courseSearch = coursesModel.find({
         courseID: req.sanitize(req.body.courselist)
-    }, function (err, result) {
+    }, function(err, result) {
         return result;
     });
     courseSearch.then(function retrieveStudent(data) {
@@ -49,7 +49,7 @@ router.post('/step-2', function (req, res, next) {
     });
 });
 
-router.post('/step-3', function (req, res, next) {
+router.post('/step-3', function(req, res, next) {
     let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
     req.session.courseSection = courseSection;
     req.session.save();
@@ -84,7 +84,7 @@ router.post('/step-3', function (req, res, next) {
             return new Promise((resolve, reject) => {
                 adminsModel.find({
                     email: data[0].sections[0].instructors[i]
-                }, function (err, email) {
+                }, function(err, email) {
                     if (err) {
                         return reject(err);
                     }
@@ -114,28 +114,28 @@ router.post('/step-3', function (req, res, next) {
     });
 });
 
-router.post('/step-4', function (req, res, next) {
+router.post('/step-4', function(req, res, next) {
     let instructorarray = req.session.instructor[0].instructors;
     let courseID = req.session.courseID;
     let courseSection = req.session.courseSection;
     let instructorname = req.sanitize(req.body.instructorlist);
     let feedback = req.sanitize(req.body.feedback);
     let instructoremail = '';
-    instructorarray.forEach(function (element) {
+    instructorarray.forEach(function(element) {
         if (element.name == instructorname) {
             instructoremail = element.email;
         }
     });
     filter.setReplacementMethod('grawlix');
-    badwordslist.array.forEach(function (item) {
+    badwordslist.array.forEach(function(item) {
         filter.addWord(item);
-        filter.addWord(item.replace(/\w\S*/g, function (txt) {
+        filter.addWord(item.replace(/\w\S*/g, function(txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }));
         filter.addWord(item.toUpperCase());
     });
     let customfilter = [];
-    customfilter.forEach(function (item) {
+    customfilter.forEach(function(item) {
         filter.addWord(item);
     });
     filter.setGrawlixChars(['']);
@@ -149,7 +149,7 @@ router.post('/step-4', function (req, res, next) {
         responses: feedback,
         student: req.session.passport.user
     };
-    feedbacksModel.create(dataStore, function (err, response) {
+    feedbacksModel.create(dataStore, function(err, response) {
         if (err) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard",

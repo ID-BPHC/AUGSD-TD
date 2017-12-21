@@ -9,7 +9,7 @@ var auth = require('../../middleware/auth');
 
 /* Configure middleware for portal permissions */
 
-let securityCheck = function (req, res, next) {
+let securityCheck = function(req, res, next) {
 
     var reqPortal = (req.originalUrl.split('/'))[2];
 
@@ -17,7 +17,7 @@ let securityCheck = function (req, res, next) {
         name: reqPortal,
         active: true,
         admin: true
-    }, function (err, result) {
+    }, function(err, result) {
         if (err) {
             res.render('custom_errors', {
                 message: "Server error",
@@ -44,8 +44,8 @@ let securityCheck = function (req, res, next) {
 
 portalsModel.find({
     admin: true
-}, function (err, portals) {
-    portals.forEach(function (portal) {
+}, function(err, portals) {
+    portals.forEach(function(portal) {
         var portalPath = require('./portals/' + portal.name);
         router.use('/' + portal.name, securityCheck, portalPath);
     });
@@ -63,10 +63,10 @@ router.get('/auth/google/callback',
     auth.adminPassport.authenticate('google', {
         failureRedirect: '/login'
     }),
-    function (req, res) {
+    function(req, res) {
         settingsModel.find({
             name: "config"
-        }, function (err, result) {
+        }, function(err, result) {
             if (err) {
                 res.render('custom_errors', {
                     message: "Server Connection Error",
@@ -84,8 +84,8 @@ router.get('/auth/google/callback',
                     description: "Sets the Super Admin during first run.",
                     value: [req.user.emails[0].value]
                 });
-                var CheckAdmin = (function () {
-                    req.session.destroy(function () {
+                var CheckAdmin = (function() {
+                    req.session.destroy(function() {
                         res.redirect('/admin/login');
                     });
                 });
@@ -93,7 +93,7 @@ router.get('/auth/google/callback',
             } else {
                 adminsModel.find({
                     email: req.user.emails[0].value
-                }, function (err, result) {
+                }, function(err, result) {
                     if (err) {
                         res.render('custom_errors', {
                             message: "Server error",
@@ -101,7 +101,7 @@ router.get('/auth/google/callback',
                         });
                     }
                     if (result.length == 0) {
-                        req.session.destroy(function () {
+                        req.session.destroy(function() {
                             res.render('custom_errors', {
                                 message: "You are not an administrator",
                                 details: "This google account is not registered as an administrator."
@@ -117,8 +117,8 @@ router.get('/auth/google/callback',
         });
     });
 
-router.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
         res.redirect('/');
     });
 });
@@ -128,7 +128,7 @@ router.get('/logout', function (req, res) {
 
 /*Add end points for non logged in users above this line*/
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     if (!(req.user)) {
         res.redirect('/admin/login');
     } else {
@@ -136,9 +136,9 @@ router.use(function (req, res, next) {
     }
 });
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     if ((req.session.userType !== "admin")) {
-        req.session.destroy(function (err) {
+        req.session.destroy(function(err) {
             res.redirect('/admin/login');
         });
     } else {
@@ -148,12 +148,12 @@ router.use(function (req, res, next) {
 
 /* Below end points are availible only to logged in users */
 
-router.use(function (req, res, next) {
-    res.renderState = function (view, params = {}) {
+router.use(function(req, res, next) {
+    res.renderState = function(view, params = {}) {
         portalsModel.find({
             admin: true,
             active: true
-        }, function (err, portals) {
+        }, function(err, portals) {
             if (err) {
                 res.render('custom_errors', {
                     message: "Server error",
@@ -174,7 +174,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.renderState('admin/index');
 });
 
