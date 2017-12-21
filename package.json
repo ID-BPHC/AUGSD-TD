@@ -6,6 +6,7 @@
     "start": "gulp check"
   },
   "dependencies": {
+    "app-root-dir": "^1.0.2",
     "badwords-list": "^1.0.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",

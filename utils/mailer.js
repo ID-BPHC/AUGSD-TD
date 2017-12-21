@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+var appRootDir = require('app-root-dir').get();
 const config = require('../config');
 
 var transporter = nodemailer.createTransport({
@@ -27,7 +28,7 @@ module.exports = {
 
 			attachments: [{
 				filename: 'head.png',
-				path: './assets/head.png',
+				path: appRootDir + '/utils/assets/head.png',
 				cid: 'head@idbitshyd.com'
 			}]
 		};
