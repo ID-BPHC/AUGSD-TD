@@ -1,0 +1,2063 @@
+[{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721438"
+	},
+	"name": "Ramakrishna Vadrevu",
+	"email": "f20160158@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721439"
+	},
+	"name": "Sankar Ganesh P",
+	"email": "sangan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143a"
+	},
+	"name": "Jamma Trinath",
+	"email": "trinath@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143b"
+	},
+	"name": "Gireesha Thipperudrappa Mohannath",
+	"email": "gireesha@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143c"
+	},
+	"name": "Debashree Bandyopadhyay",
+	"email": "banerjee.debi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143d"
+	},
+	"name": "Jayati Ray Dutta",
+	"email": "jayati@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143e"
+	},
+	"name": "K Naga Mohan",
+	"email": "mohankn@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172143f"
+	},
+	"name": "Sridev Mohapatra",
+	"email": "sridev.mohapatra@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721440"
+	},
+	"name": "Kuamr Pranav Narayan",
+	"email": "pranav@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721441"
+	},
+	"name": "Vivek Sharma",
+	"email": "viveksharma@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721442"
+	},
+	"name": "Ruchi Jain Dey",
+	"email": "ruchij80@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721443"
+	},
+	"name": "Suman Kapur",
+	"email": "skapur@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721444"
+	},
+	"name": "Vidya Rajesh",
+	"email": "vidya@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721445"
+	},
+	"name": "Piyush Khandelia",
+	"email": "piyush.khandelia@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721446"
+	},
+	"name": "K Rajitha",
+	"email": "rajitha@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721447"
+	},
+	"name": "Arshad Javed",
+	"email": "arshad@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721448"
+	},
+	"name": "Bahurudeen A",
+	"email": "bahur@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721449"
+	},
+	"name": "Siva Prasad A V S",
+	"email": "sivaprasad.avs@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144a"
+	},
+	"name": "Pavan Kumar Penumakala",
+	"email": "pavankp@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144b"
+	},
+	"name": "Asma Ahmed",
+	"email": "asma.ahmed@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144c"
+	},
+	"name": "Morapakala Srinivas",
+	"email": "morasrini@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144d"
+	},
+	"name": "A Ramesh Babu",
+	"email": "ramesh.babu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144e"
+	},
+	"name": "I Sreedhar",
+	"email": "isreedhar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172144f"
+	},
+	"name": "Lakshmi Sirisha",
+	"email": "sirisha@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721450"
+	},
+	"name": "Jeevan Jaidi",
+	"email": "Jaidi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721451"
+	},
+	"name": "Satish Kumar Dubey",
+	"email": "satishdubey@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721452"
+	},
+	"name": "Santanu Prasad Datta",
+	"email": "spdatta@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721453"
+	},
+	"name": "Ram Chandra Murthy Kalluri",
+	"email": "rcmurthy@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721454"
+	},
+	"name": "Aruna Lolla",
+	"email": "aruna@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721455"
+	},
+	"name": "Maya Vinai",
+	"email": "mayavinai@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721456"
+	},
+	"name": "Santosh Mahapatra",
+	"email": "santosh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721457"
+	},
+	"name": "Asrifa Sultana",
+	"email": "asrifa.sultana@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721458"
+	},
+	"name": "Dipak Kr Satpathi",
+	"email": "dipak@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721459"
+	},
+	"name": "D Purnima",
+	"email": "dpurnima@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145a"
+	},
+	"name": "Srikanta Dinda",
+	"email": "srikantadinda@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145b"
+	},
+	"name": "R R Varma Murari",
+	"email": "murari@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145c"
+	},
+	"name": "Anand M Narsimha Murthy",
+	"email": "anand@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145d"
+	},
+	"name": "Aravinda N Raghavan",
+	"email": "raghavan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145e"
+	},
+	"name": "Srinivasa Raju K",
+	"email": "ksraju@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172145f"
+	},
+	"name": "Sunny Jose G",
+	"email": "sunny@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721460"
+	},
+	"name": "Biswanath Dash",
+	"email": "biswanath@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721461"
+	},
+	"name": "R Parameshwaran",
+	"email": "parameshwaranr@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721462"
+	},
+	"name": "N L Bhanu Murthy",
+	"email": "bhanu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721463"
+	},
+	"name": "Mohan S C",
+	"email": "mohansc@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721464"
+	},
+	"name": "Sri Kalyana Rama J",
+	"email": "kalyan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721465"
+	},
+	"name": "Anamala Jagadeesh",
+	"email": "jagadeesh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721466"
+	},
+	"name": "Anasua Guharay",
+	"email": "guharay@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721467"
+	},
+	"name": "Vasan Arunachalam",
+	"email": "vasan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721468"
+	},
+	"name": "V R Vinayaka Ram",
+	"email": "vinayak@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721469"
+	},
+	"name": "Sridhar R",
+	"email": "sridhar.raju@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146a"
+	},
+	"name": "Chandu Parimi",
+	"email": "parimi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146b"
+	},
+	"name": "Arkamitra Kar",
+	"email": "arkamitra.kar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146c"
+	},
+	"name": "P N K Rao",
+	"email": "pnrao@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146d"
+	},
+	"name": "Vikranth Kumar Surasani",
+	"email": "surasani@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146e"
+	},
+	"name": "Balaji Krishnamurthy",
+	"email": "balaji@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172146f"
+	},
+	"name": "Karthik Chetan V",
+	"email": "kvenk@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721470"
+	},
+	"name": "Sumithra Kanakamma",
+	"email": "sumithra@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721471"
+	},
+	"name": "Ramakrishnan Ganesan",
+	"email": "ram.ganesan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721472"
+	},
+	"name": "Amit Nag",
+	"email": "amitnag@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721473"
+	},
+	"name": "Manab Chakravarthy",
+	"email": "manab@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721474"
+	},
+	"name": "N Rajesh",
+	"email": "nrajesh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721475"
+	},
+	"name": "Balaji Gopalan",
+	"email": "gbalaji@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721476"
+	},
+	"name": "Subhas Ghosal",
+	"email": "ghosal@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721477"
+	},
+	"name": "Sounak Roy",
+	"email": "sounak.roy@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721478"
+	},
+	"name": "K V G Chandra Sekhar",
+	"email": "kvgc@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721479"
+	},
+	"name": "Anupam Bhattacharya",
+	"email": "anupam@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147a"
+	},
+	"name": "Subbalakshmi Jayanty",
+	"email": "jslakshmi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147b"
+	},
+	"name": "Krishnan R",
+	"email": "rkrishnan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147c"
+	},
+	"name": "Durba Roy",
+	"email": "durbaroy@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147d"
+	},
+	"name": "G Sundar",
+	"email": "sundar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147e"
+	},
+	"name": "Barsha Mitra",
+	"email": "barsha.mitra@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172147f"
+	},
+	"name": "Suvadip Batabyal",
+	"email": "sbatabyal@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721480"
+	},
+	"name": "Neha Bharill",
+	"email": "neha@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721481"
+	},
+	"name": "Sudeepta Mishra",
+	"email": "sudeepta@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721482"
+	},
+	"name": "R Gururaj",
+	"email": "gururaj@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721483"
+	},
+	"name": "Gokul Kannan Sadasivam",
+	"email": "gokul@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721484"
+	},
+	"name": "Subhrakanta Panda",
+	"email": "spanda@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721485"
+	},
+	"name": "Tathagata Ray",
+	"email": "rayt@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721486"
+	},
+	"name": "Bvvsn Prabhakar Rao",
+	"email": "budhiraju@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721487"
+	},
+	"name": "Souvik Kundu",
+	"email": "souvik.kundu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721488"
+	},
+	"name": "Soumya J",
+	"email": "soumyaj@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721489"
+	},
+	"name": "Surender Singh Samant",
+	"email": "surender.samant@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148a"
+	},
+	"name": "Aruna Malapati",
+	"email": "arunam@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148b"
+	},
+	"name": "G Geethakumari",
+	"email": "geetha@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148c"
+	},
+	"name": "T Abhishek Kumar",
+	"email": "abhishek@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148d"
+	},
+	"name": "Chittaranjan Hota",
+	"email": "hota@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148e"
+	},
+	"name": "K C S Murti",
+	"email": "kavuri@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172148f"
+	},
+	"name": "Nitin Kotkunde",
+	"email": "nitink@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721490"
+	},
+	"name": "Sabareesh Geetha Rajasekharan",
+	"email": "sabareesh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721491"
+	},
+	"name": "Sujith R",
+	"email": "sujith@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721492"
+	},
+	"name": "Ershad Ahmed S",
+	"email": "syed@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721493"
+	},
+	"name": "Mithun Mondal",
+	"email": "mithun@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721494"
+	},
+	"name": "Dr Alivelu Manga Parimi",
+	"email": "alivelu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721495"
+	},
+	"name": "Rahul Nigam",
+	"email": "rahul.nigam@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721496"
+	},
+	"name": "Kannan Ramaswamy",
+	"email": "kannan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721497"
+	},
+	"name": "Souri Banerjee",
+	"email": "souri@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721498"
+	},
+	"name": "Subhash Narayan Karbelkar",
+	"email": "snkarbelkar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b4670881721499"
+	},
+	"name": "Surya Shankar Dan",
+	"email": "ssdan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149a"
+	},
+	"name": "Saroj Mondal",
+	"email": "saroj@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149b"
+	},
+	"name": "Sandeep Kumar",
+	"email": "skverma@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149c"
+	},
+	"name": "Balasubramanian M",
+	"email": "balasubramanian@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149d"
+	},
+	"name": "Runa Kumari",
+	"email": "runakumari@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149e"
+	},
+	"name": "Prasant Kumar Pattnaik",
+	"email": "pkpattnaik@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b467088172149f"
+	},
+	"name": "Ramakant",
+	"email": "ramakant@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a0"
+	},
+	"name": "Subhendu Kumar Sahoo",
+	"email": "sahoo@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a1"
+	},
+	"name": "Durgesh Chandra Pathak",
+	"email": "pathakdc@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a2"
+	},
+	"name": "Vijaya Bhaskar Marisetty",
+	"email": "marisetty@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a3"
+	},
+	"name": "Rishi Kumar",
+	"email": "rishikumar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a4"
+	},
+	"name": "Abdul Quadir",
+	"email": "quadir@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a5"
+	},
+	"name": "Bheemeshwar Reddy A",
+	"email": "bheem@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a6"
+	},
+	"name": "Chinahussain Yaganti",
+	"email": "hussain@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a7"
+	},
+	"name": "Mini Thomas P",
+	"email": "mini@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a8"
+	},
+	"name": "Archana Srivastava",
+	"email": "archana@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214a9"
+	},
+	"name": "Sunny Kumar Singh",
+	"email": "sunny.singh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214aa"
+	},
+	"name": "Sudatta Banerjee",
+	"email": "sudatta@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ab"
+	},
+	"name": "Niranjan Swain",
+	"email": "niranjanswain@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ac"
+	},
+	"name": "Thota Nagaraju",
+	"email": "nagaraju@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ad"
+	},
+	"name": "Dushyant Kumar",
+	"email": "dushyant@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ae"
+	},
+	"name": "Venkateshwaran Rajagopalan",
+	"email": "venkateswaran@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214af"
+	},
+	"name": "Sumit Kumar Chatterjee",
+	"email": "sumit2702@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b0"
+	},
+	"name": "Chetan Kumar Vudadha",
+	"email": "chetan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b1"
+	},
+	"name": "Basudev Majumder",
+	"email": "basudev@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b2"
+	},
+	"name": "P K Thiruvikraman",
+	"email": "thiru@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b3"
+	},
+	"name": "Shaikshavali Chitraganti",
+	"email": "shaik@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b4"
+	},
+	"name": "Shamuel Tharu",
+	"email": "shamuel.tharu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b5"
+	},
+	"name": "Lavanya Suresh",
+	"email": "lavanya@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b6"
+	},
+	"name": "Suchismita Satpathy",
+	"email": "suchi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b7"
+	},
+	"name": "Prasuna M G",
+	"email": "prasuna@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b8"
+	},
+	"name": "Pranesh Bhargava",
+	"email": "pranesh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214b9"
+	},
+	"name": "Swati Alok",
+	"email": "swati@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ba"
+	},
+	"name": "Sanket Goel",
+	"email": "sgoel@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214bb"
+	},
+	"name": "Bivudutta Mishra",
+	"email": "bivu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214bc"
+	},
+	"name": "Michael Alphonse",
+	"email": "alphonse@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214bd"
+	},
+	"name": "Venkata Ratnam K",
+	"email": "vrkota@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214be"
+	},
+	"name": "Manish Kumar",
+	"email": "manishkumar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214bf"
+	},
+	"name": "T S L Radhika",
+	"email": "radhikatsl@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c0"
+	},
+	"name": "Jagan Mohan Jonnalagadda",
+	"email": "jaganmohan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c1"
+	},
+	"name": "Sumit Kumar Vishwakarma",
+	"email": "sumitkumar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c2"
+	},
+	"name": "N Kishore Kumar",
+	"email": "naraparaju@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c3"
+	},
+	"name": "Sharan Gopal",
+	"email": "sharan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c4"
+	},
+	"name": "Anil N",
+	"email": "anil@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c5"
+	},
+	"name": "Pradyumn Kumar Sahoo",
+	"email": "pksahoo@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c6"
+	},
+	"name": "Addepalli Ramu",
+	"email": "aramu@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c7"
+	},
+	"name": "Praveen Kumar P T V",
+	"email": "praveen@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c8"
+	},
+	"name": "Phaneendra Kiran Chaganti",
+	"email": "cpkiran@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214c9"
+	},
+	"name": "N Suresh Kumar Reddy",
+	"email": "nskreddy@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ca"
+	},
+	"name": "Amrita Priyadarshini",
+	"email": "amrita@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214cb"
+	},
+	"name": "Khalid Anwar",
+	"email": "khalid@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214cc"
+	},
+	"name": "Y V Daseswara Rao",
+	"email": "yvdrao@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214cd"
+	},
+	"name": "Supradeepan K",
+	"email": "supradeepan@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214ce"
+	},
+	"name": "Nandanavanam Jalaiah",
+	"email": "jalaiah@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214cf"
+	},
+	"name": "Amit Kumar Gupta",
+	"email": "akgupta@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d0"
+	},
+	"name": "Kurra Suresh",
+	"email": "ksuresh@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d1"
+	},
+	"name": "Srinivas Prakash Regalla",
+	"email": "regalla@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d2"
+	},
+	"name": "S S Deshmukh",
+	"email": "ssd@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d3"
+	},
+	"name": "Balaram Ghosh",
+	"email": "balaram@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d4"
+	},
+	"name": "D Sriram",
+	"email": "dsriram@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d5"
+	},
+	"name": "Arti Dhar",
+	"email": "artidhar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d6"
+	},
+	"name": "V V Krishna Vemuganti",
+	"email": "vamsi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d7"
+	},
+	"name": "Onkar Prakash Kulkarni",
+	"email": "onkar@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d8"
+	},
+	"name": "P Yogeeswari",
+	"email": "pyogee@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214d9"
+	},
+	"name": "A Sajeli Begum",
+	"email": "sajeli@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214da"
+	},
+	"name": "Punna Rao Ravi",
+	"email": "rpunnarao@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214db"
+	},
+	"name": "Swati Biswas",
+	"email": "swati.biswas@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214dc"
+	},
+	"name": "V S N Murthy",
+	"email": "satyam@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214dd"
+	},
+	"name": "Sashideep Gutti",
+	"email": "sashideep@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214de"
+	},
+	"name": "Asrarul Haque",
+	"email": "ahaque@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214df"
+	},
+	"name": "Sarmistha Banik",
+	"email": "sarmistha.banik@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214e0"
+	},
+	"name": "K V S Shiv Chaitanya",
+	"email": "chaitanya@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214e1"
+	},
+	"name": "Harihara Venkata Raman",
+	"email": "hari@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fca7d7e8b46708817214e2"
+	},
+	"name": "Meenakshi V",
+	"email": "meenakshi@hyderabad.bits-pilani.ac.in",
+	"portals": [
+		"feedback"
+	],
+	"home": "/feedback",
+	"superUser": false
+},
+{
+	"_id": {
+		"$oid": "59fdcf97df01c004e289a8d7"
+	},
+	"email": "f20160158@hyderabad.bits-pilani.ac.in",
+	"name": "SOHAIL RAJDEV",
+	"superUser": false,
+	"portals": [],
+	"__v": 0
+}]
+

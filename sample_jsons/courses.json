@@ -1,0 +1,6736 @@
+[{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214e5"
+	},
+	"courseID": "BIO F110",
+	"name": "BIOLOGY LABORATORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P2",
+			"instructors": [
+				"vrk@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"sangan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"trinath@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"gireesha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214e6"
+	},
+	"courseID": "BIO F111",
+	"name": "GENERAL BIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"banerjee.debi@hyderabad.bits-pilani.ac.in",
+				"jayati@hyderabad.bits-pilani.ac.in",
+				"mohankn@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"sridev.mohapatra@hyderabad.bits-pilani.ac.in",
+				"pranav@hyderabad.bits-pilani.ac.in",
+				"sangan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"trinath@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"banerjee.debi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"viveksharma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"gireesha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"mohankn@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"jayati@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"sangan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"ruchij80@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"pranav@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214e7"
+	},
+	"courseID": "BIO F211",
+	"name": "BIOLOGICAL CHEMISTRY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vrk@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"banerjee.debi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214e8"
+	},
+	"courseID": "BIO F212",
+	"name": "MICROBIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ruchij80@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"ruchij80@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214e9"
+	},
+	"courseID": "BIO F213",
+	"name": "CELL BIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jayati@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"jayati@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ea"
+	},
+	"courseID": "BIO F214",
+	"name": "INTEGRATED BIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"skapur@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"skapur@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214eb"
+	},
+	"courseID": "BIO F311",
+	"name": "RECOMBINANT DNA TECH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vidya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ec"
+	},
+	"courseID": "BIO F312",
+	"name": "PLANT PHYSIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sridev.mohapatra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sridev.mohapatra@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ed"
+	},
+	"courseID": "BIO F313",
+	"name": "ANIMAL PHYSIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"viveksharma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"viveksharma@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ee"
+	},
+	"courseID": "BIO F411",
+	"name": "LABORATORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"piyush.khandelia@hyderabad.bits-pilani.ac.in",
+				"jayati@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ef"
+	},
+	"courseID": "BIO F417",
+	"name": "BIOMOLECULAR MODELING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"banerjee.debi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f0"
+	},
+	"courseID": "BIO F418",
+	"name": "GENETIC ENGINEERING TECH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"mohankn@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mohankn@hyderabad.bits-pilani.ac.in",
+				"vidya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f1"
+	},
+	"courseID": "BIO G512",
+	"name": "MOLEC MECH OF GENE EXPRE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gireesha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mohankn@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f2"
+	},
+	"courseID": "BIO G514",
+	"name": "MOLECULAR IMMUNOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"trinath@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f3"
+	},
+	"courseID": "BIO G524",
+	"name": "ANIMAL CELL TECHNOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pranav@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mohankn@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f4"
+	},
+	"courseID": "BIO G525",
+	"name": "ENV BIOTECH \u0026 WASTE MGMT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sangan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f5"
+	},
+	"courseID": "BIO G570",
+	"name": "RECENT DEVELOPMENTS IN BIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sridev.mohapatra@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f6"
+	},
+	"courseID": "BIO G612",
+	"name": "HUMAN GENETICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"piyush.khandelia@hyderabad.bits-pilani.ac.in",
+				"pranav@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f7"
+	},
+	"courseID": "BIO G642",
+	"name": "EXPERIMENTAL TECHNIQUES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"vrk@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f8"
+	},
+	"courseID": "BITS F110",
+	"name": "ENGINEERING GRAPHICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rajitha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"arshad@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"bahur@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rajitha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"arshad@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"sivaprasad.avs@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"pavankp@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214f9"
+	},
+	"courseID": "BITS F111",
+	"name": "THERMODYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"asma.ahmed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"morasrini@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"ramesh.babu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"isreedhar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"sirisha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"asma.ahmed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"morasrini@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"Jaidi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"satishdubey@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"spdatta@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"rcmurthy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214fa"
+	},
+	"courseID": "BITS F112",
+	"name": "TECHNICAL REPORT WRITING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"aruna@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"mayavinai@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"santosh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L4",
+			"instructors": [
+				"santosh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L5",
+			"instructors": [
+				"mayavinai@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L6",
+			"instructors": [
+				"aruna@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214fb"
+	},
+	"courseID": "BITS F113",
+	"name": "GENERAL MATHEMATICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"asrifa.sultana@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"asrifa.sultana@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214fc"
+	},
+	"courseID": "BITS F218",
+	"name": "GENERAL MATHEMATICS III",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dipak@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"dipak@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214fd"
+	},
+	"courseID": "BITS F225",
+	"name": "ENVIRONMENTAL STUDIES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dpurnima@hyderabad.bits-pilani.ac.in",
+				"skapur@hyderabad.bits-pilani.ac.in",
+				"srikantadinda@hyderabad.bits-pilani.ac.in",
+				"murari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214fe"
+	},
+	"courseID": "BITS F311",
+	"name": "IMAGE PROCESSING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"anand@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817214ff"
+	},
+	"courseID": "BITS F316",
+	"name": "NONLINEAR DYNA \u0026 CHAOS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"raghavan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721500"
+	},
+	"courseID": "BITS F343",
+	"name": "FUZZY LOGIC \u0026 APPL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ksraju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721501"
+	},
+	"courseID": "BITS F385",
+	"name": "INTRO TO GENDER STUDIES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sunny@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721502"
+	},
+	"courseID": "BITS F399",
+	"name": "HUM THEO OF SC \u0026 TECH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"biswanath@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721503"
+	},
+	"courseID": "BITS F437",
+	"name": "TECHNICAL COMMUNICATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"santosh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721504"
+	},
+	"courseID": "BITS F462",
+	"name": "RENEWABLE ENERGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"parameshwaranr@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721505"
+	},
+	"courseID": "BITS F464",
+	"name": "MACHINE LEARNING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bhanu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721506"
+	},
+	"courseID": "CE F211",
+	"name": "MECHANICS OF SOLIDS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"mohansc@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"mohansc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721507"
+	},
+	"courseID": "CE F212",
+	"name": "TRANSPORT PHENOMENA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ksraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"ksraju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721508"
+	},
+	"courseID": "CE F213",
+	"name": "SURVEYING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rajitha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rajitha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721509"
+	},
+	"courseID": "CE F214",
+	"name": "CONSTRUCTION MATERIALS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bahur@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"bahur@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150a"
+	},
+	"courseID": "CE F311",
+	"name": "DES OF CONCRETE STRUCT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"kalyan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"kalyan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150b"
+	},
+	"courseID": "CE F312",
+	"name": "HYDRAULIC ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150c"
+	},
+	"courseID": "CE F313",
+	"name": "FOUNDATION ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"guharay@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"guharay@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150d"
+	},
+	"courseID": "CE F323",
+	"name": "INTRO TO ENVIRN ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"murari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150e"
+	},
+	"courseID": "CE F411",
+	"name": "OPER RESEARCH FOR ENGIN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vasan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172150f"
+	},
+	"courseID": "CE F417",
+	"name": "APP OF AI IN CIVIL ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jagadeesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721510"
+	},
+	"courseID": "CE F426",
+	"name": "GEOSYN \u0026 REIN SOIL STR",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"guharay@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721511"
+	},
+	"courseID": "CE G523",
+	"name": "TRAN SYST PLAN \u0026 MANAGE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vinayak@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721512"
+	},
+	"courseID": "CE G534",
+	"name": "PAVEMENT MATERIAL CHARAC",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sridhar.raju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721513"
+	},
+	"courseID": "CE G535",
+	"name": "HIGHWAY GEOMERTIC DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vinayak@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721514"
+	},
+	"courseID": "CE G536",
+	"name": "TRAFFIC ENGG \u0026 SAFTY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sridhar.raju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721515"
+	},
+	"courseID": "CE G551",
+	"name": "DYNAMICS OF STRUCTURES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"mohansc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721516"
+	},
+	"courseID": "CE G552",
+	"name": "ADV STR MECH \u0026 STABILITY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"parimi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721517"
+	},
+	"courseID": "CE G562",
+	"name": "ADVANCED CONCRETE TECHNOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"arkamitra.kar@hyderabad.bits-pilani.ac.in",
+				"bahur@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721518"
+	},
+	"courseID": "CE G612",
+	"name": "ADVANCED STEEL STRUCTURE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"parimi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721519"
+	},
+	"courseID": "CE G616",
+	"name": "BRIDGE ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pnrao@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151a"
+	},
+	"courseID": "CE G617",
+	"name": "ADVANCE STRUC ANALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"arkamitra.kar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151b"
+	},
+	"courseID": "CE G619",
+	"name": "FINITE ELEMENT ANALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pnrao@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151c"
+	},
+	"courseID": "CHE F211",
+	"name": "CHEMICAL PROCESS CALCULA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"isreedhar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"isreedhar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151d"
+	},
+	"courseID": "CHE F212",
+	"name": "FLUID MECHANICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"surasani@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"surasani@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151e"
+	},
+	"courseID": "CHE F213",
+	"name": "CHEM ENGG THERMODYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dpurnima@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"dpurnima@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172151f"
+	},
+	"courseID": "CHE F214",
+	"name": "ENGINEERING CHEMISTRY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"srikantadinda@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"srikantadinda@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721520"
+	},
+	"courseID": "CHE F311",
+	"name": "KINETICS \u0026 REACTOR DESIG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"balaji@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"balaji@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721521"
+	},
+	"courseID": "CHE F312",
+	"name": "CHEMICAL ENGG LAB I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"isreedhar@hyderabad.bits-pilani.ac.in",
+				"balaji@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"ramesh.babu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721522"
+	},
+	"courseID": "CHE F313",
+	"name": "SEPARATION PROCESSES II",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"kvenk@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"kvenk@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721523"
+	},
+	"courseID": "CHE F314",
+	"name": "PROCESS DES PRINCIPLES I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sirisha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sirisha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721524"
+	},
+	"courseID": "CHE F413",
+	"name": "PROCESS PLANT SAFETY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"asma.ahmed@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721525"
+	},
+	"courseID": "CHE F414",
+	"name": "TRANSPORT PHENOMENA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"balaji@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721526"
+	},
+	"courseID": "CHE F433",
+	"name": "CORROSION ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ramesh.babu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721527"
+	},
+	"courseID": "CHE G512",
+	"name": "PETRO REFIN \u0026 PETROCHEM",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"srikantadinda@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"srikantadinda@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721528"
+	},
+	"courseID": "CHE G523",
+	"name": "MATH METHODS IN CHEM ENG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"surasani@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"surasani@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721529"
+	},
+	"courseID": "CHE G622",
+	"name": "ADV CHEMICAL ENGG THERMO",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dpurnima@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"dpurnima@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152a"
+	},
+	"courseID": "CHEM F110",
+	"name": "CHEMISTRY LABORATORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"sumithra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P10",
+			"instructors": [
+				"ram.ganesan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P11",
+			"instructors": [
+				"amitnag@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"manab@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"nrajesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"gbalaji@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"sumithra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"ghosal@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"sounak.roy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"ram.ganesan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P9",
+			"instructors": [
+				"kvgc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152b"
+	},
+	"courseID": "CHEM F111",
+	"name": "GENERAL CHEMISTRY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gbalaji@hyderabad.bits-pilani.ac.in",
+				"anupam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"ram.ganesan@hyderabad.bits-pilani.ac.in",
+				"amitnag@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"gbalaji@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"anupam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"ram.ganesan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"manab@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"amitnag@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"jslakshmi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"rkrishnan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"durbaroy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"sounak.roy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152c"
+	},
+	"courseID": "CHEM F211",
+	"name": "PHYSICAL CHEMISTRY I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ghosal@hyderabad.bits-pilani.ac.in",
+				"amitnag@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"amitnag@hyderabad.bits-pilani.ac.in",
+				"ghosal@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152d"
+	},
+	"courseID": "CHEM F212",
+	"name": "ORGANIC CHEMISTRY I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"manab@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"manab@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152e"
+	},
+	"courseID": "CHEM F213",
+	"name": "PHYSICAL CHEMISTRY II",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sumithra@hyderabad.bits-pilani.ac.in",
+				"sundar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sumithra@hyderabad.bits-pilani.ac.in",
+				"sundar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172152f"
+	},
+	"courseID": "CHEM F214",
+	"name": "INORGANIC CHEMISTRY I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nrajesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"nrajesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721530"
+	},
+	"courseID": "CHEM F311",
+	"name": "ORGANIC CHEMISTRY III",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"kvgc@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"kvgc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721531"
+	},
+	"courseID": "CHEM F312",
+	"name": "PHYSICAL CHEMISTRY IV",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gbalaji@hyderabad.bits-pilani.ac.in",
+				"durbaroy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"durbaroy@hyderabad.bits-pilani.ac.in",
+				"gbalaji@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721532"
+	},
+	"courseID": "CHEM F313",
+	"name": "INSTRU METHODS OF ANAL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"anupam@hyderabad.bits-pilani.ac.in",
+				"jslakshmi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"anupam@hyderabad.bits-pilani.ac.in",
+				"rkrishnan@hyderabad.bits-pilani.ac.in",
+				"jslakshmi@hyderabad.bits-pilani.ac.in",
+				"durbaroy@hyderabad.bits-pilani.ac.in",
+				"nrajesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721533"
+	},
+	"courseID": "CHEM F326",
+	"name": "SOLID STATE CHEMISTRY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sounak.roy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721534"
+	},
+	"courseID": "CHEM F327",
+	"name": "ELECTROCHEM FUNDA \u0026 APPL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ghosal@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721535"
+	},
+	"courseID": "CHEM F337",
+	"name": "GREEN CHEM \u0026 CATALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rkrishnan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721536"
+	},
+	"courseID": "CHEM F412",
+	"name": "PHOTOCHEM \u0026 LASER SPECTR",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"durbaroy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721537"
+	},
+	"courseID": "CHEM F415",
+	"name": "FRONTIERS IN ORGANIC SYN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"kvgc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721538"
+	},
+	"courseID": "CS F111",
+	"name": "COMPUTER PROGRAMMING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"barsha.mitra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"sbatabyal@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"barsha.mitra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"neha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"barsha.mitra@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"sbatabyal@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"neha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"sbatabyal@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"sudeepta@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"sudeepta@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P9",
+			"instructors": [
+				"neha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721539"
+	},
+	"courseID": "CS F213",
+	"name": "OBJECT ORIENTED PROG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gururaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"spanda@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153a"
+	},
+	"courseID": "CS F214",
+	"name": "LOGIC IN COMPUTER SC",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rayt@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rayt@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153b"
+	},
+	"courseID": "CS F215",
+	"name": "DIGITAL DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153c"
+	},
+	"courseID": "CS F222",
+	"name": "DISCR STRUC FOR COMP SCI",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bhanu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"surender.samant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"bhanu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153d"
+	},
+	"courseID": "CS F301",
+	"name": "PRINCIPLES OF PROGG LANG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"arunam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"arunam@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153e"
+	},
+	"courseID": "CS F342",
+	"name": "COMPUTER ARCHITECTURE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"geetha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"abhishek@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"abhishek@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"geetha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"geetha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172153f"
+	},
+	"courseID": "CS F351",
+	"name": "THEORY OF COMPUTATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gururaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"gururaj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721540"
+	},
+	"courseID": "CS F372",
+	"name": "OPERATING SYSTEMS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"hota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"surender.samant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"sudeepta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721541"
+	},
+	"courseID": "CS F401",
+	"name": "MULTIMEDIA COMPUTING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"abhishek@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721542"
+	},
+	"courseID": "CS F469",
+	"name": "INFORMATION RETRIEVAL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"arunam@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721543"
+	},
+	"courseID": "CS G524",
+	"name": "ADV COMPUTER ARCHITECTUR",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"geetha@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"geetha@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721544"
+	},
+	"courseID": "CS G525",
+	"name": "ADV COMPUTER NETWORKS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"abhishek@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"abhishek@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721545"
+	},
+	"courseID": "CS G526",
+	"name": "ADV ALGO \u0026 COMPLEXITY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"anand@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"anand@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721546"
+	},
+	"courseID": "CS G527",
+	"name": "CLOUD COMPUTING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sudeepta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721547"
+	},
+	"courseID": "CS G541",
+	"name": "PERVASIVE COMPUTING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"gokul@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721548"
+	},
+	"courseID": "CS G553",
+	"name": "RECONFIGURABLE COMPUTING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"kavuri@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721549"
+	},
+	"courseID": "CS G623",
+	"name": "ADVANCED OPERAT SYSTEMS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"hota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"hota@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154a"
+	},
+	"courseID": "DE G531",
+	"name": "PRODUCT DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nitink@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"nitink@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154b"
+	},
+	"courseID": "DE G611",
+	"name": "DYNAMICS \u0026 VIBRATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sabareesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"sabareesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154c"
+	},
+	"courseID": "DE G631",
+	"name": "MATERIALS TECH \u0026 TESTING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sujith@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154d"
+	},
+	"courseID": "ECE F211",
+	"name": "ELECTRICAL MACHINES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in",
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154e"
+	},
+	"courseID": "ECE F212",
+	"name": "ELECTROMAGNETIC THEORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172154f"
+	},
+	"courseID": "ECE F214",
+	"name": "ELECTRONIC DEVICES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssdan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721550"
+	},
+	"courseID": "ECE F215",
+	"name": "DIGITAL DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721551"
+	},
+	"courseID": "ECE F311",
+	"name": "COMMUNICATION SYSTEMS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"balasubramanian@hyderabad.bits-pilani.ac.in",
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in",
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in",
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in",
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721552"
+	},
+	"courseID": "ECE F312",
+	"name": "EM FIELDS \u0026 MICRO ENGG LAB",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721553"
+	},
+	"courseID": "ECE F314",
+	"name": "EM FIELDS \u0026 MICRO ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721554"
+	},
+	"courseID": "ECE F434",
+	"name": "DIGITAL SIGNAL PROCESS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in",
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721555"
+	},
+	"courseID": "ECE F472",
+	"name": "SATELLITE COMMUNICATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721556"
+	},
+	"courseID": "ECON F211",
+	"name": "PRINCIPLES OF ECONOMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pathakdc@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"pathakdc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721557"
+	},
+	"courseID": "ECON F212",
+	"name": "FUNDA OF FIN AND ACCOUNT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"marisetty@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721558"
+	},
+	"courseID": "ECON F213",
+	"name": "MATHEMATIC \u0026 STAT METHOD",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rishikumar@hyderabad.bits-pilani.ac.in",
+				"quadir@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rishikumar@hyderabad.bits-pilani.ac.in",
+				"quadir@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721559"
+	},
+	"courseID": "ECON F214",
+	"name": "ECONOMIC ENV OF BUSINESS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bheem@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"bheem@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155a"
+	},
+	"courseID": "ECON F241",
+	"name": "ECONOMETRIC METHODS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"hussain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155b"
+	},
+	"courseID": "ECON F311",
+	"name": "INTERNATIONAL ECONOMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"mini@hyderabad.bits-pilani.ac.in",
+				"archana@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"mini@hyderabad.bits-pilani.ac.in",
+				"archana@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155c"
+	},
+	"courseID": "ECON F312",
+	"name": "MONEY BANK \u0026 FIN MARKETS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sunny.singh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sunny.singh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155d"
+	},
+	"courseID": "ECON F313",
+	"name": "ISSUES IN ECONOMIC DEV",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sudatta@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sudatta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155e"
+	},
+	"courseID": "ECON F314",
+	"name": "INDUSTRIAL ECONOMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pathakdc@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172155f"
+	},
+	"courseID": "ECON F315",
+	"name": "FINANCIAL MANAGEMENT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"niranjanswain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721560"
+	},
+	"courseID": "ECON F345",
+	"name": "BEHAVIORAL ECONOMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"quadir@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721561"
+	},
+	"courseID": "ECON F351",
+	"name": "INDIAN ECONOMIC DEV",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rishikumar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721562"
+	},
+	"courseID": "ECON F354",
+	"name": "DERIVATIVES \u0026  RISK MGMT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nagaraju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721563"
+	},
+	"courseID": "ECON F355",
+	"name": "BUSS ANAL \u0026 VALUATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"niranjanswain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721564"
+	},
+	"courseID": "ECON F411",
+	"name": "PROJECT APPRAISAL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bheem@hyderabad.bits-pilani.ac.in",
+				"sunny.singh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721565"
+	},
+	"courseID": "ECON F412",
+	"name": "SECUR ANAL \u0026 PORTFOL MGT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dushyant@hyderabad.bits-pilani.ac.in",
+				"marisetty@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721566"
+	},
+	"courseID": "ECON F415",
+	"name": "NEW VENTURE CREATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"hussain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721567"
+	},
+	"courseID": "ECON F471",
+	"name": "RESOURCES \u0026 ENVIR ECON",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sudatta@hyderabad.bits-pilani.ac.in",
+				"dushyant@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721568"
+	},
+	"courseID": "EEE F111",
+	"name": "ELECTRICAL SCIENCES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"venkateswaran@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"venkateswaran@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"venkateswaran@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721569"
+	},
+	"courseID": "EEE F211",
+	"name": "ELECTRICAL MACHINES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in",
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156a"
+	},
+	"courseID": "EEE F212",
+	"name": "ELECTROMAGNETIC THEORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156b"
+	},
+	"courseID": "EEE F214",
+	"name": "ELECTRONIC DEVICES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssdan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156c"
+	},
+	"courseID": "EEE F215",
+	"name": "DIGITAL DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156d"
+	},
+	"courseID": "EEE F311",
+	"name": "COMMUNICATION SYSTEMS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"balasubramanian@hyderabad.bits-pilani.ac.in",
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in",
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"pkpattnaik@hyderabad.bits-pilani.ac.in",
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in",
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"skverma@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156e"
+	},
+	"courseID": "EEE F313",
+	"name": "ANALOG \u0026 DIGIT VLSI DES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"chetan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"chetan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172156f"
+	},
+	"courseID": "EEE F348",
+	"name": "FPGA BASED SYS DESG LAB",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"chetan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721570"
+	},
+	"courseID": "EEE F434",
+	"name": "DIGITAL SIGNAL PROCESS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in",
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"sahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"ramakant@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721571"
+	},
+	"courseID": "EEE F435",
+	"name": "DIGITAL IMAGE PROCESSING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"venkateswaran@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721572"
+	},
+	"courseID": "EEE F472",
+	"name": "SATELLITE COMMUNICATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"runakumari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721573"
+	},
+	"courseID": "EEE G512",
+	"name": "EMBEDDED SYSTEM DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"kavuri@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721574"
+	},
+	"courseID": "EEE G581",
+	"name": "RF \u0026 MICROWAVE ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"basudev@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"basudev@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721575"
+	},
+	"courseID": "EEE G591",
+	"name": "OPTICAL COMMUNICATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"balasubramanian@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"balasubramanian@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721576"
+	},
+	"courseID": "EEE G612",
+	"name": "CODING THEORY \u0026 PRACTICE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"thiru@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"basudev@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721577"
+	},
+	"courseID": "EEE G613",
+	"name": "ADV DIGITAL SIGNAL PROC",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721578"
+	},
+	"courseID": "FIN F311",
+	"name": "DERIVATIVES \u0026  RISK MGMT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nagaraju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721579"
+	},
+	"courseID": "FIN F313",
+	"name": "SECUR ANAL \u0026 PORTFOL MGT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dushyant@hyderabad.bits-pilani.ac.in",
+				"marisetty@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157a"
+	},
+	"courseID": "FIN F314",
+	"name": "INVEST BANK \u0026 FIN SERV",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nagaraju@hyderabad.bits-pilani.ac.in",
+				"mini@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157b"
+	},
+	"courseID": "FIN F315",
+	"name": "FINANCIAL MANAGEMENT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"niranjanswain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157c"
+	},
+	"courseID": "FIN F414",
+	"name": "Financial Risk Analytics and M",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nagaraju@hyderabad.bits-pilani.ac.in",
+				"niranjanswain@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157d"
+	},
+	"courseID": "GS F211",
+	"name": "MOD POLITICAL CONCEPTS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"shamuel.tharu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157e"
+	},
+	"courseID": "GS F212",
+	"name": "ENVIRON DEV \u0026 CLIMATE CH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"lavanya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172157f"
+	},
+	"courseID": "GS F231",
+	"name": "DYN OF SOCIAL CHANGE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"suchi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721580"
+	},
+	"courseID": "GS F322",
+	"name": "CRITI ANAL OF LIT \u0026 CINE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"prasuna@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721581"
+	},
+	"courseID": "GS F333",
+	"name": "PUBLIC ADMINISTRATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"lavanya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721582"
+	},
+	"courseID": "HSS F222",
+	"name": "LINGUISTICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pranesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721583"
+	},
+	"courseID": "HSS F228",
+	"name": "PHONETICS \u0026 SPOKEN ENGL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pranesh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721584"
+	},
+	"courseID": "HSS F232",
+	"name": "INTRO TO DEV STUDIES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sunny@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721585"
+	},
+	"courseID": "HSS F317",
+	"name": "INTRO TO GLOBALIZATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"suchi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721586"
+	},
+	"courseID": "HSS F328",
+	"name": "HUMAN RESOURCE DEVELOP",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"swati@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721587"
+	},
+	"courseID": "HSS F334",
+	"name": "SRIMAD BHAGAVAD GITA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"aruna@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721588"
+	},
+	"courseID": "HSS F335",
+	"name": "LITERARY CRITICISM",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"santosh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721589"
+	},
+	"courseID": "HSS F338",
+	"name": "COMPARATIVE INDIAN LIT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"prasuna@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158a"
+	},
+	"courseID": "HSS F339",
+	"name": "THEATRE ART-ACTING \u0026 PRO",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"prasuna@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158b"
+	},
+	"courseID": "HSS F346",
+	"name": "INTERNATIONAL RELATIONS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"shamuel.tharu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158c"
+	},
+	"courseID": "INSTR F211",
+	"name": "ELECTRICAL MACHINES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in",
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"mithun@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"alivelu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158d"
+	},
+	"courseID": "INSTR F212",
+	"name": "ELECTROMAGNETIC THEORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158e"
+	},
+	"courseID": "INSTR F214",
+	"name": "ELECTRONIC DEVICES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssdan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172158f"
+	},
+	"courseID": "INSTR F215",
+	"name": "DIGITAL DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"budhiraju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"souvik.kundu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"soumyaj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721590"
+	},
+	"courseID": "INSTR F311",
+	"name": "ELECTRO INST \u0026 INST TECH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"shaik@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721591"
+	},
+	"courseID": "INSTR F312",
+	"name": "TRANSD \u0026 MEASUREMENT TEC",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sgoel@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sgoel@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721592"
+	},
+	"courseID": "INSTR F313",
+	"name": "ANALOG \u0026 DIGIT VLSI DES",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"chetan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"chetan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721593"
+	},
+	"courseID": "IS F311",
+	"name": "COMPUTER GRAPHICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rayt@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721594"
+	},
+	"courseID": "IS F341",
+	"name": "SOFTWARE ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"spanda@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"spanda@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721595"
+	},
+	"courseID": "MATH F111",
+	"name": "MATHEMATICS I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"bivu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"alphonse@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"dipak@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"alphonse@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T10",
+			"instructors": [
+				"bivu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T11",
+			"instructors": [
+				"bivu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T12",
+			"instructors": [
+				"vrkota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T13",
+			"instructors": [
+				"manishkumar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T14",
+			"instructors": [
+				"radhikatsl@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T15",
+			"instructors": [
+				"jaganmohan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T16",
+			"instructors": [
+				"sumitkumar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T17",
+			"instructors": [
+				"naraparaju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T18",
+			"instructors": [
+				"sharan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T19",
+			"instructors": [
+				"anil@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"vrkota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T20",
+			"instructors": [
+				"dipak@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"manishkumar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"radhikatsl@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"jaganmohan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"sumitkumar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"naraparaju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"sharan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"anil@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721596"
+	},
+	"courseID": "MATH F112",
+	"name": "MATHEMATICS II",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"anil@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"anil@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721597"
+	},
+	"courseID": "MATH F113",
+	"name": "PROBABILITY \u0026 STATISTICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"guharay@hyderabad.bits-pilani.ac.in",
+				"arkamitra.kar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"guharay@hyderabad.bits-pilani.ac.in",
+				"arkamitra.kar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721598"
+	},
+	"courseID": "MATH F211",
+	"name": "MATHEMATICS III",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vrkota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"radhikatsl@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"vrkota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T10",
+			"instructors": [
+				"asrifa.sultana@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T11",
+			"instructors": [
+				"radhikatsl@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T12",
+			"instructors": [
+				"bivu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"bivu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"pksahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"aramu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"asrifa.sultana@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"radhikatsl@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"vrkota@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"pksahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T9",
+			"instructors": [
+				"aramu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b4670881721599"
+	},
+	"courseID": "MATH F212",
+	"name": "OPTIMIZATION",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"praveen@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"praveen@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159a"
+	},
+	"courseID": "MATH F213",
+	"name": "DISCRETE MATHEMATICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pksahoo@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"pksahoo@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159b"
+	},
+	"courseID": "MATH F214",
+	"name": "ELEMENTARY REAL ANALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"naraparaju@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"naraparaju@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159c"
+	},
+	"courseID": "MATH F215",
+	"name": "ALGEBRA I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"manishkumar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"manishkumar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159d"
+	},
+	"courseID": "MATH F231",
+	"name": "NUMBER THEORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"alphonse@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159e"
+	},
+	"courseID": "MATH F311",
+	"name": "INTRODUCTION TO TOPOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sharan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sharan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b467088172159f"
+	},
+	"courseID": "MATH F312",
+	"name": "ORDINARY DIFF EQUATIONS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jaganmohan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"jaganmohan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a0"
+	},
+	"courseID": "MATH F313",
+	"name": "NUMERICAL ANALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"aramu@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"aramu@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a1"
+	},
+	"courseID": "ME F110",
+	"name": "WORKSHOP PRACTICE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"cpkiran@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"nskreddy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"amrita@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"spdatta@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"khalid@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a2"
+	},
+	"courseID": "ME F211",
+	"name": "MECHANICS OF SOLIDS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"sivaprasad.avs@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a3"
+	},
+	"courseID": "ME F212",
+	"name": "FLUID MECHANICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"supradeepan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"supradeepan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"rcmurthy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a4"
+	},
+	"courseID": "ME F213",
+	"name": "MATERIALS SCIENCE \u0026 ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sujith@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sujith@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"pavankp@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a5"
+	},
+	"courseID": "ME F214",
+	"name": "APPLIED THERMODYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jalaiah@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"jalaiah@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"parameshwaranr@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a6"
+	},
+	"courseID": "ME F215",
+	"name": "MECHANICAL ENGG LAB",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"akgupta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a7"
+	},
+	"courseID": "ME F311",
+	"name": "HEAT TRANSFER",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"satishdubey@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"satishdubey@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"satishdubey@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"Jaidi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a8"
+	},
+	"courseID": "ME F312",
+	"name": "ADV MECHANICS OF SOLIDS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sabareesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sabareesh@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"nitink@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215a9"
+	},
+	"courseID": "ME F313",
+	"name": "PRODUCTION TECHNIQUES II",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"amrita@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"amrita@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"ksuresh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215aa"
+	},
+	"courseID": "ME F416",
+	"name": "REV ENG \u0026 RAPID PROTOTYP",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"regalla@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ab"
+	},
+	"courseID": "ME F418",
+	"name": "ROCKET \u0026 SPACECRAFT PROP",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"supradeepan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ac"
+	},
+	"courseID": "ME F432",
+	"name": "COMPUTER AIDED MANUFACT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ksuresh@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ad"
+	},
+	"courseID": "ME F443",
+	"name": "QUALI CONTRO ASSUR \u0026 REL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"cpkiran@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ae"
+	},
+	"courseID": "ME F461",
+	"name": "REFRIGERATION \u0026 AIRCOND",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssd@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215af"
+	},
+	"courseID": "ME F483",
+	"name": "WIND ENERGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"morasrini@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b0"
+	},
+	"courseID": "ME F484",
+	"name": "AUTOMOTIVE TECHNOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jalaiah@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b1"
+	},
+	"courseID": "ME G511",
+	"name": "MECHANISMS \u0026 ROBOTICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b2"
+	},
+	"courseID": "ME G512",
+	"name": "FINITE ELEMENT METHOD",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pavankp@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"pavankp@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b3"
+	},
+	"courseID": "ME G514",
+	"name": "TURBOMACHINERY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssd@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"ssd@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b4"
+	},
+	"courseID": "ME G515",
+	"name": "COMPUT FLUID DYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rcmurthy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"rcmurthy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b5"
+	},
+	"courseID": "ME G533",
+	"name": "COND \u0026 RAD HEAT TRANSFER",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"spdatta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b6"
+	},
+	"courseID": "ME G537",
+	"name": "CRYOGENIC ENGINEERING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"parameshwaranr@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b7"
+	},
+	"courseID": "ME G621",
+	"name": "FLUID DYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"Jaidi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"Jaidi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b8"
+	},
+	"courseID": "ME G641",
+	"name": "THEORY OF ELAST \u0026 PLAST",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sivaprasad.avs@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"sivaprasad.avs@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215b9"
+	},
+	"courseID": "MEL G611",
+	"name": "I C FABRICATION TECH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"sgoel@hyderabad.bits-pilani.ac.in",
+				"saroj@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ba"
+	},
+	"courseID": "MEL G621",
+	"name": "VLSI DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sumit2702@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"syed@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215bb"
+	},
+	"courseID": "MEL G631",
+	"name": "PHY \u0026 MO OF MICROEL DEV",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ssdan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"ssdan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215bc"
+	},
+	"courseID": "MF F211",
+	"name": "MECHANICS OF SOLIDS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"yvdrao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"sivaprasad.avs@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215bd"
+	},
+	"courseID": "MF F212",
+	"name": "FLUID MECHANICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"supradeepan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"supradeepan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"rcmurthy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215be"
+	},
+	"courseID": "MF F213",
+	"name": "MATERIALS SCIENCE \u0026 ENGG",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sujith@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sujith@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"pavankp@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215bf"
+	},
+	"courseID": "MF F214",
+	"name": "APPLIED THERMODYNAMICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"jalaiah@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"jalaiah@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"parameshwaranr@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c0"
+	},
+	"courseID": "MF F215",
+	"name": "MECHANICAL ENGG LAB",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"akgupta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c1"
+	},
+	"courseID": "MF F311",
+	"name": "MECHATRONICS \u0026 AUTOMAT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"arshad@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"arshad@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"arshad@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c2"
+	},
+	"courseID": "MF F312",
+	"name": "TOOL \u0026 FIXTURE DESIGN",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"regalla@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"regalla@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c3"
+	},
+	"courseID": "MF F313",
+	"name": "METAL FORMING \u0026 MACHINE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"nskreddy@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"nskreddy@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c4"
+	},
+	"courseID": "MF F418",
+	"name": "LEAN MANUFACTURING",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"akgupta@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c5"
+	},
+	"courseID": "MF F421",
+	"name": "SUPPLY CHAIN MANAGEMENT",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"amrita@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c6"
+	},
+	"courseID": "PHA F211",
+	"name": "PHARMACEUTICAL ANALYSIS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"balaram@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"balaram@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"balaram@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c7"
+	},
+	"courseID": "PHA F213",
+	"name": "MICROBIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dsriram@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"dsriram@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"dsriram@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c8"
+	},
+	"courseID": "PHA F215",
+	"name": "INTRO TO MOLECULAR BIO",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"artidhar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"artidhar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215c9"
+	},
+	"courseID": "PHA F244",
+	"name": "PHYSICAL PHARMACY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vamsi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"vamsi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"vamsi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ca"
+	},
+	"courseID": "PHA F311",
+	"name": "PHARMACOLOGY I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"onkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"onkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"onkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215cb"
+	},
+	"courseID": "PHA F312",
+	"name": "MEDICINAL CHEMISTRY I",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pyogee@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"pyogee@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"pyogee@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215cc"
+	},
+	"courseID": "PHA F313",
+	"name": "INSTRU METHODS OF ANAL",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sajeli@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"sajeli@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215cd"
+	},
+	"courseID": "PHA F314",
+	"name": "PHARMA FORMUL \u0026 BIOPHARM",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rpunnarao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"rpunnarao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rpunnarao@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215ce"
+	},
+	"courseID": "PHA F415",
+	"name": "PATHOPHYSIOLOGY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"onkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215cf"
+	},
+	"courseID": "PHA F422",
+	"name": "COSMETIC SCIENCE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"dsriram@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"dsriram@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d0"
+	},
+	"courseID": "PHA G532",
+	"name": "Q A \u0026 REGULATORY AFFAIRS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sajeli@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"sajeli@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d1"
+	},
+	"courseID": "PHA G542",
+	"name": "ADVANCE PHYSICAL PHARMA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"vamsi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"vamsi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d2"
+	},
+	"courseID": "PHA G543",
+	"name": "CLINICAL RESEARCH",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"artidhar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d3"
+	},
+	"courseID": "PHA G545",
+	"name": "IPR AND PHARMACEUTICALS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"pyogee@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d4"
+	},
+	"courseID": "PHA G612",
+	"name": "PHARM KINET \u0026 CLINIC PHA",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rpunnarao@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"rpunnarao@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d5"
+	},
+	"courseID": "PHA G617",
+	"name": "ADV DRUG DELIVERY SYSTEM",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"swati.biswas@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P1",
+			"instructors": [
+				"swati.biswas@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d6"
+	},
+	"courseID": "PHY F110",
+	"name": "PHYSICS LABORATORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P10",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P11",
+			"instructors": [
+				"satyam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P2",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P3",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P4",
+			"instructors": [
+				"sashideep@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P5",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P6",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P7",
+			"instructors": [
+				"sashideep@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P8",
+			"instructors": [
+				"satyam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "P9",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d7"
+	},
+	"courseID": "PHY F111",
+	"name": "MECH OSCILLATIONS \u0026 WAVE",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ahaque@hyderabad.bits-pilani.ac.in",
+				"sarmistha.banik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"chaitanya@hyderabad.bits-pilani.ac.in",
+				"satyam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"thiru@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"sarmistha.banik@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"ahaque@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"hari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T5",
+			"instructors": [
+				"satyam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T6",
+			"instructors": [
+				"thiru@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T7",
+			"instructors": [
+				"hari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T8",
+			"instructors": [
+				"chaitanya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d8"
+	},
+	"courseID": "PHY F112",
+	"name": "GENERAL PHYSICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"hari@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"hari@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215d9"
+	},
+	"courseID": "PHY F211",
+	"name": "CLASSICAL MECHANICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sashideep@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"sashideep@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215da"
+	},
+	"courseID": "PHY F212",
+	"name": "ELECTROMAGNETIC THEORY",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "L4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"rahul.nigam@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T2",
+			"instructors": [
+				"kannan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T3",
+			"instructors": [
+				"souri@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T4",
+			"instructors": [
+				"snkarbelkar@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215db"
+	},
+	"courseID": "PHY F213",
+	"name": "OPTICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"meenakshi@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"meenakshi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215dc"
+	},
+	"courseID": "PHY F214",
+	"name": "ELEC MAGNET \u0026 OPTICS LAB",
+	"ic": "",
+	"sections": [
+		{
+			"section": "P1",
+			"instructors": [
+				"meenakshi@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215dd"
+	},
+	"courseID": "PHY F311",
+	"name": "QUANTUM MECHANICS II",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"ahaque@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"ahaque@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215de"
+	},
+	"courseID": "PHY F312",
+	"name": "STATISTICAL MECHANICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"raghavan@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"raghavan@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215df"
+	},
+	"courseID": "PHY F313",
+	"name": "COMPUTATIONAL PHYSICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"thiru@hyderabad.bits-pilani.ac.in"
+			]
+		},
+		{
+			"section": "T1",
+			"instructors": [
+				"thiru@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215e0"
+	},
+	"courseID": "PHY F413",
+	"name": "PARTICLE PHYSICS",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"chaitanya@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "59fca7e5e8b46708817215e1"
+	},
+	"courseID": "PHY F415",
+	"name": "GEN THEO OF REL \u0026 COSMO",
+	"ic": "",
+	"sections": [
+		{
+			"section": "L1",
+			"instructors": [
+				"sarmistha.banik@hyderabad.bits-pilani.ac.in"
+			]
+		}
+	]
+}]
+
