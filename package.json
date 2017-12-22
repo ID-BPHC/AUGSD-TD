@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp check"
+    "start": "gulp check",
+    "test": "mocha"
   },
   "dependencies": {
     "badwords-list": "^1.0.0",
     "body-parser": "~1.18.2",
+    "chai": "^4.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
     "eslint": "^4.12.1",
