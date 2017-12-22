@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "gulp check",
-    "test": "mocha"
+    "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js"
   },
   "dependencies": {
     "badwords-list": "^1.0.0",
@@ -41,5 +41,9 @@
     "run-sequence": "^2.2.0",
     "serve-favicon": "~2.4.2",
     "xoauth2": "^1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "mocha-circleci-reporter": "^0.0.2"
   }
 }

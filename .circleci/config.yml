@@ -29,8 +29,6 @@ jobs:
       - run: 
           command: |
             yarn install
-            npm install -g mocha
-            mocha
 
       - save_cache:
           paths:
@@ -38,6 +36,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      #- run: yarn test
+      - run: yarn test
 
 
