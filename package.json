@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp check"
+    "start": "gulp check",
+    "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js"
   },
   "dependencies": {
     "app-root-dir": "^1.0.2",
     "badwords-list": "^1.0.0",
     "body-parser": "~1.18.2",
+    "chai": "^4.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
     "eslint": "^4.12.1",
@@ -40,5 +42,9 @@
     "run-sequence": "^2.2.0",
     "serve-favicon": "~2.4.2",
     "xoauth2": "^1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "mocha-circleci-reporter": "^0.0.2"
   }
 }
