@@ -7,6 +7,7 @@
     "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js"
   },
   "dependencies": {
+    "app-root-dir": "^1.0.2",
     "badwords-list": "^1.0.0",
     "body-parser": "~1.18.2",
     "chai": "^4.1.2",

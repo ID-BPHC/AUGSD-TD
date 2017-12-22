@@ -171,7 +171,7 @@ router.post('/step-3', function(req, res, next) {
                         mailer.send({
                             email: req.user.email,
                             subject: "Room Booking",
-                            body: "Your request for room booking has been submitted. Please wait for approval. Room No : " + room + "\nFrom: " + req.session.startTime.toString() + "\nTo: " + req.session.endTime
+                            body: "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" + room + "</td></tr><tr><td><b>From</b></td><td>" + result.start.toString() + "</td></tr><tr><td><b>To</b></td><td>" + result.end.toString() + "</td></tr></table>"
                         });
                         res.renderState('dashboard/portals/room-booking-student/step3', {
                             number: room,
