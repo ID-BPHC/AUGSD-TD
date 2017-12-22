@@ -29,7 +29,8 @@ jobs:
       - run: 
           command: |
             yarn install
-            npm -g mocha
+            npm install -g mocha
+            mocha
 
       - save_cache:
           paths:
