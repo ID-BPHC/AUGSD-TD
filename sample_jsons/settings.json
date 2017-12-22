@@ -1,0 +1,12 @@
+[{
+	"_id": {
+		"$oid": "59fdcf97df01c004e289a8d8"
+	},
+	"name": "config",
+	"description": "Sets the Super Admin during first run.",
+	"value": [
+		"f20160158@hyderabad.bits-pilani.ac.in"
+	],
+	"__v": 0
+}]
+
