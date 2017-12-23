@@ -9,6 +9,7 @@ block content
 				return arg !== value;}, "Value must not equal arg.");
 			$("#form1").validate({
 				focusInvalid: true,
+				onfocusout: false,
 				rules :{
 					courselist : { valueNotEquals: ". . ." }
 				},
@@ -16,22 +17,10 @@ block content
 					courselist : { valueNotEquals: "Please select a course!" }
 				},
 				errorPlacement: (err,ele) => {
-					document.getElementById('courselist-error').innerText = err[0].innerText;
-					document.getElementById('courselist-error').display = 'block';
+					materialAlert('Course Selection',err[0].innerText,function(result){console.log(result)})
 				}
 			});
 			}
-	style.
-		.error{
-			color: #d50000;
-			position: absolute;
-			font-size: 12px;
-			margin-top: 3px;
-			display: none;
-		}
-		.error:focus{
-			outline: -webkit-focus-ring-color auto 5px;
-		}
 	div.mdl-cell.mdl-cell--12-col.center
 		div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
 			div.mdl-step.is-active
