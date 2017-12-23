@@ -25,6 +25,16 @@ router.get('/step-3', function(req, res, next) {
 });
 
 router.post('/step-2', function(req, res, next) {
+    if (req.sanitize(req.body.courselist) == '. . .') {
+        res.renderState('custom_errors', {
+            redirect: "/dashboard/feedbacks-24x7/step-1",
+            timeout: 2,
+            supertitle: ".",
+            callback: "/",
+            message: "Validation Error",
+            details: "Invalid Course Selected. Please select a valid course."
+        });
+    }
     let courseSearch = coursesModel.find({
         courseID: req.sanitize(req.body.courselist)
     }, function(err, result) {
@@ -50,6 +60,16 @@ router.post('/step-2', function(req, res, next) {
 });
 
 router.post('/step-3', function(req, res, next) {
+    if (req.sanitize(req.body.courselist) == '. . .') {
+        res.renderState('custom_errors', {
+            redirect: "/dashboard/feedbacks-24x7/step-1",
+            timeout: 2,
+            supertitle: ".",
+            callback: "/",
+            message: "Validation Error",
+            details: "Invalid Class Selected. Please select a valid class."
+        });
+    }
     let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
     req.session.courseSection = courseSection;
     req.session.save();
@@ -115,6 +135,25 @@ router.post('/step-3', function(req, res, next) {
 });
 
 router.post('/step-4', function(req, res, next) {
+    if (req.sanitize(req.body.instructorlist) == '. . .') {
+        res.renderState('custom_errors', {
+            redirect: "/dashboard/feedbacks-24x7/step-1",
+            timeout: 2,
+            supertitle: ".",
+            callback: "/",
+            message: "Validation Error",
+            details: "Invalid Instructor Selected. Please select a valid instructor."
+        });
+    } else if (req.sanitize(req.body.feedback).length == 0) {
+        res.renderState('custom_errors', {
+            redirect: "/dashboard/feedbacks-24x7/step-1",
+            timeout: 2,
+            supertitle: ".",
+            callback: "/",
+            message: "Validation Error",
+            details: "Feedback field wasn't filled. Please fill the feedback field before submitting."
+        });
+    }
     let instructorarray = req.session.instructor[0].instructors;
     let courseID = req.session.courseID;
     let courseSection = req.session.courseSection;
@@ -164,7 +203,7 @@ router.post('/step-4', function(req, res, next) {
             timeout: 2,
             supertitle: "Submitted Feedback.",
             message: "Success",
-            details: "Stored Feedback. Redirecting"
+            details: "Your feedback was recorded. Thank you :). Redirecting"
         });
     });
 });
