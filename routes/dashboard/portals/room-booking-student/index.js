@@ -113,7 +113,7 @@ router.post('/step-2', function(req, res, next) {
         req.session.rooms = rooms;
         req.session.startTime = startTime;
         req.session.endTime = endTime;
-        req.session.av = req.sanitize(req.body.av);
+        req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false;
         req.session.purpose = req.sanitize(req.body.purpose);
         req.session.phone = req.sanitize(req.body.phone);
         req.session.save();
@@ -175,8 +175,8 @@ router.post('/step-3', function(req, res, next) {
                         });
                         res.renderState('dashboard/portals/room-booking-student/step3', {
                             number: room,
-                            start: req.session.startTime,
-                            end: req.session.endTime,
+                            start: result.start.toString(),
+                            end: result.end.toString(),
                             phone: req.session.phone,
                             av: req.session.av
                         });
