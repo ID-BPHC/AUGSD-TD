@@ -42,6 +42,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
+    resave: false,
+    saveUninitialized: true,
     secret: 'ID-BPHC-ID'
 }));
 app.use(auth.adminPassport.initialize());

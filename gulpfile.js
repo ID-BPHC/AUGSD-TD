@@ -7,6 +7,7 @@ var spawn = require('child_process').spawn;
 var mongodbData = require('gulp-mongodb-data');
 var gulp = require('gulp-help')(require('gulp'));
 var runSequence = require('run-sequence');
+var minify = require('gulp-minifier');
 
 gulp.task('prettify', 'Prettify all server side js.', function () {
     gulp.src(['./*.js', '!./gulpfile.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
@@ -67,6 +68,20 @@ gulp.task('run', 'Run node server.', function (cb) {
     });
 });
 
+gulp.task('minify', 'Minifies all javascript files in public.', function () {
+    return gulp.src('public/**/*').pipe(minify({
+        minify: true,
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        minifyJS: true,
+        minifyCSS: true,
+        getKeptComment: function (content, filePath) {
+            var m = content.match(/\/\*![\s\S]*?\*\//img);
+            return m && m.join('\n') + '\n' || '';
+        }
+    })).pipe(gulp.dest('public/'));
+});
+
 gulp.task('check', 'Prettifying and checks linting.', function () {
-    runSequence('install', 'prettify', 'lint', 'run');
+    runSequence('install', 'prettify', 'minify', 'lint', 'run');
 });
