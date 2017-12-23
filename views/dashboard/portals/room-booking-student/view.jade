@@ -1,0 +1,101 @@
+extends ../../nav
+
+block content
+	style.
+		.event-card.mdl-card {
+		width: 212px;		
+		}
+		.pending {
+		background: #607D8B;
+		}
+		.accepted {
+		background: #1B5E20;
+		}
+		.rejected {
+		background: #b71c1c;
+		}
+		.event-card > .mdl-card__actions {
+		border-color: rgba(255, 255, 255, 0.2);
+		}
+		.event-card > .mdl-card__title {
+		align-items: flex-start;
+		}
+		.event-card > .mdl-card__title > h4 {
+		margin-top: 0;
+		}
+		.event-card > .mdl-card__actions {
+		display: flex;
+		box-sizing:border-box;
+		align-items: center;
+		}
+		.event-card > .mdl-card__actions > .material-icons {
+		padding-right: 10px;
+		}
+		.event-card > .mdl-card__title,
+		.event-card > .mdl-card__actions,
+		.event-card > .mdl-card__actions > .mdl-button {
+		color: #fff;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('room-booking-student').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		h2 Your Room Bookings
+
+	div.mdl-cell.mdl-cell--12-col
+		div.mdl-grid
+			for booking in bookings
+				div.mdl-cell.mdl-cell--3-col
+					if booking.approval == "P"
+						.event-card.mdl-card.mdl-shadow--2dp.pending
+							.mdl-card__title.mdl-card--expand
+								span
+									h5 #{booking.number}		
+									if booking.purpose.length > 42
+										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
+									else
+										p #{booking.purpose}
+									p From: #{booking.start}
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button
+									| PENDING
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/room-booking-student/delete/#{booking._id.toString()}')
+									| Cancel Booking
+								.mdl-layout-spacer
+								i.material-icons cancel
+					else if booking.approval == "A"
+						.event-card.mdl-card.mdl-shadow--2dp.accepted
+							.mdl-card__title.mdl-card--expand
+								span
+									h5 #{booking.number}		
+									if booking.purpose.length > 42
+										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
+									else
+										p #{booking.purpose}
+									p From: #{booking.start}
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button
+									| ACCEPTED
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/room-booking-student/delete/#{booking._id.toString()}')
+									| Cancel Booking
+								.mdl-layout-spacer
+								i.material-icons cancel
+					else
+						.event-card.mdl-card.mdl-shadow--2dp.rejected
+							.mdl-card__title.mdl-card--expand
+								span
+									h5 #{booking.number}		
+									if booking.purpose.length > 42
+										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
+									else
+										p #{booking.purpose}
+									p From: #{booking.start}
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button
+									| REJECTED					
+
+	div.mdl-cell.mdl-cell--12-col.center
+
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/room-booking-student/')") Go Back
