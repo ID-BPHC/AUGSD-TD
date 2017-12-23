@@ -25,6 +25,7 @@ for line in f.readlines():
 
 	# Reset the line counter and room object after each room (Assumed each room has 9 lines in map csv)
 	if currentLine == 10:
+		room['fixedClasses'].append(['', '', '', '', '', '', '', '', '', ''])
 		rooms.append(room)
 		room = {}
 		room['fixedClasses'] = []
