@@ -1,6 +1,7 @@
 extends ../../nav
 
 block content
+	link(rel='stylesheet' href='/stylesheets/material-alerts.css')
 	style.
 		.event-card.mdl-card {
 		width: 212px;		
@@ -60,7 +61,7 @@ block content
 								a.mdl-button.mdl-button--colored.mdl-js-button
 									| PENDING
 							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/room-booking-student/delete/#{booking._id.toString()}')
+								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Delete Booking ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/room-booking-student/cancel/#{booking._id.toString()}'); } })")
 									| Cancel Booking
 								.mdl-layout-spacer
 								i.material-icons cancel
@@ -78,7 +79,7 @@ block content
 								a.mdl-button.mdl-button--colored.mdl-js-button
 									| ACCEPTED
 							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/room-booking-student/delete/#{booking._id.toString()}')
+								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Delete Booking ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/room-booking-student/cancel/#{booking._id.toString()}'); } })")
 									| Cancel Booking
 								.mdl-layout-spacer
 								i.material-icons cancel
@@ -94,8 +95,15 @@ block content
 									p From: #{booking.start}
 							.mdl-card__actions.mdl-card--border
 								a.mdl-button.mdl-button--colored.mdl-js-button
-									| REJECTED					
+									| REJECTED		
+							.mdl-card__actions.mdl-card--border
+								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/room-booking-student/cancel/#{booking._id.toString()}')
+									| Clear Booking
+								.mdl-layout-spacer
+								i.material-icons cancel			
 
 	div.mdl-cell.mdl-cell--12-col.center
 
 		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/room-booking-student/')") Go Back
+
+	script(type='text/javascript' src='/scripts/material-alerts.js')

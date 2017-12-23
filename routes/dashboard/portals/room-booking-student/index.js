@@ -56,6 +56,21 @@ router.get('/view', function(req, res, next) {
     });
 });
 
+router.get('/cancel/:id', function(req, res, next) {
+    bookingsModel.remove({
+        _id: req.params.id,
+        bookedBy: req.user.email
+    }, function(err) {
+        if (err) {
+            res.renderState('custom_errors', {
+                message: "An unexpected error occoured",
+                details: "Contact Instruction Division software team for assistance"
+            });
+        }
+        res.redirect('/dashboard/room-booking-student/view');
+    });
+});
+
 
 // POST Requests
 
