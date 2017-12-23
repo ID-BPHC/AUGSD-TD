@@ -16,6 +16,8 @@ var weekDayHash = {
     "Sun": 6
 };
 
+// GET Requests
+
 router.get('/', function(req, res, next) {
     res.renderState('dashboard/portals/room-booking-student');
 });
@@ -31,6 +33,31 @@ router.get('/step-2', function(req, res, next) {
 router.get('/step-3', function(req, res, next) {
     res.renderState('dashboard/portals/room-booking-student');
 });
+
+router.get('/view', function(req, res, next) {
+    bookingsModel.find({
+        start: {
+            "$gt": new moment()
+        },
+        bookedBy: req.user.email
+    }, function(err, bookings) {
+        if (err) {
+            res.renderState('custom_errors', {
+                message: "An unexpected error occoured",
+                details: "Contact Instruction Division software team for assistance"
+            });
+        }
+
+        res.renderState('dashboard/portals/room-booking-student/view', {
+            bookings: bookings
+        });
+
+
+    });
+});
+
+
+// POST Requests
 
 router.post('/step-2', function(req, res, next) {
 
@@ -91,6 +118,9 @@ router.post('/step-2', function(req, res, next) {
                     },
                     end: {
                         "$gt": startTime
+                    },
+                    approval: {
+                        "$ne": "R"
                     }
                 }, function(err, results) {
 
@@ -159,7 +189,7 @@ router.post('/step-3', function(req, res, next) {
                         av: req.session.av,
                         purpose: req.session.purpose,
                         phone: req.session.phone,
-                        approved: false
+                        approval: "P"
 
                     }, function(err, result) {
                         if (err) {
