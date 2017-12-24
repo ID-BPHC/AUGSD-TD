@@ -1,0 +1,82 @@
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+
+var mongoose = require('mongoose');
+var portalsModel = require('../schemas/portals');
+var adminsModel = require('../schemas/admins');
+var config = require('../config');
+
+mongoose.connect(config.mongooseConnection);
+
+portalsModel.remove({}, function(err){
+	
+	if(err) {
+		console.log(err);
+	}
+	console.log("Creating Portals ...");
+	portalsModel.create(
+	{
+		displayName: "24x7 Feedbacks",
+		name: "feedbacks-24x7",
+		icon: "feedback",
+		active: true,
+		admin: false
+	},
+	{
+		displayName: "Room Booking",
+		name: "room-booking-student",
+		icon: "class",
+		active: true,
+		admin: false
+	},
+	{
+		displayName: "Room Booking Approval",
+		name: "room-booking-approval",
+		icon: "class",
+		active: true,
+		admin: true
+	},
+	function(err){
+		
+		if(err) {
+			console.log(err);
+		}
+
+		console.log("Adding Superusers ...");
+
+		adminsModel.remove({}, function(err){
+
+			if(err) {
+				console.log(err);
+			}
+
+			adminsModel.create(
+				{
+					name: "Sohail Rajdev",
+					email: "sohailrajdev97@gmail.com",
+					portals: [],
+					home: '',
+					superUser: true
+				},
+				{
+					name: "Nischay Ram Mamidi",
+					email: "nischaymamidi@gmail.com",
+					portals: [],
+					home: '',
+					superUser: true
+				}
+				, function(err) {
+
+				if(err) {
+					console.log(err);
+				}
+
+				console.log("**** DONE ****");
+
+			});
+
+		});
+
+	});
+
+});
