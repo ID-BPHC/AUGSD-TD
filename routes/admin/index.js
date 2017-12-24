@@ -19,10 +19,7 @@ let securityCheck = function(req, res, next) {
         admin: true
     }, function(err, result) {
         if (err) {
-            res.render('custom_errors', {
-                message: "Server error",
-                details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
-            });
+            return res.terminate(err);
         }
         if (result.length > 0 || req.user.superUser) {
             if (req.user.portals.indexOf(reqPortal) >= 0 || req.user.superUser) {
@@ -30,13 +27,17 @@ let securityCheck = function(req, res, next) {
             } else {
                 res.render('custom_errors', {
                     message: 'You do not have permission to access this portal',
-                    details: 'Contact Instruction Division software team for assistance.'
+                    details: 'Contact Instruction Division software team for assistance.',
+                    redirect: '/admin',
+                    timeout: 5
                 });
             }
         } else {
             res.render('custom_errors', {
                 message: 'This portal has been disabled by the Administrator',
-                details: 'Contact Instruction Division software team for assistance.'
+                details: 'Contact Instruction Division software team for assistance.',
+                redirect: '/admin',
+                timeout: 5
             });
         }
     });
@@ -68,10 +69,7 @@ router.get('/auth/google/callback',
             name: "config"
         }, function(err, result) {
             if (err) {
-                res.render('custom_errors', {
-                    message: "Server Connection Error",
-                    details: "Server Connection Error has occured"
-                });
+                return res.terminate(err);
             }
             if (result.length == 0) {
                 var CreateAdmin = adminsModel.create({
@@ -95,16 +93,15 @@ router.get('/auth/google/callback',
                     email: req.user.emails[0].value
                 }, function(err, result) {
                     if (err) {
-                        res.render('custom_errors', {
-                            message: "Server error",
-                            details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
-                        });
+                        return res.terminate(err);
                     }
                     if (result.length == 0) {
                         req.session.destroy(function() {
                             res.render('custom_errors', {
                                 message: "You are not an administrator",
-                                details: "This google account is not registered as an administrator."
+                                details: "This google account is not registered as an administrator.",
+                                redirect: '/admin',
+                                timeout: 5
                             });
                         });
                     } else {
@@ -155,10 +152,7 @@ router.use(function(req, res, next) {
             active: true
         }, function(err, portals) {
             if (err) {
-                res.render('custom_errors', {
-                    message: "Server error",
-                    details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
-                });
+                return res.terminate(err);
             }
             params.profileImage = req.session.profileImage;
             params.portals = portals;

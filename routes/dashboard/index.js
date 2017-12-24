@@ -19,14 +19,7 @@ let securityCheck = function(req, res, next) {
         admin: false
     }, function(err, result) {
         if (err) {
-            res.renderState('custom_errors', {
-                redirect: "/dashboard",
-                timeout: 5,
-                supertitle: "Critical Breakdown.",
-                callback: "/",
-                message: "Server Error",
-                details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
-            });
+            return res.terminate(err);
         }
         if (result.length > 0) {
             next();
@@ -154,13 +147,7 @@ router.use(function(req, res, next) {
             active: true
         }, function(err, portals) {
             if (err) {
-                res.renderState('custom_errors', {
-                    redirect: "/dashboard",
-                    timeout: 5,
-                    supertitle: "Critical Breakdown.",
-                    message: "Server Error",
-                    details: "An unexpected error occoured. Contact Instruction Division software team for assistance."
-                });
+                return res.terminate(err);
             }
             params.profileImage = req.session.profileImage;
             params.portals = portals;

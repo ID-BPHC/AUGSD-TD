@@ -42,10 +42,7 @@ router.get('/view', function(req, res, next) {
         bookedBy: req.user.email
     }, function(err, bookings) {
         if (err) {
-            res.renderState('custom_errors', {
-                message: "An unexpected error occoured",
-                details: "Contact Instruction Division software team for assistance"
-            });
+            return res.terminate(err);
         }
 
         res.renderState('dashboard/portals/room-booking-student/view', {
@@ -62,10 +59,7 @@ router.get('/cancel/:id', function(req, res, next) {
         bookedBy: req.user.email
     }, function(err) {
         if (err) {
-            res.renderState('custom_errors', {
-                message: "An unexpected error occoured",
-                details: "Contact Instruction Division software team for assistance"
-            });
+            return res.terminate(err);
         }
         res.redirect('/dashboard/room-booking-student/view');
     });
@@ -87,16 +81,15 @@ router.post('/step-2', function(req, res, next) {
     }).lean().exec(function(err, rooms) {
 
         if (err) {
-            res.renderState('custom_errors', {
-                message: "An unexpected error occoured",
-                details: "Contact Instruction Division software team for assistance"
-            });
+            return res.terminate(err);
         }
 
         if (rooms.length == 0) {
             res.renderState('custom_errors', {
                 message: "No room with given capacity",
-                details: "Try booking multiple rooms with smaller capacity"
+                details: "Try booking multiple rooms with smaller capacity",
+                redirect: '/dashboard/room-booking-student/step-1',
+                timeout: 5
             });
         }
 
@@ -140,10 +133,7 @@ router.post('/step-2', function(req, res, next) {
                 }, function(err, results) {
 
                     if (err) {
-                        res.renderState('custom_errors', {
-                            message: "An unexpected error occoured",
-                            details: "Contact Instruction Division software team for assistance"
-                        });
+                        return res.terminate(err);
                     }
 
                     if (results.length != 0) {
@@ -189,10 +179,7 @@ router.post('/step-3', function(req, res, next) {
             }, function(err, results) {
 
                 if (err) {
-                    res.renderState('custom_errors', {
-                        message: "An unexpected error occoured",
-                        details: "Contact Instruction Division software team for assistance"
-                    });
+                    return res.terminate(err);
                 }
 
                 if (results.length == 0) {
@@ -208,10 +195,7 @@ router.post('/step-3', function(req, res, next) {
 
                     }, function(err, result) {
                         if (err) {
-                            res.renderState('custom_errors', {
-                                message: "An unexpected error occoured",
-                                details: "Contact Instruction Division software team for assistance"
-                            });
+                            return res.terminate(err);
                         }
                         mailer.send({
                             email: req.user.email,
@@ -229,7 +213,9 @@ router.post('/step-3', function(req, res, next) {
                 } else {
                     res.renderState('custom_errors', {
                         message: "Oops.. Room already booked.",
-                        details: "Someone else booked this room while you were booking. Please book some other room."
+                        details: "Someone else booked this room while you were booking. Please book some other room.",
+                        redirect: '/dashboard/room-booking-student/step-1',
+                        timeout: 5
                     });
                 }
 
