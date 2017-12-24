@@ -20,7 +20,7 @@ var admin = require('./routes/admin');
 var dashboard = require('./routes/dashboard');
 var index = require('./routes');
 var loggermiddleware = require('./middleware/logger');
-var auth = require('./middleware/auth');
+
 // var referermiddleware = require('./middleware/referer');
 var app = express();
 
@@ -41,16 +41,6 @@ app.use(bodyParser.urlencoded({
 app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'ID-BPHC-ID'
-}));
-app.use(auth.adminPassport.initialize());
-app.use(auth.userPassport.initialize());
-app.use(auth.adminPassport.session());
-app.use(auth.userPassport.session());
 
 // A termination function on any kind of error that occours after login
 

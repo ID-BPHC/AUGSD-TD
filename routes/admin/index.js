@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 
 var adminsModel = require('../../schemas/admins');
 var portalsModel = require('../../schemas/portals');
@@ -55,6 +56,15 @@ portalsModel.find({
 /* Portal Middleware Configuration End */
 
 /********* Configure adminPassport *********/
+
+router.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'ID-BPHC-ADMIN'
+}));
+
+router.use(auth.adminPassport.initialize());
+router.use(auth.adminPassport.session());
 
 router.get('/login', auth.adminPassport.authenticate('google', {
     scope: ['profile', 'email']
@@ -128,16 +138,6 @@ router.get('/logout', function(req, res) {
 router.use(function(req, res, next) {
     if (!(req.user)) {
         res.redirect('/admin/login');
-    } else {
-        next();
-    }
-});
-
-router.use(function(req, res, next) {
-    if ((req.session.userType !== "admin")) {
-        req.session.destroy(function(err) {
-            res.redirect('/admin/login');
-        });
     } else {
         next();
     }
