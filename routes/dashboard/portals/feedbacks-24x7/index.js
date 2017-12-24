@@ -38,6 +38,9 @@ router.post('/step-2', function(req, res, next) {
     let courseSearch = coursesModel.find({
         courseID: req.sanitize(req.body.courselist)
     }, function(err, result) {
+        if (err) {
+            return res.terminate(err);
+        }
         return result;
     });
     courseSearch.then(function retrieveStudent(data) {
@@ -106,7 +109,7 @@ router.post('/step-3', function(req, res, next) {
                     email: data[0].sections[0].instructors[i]
                 }, function(err, email) {
                     if (err) {
-                        return reject(err);
+                        return res.terminate(err);
                     }
                     newdata.instructors[i] = {
                         name: email[0].name,

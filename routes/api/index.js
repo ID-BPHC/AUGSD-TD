@@ -68,6 +68,9 @@ router.get('/getCourse/:course/:section', function(req, res, next) {
                 _id: 0
             }
         }, function(err, result) {
+            if (err) {
+                return res.terminate(err);
+            }
             let instructors = result[0].sections[0].instructors;
             let promises = [];
             instructors.forEach(element => {
