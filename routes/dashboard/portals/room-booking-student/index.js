@@ -56,7 +56,7 @@ router.get('/view', function(req, res, next) {
 router.get('/cancel/:id', function(req, res, next) {
     bookingsModel.remove({
         _id: req.params.id,
-        bookedBy: req.user.email
+        bookedBy: req.sanitize(req.user.email)
     }, function(err) {
         if (err) {
             return res.terminate(err);
