@@ -108,9 +108,10 @@ html
 						hr
 						h6.center Portals
 						each portal in portals
-							a.mdl-navigation__link(href=rootURL + '/' + portal.name,id=portal.name)
-								i.material-icons(style='padding-right:20px') #{portal.icon}
-								| #{portal.displayName}
+							if user.portals.indexOf(portal.name) >= 0 || user.superUser
+								a.mdl-navigation__link(href=rootURL + '/' + portal.name,id=portal.name)
+									i.material-icons(style='padding-right:20px') #{portal.icon}
+									| #{portal.displayName}
 			main.mdl-layout__content.grayify
 				div.mdl-grid
 					block content

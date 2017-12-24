@@ -21,7 +21,6 @@ userPassport.deserializeUser(function(id, done) {
     });
 });
 
-
 userPassport.use(new googleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,

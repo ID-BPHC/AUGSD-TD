@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 
 var studentsModel = require('../../schemas/students');
 var portalsModel = require('../../schemas/portals');
@@ -48,6 +49,15 @@ portalsModel.find({
 /* Portal Middleware Configuration End */
 
 /********* Configure studentPassport *********/
+
+router.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'ID-BPHC-STUDENT'
+}));
+
+router.use(auth.userPassport.initialize());
+router.use(auth.userPassport.session());
 
 router.get('/login', auth.userPassport.authenticate('google', {
     scope: ['profile', 'email']
