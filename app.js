@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
 var config = require('./config');
 var session = require('express-session');
+var bugsModel = require('./schemas/bugs');
 
 mongoose.connect(config.mongooseConnection, {
     useMongoClient: true
@@ -50,6 +51,32 @@ app.use(auth.adminPassport.initialize());
 app.use(auth.userPassport.initialize());
 app.use(auth.adminPassport.session());
 app.use(auth.userPassport.session());
+
+// A termination function on any kind of error that occours after login
+
+app.use(function(req, res, next) {
+    res.terminate = function(err) {
+        bugsModel.create({
+            category: "Site",
+            error: err,
+            student: req.user.email,
+            useragent: req.sanitize(req.headers['user-agent'])
+        }, function(err1, bug) {
+            if (err1) {
+                console.log(err1);
+                res.end();
+            }
+            res.render('custom_errors', {
+                redirect: "/",
+                timeout: 5,
+                supertitle: "Critical Breakdown.",
+                message: "Server Error",
+                details: "An unexpected error occoured. Software team has been notified about this. Contact Instruction Division for further assistance."
+            });
+        });
+    };
+    next();
+});
 
 app.use('/admin', admin);
 app.use('/api', api);

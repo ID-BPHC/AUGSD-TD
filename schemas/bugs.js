@@ -5,7 +5,11 @@ var bugsSchema = new Schema({
     category: String,
     report: String,
     useragent: String,
-    student: String
+    student: String,
+    error: {
+        type: Object,
+        default: null
+    }
 });
 
 var model = mongoose.model('bugs', bugsSchema);
