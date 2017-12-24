@@ -3,13 +3,31 @@ var Schema = mongoose.Schema;
 
 var bookingSchema = new Schema({
     number: String,
-    start: Date,
-    end: Date,
+    start: {
+        type: Date,
+        default: new Date()
+    },
+    end: {
+        type: Date,
+        default: new Date()
+    },
     bookedBy: String,
-    purpose: String,
-    phone: String,
-    av: Boolean,
-    approval: String // P - Pending, A - Accepted, R - Rejected
+    purpose: {
+        type: String,
+        default: ""
+    },
+    phone: {
+        type: String,
+        default: ""
+    },
+    av: {
+        type: Boolean,
+        default: false
+    },
+    approval: {
+        type: String,
+        default: "P"
+    } // P - Pending, A - Accepted, R - Rejected
 });
 
 var model = mongoose.model('room-bookings', bookingSchema);
