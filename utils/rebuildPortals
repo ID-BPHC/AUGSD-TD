@@ -32,6 +32,13 @@ portalsModel.remove({}, function(err){
 	{
 		displayName: "Room Booking Approval",
 		name: "room-booking-approval",
+		icon: "done",
+		active: true,
+		admin: true
+	},
+	{
+		displayName: "Room Booking",
+		name: "room-booking-faculty",
 		icon: "class",
 		active: true,
 		admin: true
