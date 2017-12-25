@@ -1,9 +1,9 @@
-extends ../../../master-dashboard
+extends ../master-dashboard
 
 block content
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
-		document.getElementById('room-booking-student').classList.add('menuselectify')
+		document.getElementById('#{reqPortal}').classList.add('menuselectify')
 
 	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
 	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
@@ -26,7 +26,7 @@ block content
 					div
 						h4 Room Booking
 						p Select a room to book
-						form(action="#{rootURL}/room-booking-student/step-3", method="post", id="form1").mdc-form-field
+						form(action="#{rootURL}/#{reqPortal}/step-3", method="post", id="form1").mdc-form-field
 							ul.mdl-list
 								for room in rooms
 									if room.availible

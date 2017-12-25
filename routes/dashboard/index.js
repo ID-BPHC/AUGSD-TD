@@ -159,6 +159,10 @@ router.use(function(req, res, next) {
             if (err) {
                 return res.terminate(err);
             }
+
+            if (typeof(req.originalUrl.split('/'))[2] !== 'undefined') {
+                params.reqPortal = (req.originalUrl.split('/'))[2];
+            }
             params.profileImage = req.session.profileImage;
             params.portals = portals;
             params.user = req.user;
