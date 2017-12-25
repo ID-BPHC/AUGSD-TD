@@ -1,9 +1,9 @@
-extends ../../../master-dashboard
+extends ../master-dashboard
 
 block content
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
-		document.getElementById('room-booking-student').classList.add('menuselectify')
+		document.getElementById('#{reqPortal}').classList.add('menuselectify')
 	div.mdl-cell.mdl-cell--12-col
 		h2 Room Booking
 
@@ -28,11 +28,11 @@ block content
 				 proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
 
 	div.mdl-cell.mdl-cell--6-col.center
-		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/room-booking-student/step-1')")
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/step-1')")
 			i.material-icons add
 			| New Booking
 
 	div.mdl-cell.mdl-cell--6-col.center
-		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/room-booking-student/view')")
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
 			i.material-icons settings
 			| Manage Booking

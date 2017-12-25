@@ -1,9 +1,9 @@
-extends ../../../master-dashboard
+extends ../master-dashboard
 
 block content
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
-		document.getElementById('room-booking-student').classList.add('menuselectify')
+		document.getElementById('#{reqPortal}').classList.add('menuselectify')
 
 	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
 	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
@@ -20,7 +20,7 @@ block content
 					div
 						h4 Room Booking
 						p Provide the following details before proceeding.
-						form(action="#{rootURL}/room-booking-student/step-2", method="post", id="form1").mdc-form-field
+						form(action="#{rootURL}/#{reqPortal}/step-2", method="post", id="form1").mdc-form-field
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 								input#capacity.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='capacity')
 								label.mdl-textfield__label(for='capacity') Seating Capacity
@@ -47,9 +47,20 @@ block content
 								label.mdl-textfield__label(for='phone') Phone Number
 								span.mdl-textfield__error Input is not a number!
 							br
+							if dashboard.type == "Administrator"
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+									input#le.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='le')
+									label(for='le')
+										i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+									label.mdl-textfield__label(for='le') Required For Examination ?
+									ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='le')
+										ul
+											li.mdl-menu__item Yes
+											li.mdl-menu__item No
+								br
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
 								input#av.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='av')
-								label(for='sample2')
+								label(for='av')
 									i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
 								label.mdl-textfield__label(for='av') Audio Visual Equipment Required
 								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='av')
