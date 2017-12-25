@@ -189,7 +189,7 @@ router.post('/step-4', function(req, res, next) {
         instructor: instructoremail, // Instructor's email
         type: "24x7", // 24x7 or midsem
         responses: feedback,
-        student: req.session.passport.user
+        createdOn: Date.now()
     };
     feedbacksModel.create(dataStore, function(err, response) {
         if (err) {
