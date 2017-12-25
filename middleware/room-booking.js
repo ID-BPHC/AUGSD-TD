@@ -170,11 +170,19 @@ let makeBooking = function(room, rooms, endTime, startTime, email, av, purpose, 
                             console.log(err);
                             callback(true, {});
                         }
-                        mailer.send({
-                            email: email,
-                            subject: "Room Booking",
-                            body: "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" + room + "</td></tr><tr><td><b>From</b></td><td>" + result.start.toString() + "</td></tr><tr><td><b>To</b></td><td>" + result.end.toString() + "</td></tr></table>"
-                        });
+                        if (!bookedByFaculty) {
+                            mailer.send({
+                                email: email,
+                                subject: "Room Booking",
+                                body: "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" + room + "</td></tr><tr><td><b>From</b></td><td>" + result.start.toString() + "</td></tr><tr><td><b>To</b></td><td>" + result.end.toString() + "</td></tr></table>"
+                            });
+                        } else {
+                            mailer.send({
+                                email: email,
+                                subject: "Room Booking",
+                                body: "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" + room + "</td></tr><tr><td><b>From</b></td><td>" + result.start.toString() + "</td></tr><tr><td><b>To</b></td><td>" + result.end.toString() + "</td></tr></table>"
+                            });
+                        }
                         callback(false, result);
                     });
                 } else {
