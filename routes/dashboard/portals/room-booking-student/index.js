@@ -115,7 +115,6 @@ router.post('/step-2', function(req, res, next) {
         var startTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-start']), 'ddd DD MMM YYYY HH:mm').toDate();
         var endTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-end']), 'ddd DD MMM YYYY HH:mm').toDate();
 
-        console.log(typeof startTime + " " + typeof d + ' ' + startTime.toString());
         rooms.forEach(function(room, index) {
 
             if (room.availible) {
