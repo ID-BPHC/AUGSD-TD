@@ -7,7 +7,7 @@ var feedbacksSchema = new Schema({
     instructor: String, // Instructor's email
     type: String, // 24x7 or midsem
     responses: String,
-    student: String
+    createdOn: String
 });
 
 var model = mongoose.model('feedbacks', feedbacksSchema);

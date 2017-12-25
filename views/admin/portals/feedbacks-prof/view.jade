@@ -1,0 +1,16 @@
+extends ../../nav
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-prof').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col
+				h3(onclick='window.location.replace("#{rootURL}/feedbacks-prof")') <-
+			.mdl-cell.mdl-cell--4-col
+				h3(style='text-align:center') Semester Feedback
+				p
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
