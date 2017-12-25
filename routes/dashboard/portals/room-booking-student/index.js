@@ -7,19 +7,19 @@ var moment = require('moment');
 // GET Requests
 
 router.get('/', function(req, res, next) {
-    res.renderState('dashboard/portals/room-booking-student');
+    res.renderState('room-booking');
 });
 
 router.get('/step-1', function(req, res, next) {
-    res.renderState('dashboard/portals/room-booking-student/step1');
+    res.renderState('room-booking/step1');
 });
 
 router.get('/step-2', function(req, res, next) {
-    res.renderState('dashboard/portals/room-booking-student');
+    res.renderState('room-booking');
 });
 
 router.get('/step-3', function(req, res, next) {
-    res.renderState('dashboard/portals/room-booking-student');
+    res.renderState('room-booking');
 });
 
 router.get('/view', function(req, res, next) {
@@ -27,7 +27,7 @@ router.get('/view', function(req, res, next) {
         if (err) {
             return res.terminate("Error");
         }
-        res.renderState('dashboard/portals/room-booking-student/view', {
+        res.renderState('room-booking/view', {
             bookings: bookings
         });
     });
@@ -74,7 +74,7 @@ router.post('/step-2', function(req, res, next) {
         req.session.save();
 
         res.nocache();
-        res.renderState('dashboard/portals/room-booking-student/step2', {
+        res.renderState('room-booking/step2', {
             rooms: rooms
         });
     });
@@ -98,7 +98,7 @@ router.post('/step-3', function(req, res, next) {
             });
         }
 
-        res.renderState('dashboard/portals/room-booking-student/step3', {
+        res.renderState('room-booking/step3', {
             number: room,
             start: result.start.toString(),
             end: result.end.toString(),
