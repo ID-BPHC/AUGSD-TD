@@ -3,7 +3,7 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var feedbacksModel = fq('schemas/feedbacks');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     feedbacksModel.find({
             instructor: req.session.passport.user
         }, {
@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
             }
             result.forEach((object, index, array) => {
                 array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ..."
+                array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
             });
             res.renderState('admin/portals/feedbacks-prof', {
                 feedbacks: result
@@ -41,7 +41,7 @@ function getUTCDate(epoch) {
 }
 
 
-router.get('/view/:id', function (req, res, next) {
+router.get('/view/:id', function(req, res, next) {
     feedbacksModel.findOne({
         _id: req.sanitize(req.params.id),
         instructor: req.session.passport.user
