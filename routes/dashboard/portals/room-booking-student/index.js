@@ -152,6 +152,7 @@ router.post('/step-2', function(req, res, next) {
         req.session.phone = req.sanitize(req.body.phone);
         req.session.save();
 
+        res.nocache();
         res.renderState('dashboard/portals/room-booking-student/step2', {
             rooms: rooms
         });
