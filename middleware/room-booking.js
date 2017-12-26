@@ -25,9 +25,9 @@ let view = function(email, callback) {
     }, function(err, bookings) {
         if (err) {
             console.log(err);
-            callback(true, null);
+            return callback(true, null);
         }
-        callback(false, bookings);
+        return callback(false, bookings);
     });
 };
 
@@ -39,9 +39,9 @@ let cancel = function(id, email, callback) {
     }, function(err) {
         if (err) {
             console.log(err);
-            callback(true);
+            return callback(true);
         }
-        callback(false);
+        return callback(false);
     });
 };
 
@@ -67,11 +67,11 @@ let getRooms = function(date, timeStart, timeEnd, capacity, bookedForExam, booke
 
         if (err) {
             console.log(err);
-            callback(true, null);
+            return callback(true, null);
         }
 
         if (rooms.length == 0) {
-            callback(false, {
+            return callback(false, {
                 high: 1
             });
         }
@@ -98,6 +98,10 @@ let getRooms = function(date, timeStart, timeEnd, capacity, bookedForExam, booke
         var startTime = new moment(date + " " + timeStart, 'ddd DD MMM YYYY HH:mm').toDate();
         var endTime = new moment(date + " " + timeEnd, 'ddd DD MMM YYYY HH:mm').toDate();
 
+        if(endTime < startTime) {
+            return callback(true);
+        }
+
         rooms.forEach(function(room, index) {
 
             if (room.availible) {
@@ -116,7 +120,7 @@ let getRooms = function(date, timeStart, timeEnd, capacity, bookedForExam, booke
 
                     if (err) {
                         console.log(err);
-                        callback(true, null);
+                        return callback(true, null);
                     }
 
                     if (results.length != 0) {
@@ -127,7 +131,7 @@ let getRooms = function(date, timeStart, timeEnd, capacity, bookedForExam, booke
             }
 
         });
-        callback(false, rooms);
+        return callback(false, rooms);
     });
 };
 
@@ -151,7 +155,7 @@ let makeBooking = function(room, rooms, endTime, startTime, email, av, purpose, 
 
                 if (err) {
                     console.log(err);
-                    callback(true, {});
+                    return callback(true, {});
                 }
 
                 if (results.length == 0) {
@@ -168,7 +172,7 @@ let makeBooking = function(room, rooms, endTime, startTime, email, av, purpose, 
                     }, function(err, result) {
                         if (err) {
                             console.log(err);
-                            callback(true, {});
+                            return callback(true, {});
                         }
                         if (!bookedByFaculty) {
                             mailer.send({
@@ -183,10 +187,10 @@ let makeBooking = function(room, rooms, endTime, startTime, email, av, purpose, 
                                 body: "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" + room + "</td></tr><tr><td><b>From</b></td><td>" + result.start.toString() + "</td></tr><tr><td><b>To</b></td><td>" + result.end.toString() + "</td></tr></table>"
                             });
                         }
-                        callback(false, result);
+                        return callback(false, result);
                     });
                 } else {
-                    callback(false, {
+                    return callback(false, {
                         alreadyBooked: 1
                     });
                 }
