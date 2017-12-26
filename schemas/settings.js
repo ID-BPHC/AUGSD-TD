@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var settingsSchema = new Schema({
     name: String,
     description: String,
-    value: [String]
+    type: String,
+    value: String,
+    options: String
 });
 
 var model = mongoose.model('settings', settingsSchema);
