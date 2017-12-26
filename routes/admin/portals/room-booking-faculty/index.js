@@ -58,7 +58,7 @@ router.post('/step-2', function(req, res, next) {
         }
 
         if (rooms.high == 1) {
-            res.renderState('custom_errors', {
+            return res.renderState('custom_errors', {
                 message: "No room with given capacity",
                 details: "Try booking multiple rooms with smaller capacity",
                 redirect: '/admin/room-booking-faculty/step-1',
@@ -91,7 +91,7 @@ router.post('/step-3', function(req, res, next) {
         }
 
         if (result.alreadyBooked == 1) {
-            res.renderState('custom_errors', {
+            return res.renderState('custom_errors', {
                 message: "Oops.. Room already booked.",
                 details: "Someone else booked this room while you were booking. Please book some other room.",
                 redirect: '/admin/room-booking-faculty/step-1',
