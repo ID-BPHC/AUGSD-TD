@@ -1,96 +1,104 @@
 #!/bin/sh
+
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 var mongoose = require('mongoose');
 var portalsModel = require('../schemas/portals');
 var adminsModel = require('../schemas/admins');
+var divisionsModel = require('../schemas/divisions');
 var config = require('../config');
 
 mongoose.connect(config.mongooseConnection);
 
-portalsModel.remove({}, function(err){
-	
-	if(err) {
+portalsModel.remove({}, function (err) {
+
+	if (err) {
 		console.log(err);
 	}
 	console.log("Creating Portals ...");
-	portalsModel.create(
-	{
-		displayName: "24x7 Feedbacks",
-		name: "feedbacks-24x7",
-		icon: "feedback",
-		active: true,
-		admin: false
-	},
-	{
-		displayName: "Room Booking",
-		name: "room-booking-student",
-		icon: "class",
-		active: true,
-		admin: false
-	},
-	{
-		displayName: "Room Booking Approval",
-		name: "room-booking-approval",
-		icon: "done",
-		active: true,
-		admin: true
-	},
-	{
-		displayName: "Room Booking",
-		name: "room-booking-faculty",
-		icon: "class",
-		active: true,
-		admin: true
-	},
-	{
-		displayName: "Apply Teacher Assistantship",
-		name: "ta-application",
-		icon: "supervisor_account",
-		active: true,
-		admin: false
-	},
-	function(err){
-		
-		if(err) {
-			console.log(err);
-		}
+	portalsModel.create({
+			displayName: "24x7 Feedbacks",
+			name: "feedbacks-24x7",
+			icon: "feedback",
+			active: true,
+			admin: false
+		}, {
+			displayName: "Room Booking",
+			name: "room-booking-student",
+			icon: "class",
+			active: true,
+			admin: false
+		}, {
+			displayName: "Room Booking Approval",
+			name: "room-booking-approval",
+			icon: "done",
+			active: true,
+			admin: true
+		}, {
+			displayName: "Room Booking",
+			name: "room-booking-faculty",
+			icon: "class",
+			active: true,
+			admin: true
+		}, {
+			displayName: "Apply Teacher Assistantship",
+			name: "ta-application",
+			icon: "supervisor_account",
+			active: true,
+			admin: false
+		},
+		function (err) {
 
-		console.log("Adding Superusers ...");
-
-		adminsModel.remove({}, function(err){
-
-			if(err) {
+			if (err) {
 				console.log(err);
 			}
 
-			adminsModel.create(
-				{
+			console.log("Adding Superusers ...");
+
+			adminsModel.remove({}, function (err) {
+
+				if (err) {
+					console.log(err);
+				}
+
+				adminsModel.create({
 					name: "Sohail Rajdev",
 					email: "sohailrajdev97@gmail.com",
 					portals: [],
 					home: '',
 					superUser: true
-				},
-				{
+				}, {
 					name: "Nischay Ram Mamidi",
 					email: "nischaymamidi@gmail.com",
 					portals: [],
 					home: '',
 					superUser: true
-				}
-				, function(err) {
+				}, function (err) {
 
-				if(err) {
-					console.log(err);
-				}
+					if (err) {
+						console.log(err);
+					}
 
-				console.log("**** DONE ****");
+					divisionsModel.remove({}, function (err) {
 
+						if (err) {
+							console.log(err);
+						}
+
+						divisionsModel.create(
+							{
+								name: "Instruction Division",
+								email: "idfeedback@hyderabad.bits-pilani.ac.in"
+							}
+							, function (err) {
+							if (err) {
+								console.log(err);
+							}
+							console.log("**** DONE ****");
+							process.exit();
+						});
+					});
+				});
 			});
-
 		});
-
-	});
-
 });
