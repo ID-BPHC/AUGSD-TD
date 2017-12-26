@@ -44,8 +44,8 @@ portalsModel.remove({}, function(err){
 		admin: true
 	},
 	{
-		displayName: "Teacher Assistantship",
-		name: "ta",
+		displayName: "Apply Teacher Assistantship",
+		name: "ta-application",
 		icon: "supervisor_account",
 		active: true,
 		admin: false
