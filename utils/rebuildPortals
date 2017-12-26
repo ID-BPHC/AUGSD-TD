@@ -8,7 +8,9 @@ var adminsModel = require('../schemas/admins');
 var divisionsModel = require('../schemas/divisions');
 var config = require('../config');
 
-mongoose.connect(config.mongooseConnection);
+mongoose.connect(config.mongooseConnection, {
+	useMongoClient: true
+});
 
 portalsModel.remove({}, function (err) {
 
@@ -84,19 +86,24 @@ portalsModel.remove({}, function (err) {
 						if (err) {
 							console.log(err);
 						}
-
-						divisionsModel.create(
-							{
+						console.log("Creating Divisions ...");
+						divisionsModel.create({
 								name: "Instruction Division",
-								email: "idfeedback@hyderabad.bits-pilani.ac.in"
-							}
-							, function (err) {
-							if (err) {
-								console.log(err);
-							}
-							console.log("**** DONE ****");
-							process.exit();
-						});
+								email: "sohailrajdev97@gmail.com"
+							}, {
+								name: "Student Welfare Division",
+								email: "rajdevsohail007@gmail.com"
+							}, {
+								name: "ARCD",
+								email: "f20160158@hyderabad.bits-pilani.ac.in"
+							},
+							function (err) {
+								if (err) {
+									console.log(err);
+								}
+								console.log("**** DONE ****");
+								process.exit();
+							});
 					});
 				});
 			});
