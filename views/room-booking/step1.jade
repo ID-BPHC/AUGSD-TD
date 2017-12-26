@@ -110,21 +110,52 @@ block content
 		var endTimePicker = new mdDateTimePicker.default({
 			type: 'time',
 			mode: true
-		});
-
-		startTimePicker.time = moment();
-		endTimePicker.time = moment();
+		});		
 
 		document.getElementById('date').addEventListener('focus', function() {
 			datePicker.toggle();
+			document.getElementById('time-end').value = "";
+			document.getElementById('time-end').parentNode.classList.remove('is-dirty');
+			document.getElementById('time-start').value = "";
+			document.getElementById('time-start').parentNode.classList.remove('is-dirty');
 		});
 
-		document.getElementById('time-start').addEventListener('focus', function() {			
+		document.getElementById('time-start').addEventListener('focus', function() {
+
+			startTimePicker.time = moment();
+
+			var selectedDate = parseInt(datePicker.time.get('date').toString());
+			var todayDate = parseInt(moment().get('date').toString())			
+			var hours = document.getElementById('mddtp-time__hourView').childNodes;
+
+			var i = 1;
 			startTimePicker.toggle();
+
+			for(i=1; i <= 24; i++){
+					hours[i-1].style.visibility = "visible";
+			}
+
+			if(selectedDate == todayDate) {
+				var nowHour = parseInt(moment().get('hour').toString());
+				for(i=1; i <= (nowHour-1); i++){
+					hours[i-1].style.visibility = "hidden";
+				}
+			}
+
+			document.getElementById('time-end').value = "";
+			document.getElementById('time-end').parentNode.classList.remove('is-dirty');					
 		});
 
-		document.getElementById('time-end').addEventListener('focus', function() {			
+		document.getElementById('time-end').addEventListener('focus', function() {
+			endTimePicker.time = startTimePicker.time;	
+			var hours = document.getElementById('mddtp-time__hourView').childNodes;		
 			endTimePicker.toggle();
+			var startHour = parseInt(startTimePicker.time.get('hour').toString());
+			var i = 1;
+			for(i=1; i <= (startHour-1); i++) {
+				hours[i-1].style.visibility = "hidden";
+			}
+			
 		});
 
 		datePicker.trigger = document.getElementById('date');
