@@ -48,6 +48,12 @@ portalsModel.remove({}, function (err) {
 			icon: "supervisor_account",
 			active: true,
 			admin: false
+		}, {
+			displayName: "Feedbacks",
+			name: "feedbacks-prof",
+			icon: "feedback",
+			active: true,
+			admin: true
 		},
 		function (err) {
 
