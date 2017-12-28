@@ -4,6 +4,8 @@ var fq = require('fuzzquire');
 var roomBookingStudent = fq('middleware/room-booking');
 var moment = require('moment');
 
+const { check, validationResult } = require('express-validator/check');
+
 // GET Requests
 
 router.get('/', function(req, res, next) {
@@ -45,11 +47,31 @@ router.get('/cancel/:id', function(req, res, next) {
 
 // POST Requests
 
-router.post('/step-2', function(req, res, next) {
+router.post('/step-2', [
+        check('capacity').exists().withMessage('No Capacity').isNumeric().withMessage('Invalid Capacity').not().isEmpty().withMessage('No Capacity'),
+        check('purpose').exists().withMessage('No Purpose').not().isEmpty().withMessage('No Purpose'),
+        check('date').exists().withMessage('No Date').not().isEmpty().withMessage('No Date Specified'),
+        check('phone').exists().withMessage('No Phone').isNumeric().withMessage('Invalid Phone').isLength({ min: 10, max: 10 }).withMessage('Invalid Phone').not().isEmpty().withMessage('No Phone'),
+        check('av').exists().withMessage('No AV Value').isIn(['Yes', 'No']).withMessage('Invalid AV Value')
+    ], function(req, res, next) {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.renderState('form-errors', { errors: errors.mapped() });
+    }
 
     var startTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-start']), 'ddd DD MMM YYYY HH:mm').toDate();
     var endTime = new moment(req.sanitize(req.body.date) + " " + req.sanitize(req.body['time-end']), 'ddd DD MMM YYYY HH:mm').toDate();
 
+    if(endTime < startTime) {
+        return res.renderState('custom_errors', {
+                redirect: "/dashboard/room-booking-student/step-1",
+                timeout: 5,
+                supertitle: "Time Error",
+                message: "End Time was chosen before Start Time",
+            });
+    }
+    
     roomBookingStudent.getRooms(req.sanitize(req.body.date), req.sanitize(req.body['time-start']), req.sanitize(req.body['time-end']), req.sanitize(req.body.capacity), false, false, function(err, rooms) {
 
         if (err) {

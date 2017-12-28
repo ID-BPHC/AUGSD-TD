@@ -9,8 +9,8 @@ const { check, validationResult } = require('express-validator/check');
 
 router.post('/division/apply', [
 	check('cgpa').exists().withMessage('No CGPA').isFloat({ min: 0.0, max: 10.0 }).withMessage('Invalid CGPA'),
-	check('hours').exists().isFloat().withMessage("Invalid Hours"),
-	check('division').exists().not().isEmpty().withMessage("Invalid Division")
+	check('hours').exists().withMessage('No Hours/Week Specified').isFloat().withMessage("Invalid Hours"),
+	check('division').exists().withMessage('No Division Specified').not().isEmpty().withMessage("Invalid Division")
 ], function (req, res, next) {
 
 	const errors = validationResult(req);
@@ -77,12 +77,12 @@ router.post('/course/apply', [
 	check('cgpa').exists().withMessage('No CGPA').isFloat({ min: 0.0, max: 10.0 }).withMessage('Invalid CGPA'),
 	check('hours').exists().isFloat().withMessage("Invalid Hours"),
 	check('course').exists().not().isEmpty().withMessage("Invalid Course"),
-	check('grade').exists().isIn(['A', 'A-', 'B', 'B-', 'C', 'C-', 'D', 'D-', 'E', 'E-', 'F', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'NC']).withMessage("Invalid Grade")
+	check('grade').exists().isIn(['a', 'a-', 'b', 'b-', 'c', 'c-', 'd', 'd-', 'e', 'e-', 'f', 'A', 'A-', 'B', 'B-', 'C', 'C-', 'D', 'D-', 'E', 'E-', 'F', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'NC']).withMessage("Invalid Grade")
 ], function (req, res, next) {
 
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.renderState('form-errors', { errors: errors.mapped()});
+		return res.renderState('form-errors', { errors: errors.mapped() });
 	}
 
 	var email = req.user.email;
