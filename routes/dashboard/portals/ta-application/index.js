@@ -15,7 +15,7 @@ router.post('/division/apply', [
 
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).json({ errors: errors.mapped() });
+		return res.renderState('form-errors', { errors: errors.mapped() });
 	}
 
 	var email = req.user.email;
@@ -82,7 +82,7 @@ router.post('/course/apply', [
 
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).json({ errors: errors.mapped() });
+		return res.renderState('form-errors', { errors: errors.mapped()});
 	}
 
 	var email = req.user.email;
