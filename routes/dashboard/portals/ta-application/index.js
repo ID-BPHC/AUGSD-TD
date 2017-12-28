@@ -10,7 +10,7 @@ const { check, validationResult } = require('express-validator/check');
 router.post('/division/apply', [
 	check('cgpa').exists().withMessage('No CGPA').isFloat({ min: 0.0, max: 10.0 }).withMessage('Invalid CGPA'),
 	check('hours').exists().isFloat().withMessage("Invalid Hours"),
-	check('division').exists().withMessage("Invalid Division")
+	check('division').exists().not().isEmpty().withMessage("Invalid Division")
 ], function (req, res, next) {
 
 	const errors = validationResult(req);
@@ -38,7 +38,7 @@ router.post('/division/apply', [
 			});
 		}
 
-		taModel.find({ division: division, student: email }, function (err, results) {
+		taModel.find({ division: division, student: email, type: "D" }, function (err, results) {
 			if (err) {
 				return res.terminate(err);
 			}
@@ -54,11 +54,11 @@ router.post('/division/apply', [
 					if (err) {
 						return res.terminate(err);
 					}
-					res.renderState('custom_errors', {
+					return res.renderState('custom_errors', {
 						redirect: '/dashboard',
 						timeout: 3,
 						supertitle: "Request Received",
-						message: "Your request has been submitted. Redirecting .."
+						message: "Your request has been submitted. Redirecting ..."
 					});
 				});
 			} else {
@@ -66,11 +66,81 @@ router.post('/division/apply', [
 					redirect: "/dashboard/ta-application/division",
 					timeout: 5,
 					supertitle: "Error",
-					message: "You have already applied for TAship for this division",
+					message: "You have already applied as a TA for this division. Redirecting ...",
 				});
 			}
 		});
 	});
+});
+
+router.post('/course/apply', [
+	check('cgpa').exists().withMessage('No CGPA').isFloat({ min: 0.0, max: 10.0 }).withMessage('Invalid CGPA'),
+	check('hours').exists().isFloat().withMessage("Invalid Hours"),
+	check('course').exists().not().isEmpty().withMessage("Invalid Course"),
+	check('grade').exists().isIn(['A', 'A-', 'B', 'B-', 'C', 'C-', 'D', 'D-', 'E', 'E-', 'F', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'NC']).withMessage("Invalid Grade")
+], function (req, res, next) {
+
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).json({ errors: errors.mapped() });
+	}
+
+	var email = req.user.email;
+	var cgpa = req.sanitize(req.body.cgpa);
+	var course = req.sanitize(req.body.course).split('-')[0].trim();
+	var hours = req.sanitize(req.body.hours);
+
+	coursesModel.find({ courseID: course }, function (err, courses) {
+
+		if (err) {
+			return res.terminate(err);
+		}
+
+		if (courses.length == 0) {
+			return res.renderState('custom_errors', {
+				redirect: "/dashboard/ta-application/course",
+				timeout: 5,
+				supertitle: "Invalid Data",
+				message: "No Course Found",
+			});
+		}
+
+		taModel.find({ course: course, student: email, type: "C" }, function (err, result) {
+			if (err) {
+				return res.terminate(err);
+			}
+
+			if (result.length == 0) {
+				taModel.create({
+					student: email,
+					type: "C",
+					cgpa: cgpa,
+					hours: hours,
+					course: course
+				}, function (err) {
+					if (err) {
+						return res.terminate(err);
+					}
+					return res.renderState('custom_errors', {
+						redirect: '/dashboard',
+						timeout: 3,
+						supertitle: "Request Received",
+						message: "Your request has been submitted. Redirecting ..."
+					});
+				});
+			} else {
+				return res.renderState('custom_errors', {
+					redirect: "/dashboard/ta-application/course",
+					timeout: 5,
+					supertitle: "Error",
+					message: "You have already applied as a TA for this course. Redirecting ...",
+				});
+			}
+		});
+
+	});
+
+
 });
 
 router.get('/division', function (req, res, next) {

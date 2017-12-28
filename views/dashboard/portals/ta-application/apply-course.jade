@@ -41,14 +41,15 @@ block content
 												ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='course')
 													ul
 														for course in courses
-															li.mdl-menu__item #{course.courseID} - #{course.name}
+															li.mdl-menu__item(data-val="#{course.courseID}") #{course.courseID} - #{course.name}
 						br
 						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 							input#grade.mdl-textfield__input(type='text', name='grade')
 							label.mdl-textfield__label(for='grade') Grade In The Course (If Completed)
 						br
 						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-							input#hours.mdl-textfield__input(type='text', name='hours')
+							input#hours.mdl-textfield__input(type='text', name='hours', pattern='-?[0-9]*(\.[0-9]+)?')
 							label.mdl-textfield__label(for='hours') Hours/Week You Can Spend For This TA
+							span.mdl-textfield__error Input is not a number!
 						br
 						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply
