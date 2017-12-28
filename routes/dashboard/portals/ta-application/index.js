@@ -3,9 +3,16 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var coursesModel = fq('schemas/courses');
 var divisionsModel = fq('schemas/divisions');
+var taModel = fq('schemas/ta');
 
-router.get('/', function (req, res, next) {
-	res.renderState('dashboard/portals/ta-application');
+router.post('/division/apply', function(req, res, next){
+
+	var email = req.user.email;
+	var cgpa = req.sanitize(req.body.cgpa);
+	var division = req.sanitize(req.body.division);
+	var hours = req.sanitize(req.body.hours);
+
+
 });
 
 router.get('/division', function (req, res, next) {
@@ -31,6 +38,10 @@ router.get('/course', function (req, res, next) {
 			courses: courses
 		});
 	});
+});
+
+router.get('/', function (req, res, next) {
+	res.renderState('dashboard/portals/ta-application');
 });
 
 module.exports = router;
