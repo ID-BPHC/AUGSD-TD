@@ -38,22 +38,37 @@ router.post('/division/apply', [
 			});
 		}
 
-		taModel.create({
-			student: email,
-			type: "D",
-			cgpa: cgpa,
-			hours: hours,
-			division: division
-		}, function (err) {
+		taModel.find({ division: division, student: email }, function (err, results) {
 			if (err) {
 				return res.terminate(err);
 			}
-			res.renderState('custom_errors', {
-				redirect: '/dashboard',
-				timeout: 3,
-				supertitle: "Request Received",
-				message: "Your request has been submitted. Redirecting .."
-			});
+
+			if (results.length == 0) {
+				taModel.create({
+					student: email,
+					type: "D",
+					cgpa: cgpa,
+					hours: hours,
+					division: division
+				}, function (err) {
+					if (err) {
+						return res.terminate(err);
+					}
+					res.renderState('custom_errors', {
+						redirect: '/dashboard',
+						timeout: 3,
+						supertitle: "Request Received",
+						message: "Your request has been submitted. Redirecting .."
+					});
+				});
+			} else {
+				return res.renderState('custom_errors', {
+					redirect: "/dashboard/ta-application/division",
+					timeout: 5,
+					supertitle: "Error",
+					message: "You have already applied for TAship for this division",
+				});
+			}
 		});
 	});
 });
