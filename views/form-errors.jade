@@ -1,0 +1,8 @@
+html
+	head
+		title Error
+	body
+		p The following errors occoured while processing your request.
+		ul
+			for error in errors
+				li #{error.msg}
