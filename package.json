@@ -18,6 +18,7 @@
     "express-sanitizer": "^1.0.2",
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
+    "form-validate": "0.0.7",
     "fuzzquire": "0.0.6",
     "gulp": "^3.9.1",
     "gulp-help": "^1.6.1",
