@@ -1,0 +1,90 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		body {
+		display: flex;
+		}
+
+		.file_input_div {
+		margin: auto;
+		width: 250px;
+		height: 40px;
+		}
+
+		.file_input {
+		float: left;
+		}
+
+		#file_input_text_div {
+		width: 200px;
+		margin-top: -8px;
+		margin-left: 5px;
+		}
+
+		.none {
+		display: none;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('control').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		h3(style='text-align:center') Settings
+		p(style='text-align:center') Configure Instruction Division Portal
+	div.mdl-cell.mdl-cell--12-col
+		div.mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
+			div.mdl-tabs__tab-bar
+				a.mdl-tabs__tab.is-active(href='#main') Main
+				a.mdl-tabs__tab(href='#accounts') Accounts
+				a.mdl-tabs__tab(href='#other') Other
+			div.mdl-tabs__panel.is-active(id="main")
+				.mdl-grid
+					.mdl-cell.mdl-cell--12-col
+						h5 Student Account Settings
+						p Update Student Accounts. Upload the csv containing the students data.
+						a(href='help/students') Example Format
+						form#uploadForm(ref='uploadForm', action='update/students', method='post', enctype='multipart/form-data')
+							.file_input_div
+								.file_input
+									label.image_input_button.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored
+									i.material-icons file_upload
+									input#file_input_file.none(type='file')
+								#file_input_text_div.mdl-textfield.mdl-js-textfield.textfield-demo
+									input#file_input_text.file_input_text.mdl-textfield__input(type='text', disabled='', readonly='')
+									label.mdl-textfield__label(for='file_input_text')
+					
+			div.mdl-tabs__panel(id="accounts")
+				ul
+					li Meh
+			div.mdl-tabs__panel(id="other")
+				ul
+					li Lol
+	script(type='text/javascript').
+		var fileInputTextDiv = document.getElementById('file_input_text_div');
+		var fileInput = document.getElementById('file_input_file');
+		var fileInputText = document.getElementById('file_input_text');
+
+		fileInput.addEventListener('change', changeInputText);
+		fileInput.addEventListener('change', changeState);
+
+		function changeInputText() {
+		var str = fileInput.value;
+		var i;
+		if (str.lastIndexOf('\\')) {
+			i = str.lastIndexOf('\\') + 1;
+		} else if (str.lastIndexOf('/')) {
+			i = str.lastIndexOf('/') + 1;
+		}
+		fileInputText.value = str.slice(i, str.length);
+			}
+		function changeState() {
+		if (fileInputText.value.length != 0) {
+			if (!fileInputTextDiv.classList.contains("is-focused")) {
+			fileInputTextDiv.classList.add('is-focused');
+			}
+		} else {
+			if (fileInputTextDiv.classList.contains("is-focused")) {
+			fileInputTextDiv.classList.remove('is-focused');
+			}
+		}
+		}
