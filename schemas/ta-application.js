@@ -24,23 +24,11 @@ var taSchema = new Schema({
         type: String,
         default: "None"
     }, // instructor remarks
-    hdStudents: {
-        type: Number,
-        default: 0
-    },
 
     // For course
     course: {
         type: String,
         default: "None"
-    },
-    registeredStudents: {
-        type: Number,
-        default: 0
-    },
-    numInstructors: {
-        type: Number,
-        default: 0
     },
     hodApproval: {
         type: String,
