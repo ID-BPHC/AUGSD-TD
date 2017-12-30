@@ -60,6 +60,12 @@ portalsModel.remove({}, function (err) {
 			icon: "build",
 			active: true,
 			admin: true
+		}, {
+			displayName: "[IC] TA Applications",
+			name: "ta-app-ic",
+			icon: "assignment",
+			active: true,
+			admin: true
 		},
 		function (err) {
 
