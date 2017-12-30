@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'logo', 'idlogo-short-01.ico')));
 app.use(loggermiddleware.logsHandler);
 // app.use(referermiddleware.referHandler);
 app.use(logger('dev'));
@@ -44,14 +44,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // A termination function on any kind of error that occours after login
 
-app.use(function(req, res, next) {
-    res.terminate = function(err) {
+app.use(function (req, res, next) {
+    res.terminate = function (err) {
         bugsModel.create({
             category: "Site",
             error: err,
             student: req.user.email,
             useragent: req.sanitize(req.headers['user-agent'])
-        }, function(err1, bug) {
+        }, function (err1, bug) {
             if (err1) {
                 console.log(err1);
                 res.end();
@@ -70,9 +70,9 @@ app.use(function(req, res, next) {
 
 // A function to disable caching on responses
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 
-    res.nocache = function() {
+    res.nocache = function () {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.header('Expires', '-1');
         res.header('Pragma', 'no-cache');
@@ -87,14 +87,14 @@ app.use('/dashboard', dashboard);
 app.use('/', index);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
