@@ -49,9 +49,15 @@ portalsModel.remove({}, function (err) {
 			active: true,
 			admin: false
 		}, {
-			displayName: "Feedbacks",
+			displayName: "24x7 Feedbacks",
 			name: "feedbacks-prof",
 			icon: "feedback",
+			active: true,
+			admin: true
+		}, {
+			displayName: "Admin Controls",
+			name: "control",
+			icon: "build",
 			active: true,
 			admin: true
 		},
