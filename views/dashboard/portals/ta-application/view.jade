@@ -41,6 +41,9 @@ block content
 									td.mdl-data-table__cell--non-numeric #{item.icRemarks}
 									td.mdl-data-table__cell--non-numeric #{status[item.hodApproval]}
 									td.mdl-data-table__cell--non-numeric #{status[item.idApproval]}
+									td.mdl-data-table__cell--non-numeric
+										a(href='#', onclick=onclick="materialConfirm('Confirm','Are you sure to CANCEL this application ( #{item.course} ) ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/#{reqPortal}/cancel/#{item._id.toString()}'); } })") 
+											i.material-icons delete_forever
 
 		if dTAs.length > 0
 			div.mdl-cell.mdl-cell--12-col.center
@@ -62,6 +65,9 @@ block content
 									td.mdl-data-table__cell--non-numeric #{status[item.icApproval]}
 									td.mdl-data-table__cell--non-numeric #{item.icRemarks}
 									td.mdl-data-table__cell--non-numeric #{status[item.idApproval]}
+									td.mdl-data-table__cell--non-numeric
+										a(href='#', onclick="materialConfirm('Confirm','Are you sure to CANCEL this application ( #{item.division} ) ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/#{reqPortal}/cancel/#{item._id.toString()}'); } })") 
+											i.material-icons delete_forever
 
 		if cTAs.length == 0 && dTAs.length == 0
 			div.mdl-cell.mdl-cell--12-col.center

@@ -170,6 +170,19 @@ router.get('/view', function (req, res, next) {
 
 });
 
+router.get('/cancel/:id', function (req, res, next) {
+
+	taModel.remove({ _id: req.sanitize(req.params.id), student: req.user.email }, function (err) {
+		
+		if (err) {
+			return res.terminate(err);
+		}
+
+		res.redirect('/dashboard/ta-application/view');
+
+	});
+});
+
 router.get('/course', function (req, res, next) {
 
 	coursesModel.find({}).sort({
