@@ -4,6 +4,7 @@ var fq = require('fuzzquire');
 var coursesModel = fq('schemas/courses');
 var divisionsModel = fq('schemas/divisions');
 var taModel = fq('schemas/ta-application');
+var mailer = fq('utils/mailer');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -54,6 +55,13 @@ router.post('/division/apply', [
 					if (err) {
 						return res.terminate(err);
 					}
+
+					mailer.send({
+						email: req.user.email,
+						subject: "TA Application",
+						body: "Your application for Teacher Assistant of " + division + " is under process. You can track your application status on Instruction Division's Website."
+					});
+
 					return res.renderState('custom_errors', {
 						redirect: '/dashboard',
 						timeout: 3,
@@ -121,6 +129,13 @@ router.post('/course/apply', [
 					if (err) {
 						return res.terminate(err);
 					}
+
+					mailer.send({
+						email: req.user.email,
+						subject: "TA Application",
+						body: "Your application for Teacher Assistant of " + course + " is under process. You can track your application status on Instruction Division's Website."
+					});
+
 					return res.renderState('custom_errors', {
 						redirect: '/dashboard',
 						timeout: 3,
@@ -173,10 +188,16 @@ router.get('/view', function (req, res, next) {
 router.get('/cancel/:id', function (req, res, next) {
 
 	taModel.remove({ _id: req.sanitize(req.params.id), student: req.user.email }, function (err) {
-		
+
 		if (err) {
 			return res.terminate(err);
 		}
+
+		mailer.send({
+			email: req.user.email,
+			subject: "TA Application Cancelled",
+			body: "You cancelled your TA Application"
+		});
 
 		res.redirect('/dashboard/ta-application/view');
 
