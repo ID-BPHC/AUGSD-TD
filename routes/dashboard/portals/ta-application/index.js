@@ -137,10 +137,7 @@ router.post('/course/apply', [
 				});
 			}
 		});
-
 	});
-
-
 });
 
 router.get('/division', function (req, res, next) {
@@ -152,6 +149,25 @@ router.get('/division', function (req, res, next) {
 			divisions: divisions
 		});
 	});
+});
+
+router.get('/view', function (req, res, next) {
+
+	taModel.find({ student: req.user.email, type: "C" }, function (err, course) {
+		if (err) {
+			return res.terminate(err);
+		}
+		taModel.find({ student: req.user.email, type: "D" }, function (err, division) {
+			if (err) {
+				return res.terminate(err);
+			}
+			return res.renderState('dashboard/portals/ta-application/view', {
+				cTAs: course,
+				dTAs: division
+			});
+		});
+	});
+
 });
 
 router.get('/course', function (req, res, next) {
