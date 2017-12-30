@@ -3,7 +3,7 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var coursesModel = fq('schemas/courses');
 var divisionsModel = fq('schemas/divisions');
-var taModel = fq('schemas/ta');
+var taModel = fq('schemas/ta-application');
 
 const { check, validationResult } = require('express-validator/check');
 
