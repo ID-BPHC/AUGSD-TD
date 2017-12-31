@@ -13,14 +13,17 @@ block content
 					.mdl-cell.mdl-cell--12-col.center
 						.mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
 							.mdl-tabs__tab-bar
-								a.mdl-tabs__tab.is-active(href='#test') Test
-								a.mdl-tabs__tab(href='#test2') Test2
+								a.mdl-tabs__tab.is-active(href='#test') My Courses
 							#test.mdl-tabs__panel.is-active
-								ul
-									p fg
-									p fdg
-							#test2.mdl-tabs__panel
-								ul
-									p fgasd
-									p fdgasd
-									p dfgasd
+								br
+								center
+									table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+										thead
+											tr
+												th.mdl-data-table__cell--non-numeric Course
+												th.mdl-data-table__cell--non-numeric Sections					
+										tbody
+											for course in user.courses
+													tr
+														td.mdl-data-table__cell--non-numeric #{course.courseID}
+														td.mdl-data-table__cell--non-numeric #{course.sections}
