@@ -39,6 +39,10 @@ var taSchema = new Schema({
     division: {
         type: String,
         default: "Nil"
+    },
+    deanApproval: {
+        type: String,
+        default: "P"
     }
 });
 
