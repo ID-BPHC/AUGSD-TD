@@ -3647,6 +3647,10 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+outdatedbrowser@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/outdatedbrowser/-/outdatedbrowser-1.1.5.tgz#88c71f02d1e972e48df5d8d896ea56d7b0c2942b"
+
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
