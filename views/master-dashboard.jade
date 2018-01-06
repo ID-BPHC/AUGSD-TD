@@ -128,12 +128,12 @@ html
 			#loader-pitch
 				h1 Instruction Division.
 				p(id="errormessage").hidden Something went wrong. Try refreshing the page.
-				// Layout start
+				
+		// Layout start
 		.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header(id="body_main").hidden
 
 			// Header start
 			header.mdl-layout__header
-				.mdl-layout-icon
 				.mdl-layout__header-row
 					span.mdl-layout__title 
 						| #{dashboard.type} Dashboard
@@ -150,8 +150,7 @@ html
 							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
 
 			// Main Content
-			main.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer
-				.mdl-layout__drawer
+			main.mdl-layout__drawer
 					span.mdl-layout__title
 						//- img(src="/images/logo/idlogo-02.png" style="outline: 0; max-width: 100%; height: auto;")
 						| Instruction Division
