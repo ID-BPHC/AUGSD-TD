@@ -66,6 +66,12 @@ portalsModel.remove({}, function (err) {
 			icon: "assignment",
 			active: true,
 			admin: true
+		},{
+			displayName: "View Room Bookings",
+			name: "room-booking-esd",
+			icon: "class",
+			active: true,
+			admin: true
 		},
 		function (err) {
 
@@ -93,7 +99,13 @@ portalsModel.remove({}, function (err) {
 					portals: [],
 					home: '',
 					superUser: true
-				}, function (err) {
+				}, {
+					name: "ID Office",
+					email: "id@hyderabad.bits-pilani.ac.in",
+					portals: [],
+					home: '',
+					superUser: true
+				},function (err) {
 
 					if (err) {
 						console.log(err);
