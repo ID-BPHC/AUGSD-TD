@@ -10,8 +10,8 @@ addedFaculty = []
 finalList = []
 
 # Index of the corresponding columns in the csv
-facultyEmailIndex = 5
-facultyNameIndex = 4
+facultyEmailIndex = 1
+facultyNameIndex = 0
 
 # Start reading line by line
 for line in f.readlines():
@@ -30,8 +30,8 @@ for line in f.readlines():
 		faculty = {}
 		faculty['name'] = data[facultyNameIndex]
 		faculty['email'] = data[facultyEmailIndex]
-		faculty['portals'] = ['feedback']
-		faculty['home'] = '/feedback'
+		faculty['portals'] = ['feedbacks-prof', 'room-booking-faculty']
+		faculty['home'] = '/'
 		faculty['superUser'] = False
 
 		addedFaculty.append(faculty['email'])
