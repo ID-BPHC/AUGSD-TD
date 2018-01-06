@@ -188,6 +188,12 @@ html
 			main.mdl-layout__content.grayify
 				div.mdl-grid
 					block content
+		script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-107202501-1')
+		script.
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-107202501-1');
 		script.
 			function loadScript(src) {
 				return new Promise(function (resolve, reject) {
