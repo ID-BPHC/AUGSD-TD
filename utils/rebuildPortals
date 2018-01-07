@@ -22,54 +22,60 @@ portalsModel.remove({}, function (err) {
 			displayName: "24x7 Feedbacks",
 			name: "feedbacks-24x7",
 			icon: "feedback",
-			active: true,
+			active: false,
 			admin: false
 		}, {
 			displayName: "Room Booking",
 			name: "room-booking-student",
 			icon: "class",
-			active: true,
+			active: false,
 			admin: false
 		}, {
 			displayName: "Room Booking Approval",
 			name: "room-booking-approval",
 			icon: "done",
-			active: true,
+			active: false,
 			admin: true
 		}, {
 			displayName: "Room Booking",
 			name: "room-booking-faculty",
 			icon: "class",
-			active: true,
+			active: false,
 			admin: true
 		}, {
 			displayName: "Apply Teacher Assistantship",
 			name: "ta-application",
 			icon: "supervisor_account",
-			active: true,
+			active: false,
 			admin: false
 		}, {
 			displayName: "24x7 Feedbacks",
 			name: "feedbacks-prof",
 			icon: "feedback",
-			active: true,
+			active: false,
 			admin: true
 		}, {
 			displayName: "Admin Controls",
 			name: "control",
 			icon: "build",
-			active: true,
+			active: false,
 			admin: true
 		}, {
 			displayName: "[IC] TA Applications",
 			name: "ta-app-ic",
 			icon: "assignment",
-			active: true,
+			active: false,
 			admin: true
 		},{
 			displayName: "View Room Bookings",
 			name: "room-booking-esd",
 			icon: "class",
+			active: false,
+			admin: true
+		}, {
+			displayName: "Portal Management",
+			name: "portal-toggle",
+			icon: "build",
 			active: true,
 			admin: true
 		},
