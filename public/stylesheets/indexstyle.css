@@ -13,12 +13,12 @@ a img {
 }
 
 ::-moz-selection {
-    background-color: #6ab344;
+    background-color: #64B5F6;
     color: #fff
 }
 
 ::selection {
-    background-color: #6ab344;
+    background-color: #64B5F6;
     color: #fff
 }
 
@@ -423,6 +423,12 @@ a img {
 
 .android-link-menu:hover {
     cursor: pointer
+}
+
+#heading {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 25px;
 }
 
 @media (max-width:900px) {
