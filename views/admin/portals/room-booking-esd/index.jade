@@ -17,6 +17,7 @@ block content
 						th.mdl-data-table__cell--non-numeric To
 						th.mdl-data-table__cell--non-numeric Booked By
 						th.mdl-data-table__cell--non-numeric Phone
+						th.mdl-data-table__cell--non-numeric Audio/Visual
 				tbody
 					for booking in bookings
 						tr
@@ -25,6 +26,7 @@ block content
 							td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
 							td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
 							td.mdl-data-table__cell--non-numeric #{booking.phone}
+							td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
 		script.
 			window.setInterval(function(){
 				window.location.reload();
