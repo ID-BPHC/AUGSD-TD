@@ -23,7 +23,7 @@ router.get('/toggle/:id', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
 
-	portalsModel.find({}, function (err, portals) {
+	portalsModel.find({ name: { $ne: "portal-toggle" } }, function (err, portals) {
 		if (err) {
 			return res.terminate(err);
 		}
