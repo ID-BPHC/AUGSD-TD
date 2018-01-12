@@ -1,0 +1,31 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		#formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+		.mdl-textfield {
+			width: 600px
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('#{reqPortal}').classList.add('menuselectify')
+	div.mdl-grid#formBG
+		div.mdl-cell.mdl-cell--12-col.center
+			h2 Inductions Application
+			h4 For 2017 Batch Only
+			hr
+		div.mdl-cell.mdl-cell--12-col.center
+				div.mdl-cell.mdl-cell--12-col.center
+					strong
+						| #{user.name}
+						br
+						br
+						| #{user.idNumber}
+				div.mdl-cell.mdl-cell--12-col.center
+					form(action="#{rootURL}/#{reqPortal}/apply", method="post", id="form1").mdc-form-field				
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply

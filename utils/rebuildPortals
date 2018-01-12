@@ -78,6 +78,12 @@ portalsModel.remove({}, function (err) {
 			icon: "build",
 			active: true,
 			admin: true
+		}, {
+			displayName: "Inductions",
+			name: "inductions",
+			icon: "work",
+			active: false,
+			admin: false
 		},
 		function (err) {
 
