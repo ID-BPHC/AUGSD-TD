@@ -95,13 +95,6 @@ let users = {
         "avatar": "/images/team/16.jpg",
         "social": {}
     },
-    "Amit Mishra": {
-        "name": "Amit Mishra",
-        "title": "Software Developer",
-        "avatar": "/images/team/17.jpg",
-        "social": {}
-    }
-
 }
 
 module.exports = users;
