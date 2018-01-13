@@ -23,6 +23,26 @@ router.use(fileUpload({
 	}
 }));
 
+router.use(function (req, res, next) {
+	inductionsModel.find({ user: req.user.email }, function (err, results) {
+		if (err) {
+			return res.terminate(err);
+		}
+
+		if (results.length == 0) {
+			next();
+		} else {
+			res.renderState('custom_errors', {
+				redirect: "/dashboard",
+				timeout: 3,
+				supertitle: "Error.",
+				message: "Duplicate Application",
+				details: "You have already applied for the inductions. Thank you :). Redirecting"
+			});
+		}
+	});
+});
+
 router.get('/', function (req, res, next) {
 	res.renderState('dashboard/portals/inductions');
 });
@@ -50,7 +70,7 @@ router.post('/apply', [
 		reason: req.sanitize(req.body.reason),
 		nodejs: req.sanitize(req.body.nodejs)
 	};
-	data.user = req.session.passport.user.split("@")[0];
+	data.user = req.session.passport.user;
 	if (req.files.resume == undefined) {
 		return res.renderState('form-errors', {
 			errors: [{
