@@ -43,6 +43,20 @@ router.use(function (req, res, next) {
 	});
 });
 
+router.use(function (req, res, next) {
+	if (req.user.email.indexOf('f2017') == 0) {
+		next();
+	} else {
+		res.renderState('custom_errors', {
+			redirect: "/dashboard",
+			timeout: 3,
+			supertitle: "Error.",
+			message: "Not Eligible",
+			details: "Only 2017 batch students are eligible for application. Redirecting"
+		});
+	}
+});
+
 router.get('/', function (req, res, next) {
 	res.renderState('dashboard/portals/inductions');
 });
