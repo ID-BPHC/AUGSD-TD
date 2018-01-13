@@ -24,35 +24,15 @@ router.use(fileUpload({
 }));
 
 router.use(function (req, res, next) {
-	inductionsModel.find({ user: req.user.email }, function (err, results) {
-		if (err) {
-			return res.terminate(err);
-		}
-
-		if (results.length == 0) {
-			next();
-		} else {
-			res.renderState('custom_errors', {
-				redirect: "/dashboard",
-				timeout: 3,
-				supertitle: "Whoo !",
-				message: "Duplicate Application",
-				details: "You have already applied for the inductions. Thank you :). Redirecting"
-			});
-		}
-	});
-});
-
-router.use(function (req, res, next) {
 	if (req.user.email.indexOf('f2017') == 0) {
 		next();
 	} else {
 		res.renderState('custom_errors', {
 			redirect: "/dashboard",
 			timeout: 3,
-			supertitle: "Error.",
+			supertitle: "Error",
 			message: "Not Eligible",
-			details: "Only 2017 batch students are eligible for application. Redirecting"
+			details: "Sorry. Only 2017 Batch Students can apply."
 		});
 	}
 });
@@ -84,7 +64,7 @@ router.post('/apply', [
 		reason: req.sanitize(req.body.reason),
 		nodejs: req.sanitize(req.body.nodejs)
 	};
-	data.user = req.session.passport.user;
+	data.user = req.session.passport.user.split("@")[0];
 	if (req.files.resume == undefined) {
 		return res.renderState('form-errors', {
 			errors: [{
@@ -106,7 +86,7 @@ router.post('/apply', [
 		})
 		.catch(function (e) {
 			console.log('Error to create folder: ' + e);
-			res.terminate(e);
+			return res.terminate(e);
 		})
 		.then(function () {
 			fs.mkdirAsync(path.join(storePath, 'inductions')).catch({
@@ -115,7 +95,7 @@ router.post('/apply', [
 
 				}).catch(function (e) {
 					console.log('Error to create folder: ' + e);
-					res.terminate(e);
+					return res.terminate(e);
 				})
 				.then(function () {
 					data.resumePath = path.join(storePath, 'inductions', data.user);
@@ -132,7 +112,7 @@ router.post('/apply', [
 						if (err)
 							return res.terminate(err);
 						console.log(resumeFile.data.length);
-						res.renderState('custom_errors', {
+						return res.renderState('custom_errors', {
 							redirect: "/dashboard",
 							timeout: 2,
 							supertitle: "Submitted Induction Application.",
