@@ -157,3 +157,5 @@ utils/**/*.pdf
 
 !node_modules/schemas
 config.js
+
+inductions/*
