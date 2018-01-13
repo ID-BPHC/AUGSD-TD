@@ -35,7 +35,7 @@ router.use(function (req, res, next) {
 			res.renderState('custom_errors', {
 				redirect: "/dashboard",
 				timeout: 3,
-				supertitle: "Error.",
+				supertitle: "Whoo !",
 				message: "Duplicate Application",
 				details: "You have already applied for the inductions. Thank you :). Redirecting"
 			});
