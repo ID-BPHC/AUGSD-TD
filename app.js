@@ -31,8 +31,6 @@ app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 if (fs.existsSync('./config.js')) {
 
     var config = require('./config');
@@ -45,7 +43,6 @@ if (fs.existsSync('./config.js')) {
     var admin = require('./routes/admin');
     var dashboard = require('./routes/dashboard');
     var index = require('./routes');
-
 
     // var referermiddleware = require('./middleware/referer');
     // app.use(referermiddleware.referHandler);
@@ -77,14 +74,12 @@ if (fs.existsSync('./config.js')) {
 
     // A function to disable caching on responses
     app.use(function (req, res, next) {
-
         res.nocache = function () {
             res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
             res.header('Expires', '-1');
             res.header('Pragma', 'no-cache');
         };
         next();
-
     });
 
     app.use('/admin', admin);
@@ -93,13 +88,8 @@ if (fs.existsSync('./config.js')) {
     app.use('/', index);
 
 } else {
-
-    var loader = require('./routes/config-loader');
-    //app.use('/', loader);
-    app.get('/', function(req, res, next){
-        res.send("config.js not found. Add config.js and restart the server");
-    });
-
+    var generator = require('./routes/config-generator');
+    app.use('/', generator);
 }
 
 
@@ -129,7 +119,6 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-
 });
 
 module.exports = app;
