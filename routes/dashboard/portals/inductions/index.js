@@ -24,7 +24,7 @@ router.use(fileUpload({
 }));
 
 router.use(function (req, res, next) {
-	if (req.user.email.indexOf('f2017') == 0) {
+	if (req.user.email.indexOf('f2017') == 0 || req.user.email.indexOf('f2016') == 0) {
 		next();
 	} else {
 		res.renderState('custom_errors', {
@@ -32,7 +32,7 @@ router.use(function (req, res, next) {
 			timeout: 3,
 			supertitle: "Error",
 			message: "Not Eligible",
-			details: "Sorry. Only 2017 Batch Students can apply."
+			details: "Sorry. Only 2016 / 2017 Batch Students can apply."
 		});
 	}
 });
@@ -62,7 +62,7 @@ router.post('/apply', [
 		hours: req.sanitize(req.body.hours),
 		github: req.sanitize(req.body.github),
 		reason: req.sanitize(req.body.reason),
-		nodejs: req.sanitize(req.body.nodejs)
+		nodejs: typeof req.body.nodejs !== 'undefined' ? true : false
 	};
 	data.user = req.session.passport.user.split("@")[0];
 	if (req.files.resume == undefined) {
