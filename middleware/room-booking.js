@@ -55,6 +55,9 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
     var startHour = parseInt(timeStart.substring(0, 2)) - 8;
     var endHour = parseInt(timeEnd.substring(0, 2)) - 8;
 
+    var startTime = new moment(date + " " + timeStart, 'ddd DD MMM YYYY HH:mm').toDate();
+    var endTime = new moment(date + " " + timeEnd, 'ddd DD MMM YYYY HH:mm').toDate();
+
     var lecture = (bookedForExam ? 0 : parseInt(capacity));
     var exam = (bookedForExam ? parseInt(capacity) : 0);
 
@@ -66,9 +69,47 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
         }
 
         var isHoliday = holidays.length > 0 ? true : false;
+        var now = new moment().toDate();
+        var currentHour = now.getHours();
+        var sameDayBooking = ((startTime.getDate() == now.getDate()) && (startTime.getMonth() == now.getMonth()) && (startTime.getFullYear() == now.getFullYear())) ? true : false;
 
-        if (isHoliday) {
-            weekDay = 6; // Treat as Sunday
+        now.setDate(now.getDate() + 1);
+        var nextDayBooking = ((startTime.getDate() == now.getDate()) && (startTime.getMonth() == now.getMonth()) && (startTime.getFullYear() == now.getFullYear())) ? true : false;
+
+        if (sameDayBooking && (isHoliday || weekDay == 6)) {
+            console.log('****** booking on holiday');
+            return callback(false, {
+                bookingOnHolidaySameDay: 1
+            });
+        }
+
+        if (sameDayBooking && (weekDay >= 0 && weekDay <= 4) && currentHour >= 16) {
+            console.log('****** booking after 4');
+            return callback(false, {
+                bookingAfterFourSameDay: 1
+            });
+        }
+
+        if (sameDayBooking && weekDay == 5 && currentHour >= 12) {
+            console.log('****** booking after 12');
+            return callback(false, {
+                bookingAfterNoonSameDay: 1
+            });
+
+        }
+
+        if (weekDay != 6 && isHoliday && nextDayBooking && currentHour >= 16) {
+            console.log('****** bookingAfterFourNextDay');
+            return callback(false, {
+                bookingAfterFourNextDay: 1
+            });
+        }
+
+        if (weekDay == 6 && nextDayBooking && currentHour >= 12) {
+            console.log('****** bookingAfterNoonNextDay');
+            return callback(false, {
+                bookingAfterNoonNextDay: 1
+            });
         }
 
         let roomRegularSearch = roomsModel.find({
@@ -91,6 +132,11 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
                 });
             }
 
+            if (isHoliday) {
+                weekDay = 6; // Treat as Sunday
+                console.log('******* Holiday');
+            }
+
             rooms.forEach(function (room, index) {
 
                 room.availible = true;
@@ -109,9 +155,6 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
         });
 
         roomRegularSearch.then(function (rooms) {
-
-            var startTime = new moment(date + " " + timeStart, 'ddd DD MMM YYYY HH:mm').toDate();
-            var endTime = new moment(date + " " + timeEnd, 'ddd DD MMM YYYY HH:mm').toDate();
 
             if (endTime < startTime) {
                 return callback(true);
