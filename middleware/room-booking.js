@@ -68,138 +68,150 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
             return callback(true, null);
         }
 
-        var isHoliday = holidays.length > 0 ? true : false;
-        var now = new moment().toDate();
+        var bookingIsHoliday = holidays.length > 0 ? true : false;
+        var now = new moment();
+        var todayString = now.format('ddd DD MMM YYYY');
+        now = now.toDate();
         var currentHour = now.getHours();
         var sameDayBooking = ((startTime.getDate() == now.getDate()) && (startTime.getMonth() == now.getMonth()) && (startTime.getFullYear() == now.getFullYear())) ? true : false;
 
         now.setDate(now.getDate() + 1);
         var nextDayBooking = ((startTime.getDate() == now.getDate()) && (startTime.getMonth() == now.getMonth()) && (startTime.getFullYear() == now.getFullYear())) ? true : false;
 
-        if (sameDayBooking && (isHoliday || weekDay == 6)) {
-           return callback(false, {
-                bookingOnHolidaySameDay: 1
-            });
-        }
-
-        if (sameDayBooking && (weekDay >= 0 && weekDay <= 4) && currentHour >= 16) {
-            return callback(false, {
-                bookingAfterFourSameDay: 1
-            });
-        }
-
-        if (sameDayBooking && weekDay == 5 && currentHour >= 12) {
-            return callback(false, {
-                bookingAfterNoonSameDay: 1
-            });
-        }
-
-        if (weekDay != 6 && isHoliday && nextDayBooking && currentHour >= 16) {
-            return callback(false, {
-                bookingAfterFourNextDay: 1
-            });
-        }
-
-        if (weekDay == 6 && nextDayBooking && currentHour >= 12) {
-            return callback(false, {
-                bookingAfterNoonNextDay: 1
-            });
-        }
-
-        let blockSearch = bookingsModel.find({
-            start: {
-                "$lt": endTime
-            },
-            end: {
-                "$gt": startTime
-            },
-            blockAll: true
-        }, function (err, results) {
+        holidaysModel.find({ date: todayString }, function (err, ans) {
             if (err) {
                 console.log(err);
                 return callback(true, null);
             }
-            if (results.length > 0) {
-                return callback(false, { allBlocked: 1 });
-            }
-            let roomRegularSearch = roomsModel.find({
-                lectureCapacity: {
-                    $gt: lecture
-                },
-                examCapacity: {
-                    $gt: exam
-                }
-            }).lean().exec(function (err, rooms) {
 
+            var todayIsHoliday = ans.length > 0 ? true : false;
+
+            if (sameDayBooking && (bookingIsHoliday || weekDay == 6)) {
+                return callback(false, {
+                    bookingOnHolidaySameDay: 1
+                });
+            }
+
+            if (sameDayBooking && (weekDay >= 0 && weekDay <= 4) && currentHour >= 16) {
+                return callback(false, {
+                    bookingAfterFourSameDay: 1
+                });
+            }
+
+            if (sameDayBooking && weekDay == 5 && currentHour >= 12) {
+                return callback(false, {
+                    bookingAfterNoonSameDay: 1
+                });
+            }
+
+            if (weekDay != 6 && bookingIsHoliday && nextDayBooking && (currentHour >= 16 || todayIsHoliday)) {
+                return callback(false, {
+                    bookingAfterFourNextDay: 1
+                });
+            }
+
+            if (weekDay == 6 && nextDayBooking && (currentHour >= 12 || todayIsHoliday)) {
+                return callback(false, {
+                    bookingAfterNoonNextDay: 1
+                });
+            }
+
+            let blockSearch = bookingsModel.find({
+                start: {
+                    "$lt": endTime
+                },
+                end: {
+                    "$gt": startTime
+                },
+                blockAll: true
+            }, function (err, results) {
                 if (err) {
                     console.log(err);
                     return callback(true, null);
                 }
-
-                if (rooms.length == 0) {
-                    return callback(false, {
-                        high: 1
-                    });
+                if (results.length > 0) {
+                    return callback(false, { allBlocked: 1 });
                 }
-
-                if (isHoliday) {
-                    weekDay = 6; // Treat as Sunday
-                }
-
-                rooms.forEach(function (room, index) {
-
-                    room.availible = true;
-
-                    if (startHour >= 0 && startHour <= 9) {
-                        for (i = startHour; i <= endHour; i++) {
-
-                            if (typeof room.fixedClasses[weekDay][i] !== 'undefined' && room.fixedClasses[weekDay][i] !== '') {
-                                room.availible = false;
-                                break;
-                            }
-                        }
+                let roomRegularSearch = roomsModel.find({
+                    lectureCapacity: {
+                        $gt: lecture
+                    },
+                    examCapacity: {
+                        $gt: exam
                     }
-                });
-                return rooms;
-            });
+                }).lean().exec(function (err, rooms) {
 
-            roomRegularSearch.then(function (rooms) {
+                    if (err) {
+                        console.log(err);
+                        return callback(true, null);
+                    }
 
-                if (endTime < startTime) {
-                    return callback(true);
-                }
-
-                rooms.forEach(function (room, index) {
-
-                    if (room.availible) {
-                        bookingsModel.find({
-                            number: room.number,
-                            start: {
-                                "$lt": endTime
-                            },
-                            end: {
-                                "$gt": startTime
-                            },
-                            approval: {
-                                "$ne": "R"
-                            }
-                        }, function (err, results) {
-
-                            if (err) {
-                                console.log(err);
-                                return callback(true, null);
-                            }
-
-                            if (results.length != 0) {
-                                room.availible = false;
-                            }
-
+                    if (rooms.length == 0) {
+                        return callback(false, {
+                            high: 1
                         });
                     }
 
+                    if (bookingIsHoliday) {
+                        weekDay = 6; // Treat as Sunday
+                    }
+
+                    rooms.forEach(function (room, index) {
+
+                        room.availible = true;
+
+                        if (startHour >= 0 && startHour <= 9) {
+                            for (i = startHour; i <= endHour; i++) {
+
+                                if (typeof room.fixedClasses[weekDay][i] !== 'undefined' && room.fixedClasses[weekDay][i] !== '') {
+                                    room.availible = false;
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                    return rooms;
                 });
-                return callback(false, rooms);
+
+                roomRegularSearch.then(function (rooms) {
+
+                    if (endTime < startTime) {
+                        return callback(true);
+                    }
+
+                    rooms.forEach(function (room, index) {
+
+                        if (room.availible) {
+                            bookingsModel.find({
+                                number: room.number,
+                                start: {
+                                    "$lt": endTime
+                                },
+                                end: {
+                                    "$gt": startTime
+                                },
+                                approval: {
+                                    "$ne": "R"
+                                }
+                            }, function (err, results) {
+
+                                if (err) {
+                                    console.log(err);
+                                    return callback(true, null);
+                                }
+
+                                if (results.length != 0) {
+                                    room.availible = false;
+                                }
+
+                            });
+                        }
+
+                    });
+                    return callback(false, rooms);
+                });
             });
+
         });
     });
 };
