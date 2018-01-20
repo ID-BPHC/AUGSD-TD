@@ -5,7 +5,7 @@ var bookingsModel = fq('schemas/room-bookings');
 var moment = require('moment');
 
 router.get('/', function (req, res, next) {
-	bookingsModel.find({ end: { $gt: new moment() }, approval: "A" }, null, { sort: { start: 1 } }, function (err, bookings) {
+	bookingsModel.find({ end: { $gt: new moment() }, approval: "A", blockAll: false }, null, { sort: { start: 1 } }, function (err, bookings) {
 		if (err) {
 			return res.terminate(err);
 		}

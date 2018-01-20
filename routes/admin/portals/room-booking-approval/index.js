@@ -11,7 +11,8 @@ router.get('/', function(req, res, next) {
             approval: "P",
             start: {
                 "$gt": new moment()
-            }
+            },
+            blockAll: false
         }, null, {
             sort: {
                 start: 1

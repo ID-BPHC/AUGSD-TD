@@ -27,7 +27,11 @@ var bookingSchema = new Schema({
     approval: {
         type: String,
         default: "P"
-    } // P - Pending, A - Accepted, R - Rejected
+    }, // P - Pending, A - Accepted, R - Rejected
+    blockAll: {
+        type: Boolean,
+        default: false
+    }
 });
 
 var model = mongoose.model('room-bookings', bookingSchema);
