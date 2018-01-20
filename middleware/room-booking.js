@@ -77,35 +77,30 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
         var nextDayBooking = ((startTime.getDate() == now.getDate()) && (startTime.getMonth() == now.getMonth()) && (startTime.getFullYear() == now.getFullYear())) ? true : false;
 
         if (sameDayBooking && (isHoliday || weekDay == 6)) {
-            console.log('****** booking on holiday');
-            return callback(false, {
+           return callback(false, {
                 bookingOnHolidaySameDay: 1
             });
         }
 
         if (sameDayBooking && (weekDay >= 0 && weekDay <= 4) && currentHour >= 16) {
-            console.log('****** booking after 4');
             return callback(false, {
                 bookingAfterFourSameDay: 1
             });
         }
 
         if (sameDayBooking && weekDay == 5 && currentHour >= 12) {
-            console.log('****** booking after 12');
             return callback(false, {
                 bookingAfterNoonSameDay: 1
             });
         }
 
         if (weekDay != 6 && isHoliday && nextDayBooking && currentHour >= 16) {
-            console.log('****** bookingAfterFourNextDay');
             return callback(false, {
                 bookingAfterFourNextDay: 1
             });
         }
 
         if (weekDay == 6 && nextDayBooking && currentHour >= 12) {
-            console.log('****** bookingAfterNoonNextDay');
             return callback(false, {
                 bookingAfterNoonNextDay: 1
             });
@@ -125,7 +120,6 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
                 return callback(true, null);
             }
             if (results.length > 0) {
-                console.log("***** Blocked");
                 return callback(false, { allBlocked: 1 });
             }
             let roomRegularSearch = roomsModel.find({
@@ -150,7 +144,6 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
 
                 if (isHoliday) {
                     weekDay = 6; // Treat as Sunday
-                    console.log('******* Holiday');
                 }
 
                 rooms.forEach(function (room, index) {
@@ -216,9 +209,7 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
 let makeBooking = function (room, rooms, endTime, startTime, email, av, purpose, phone, bookedByFaculty, callback) {
 
     rooms.forEach(function (roomL, index) {
-        console.log('***** Loop', room, roomL.number, roomL.availible);
         if (roomL.number == room && roomL.availible) {
-            console.log('***** found');
             bookingsModel.find({
                 number: room,
                 start: {
