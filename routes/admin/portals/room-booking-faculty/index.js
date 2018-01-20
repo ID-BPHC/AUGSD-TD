@@ -90,6 +90,34 @@ router.post('/step-2', [
             });
         }
 
+        if (rooms.bookingOnHolidaySameDay == 1) {
+            return res.renderState('custom_errors', {
+                message: "Holiday",
+                details: "You can not book a room on a holiday for a holiday :P",
+                redirect: '/admin/room-booking-faculty/step-1',
+                timeout: 5
+            });
+        }
+
+        if (rooms.bookingAfterFourSameDay == 1 || rooms.bookingAfterNoonSameDay == 1) {
+            return res.renderState('custom_errors', {
+                message: "Office Hours Closed",
+                details: "You can not book a room for the same day after office hours.",
+                redirect: '/admin/room-booking-faculty/step-1',
+                timeout: 5
+            });
+        }
+
+        if (rooms.bookingAfterFourNextDay == 1 || rooms.bookingAfterNoonNextDay == 1) {
+            return res.renderState('custom_errors', {
+                message: "Office Hours Closed",
+                details: "You can not book a room for next day (holiday) after office hours.",
+                redirect: '/admin/room-booking-faculty/step-1',
+                timeout: 5
+            });
+        }
+
+
         req.session.rooms = rooms;
         req.session.startTime = startTime;
         req.session.endTime = endTime;

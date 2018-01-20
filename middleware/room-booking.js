@@ -95,7 +95,6 @@ let getRooms = function (date, timeStart, timeEnd, capacity, bookedForExam, book
             return callback(false, {
                 bookingAfterNoonSameDay: 1
             });
-
         }
 
         if (weekDay != 6 && isHoliday && nextDayBooking && currentHour >= 16) {
