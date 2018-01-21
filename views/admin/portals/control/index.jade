@@ -26,42 +26,6 @@ block content
 		h3(style='text-align:center') Settings
 		p(style='text-align:center') Configure Instruction Division Portal
 	div.mdl-cell.mdl-cell--12-col
-		div.mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
-			div.mdl-tabs__tab-bar
-				a.mdl-tabs__tab.is-active(href='#main') Main
-				a.mdl-tabs__tab(href='#accounts') Accounts
-				a.mdl-tabs__tab(href='#other') Other
-			div.mdl-tabs__panel.is-active(id="main")
-
-			div.mdl-tabs__panel(id="accounts")
-				.mdl-grid
-					.mdl-layout-spacer
-					.mdl-cell.mdl-cell--6-col
-						h5 Student Account Settings
-						p Update Student Accounts. Upload the csv containing the students data. This will erase current students accounts and replace with uploaded students csv.
-						a(href='#{rootURL}/control/help/students') Example Format
-						form#uploadForm(ref='uploadForm', action='#{rootURL}/control/update/students', method='post', enctype='multipart/form-data')
-							.mdl-textfield.mdl-js-textfield.mdl-textfield--file
-								input#fileitem.mdl-textfield__input(placeholder='No file chosen', type='text', readonly='')
-								.mdl-button.mdl-button--icon.mdl-button--file
-									i.material-icons attach_file
-									input#ID(type='file', name='studentsFile', onchange="document.getElementById('fileitem').value=this.files[0].name;")
-							button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(type='submit', name='action') Update
-					.mdl-layout-spacer
-				.mdl-grid
-					.mdl-layout-spacer
-					.mdl-cell.mdl-cell--6-col
-						h5 Room Settings
-						p Update Rooms Table. Upload the csv containing the rooms data.
-						a(href='#{rootURL}/control/help/rooms') Example Format
-						form#uploadForm(ref='uploadForm', action='#{rootURL}/control/update/rooms', method='post', enctype='multipart/form-data')
-							.mdl-textfield.mdl-js-textfield.mdl-textfield--file
-								input#fileitem2.mdl-textfield__input(placeholder='No file chosen', type='text', readonly='')
-								.mdl-button.mdl-button--icon.mdl-button--file
-									i.material-icons attach_file
-									input#ID(type='file', name='NAME', onchange="document.getElementById('fileitem2').value=this.files[0].name;")
-							button.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(type='submit', name='action') Update
-					.mdl-layout-spacer
-			div.mdl-tabs__panel(id="other")
-				ul
-					li Lol
+		ul
+			li 
+				a(href='./control/addHoliday') Add Holidays (Room Booking)
