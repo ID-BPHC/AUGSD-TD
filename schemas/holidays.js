@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var holidaysSchema = new Schema({
     date: String,
-    descrption: String
+    description: String
 });
 
 var model = mongoose.model('holidays', holidaysSchema);

@@ -3,9 +3,9 @@ var path = require('path');
 var router = express.Router();
 var fq = require('fuzzquire');
 
-var holiday = require('./holiday.js');
+var holiday = require('./holidays.js');
 
-router.use('/addHoliday', holiday);
+router.use('/holidays', holiday);
 
 router.get('/', function (req, res, next) {
     res.renderState('admin/portals/control');
