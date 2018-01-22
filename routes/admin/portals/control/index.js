@@ -4,8 +4,10 @@ var router = express.Router();
 var fq = require('fuzzquire');
 
 var holiday = require('./holidays.js');
+var portalToggle = require('./portals.js');
 
 router.use('/holidays', holiday);
+router.use('/portalToggle', portalToggle);
 
 router.get('/', function (req, res, next) {
     res.renderState('admin/portals/control');

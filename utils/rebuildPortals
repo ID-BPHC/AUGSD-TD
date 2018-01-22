@@ -58,7 +58,7 @@ portalsModel.remove({}, function (err) {
 			displayName: "Admin Controls",
 			name: "control",
 			icon: "build",
-			active: false,
+			active: true,
 			admin: true
 		}, {
 			displayName: "[IC] TA Applications",
@@ -71,12 +71,6 @@ portalsModel.remove({}, function (err) {
 			name: "room-booking-esd",
 			icon: "class",
 			active: false,
-			admin: true
-		}, {
-			displayName: "Portal Management",
-			name: "portal-toggle",
-			icon: "build",
-			active: true,
 			admin: true
 		}, {
 			displayName: "Inductions",

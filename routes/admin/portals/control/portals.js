@@ -14,7 +14,7 @@ router.get('/toggle/:id', function (req, res, next) {
 			if (err) {
 				return res.terminate(err);
 			}
-			return res.redirect('/admin/portal-toggle');
+			return res.redirect('/admin/control/portalToggle');
 		});
 
 	});
@@ -23,11 +23,11 @@ router.get('/toggle/:id', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
 
-	portalsModel.find({ name: { $ne: "portal-toggle" } }, function (err, portals) {
+	portalsModel.find({ name: { $ne: "control" } }, function (err, portals) {
 		if (err) {
 			return res.terminate(err);
 		}
-		return res.renderState('admin/portals/portal-toggle', { allPortals: portals });
+		return res.renderState('admin/portals/control/portalToggle', { allPortals: portals });
 	});
 
 });
