@@ -1,6 +1,8 @@
 var express = require('express');
 var filter = require('profanity-filter');
 var badwordslist = require('badwords-list');
+var fq = require('fuzzquire');
+var mailer = fq('utils/mailer');
 var router = express.Router();
 
 var coursesModel = require('../../../../schemas/courses');
@@ -8,23 +10,23 @@ var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
 var feedbacksModel = require('../../../../schemas/feedbacks');
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.renderState('dashboard/portals/feedbacks-24x7');
 });
 
-router.get('/step-1', function(req, res, next) {
+router.get('/step-1', function (req, res, next) {
     res.renderState('dashboard/portals/feedbacks-24x7/step1');
 });
 
-router.get('/step-2', function(req, res, next) {
+router.get('/step-2', function (req, res, next) {
     res.redirect('/dashboard/feedbacks-24x7');
 });
 
-router.get('/step-3', function(req, res, next) {
+router.get('/step-3', function (req, res, next) {
     res.redirect('/dashboard/feedbacks-24x7');
 });
 
-router.post('/step-2', function(req, res, next) {
+router.post('/step-2', function (req, res, next) {
     if (req.sanitize(req.body.courselist) == '. . .') {
         res.renderState('custom_errors', {
             redirect: "/dashboard/feedbacks-24x7/step-1",
@@ -37,7 +39,7 @@ router.post('/step-2', function(req, res, next) {
     }
     let courseSearch = coursesModel.find({
         courseID: req.sanitize(req.body.courselist)
-    }, function(err, result) {
+    }, function (err, result) {
         if (err) {
             return res.terminate(err);
         }
@@ -62,7 +64,7 @@ router.post('/step-2', function(req, res, next) {
     });
 });
 
-router.post('/step-3', function(req, res, next) {
+router.post('/step-3', function (req, res, next) {
     if (req.sanitize(req.body.courselist) == '. . .') {
         res.renderState('custom_errors', {
             redirect: "/dashboard/feedbacks-24x7/step-1",
@@ -107,7 +109,7 @@ router.post('/step-3', function(req, res, next) {
             return new Promise((resolve, reject) => {
                 adminsModel.find({
                     email: data[0].sections[0].instructors[i]
-                }, function(err, email) {
+                }, function (err, email) {
                     if (err) {
                         return res.terminate(err);
                     }
@@ -137,7 +139,7 @@ router.post('/step-3', function(req, res, next) {
     });
 });
 
-router.post('/step-4', function(req, res, next) {
+router.post('/step-4', function (req, res, next) {
     if (req.sanitize(req.body.instructorlist) == '. . .') {
         res.renderState('custom_errors', {
             redirect: "/dashboard/feedbacks-24x7/step-1",
@@ -163,21 +165,21 @@ router.post('/step-4', function(req, res, next) {
     let instructorname = req.sanitize(req.body.instructorlist);
     let feedback = req.sanitize(req.body.feedback);
     let instructoremail = '';
-    instructorarray.forEach(function(element) {
+    instructorarray.forEach(function (element) {
         if (element.name == instructorname) {
             instructoremail = element.email;
         }
     });
     filter.setReplacementMethod('grawlix');
-    badwordslist.array.forEach(function(item) {
+    badwordslist.array.forEach(function (item) {
         filter.addWord(item);
-        filter.addWord(item.replace(/\w\S*/g, function(txt) {
+        filter.addWord(item.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }));
         filter.addWord(item.toUpperCase());
     });
     let customfilter = [];
-    customfilter.forEach(function(item) {
+    customfilter.forEach(function (item) {
         filter.addWord(item);
     });
     filter.setGrawlixChars(['']);
@@ -191,7 +193,7 @@ router.post('/step-4', function(req, res, next) {
         responses: feedback,
         createdOn: Date.now()
     };
-    feedbacksModel.create(dataStore, function(err, response) {
+    feedbacksModel.create(dataStore, function (err, response) {
         if (err) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard",
@@ -201,6 +203,11 @@ router.post('/step-4', function(req, res, next) {
                 details: err
             });
         }
+        mailer.send({
+            email: instructoremail,
+            subject: "Feedback 24x7",
+            body: "Dear" + instructorname + "<p>Instruction Division has received qualitative feedback from your students for your course " + courseID + " and section " + courseSection + " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Instruction Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p>You may access the feedback from the Instruction Division Dashboard by visiting the website.</p>"
+        });
         res.renderState('custom_errors', {
             redirect: "/dashboard",
             timeout: 2,
