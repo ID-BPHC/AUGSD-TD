@@ -73,16 +73,38 @@ function getUTCDate(epoch) {
 
 
 router.get('/view/:id', function (req, res, next) {
-    feedbacksModel.findOne({
-        _id: req.sanitize(req.params.id),
-        instructor: req.session.passport.user
+    adminsModel.find({
+        email: req.session.passport.user
+    }, {
+        __v: 0
     }, (err, result) => {
         if (err) {
             return res.terminate(err);
         }
-        res.renderState('admin/portals/feedbacks-prof/view', {
-            feedback: result
-        });
+        if (result.superUser == false) {
+            feedbacksModel.findOne({
+                _id: req.sanitize(req.params.id),
+                instructor: req.session.passport.user
+            }, (err, result) => {
+                if (err) {
+                    return res.terminate(err);
+                }
+                res.renderState('admin/portals/feedbacks-prof/view', {
+                    feedback: result
+                });
+            });
+        } else {
+            feedbacksModel.findOne({
+                _id: req.sanitize(req.params.id)
+            }, (err, result) => {
+                if (err) {
+                    return res.terminate(err);
+                }
+                res.renderState('admin/portals/feedbacks-prof/view', {
+                    feedback: result
+                });
+            });
+        }
     });
 });
 
