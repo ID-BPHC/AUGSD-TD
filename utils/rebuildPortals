@@ -78,6 +78,12 @@ portalsModel.remove({}, function (err) {
 			icon: "work",
 			active: false,
 			admin: false
+		}, {
+			displayName: "All Feedbacks",
+			name: "feedbacks-all",
+			icon: "feedback",
+			active: false,
+			admin: true
 		},
 		function (err) {
 
