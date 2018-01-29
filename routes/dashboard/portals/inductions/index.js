@@ -3,8 +3,8 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var fileUpload = require('express-fileupload');
 var inductionsModel = fq('schemas/inductions');
-var Promise = require("bluebird");
 var multer = require("multer");
+var Promise = require("bluebird");
 var fs = Promise.promisifyAll(require('fs'));
 var config = require('./../../../../config');
 var path = require('path');
@@ -75,7 +75,7 @@ router.post('/apply', [
 		});
 	}
 	let storePath = appRoot.path;
-	if (!config.fileStorage == "") {
+	if (config.fileStorage != "") {
 		storePath = config.fileStorage;
 	}
 	fs.mkdirAsync(storePath)

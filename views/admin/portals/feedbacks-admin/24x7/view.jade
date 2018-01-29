@@ -1,0 +1,33 @@
+extends ../../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-admin').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col.mdl-cell--middle
+				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin/24x7")')
+					i.material-icons arrow_back
+			.mdl-cell.mdl-cell--4-col
+				h3(style='text-align:center') 24x7 Feedback
+				h6(style='text-align:center') Feedback Report:  #{results.name}
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Course ID
+							th.mdl-data-table__cell--non-numeric Course Section
+							th.mdl-data-table__cell--non-numeric Feedback
+					tbody
+						for feedback in results.feedback
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/24x7/view/#{results.id}/feedback/#{feedback._id}")')
+								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+								td.mdl-data-table__cell--non-numeric #{feedback.section}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses}
