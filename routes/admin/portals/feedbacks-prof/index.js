@@ -13,49 +13,27 @@ router.get('/', function (req, res, next) {
         if (err) {
             return res.terminate(err);
         }
-        if (result.superUser == false) {
-            feedbacksModel.find({
-                    instructor: req.session.passport.user
-                }, {
-                    __v: 0
-                }, {
-                    sort: {
-                        createdOn: -1
-                    }
-                },
-                (err, result) => {
-                    if (err) {
-                        return res.terminate(err);
-                    }
-                    result.forEach((object, index, array) => {
-                        array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                        array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
-                    });
-                    res.renderState('admin/portals/feedbacks-prof', {
-                        feedbacks: result
-                    });
+        feedbacksModel.find({
+                instructor: req.session.passport.user
+            }, {
+                __v: 0
+            }, {
+                sort: {
+                    createdOn: -1
+                }
+            },
+            (err, result) => {
+                if (err) {
+                    return res.terminate(err);
+                }
+                result.forEach((object, index, array) => {
+                    array[index].createdOn = getUTCDate(Number(array[index].createdOn));
+                    array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
                 });
-        } else {
-            feedbacksModel.find({}, {
-                    __v: 0
-                }, {
-                    sort: {
-                        createdOn: -1
-                    }
-                },
-                (err, result) => {
-                    if (err) {
-                        return res.terminate(err);
-                    }
-                    result.forEach((object, index, array) => {
-                        array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                        array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
-                    });
-                    res.renderState('admin/portals/feedbacks-prof', {
-                        feedbacks: result
-                    });
+                res.renderState('admin/portals/feedbacks-prof', {
+                    feedbacks: result
                 });
-        }
+            });
     });
 });
 
@@ -73,38 +51,16 @@ function getUTCDate(epoch) {
 
 
 router.get('/view/:id', function (req, res, next) {
-    adminsModel.find({
-        email: req.session.passport.user
-    }, {
-        __v: 0
+    feedbacksModel.findOne({
+        _id: req.sanitize(req.params.id),
+        instructor: req.session.passport.user
     }, (err, result) => {
         if (err) {
             return res.terminate(err);
         }
-        if (result.superUser == false) {
-            feedbacksModel.findOne({
-                _id: req.sanitize(req.params.id),
-                instructor: req.session.passport.user
-            }, (err, result) => {
-                if (err) {
-                    return res.terminate(err);
-                }
-                res.renderState('admin/portals/feedbacks-prof/view', {
-                    feedback: result
-                });
-            });
-        } else {
-            feedbacksModel.findOne({
-                _id: req.sanitize(req.params.id)
-            }, (err, result) => {
-                if (err) {
-                    return res.terminate(err);
-                }
-                res.renderState('admin/portals/feedbacks-prof/view', {
-                    feedback: result
-                });
-            });
-        }
+        res.renderState('admin/portals/feedbacks-prof/view', {
+            feedback: result
+        });
     });
 });
 
