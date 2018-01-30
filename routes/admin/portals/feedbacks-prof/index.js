@@ -5,36 +5,27 @@ var feedbacksModel = fq('schemas/feedbacks');
 var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
-    adminsModel.find({
-        email: req.session.passport.user
-    }, {
-        __v: 0
-    }, (err, result) => {
-        if (err) {
-            return res.terminate(err);
-        }
-        feedbacksModel.find({
-                instructor: req.session.passport.user
-            }, {
-                __v: 0
-            }, {
-                sort: {
-                    createdOn: -1
-                }
-            },
-            (err, result) => {
-                if (err) {
-                    return res.terminate(err);
-                }
-                result.forEach((object, index, array) => {
-                    array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                    array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
-                });
-                res.renderState('admin/portals/feedbacks-prof', {
-                    feedbacks: result
-                });
+    feedbacksModel.find({
+            instructor: req.session.passport.user
+        }, {
+            __v: 0
+        }, {
+            sort: {
+                createdOn: -1
+            }
+        },
+        (err, result) => {
+            if (err) {
+                return res.terminate(err);
+            }
+            result.forEach((object, index, array) => {
+                array[index].createdOn = getUTCDate(Number(array[index].createdOn));
+                array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
             });
-    });
+            res.renderState('admin/portals/feedbacks-prof', {
+                feedbacks: result
+            });
+        });
 });
 
 function getUTCDate(epoch) {
