@@ -27,6 +27,21 @@ block content
 				ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='proflist')
 					each prof in profs
 						li.mdl-menu__item(data-val='#{prof._id}') #{prof.name}
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Course ID
+							th.mdl-data-table__cell--non-numeric Course Section
+							th.mdl-data-table__cell--non-numeric Feedback
+					tbody
+						for feedback in results.feedbacks
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/24x7/view/feedback/#{feedback._id}")')
+								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+								td.mdl-data-table__cell--non-numeric #{feedback.section}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses}
 		script.
 			window.setInterval(function(){
 				window.location.reload();

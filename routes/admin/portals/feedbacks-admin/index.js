@@ -5,24 +5,33 @@ var feedbacksModel = fq('schemas/feedbacks');
 var adminsModel = fq('schemas/admins');
 
 router.get('/24x7', function (req, res, next) {
-    adminsModel.find({
-        superUser: false
-    }, {
-        __v: 1,
-        name: 1
-    }, {
-        sort: {
-            name: 1
-        }
-    }, (err, result) => {
+    feedbacksModel.find({}, (err, feedbacks) => {
         if (err) {
             return res.terminate(err);
         }
-        res.renderState('admin/portals/feedbacks-admin/24x7', {
-            profs: result
+        feedbacks.forEach(element => {
+            element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
         });
-
-
+        adminsModel.find({
+            superUser: false
+        }, {
+            __v: 1,
+            name: 1
+        }, {
+            sort: {
+                name: 1
+            }
+        }, (err, result) => {
+            if (err) {
+                return res.terminate(err);
+            }
+            res.renderState('admin/portals/feedbacks-admin/24x7', {
+                profs: result,
+                results: {
+                    feedbacks: feedbacks
+                }
+            });
+        });
     });
 });
 
@@ -63,7 +72,6 @@ router.get('/24x7/view/:id', function (req, res, next) {
 
                 feedbacks.forEach(element => {
                     element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
-                    console.log(element.responses);
                 });
 
                 res.renderState('admin/portals/feedbacks-admin/24x7/view', {
@@ -87,9 +95,50 @@ router.get('/24x7/view/:id/feedback/:fid', function (req, res, next) {
             return res.terminate(err);
         }
         if (feedbacks != null && feedbacks != undefined) {
-            res.renderState('admin/portals/feedbacks-admin/24x7/fview', {
-                results: {
-                    feedback: feedbacks
+            adminsModel.findOne({
+                email: feedbacks.instructor
+            }, {
+                name: 1,
+            }, (err, result) => {
+                if (err) {
+                    return res.terminate(err);
+                }
+                if (result != null && result != undefined) {
+                    res.renderState('admin/portals/feedbacks-admin/24x7/fview', {
+                        results: {
+                            name: result.name,
+                            feedback: feedbacks
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+router.get('/24x7/view/feedback/:fid', function (req, res, next) {
+    feedbacksModel.findOne({
+        _id: req.sanitize(req.params.fid)
+    }, (err, feedbacks) => {
+        if (err) {
+            return res.terminate(err);
+        }
+        if (feedbacks != null && feedbacks != undefined) {
+            adminsModel.findOne({
+                email: feedbacks.instructor
+            }, {
+                name: 1,
+            }, (err, result) => {
+                if (err) {
+                    return res.terminate(err);
+                }
+                if (result != null && result != undefined) {
+                    res.renderState('admin/portals/feedbacks-admin/24x7/fview', {
+                        results: {
+                            name: result.name,
+                            feedback: feedbacks
+                        }
+                    });
                 }
             });
         }
