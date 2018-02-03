@@ -79,12 +79,19 @@ portalsModel.remove({}, function (err) {
 			active: false,
 			admin: false
 		}, {
-			displayName: "All Feedbacks",
-			name: "feedbacks-all",
+			displayName: "Feedbacks Control",
+			name: "feedbacks-admin",
+			icon: "feedback",
+			active: false,
+			admin: true
+		}, {
+			displayName: "Project Create",
+			name: "project-allotment-prof-create",
 			icon: "feedback",
 			active: false,
 			admin: true
 		},
+
 		function (err) {
 
 			if (err) {
