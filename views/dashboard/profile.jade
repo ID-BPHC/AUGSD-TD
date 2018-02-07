@@ -1,5 +1,4 @@
 extends ../master-dashboard
-
 block content
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
@@ -7,8 +6,10 @@ block content
 	div.mdl-cell.mdl-cell--12-col.center
 		div.mdl-grid
 			div.mdl-cell.mdl-cell--12-col.center
-				h3 My Profile
+				img(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')" style="width: 64px;height: 64px;border-radius: 50%;display:inline;")
+				h4 My Profile
 				p Welcome, #{user.name}
+				h3 View your courses in one place
 				div.mdl-grid
 					.mdl-cell.mdl-cell--12-col.center
 						.mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect
