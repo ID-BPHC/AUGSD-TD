@@ -25,6 +25,12 @@ portalsModel.remove({}, function (err) {
 			active: false,
 			admin: false
 		}, {
+			displayName: "Mid-Sem Feedbacks",
+			name: "feedbacks-MidSem",
+			icon: "feedback",
+			active: false,
+			admin: false
+		}, {
 			displayName: "Room Booking",
 			name: "room-booking-student",
 			icon: "class",
@@ -115,6 +121,18 @@ portalsModel.remove({}, function (err) {
 				}, {
 					name: "Nischay Ram Mamidi",
 					email: "nischaymamidi@gmail.com",
+					portals: [],
+					home: '',
+					superUser: true
+				}, {
+					name: "Nishant Aggarwal",
+					email: "nishant23799@gmail.com",
+					portals: [],
+					home: '',
+					superUser: true
+				}, {
+					name: "Kailash Bhalaki",
+					email: "kailashbhalaki@gmail.com",
 					portals: [],
 					home: '',
 					superUser: true
