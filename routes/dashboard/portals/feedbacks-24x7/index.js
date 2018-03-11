@@ -65,7 +65,7 @@ router.post('/step-2', function (req, res, next) {
             });
         });
     } catch (err) {
-        return res.terminate(err);
+         return res.terminate(err);
     }
 });
 
