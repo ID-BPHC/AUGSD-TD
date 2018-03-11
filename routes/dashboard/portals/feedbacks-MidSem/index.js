@@ -8,29 +8,29 @@ var router = express.Router();
 var coursesModel = require('../../../../schemas/courses');
 var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
-var feedbacksModel = require('../../../../schemas/feedbacks');
+var feedbacksModel = require('../../../../schemas/feedbacks_MidSem');
 
 router.get('/', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-24x7');
+    res.renderState('dashboard/portals/feedbacks-MidSem');
 });
 
 router.get('/step-1', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-24x7/step1');
+    res.renderState('dashboard/portals/feedbacks-MidSem/step1');
 });
 
 router.get('/step-2', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-24x7');
+    res.redirect('/dashboard/feedbacks-MidSem');
 });
 
 router.get('/step-3', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-24x7');
+    res.redirect('/dashboard/feedbacks-MidSem');
 });
 
 router.post('/step-2', function (req, res, next) {
     try {
         if (req.sanitize(req.body.courselist) == '. . .') {
             res.renderState('custom_errors', {
-                redirect: "/dashboard/feedbacks-24x7/step-1",
+                redirect: "/dashboard/feedbacks-midsem/step-1",
                 timeout: 2,
                 supertitle: ".",
                 callback: "/",
@@ -158,7 +158,10 @@ router.post('/step-4', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
-        } else if (req.sanitize(req.body.feedback).length == 0) {
+        } else if (req.sanitize(req.body.feedback-MidSem-1).length == 0  
+                    ||req.sanitize(req.body.feedback-MidSem-2).length == 0
+                    ||req.sanitize(req.body.feedback-MidSem-3).length == 0
+                ) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-24x7/step-1",
                 timeout: 2,
@@ -172,7 +175,10 @@ router.post('/step-4', function (req, res, next) {
         let courseID = req.session.courseID;
         let courseSection = req.session.courseSection;
         let instructorname = req.sanitize(req.body.instructorlist);
-        let feedback = req.sanitize(req.body.feedback);
+        let feedback_MidSem_1 = req.sanitize(req.body.feedback-MidSem-1);
+        let feedback_MidSem_2 = req.sanitize(req.body.feedback-MidSem-2);
+        let feedback_MidSem_3 = req.sanitize(req.body.feedback-MidSem-3);
+
         let instructoremail = '';
         instructorarray.forEach(function (element) {
             if (element.name == instructorname) {
@@ -198,8 +204,8 @@ router.post('/step-4', function (req, res, next) {
             courseID: courseID,
             section: courseSection,
             instructor: instructoremail, // Instructor's email
-            type: "24x7", // 24x7 or midsem
-            responses: feedback,
+            type: "MidSem", // 24x7 or midsem
+            responses: [feedback_MidSem_1,feedback_MidSem_2,feedback_MidSem_3],
             createdOn: Date.now()
         };
         feedbacksModel.create(dataStore, function (err, response) {
@@ -214,8 +220,8 @@ router.post('/step-4', function (req, res, next) {
             }
             mailer.send({
                 email: instructoremail,
-                subject: "Feedback 24x7",
-                body: "Dear " + instructorname + "<p>Instruction Division has received the following qualitative feedback from your students for your course " + courseID + " and section " + courseSection + " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Instruction Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b>" + feedback + "</b></p><p>You may access all your feedbacks from the Instruction Division Dashboard by visiting the website.</p>"
+                subject: "MidSem Feedback",
+                body: "Dear " + instructorname + "<p>Instruction Division has received the following qualitative feedback from your students for your course " + courseID + " and section " + courseSection + " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Instruction Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b> Question 1 here </b><br>" + feedback_MidSem_1 + "<br><br><b>QUESTION-2 HERE</b>"+feedback_MidSem_2+"<br><br><b>QUESTION-3 HERE</b><br>"+feedback_MidSem_3+"</p><p>You may access all your feedbacks from the Instruction Division Dashboard by visiting the website.</p>"
             });
             res.renderState('custom_errors', {
                 redirect: "/dashboard",
