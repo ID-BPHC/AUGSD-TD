@@ -33,7 +33,7 @@ router.post('/step-2', function (req, res, next) {
                 redirect: "/dashboard/feedbacks-24x7/step-1",
                 timeout: 2,
                 supertitle: ".",
-                callback: "/",
+                callback: "/",  
                 message: "Validation Error",
                 details: "Invalid Course Selected. Please select a valid course."
             });
