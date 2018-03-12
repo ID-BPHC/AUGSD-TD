@@ -1,0 +1,48 @@
+#!/bin/sh
+
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+
+var mongoose = require('mongoose');
+var portalsModel = require('../schemas/portals');
+var adminsModel = require('../schemas/admins');
+var divisionsModel = require('../schemas/divisions');
+var data = require('./assets/data.js');
+var config = require('../config');
+
+mongoose.connect(config.mongooseConnection, {
+	useMongoClient: true
+});
+
+portalsModel.remove({}, function (err) {
+
+	if (err) {
+		console.log(err);
+	}
+	console.log("Creating Portals ...");
+	portalsModel.create(data.portals,
+
+		function (err) {
+
+			if (err) {
+				console.log(err);
+			}
+
+			console.log("Adding Superusers ...");
+
+			adminsModel.remove({}, function (err) {
+
+				if (err) {
+					console.log(err);
+				}
+
+				adminsModel.create(data.superUsers,function (err) {
+
+					if (err) {
+						console.log(err);
+					}
+					console.log("******** DONE ********");
+					process.exit();
+				});
+			});
+		});
+});

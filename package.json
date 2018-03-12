@@ -7,12 +7,14 @@
     "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js"
   },
   "dependencies": {
+    "3": "^2.1.0",
     "app-root-dir": "^1.0.2",
     "app-root-path": "^2.0.1",
     "badwords-list": "^1.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "chai": "^4.1.2",
+    "config": "^1.29.4",
     "cookie-parser": "~1.4.3",
     "debug": "~3.1.0",
     "eslint": "^4.12.1",
@@ -45,6 +47,7 @@
     "passport-google-oauth2": "^0.1.6",
     "profanity-filter": "^0.2.1",
     "promise": "^8.0.1",
+    "python": "0.0.4",
     "run-sequence": "^2.2.0",
     "serve-favicon": "~2.4.2",
     "uncaught": "^0.0.5",
