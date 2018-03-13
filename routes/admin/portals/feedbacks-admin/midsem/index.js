@@ -1,19 +1,18 @@
-//24x7 feedback
-
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacks');
+var feedbacksModel = fq('schemas/feedbacks-midsem');
 var adminsModel = fq('schemas/admins');
 
-router.get('/24x7', function (req, res, next) {
+router.get('/midsem', function (req, res, next) {
     try {
         feedbacksModel.find({}, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
             }
             feedbacks.forEach(element => {
-                element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
+                for(i=0; i<3; i++)
+                element.responses[i] = element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
             });
             adminsModel.find({
                 superUser: false
@@ -28,7 +27,7 @@ router.get('/24x7', function (req, res, next) {
                 if (err) {
                     return res.terminate(err);
                 }
-                res.renderState('admin/portals/feedbacks-admin/24x7', {
+                res.renderState('admin/portals/feedbacks-admin/midsem', {
                     profs: result,
                     results: {
                         feedbacks: feedbacks
@@ -58,7 +57,7 @@ function getUTCDate(epoch) {
 }
 
 
-router.get('/24x7/view/:id', function (req, res, next) {
+router.get('/midsem/view/:id', function (req, res, next) {
     try {
         adminsModel.findOne({
             _id: req.sanitize(req.params.id)
@@ -78,10 +77,11 @@ router.get('/24x7/view/:id', function (req, res, next) {
                     }
 
                     feedbacks.forEach(element => {
-                        element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
+                        for(i=0; i<3; i++)
+                        element.responses[i] = element.responses[i].substring(0, Math.min(element.responses.length[i], 66)) + " ...";
                     });
 
-                    res.renderState('admin/portals/feedbacks-admin/24x7/view', {
+                    res.renderState('admin/portals/feedbacks-admin/midsem/view', {
                         results: {
                             id: result._id,
                             name: result.name,
@@ -97,7 +97,7 @@ router.get('/24x7/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/24x7/view/:id/feedback/:fid', function (req, res, next) {
+router.get('/midsem/view/:id/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.fid)
@@ -115,7 +115,7 @@ router.get('/24x7/view/:id/feedback/:fid', function (req, res, next) {
                         return res.terminate(err);
                     }
                     if (result != null && result != undefined) {
-                        res.renderState('admin/portals/feedbacks-admin/24x7/fview', {
+                        res.renderState('admin/portals/feedbacks-admin/midsem/fview', {
                             results: {
                                 name: result.name,
                                 feedback: feedbacks

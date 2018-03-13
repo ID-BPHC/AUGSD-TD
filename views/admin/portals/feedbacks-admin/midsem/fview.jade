@@ -1,0 +1,50 @@
+extends ../../../../master-dashboard
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-admin').classList.add('menuselectify')
+	style.
+		.custom_header {
+			font-size: 0.9375rem;
+			font-weight: bold;
+		}
+		.custom {
+			-ms-word-break: break-all;
+			word-break: break-all;
+			word-break: break-word;
+
+			-webkit-hyphens: auto;
+			-moz-hyphens: auto;
+			-ms-hyphens: auto;
+			hyphens: auto;
+		}
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col.mdl-cell--middle
+				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem")')
+					i.material-icons arrow_back
+			.mdl-cell.mdl-cell--4-col
+				h3(style='text-align:center') Mid-Sem Feedback
+	div.mdl-cell.mdl-cell--12-col
+		center
+			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+				tbody
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Instructor Name
+						td.mdl-data-table__cell--non-numeric #{results.name}
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Course ID
+						td.mdl-data-table__cell--non-numeric #{results.feedback.courseID}
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Section
+						td.mdl-data-table__cell--non-numeric #{results.feedback.section}
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Question 1
+						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{results.feedback.responses[0]}
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Question 2
+						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{results.feedback.responses[1]}	
+					tr
+						td.mdl-data-table__cell--non-numeric.custom_header Question 3
+						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{results.feedback.responses[2]}											

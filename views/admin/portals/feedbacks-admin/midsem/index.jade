@@ -1,0 +1,55 @@
+extends ../../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-admin').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col.mdl-cell--middle
+				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin")')
+					i.material-icons arrow_back
+			.mdl-cell.mdl-cell--4-col
+				h3(style='text-align:center') Mid-Sem Feedback
+				h6(style='text-align:center') Select a professor to view their respective feedback report.
+
+	div.mdl-cell.mdl-cell--12-col
+		center
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+				input#proflist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='proflist', onchange="loadProf(this);")
+				label(for='proflist')
+					i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+				label.mdl-textfield__label(for='proflist') Select a Professor
+				ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='proflist')
+					each prof in profs
+						li.mdl-menu__item(data-val='#{prof._id}') #{prof.name}
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Course ID
+							th.mdl-data-table__cell--non-numeric Course Section
+							th.mdl-data-table__cell--non-numeric Question 1
+							th.mdl-data-table__cell--non-numeric Question 2
+							th.mdl-data-table__cell--non-numeric Question 3
+					tbody
+						for feedback in results.feedbacks
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/feedback/#{feedback._id}")')
+								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+								td.mdl-data-table__cell--non-numeric #{feedback.section}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses.[0]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses.[1]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses.[2]}
+		script.
+			window.setInterval(function(){
+				window.location.reload();
+			}, 300000);
+			function loadProf(s){
+				window.location.replace('#{rootURL}/feedbacks-admin/midsem/view/' + s.getAttribute('data-val'));
+			}
