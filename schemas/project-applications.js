@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var projectApplicationsSchema = new Schema({
     projectID: String,
-    student: String, //Email
+    studentID: String, //Email
     cgpa: Number,
     courseCode: String,
     approved: {
