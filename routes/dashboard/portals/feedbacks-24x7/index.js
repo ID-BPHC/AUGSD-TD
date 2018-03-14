@@ -37,6 +37,7 @@ router.post('/step-2', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Course Selected. Please select a valid course."
             });
+            console.log("*");
         }
         let courseSearch = coursesModel.find({
             courseID: req.sanitize(req.body.courselist)
@@ -44,24 +45,29 @@ router.post('/step-2', function (req, res, next) {
             if (err) {
                 return res.terminate(err);
             }
+            console.log("**");
             return result;
         });
         courseSearch.then(function retrieveStudent(data) {
             let coursedata = req.user.courses;
+            console.log("***");
             for (let i = 0; i < coursedata.length; i++) {
                 if (coursedata[i].courseID == data[0].courseID) {
                     return req.user.courses[i].sections;
+                    
                 }
             }
         }).then(function saveCourseID(data) {
             req.session.courseID = req.sanitize(req.body.courselist);
             req.session.save();
+            console.log("****");
             return data;
         }).then(function renderStep(data) {
             res.renderState('dashboard/portals/feedbacks-24x7/step2', {
                 params: data,
                 courseID: req.sanitize(req.body.courselist)
             });
+            console.log("*****");
         });
     } catch (err) {
         return res.terminate(err);
