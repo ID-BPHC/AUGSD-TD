@@ -68,12 +68,17 @@ block content
 													li.mdl-menu__item(data-val='#{item.name}') #{item.name}
 									div.mdl-cell.mdl-cell--12-col
 										.mdl-textfield.mdl-js-textfield
-											h7 Question 1 here
-											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedback-midsem-1')
-											h7 Question 2 here
-											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedback-midsem-2')
-											h7 Question 3 here
-											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedback-midsem-3')
+											h7 Which characterstics of this instructor or course have been most valuable to your learning?
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem1')
+											<br>
+											h7 Which characterstics of this instructor, course, classroom or teaching environment require improvement?
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem2')
+											<br>
+											h7 Any other confidential information you would like to share with instruction division about the instructor or course?
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem3')
 											
 
 				.mdl-step__actions

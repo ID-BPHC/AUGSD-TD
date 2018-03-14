@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacks-midsem');
+var feedbacksModel = fq('schemas/feedbacksMidsem');
 var adminsModel = fq('schemas/admins');
 
-router.get('/midsem', function (req, res, next) {
+router.get('/', function (req, res, next) {
     try {
         feedbacksModel.find({}, (err, feedbacks) => {
             if (err) {
@@ -27,7 +27,7 @@ router.get('/midsem', function (req, res, next) {
                 if (err) {
                     return res.terminate(err);
                 }
-                res.renderState('admin/portals/feedbacks-admin/midsem', {
+                res.renderState('admin/portals/feedbacks-admin/midsem/index', {
                     profs: result,
                     results: {
                         feedbacks: feedbacks
@@ -40,9 +40,9 @@ router.get('/midsem', function (req, res, next) {
     }
 });
 
-router.get('/', function (req, res, next) {
-    res.renderState('admin/portals/feedbacks-admin');
-});
+// router.get('/', function (req, res, next) {
+//     res.renderState('admin/portals/feedbacks-admin');
+// });
 
 function getUTCDate(epoch) {
     let utcDate = new Date(epoch);
@@ -57,7 +57,7 @@ function getUTCDate(epoch) {
 }
 
 
-router.get('/midsem/view/:id', function (req, res, next) {
+router.get('/view/:id', function (req, res, next) {
     try {
         adminsModel.findOne({
             _id: req.sanitize(req.params.id)
@@ -97,7 +97,7 @@ router.get('/midsem/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/midsem/view/:id/feedback/:fid', function (req, res, next) {
+router.get('/view/:id/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.fid)

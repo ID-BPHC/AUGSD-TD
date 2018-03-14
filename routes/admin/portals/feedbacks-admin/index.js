@@ -5,6 +5,9 @@ var router = express.Router();
 var fq = require('fuzzquire');
 var feedbacksModel = fq('schemas/feedbacks');
 var adminsModel = fq('schemas/admins');
+var midsem = require('./midsem/index');
+
+router.use('/midsem', midsem);
 
 router.get('/24x7', function (req, res, next) {
     try {

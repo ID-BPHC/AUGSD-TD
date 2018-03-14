@@ -14,7 +14,7 @@ block content
 				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin")')
 					i.material-icons arrow_back
 			.mdl-cell.mdl-cell--4-col
-				h3(style='text-align:center') Mid-Sem Feedback
+				h3(style='text-align:center') Midsem Feedback
 				h6(style='text-align:center') Select a professor to view their respective feedback report.
 
 	div.mdl-cell.mdl-cell--12-col
@@ -43,9 +43,10 @@ block content
 							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/feedback/#{feedback._id}")')
 								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
 								td.mdl-data-table__cell--non-numeric #{feedback.section}
-								td.mdl-data-table__cell--non-numeric #{feedback.responses.[0]}
-								td.mdl-data-table__cell--non-numeric #{feedback.responses.[1]}
-								td.mdl-data-table__cell--non-numeric #{feedback.responses.[2]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+
 		script.
 			window.setInterval(function(){
 				window.location.reload();
