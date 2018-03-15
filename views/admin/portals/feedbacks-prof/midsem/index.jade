@@ -1,0 +1,34 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks-prof').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col
+		h3(style='text-align:center') Mid-Sem Feedback
+		p(style='text-align:center') Click on the feedback to view the entire summary.
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Course ID
+							th.mdl-data-table__cell--non-numeric Course Section
+							th.mdl-data-table__cell--non-numeric Question 1
+							th.mdl-data-table__cell--non-numeric Question 2
+							th.mdl-data-table__cell--non-numeric Question 3
+							th.mdl-data-table__cell--non-numeric Date of Feedback
+					tbody
+						for feedback in feedbacks
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-prof/midsem/view/#{feedback._id}")')
+								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+								td.mdl-data-table__cell--non-numeric #{feedback.section}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+								td.mdl-data-table__cell--non-numeric #{feedback.createdOn}

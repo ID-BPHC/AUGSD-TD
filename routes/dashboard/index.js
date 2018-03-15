@@ -13,7 +13,6 @@ var auth = require('../../middleware/auth');
 let securityCheck = function(req, res, next) {
 
     var reqPortal = (req.originalUrl.split('/'))[2];
-
     portalsModel.find({
         name: reqPortal,
         active: true,

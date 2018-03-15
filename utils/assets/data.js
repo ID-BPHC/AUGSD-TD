@@ -5,6 +5,12 @@ var portals = [{
     active: false,
     admin: false
 }, {
+    displayName: "Mid-Semester Feedbacks",
+    name: "feedbacks-midsem",
+    icon: "feedback",
+    active: false,
+    admin: false
+}, {
     displayName: "Room Booking",
     name: "room-booking-student",
     icon: "class",
@@ -81,6 +87,18 @@ var superUsers = [{
 }, {
     name: "Nischay Ram Mamidi",
     email: "nischaymamidi@gmail.com",
+    portals: [],
+    home: '',
+    superUser: true
+}, {
+    name: "Nishant Aggarwal",
+    email: "nishant23799@gmail.com",
+    portals: [],
+    home: '',
+    superUser: true
+}, {
+    name: "Kailash Bhalaki",
+    email: "kailashbhalaki@gmail.com",
     portals: [],
     home: '',
     superUser: true

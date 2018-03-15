@@ -1,9 +1,7 @@
-//24x7 feedback
-
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacks');
+var feedbacksModel = fq('schemas/feedbacks-midsem');
 var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
@@ -23,9 +21,10 @@ router.get('/', function (req, res, next) {
                 }
                 result.forEach((object, index, array) => {
                     array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                    array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
+                    for(i=0; i<3; i++)
+                    array[index].responses[i] = array[index].responses[i].substring(0, Math.min(array[index].responses[i].length, 66)) + " ...";
                 });
-                res.renderState('admin/portals/feedbacks-prof', {
+                res.renderState('admin/portals/feedbacks-prof/midsem', {
                     feedbacks: result
                 });
             });
@@ -47,7 +46,7 @@ function getUTCDate(epoch) {
 }
 
 
-router.get('/view/:id', function (req, res, next) {
+router.get('/midsem/view/:id', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.id),
@@ -56,7 +55,7 @@ router.get('/view/:id', function (req, res, next) {
             if (err) {
                 return res.terminate(err);
             }
-            res.renderState('admin/portals/feedbacks-prof/view', {
+            res.renderState('admin/portals/feedbacks-prof/midsem/view', {
                 feedback: result
             });
         });
