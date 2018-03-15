@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacksMidsem');
+var feedbacksModel = fq('schemas/feedbacks-midsem');
 var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {

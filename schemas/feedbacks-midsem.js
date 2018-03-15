@@ -10,6 +10,6 @@ var feedbacksSchema = new Schema({
     createdOn: String
 });
 
-var model = mongoose.model('feedbacksMidsem', feedbacksSchema);
+var model = mongoose.model('feedbacks-midsem', feedbacksSchema);
 
 module.exports = model;
