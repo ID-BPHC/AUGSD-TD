@@ -97,7 +97,7 @@ router.get('/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/view/:id/feedback/:fid', function (req, res, next) {
+router.get('/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.fid)
