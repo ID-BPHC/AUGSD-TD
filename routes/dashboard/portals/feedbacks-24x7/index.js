@@ -1,4 +1,4 @@
-var express = require('express');
+        var express = require('express');
 var filter = require('profanity-filter');
 var badwordslist = require('badwords-list');
 var fq = require('fuzzquire');
@@ -33,7 +33,7 @@ router.post('/step-2', function (req, res, next) {
                 redirect: "/dashboard/feedbacks-24x7/step-1",
                 timeout: 2,
                 supertitle: ".",
-                callback: "/",
+                callback: "/",  
                 message: "Validation Error",
                 details: "Invalid Course Selected. Please select a valid course."
             });
@@ -51,6 +51,7 @@ router.post('/step-2', function (req, res, next) {
             for (let i = 0; i < coursedata.length; i++) {
                 if (coursedata[i].courseID == data[0].courseID) {
                     return req.user.courses[i].sections;
+                    
                 }
             }
         }).then(function saveCourseID(data) {
@@ -109,7 +110,6 @@ router.post('/step-3', function (req, res, next) {
             let newdata = {
                 instructors: []
             };
-
             function getInstructorNameProcedure(i) {
                 return new Promise((resolve, reject) => {
                     adminsModel.find({

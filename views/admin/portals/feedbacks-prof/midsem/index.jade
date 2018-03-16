@@ -1,4 +1,3 @@
-
 extends ../../../master-dashboard
 
 block content
@@ -21,8 +20,8 @@ block content
 							th.mdl-data-table__cell--non-numeric Course ID
 							th.mdl-data-table__cell--non-numeric Course Section
 							th.mdl-data-table__cell--non-numeric Question 1
-                            th.mdl-data-table__cell--non-numeric Question 2
-                            th.mdl-data-table__cell--non-numeric Question 3
+							th.mdl-data-table__cell--non-numeric Question 2
+							th.mdl-data-table__cell--non-numeric Question 3
 							th.mdl-data-table__cell--non-numeric Date of Feedback
 					tbody
 						for feedback in feedbacks
@@ -30,6 +29,6 @@ block content
 								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
 								td.mdl-data-table__cell--non-numeric #{feedback.section}
 								td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
-                                td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
-                                td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
 								td.mdl-data-table__cell--non-numeric #{feedback.createdOn}

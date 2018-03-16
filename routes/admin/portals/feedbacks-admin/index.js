@@ -1,10 +1,13 @@
-/** 24x7 Feedback */
+//24x7 feedback
 
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
 var feedbacksModel = fq('schemas/feedbacks');
 var adminsModel = fq('schemas/admins');
+var midsem = require('./midsem/index');
+
+router.use('/midsem', midsem);
 
 router.get('/24x7', function (req, res, next) {
     try {
@@ -97,39 +100,6 @@ router.get('/24x7/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/24x7/view/:id/feedback/:fid', function (req, res, next) {
-    try {
-        feedbacksModel.findOne({
-            _id: req.sanitize(req.params.fid)
-        }, (err, feedbacks) => {
-            if (err) {
-                return res.terminate(err);
-            }
-            if (feedbacks != null && feedbacks != undefined) {
-                adminsModel.findOne({
-                    email: feedbacks.instructor
-                }, {
-                    name: 1,
-                }, (err, result) => {
-                    if (err) {
-                        return res.terminate(err);
-                    }
-                    if (result != null && result != undefined) {
-                        res.renderState('admin/portals/feedbacks-admin/24x7/fview', {
-                            results: {
-                                name: result.name,
-                                feedback: feedbacks
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    } catch (err) {
-        return res.terminate(err);
-    }
-});
-
 router.get('/24x7/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
@@ -162,5 +132,7 @@ router.get('/24x7/view/feedback/:fid', function (req, res, next) {
         return res.terminate(err);
     }
 });
+
+
 
 module.exports = router;

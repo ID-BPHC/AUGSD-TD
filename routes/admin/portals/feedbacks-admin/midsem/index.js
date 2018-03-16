@@ -1,21 +1,19 @@
-/** MidSem Feedback */ 
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
 var feedbacksModel = fq('schemas/feedbacks-midsem');
 var adminsModel = fq('schemas/admins');
 
-router.get('/midsem', function (req, res, next) {
+router.get('/', function (req, res, next) {
     try {
         feedbacksModel.find({}, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
             }
             feedbacks.forEach(element => {
-                for(i=0;i<3;i++){
-                element.responses[i]= element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
-            }
-        });
+                for(i=0; i<3; i++)
+                element.responses[i] = element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
+            });
             adminsModel.find({
                 superUser: false
             }, {
@@ -29,7 +27,7 @@ router.get('/midsem', function (req, res, next) {
                 if (err) {
                     return res.terminate(err);
                 }
-                res.renderState('admin/portals/feedbacks-admin/midsem', {
+                res.renderState('admin/portals/feedbacks-admin/midsem/index', {
                     profs: result,
                     results: {
                         feedbacks: feedbacks
@@ -59,7 +57,7 @@ function getUTCDate(epoch) {
 }
 
 
-router.get('/midsem/view/:id', function (req, res, next) {
+router.get('/view/:id', function (req, res, next) {
     try {
         adminsModel.findOne({
             _id: req.sanitize(req.params.id)
@@ -79,9 +77,9 @@ router.get('/midsem/view/:id', function (req, res, next) {
                     }
 
                     feedbacks.forEach(element => {
-                        for(i=0;i<3;i++){
-                        element.responses[i] = element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
-                    }});
+                        for(i=0; i<3; i++)
+                        element.responses[i] = element.responses[i].substring(0, Math.min(element.responses.length[i], 66)) + " ...";
+                    });
 
                     res.renderState('admin/portals/feedbacks-admin/midsem/view', {
                         results: {
@@ -99,7 +97,7 @@ router.get('/midsem/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/midsem/view/:id/feedback/:fid', function (req, res, next) {
+router.get('/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.fid)

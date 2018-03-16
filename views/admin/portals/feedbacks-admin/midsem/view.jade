@@ -14,7 +14,7 @@ block content
 				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem")')
 					i.material-icons arrow_back
 			.mdl-cell.mdl-cell--4-col
-				h3(style='text-align:center') Mid-Sem Feedback
+				h3(style='text-align:center') Midsem Feedback
 				h6(style='text-align:center') Feedback Report:  #{results.name}
 	div.mdl-cell.mdl-cell--12-col
 		center
@@ -24,14 +24,16 @@ block content
 						tr
 							th.mdl-data-table__cell--non-numeric Course ID
 							th.mdl-data-table__cell--non-numeric Course Section
-							th.mdl-data-table__cell--non-numeric Question 1 
-                            th.mdl-data-table__cell--non-numeric Question 2 
-                            th.mdl-data-table__cell--non-numeric Question 3  
+							th.mdl-data-table__cell--non-numeric Q1
+							th.mdl-data-table__cell--non-numeric Q2
+							th.mdl-data-table__cell--non-numeric Q3
 					tbody
 						for feedback in results.feedback
-							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/#{results.id}/feedback/#{feedback._id}")')
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/feedback/#{feedback._id}")')
 								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
 								td.mdl-data-table__cell--non-numeric #{feedback.section}
 								td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
-                                td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
-                                td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
+								td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+								script.
+									alert("#{feedback.responses[0]}");

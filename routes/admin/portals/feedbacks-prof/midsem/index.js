@@ -1,4 +1,3 @@
-/** MidSem Feedback  */
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
@@ -22,10 +21,9 @@ router.get('/', function (req, res, next) {
                 }
                 result.forEach((object, index, array) => {
                     array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                    for(i=0;i<3;i++){
+                    for(i=0; i<3; i++)
                     array[index].responses[i] = array[index].responses[i].substring(0, Math.min(array[index].responses[i].length, 66)) + " ...";
-                }
-            });
+                });
                 res.renderState('admin/portals/feedbacks-prof/midsem', {
                     feedbacks: result
                 });

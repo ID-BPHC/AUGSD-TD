@@ -3,7 +3,7 @@ extends ../../../master-dashboard
 block content
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
-		document.getElementById('feedbacks-24x7').classList.add('menuselectify')
+		document.getElementById('feedbacks-midsem').classList.add('menuselectify')
 				window.onload = () => {
 			$.validator.addMethod("valueNotEquals", function(value, element, arg){
 				return arg !== value;}, "Value must not equal arg.");
@@ -51,9 +51,9 @@ block content
 				.mdl-step__content
 					div.mdl-grid
 						div.mdl-cell.mdl-cell--12-col.center
-							h4   Mid-Sem Feedback
+							h4 Mid-Sem Feedback
 							p Select the Instructor you want to write feedback for.
-							form(action="#{rootURL}/feedbacks-24x7/step-4", method="post", name="form1" id="form1")
+							form(action="#{rootURL}/feedbacks-midsem/step-4", method="post", name="form1" id="form1")
 								div.mdl-grid
 									.mdl-cell.mdl-cell--12-col
 										h7 You are writing feedback for #{courseID} #{courseSection}
@@ -68,12 +68,18 @@ block content
 													li.mdl-menu__item(data-val='#{item.name}') #{item.name}
 									div.mdl-cell.mdl-cell--12-col
 										.mdl-textfield.mdl-js-textfield
-											h7 Question 1
-											textarea#feedback.mdl-textfield__input(type='text', rows='3',name='feedback-midsem-1')
-											h7 Question 2
-											textarea#feedback.mdl-textfield__input(type='text',rows='3',name='feedback-midsem-2')
-											h7 Question 3
-											textarea#feedback.mdl-textfield__input(type='text',rows='3',name='feedback-midsem-3')
+											h7 Which characterstics of this instructor or course have been most valuable to your learning? (Required)
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem1')
+											<br>
+											h7 Which characterstics of this instructor, course, classroom or teaching environment require improvement? (Required)
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem2')
+											<br>
+											h7 Any other confidential information you would like to share with instruction division about the instructor or course? (Optional)
+											
+											textarea#feedback.mdl-textfield__input(type='text', rows='5',name='feedbackMidsem3')
+											
 
 				.mdl-step__actions
 					button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
