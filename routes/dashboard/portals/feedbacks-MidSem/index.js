@@ -159,9 +159,8 @@ router.post('/step-4', function (req, res, next) {
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
         } else if (req.sanitize(req.body.feedbackMidsem1).length == 0 ||
-                   req.sanitize(req.body.feedbackMidsem2).length == 0 ||
-                   req.sanitize(req.body.feedbackMidsem3).length == 0) {
-            res.renderState('custom_errors', {
+                   req.sanitize(req.body.feedbackMidsem2).length == 0) {
+            return res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-midsem/step-1",
                 timeout: 2,
                 supertitle: ".",
@@ -176,7 +175,13 @@ router.post('/step-4', function (req, res, next) {
         let instructorname = req.sanitize(req.body.instructorlist);
         let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
         let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
-        let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
+        
+        if(typeof req.body.feedbackMidsem3 !== 'undefined') {
+            let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
+        } else {
+            let feedbackMidsem3 = "NA";
+        }
+        
         let instructoremail = '';
         instructorarray.forEach(function (element) {
             if (element.name == instructorname) {
