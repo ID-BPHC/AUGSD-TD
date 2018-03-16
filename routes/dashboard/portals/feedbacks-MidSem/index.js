@@ -150,7 +150,7 @@ router.post('/step-3', function (req, res, next) {
 router.post('/step-4', function (req, res, next) {
     try {
         if (req.sanitize(req.body.instructorlist) == '. . .') {
-            res.renderState('custom_errors', {
+            return res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-midsem/step-1",
                 timeout: 2,
                 supertitle: ".",
@@ -158,8 +158,8 @@ router.post('/step-4', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
-        } else if (req.sanitize(req.body.feedbackMidsem1).length == 0 ||
-                   req.sanitize(req.body.feedbackMidsem2).length == 0) {
+        } else if (typeof req.sanitize(req.body.feedbackMidsem1) == 'undefined' ||
+                   typeof req.sanitize(req.body.feedbackMidsem2) == 'undefined') {
             return res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-midsem/step-1",
                 timeout: 2,
@@ -175,12 +175,7 @@ router.post('/step-4', function (req, res, next) {
         let instructorname = req.sanitize(req.body.instructorlist);
         let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
         let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
-        
-        if(typeof req.body.feedbackMidsem3 !== 'undefined') {
-            let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
-        } else {
-            let feedbackMidsem3 = "NA";
-        }
+        let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
         
         let instructoremail = '';
         instructorarray.forEach(function (element) {
@@ -208,12 +203,12 @@ router.post('/step-4', function (req, res, next) {
             section: courseSection,
             instructor: instructoremail, // Instructor's email
             type: "midsem", // 24x7 or midsem
-            responses: [feedbackMidsem1, feedbackMidsem2, feedbackMidsem3],
+            responses: [feedbackMidsem1, feedbackMidsem2, (feedbackMidsem3 ? feedbackMidsem3 : "NA" )],
             createdOn: Date.now()
         };
         feedbacksModel.create(dataStore, function (err, response) {
             if (err) {
-                res.renderState('custom_errors', {
+                return res.renderState('custom_errors', {
                     redirect: "/dashboard",
                     timeout: 5,
                     supertitle: "Couldn't submit feedback",
@@ -228,7 +223,7 @@ router.post('/step-4', function (req, res, next) {
                 body: "Dear " + instructorname + "<p>Instruction Division has received the following qualitative feedback (Mid-Semester) from your students for your course " + courseID + " and section " + courseSection + " through online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Instruction Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><br><b>Q. Which characteristics of this instructor or course have been most valuable to your learning ?</b><br>Ans. " + feedbackMidsem1 + "</p><br><p><b>Q. Which characteristics of this instructor, course, classroom or teaching environment require improvement ?</b><br>Ans. " + feedbackMidsem2 + "</p><br><p>You may access all your feedbacks from the Instruction Division Dashboard by visiting the website.</p>"
             });
 
-            res.renderState('custom_errors', {
+            return res.renderState('custom_errors', {
                 redirect: "/dashboard",
                 timeout: 2,
                 supertitle: "Submitted Feedback.",
