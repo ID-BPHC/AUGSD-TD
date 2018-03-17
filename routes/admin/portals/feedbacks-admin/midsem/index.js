@@ -40,9 +40,9 @@ router.get('/', function (req, res, next) {
     }
 });
 
-// router.get('/', function (req, res, next) {
-//     res.renderState('admin/portals/feedbacks-admin');
-// });
+router.get('/', function (req, res, next) {
+    res.renderState('admin/portals/feedbacks-admin');
+});
 
 function getUTCDate(epoch) {
     let utcDate = new Date(epoch);
@@ -130,6 +130,37 @@ router.get('/view/feedback/:fid', function (req, res, next) {
     }
 });
 
-
+router.get('/midsem/view/feedback/:fid', function (req, res, next) {
+    try {
+        feedbacksModel.findOne({
+            _id: req.sanitize(req.params.fid)
+        }, (err, feedbacks) => {
+            if (err) {
+                return res.terminate(err);
+            }
+            if (feedbacks != null && feedbacks != undefined) {
+                adminsModel.findOne({
+                    email: feedbacks.instructor
+                }, {
+                    name: 1,
+                }, (err, result) => {
+                    if (err) {
+                        return res.terminate(err);
+                    }
+                    if (result != null && result != undefined) {
+                        res.renderState('admin/portals/feedbacks-admin/midsem/fview', {
+                            results: {
+                                name: result.name,
+                                feedback: feedbacks
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } catch (err) {
+        return res.terminate(err);
+    }
+});
 
 module.exports = router;
