@@ -1,14 +1,11 @@
 extends ../../../master-dashboard
 
 block content
-	script(type='text/javascript').
+	//script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
-<<<<<<< HEAD
-		document.getElementById('feedbacks-24x7').classList.add('menuselectify')
-=======
 		document.getElementById('feedbacks-midsem').classList.add('menuselectify')
->>>>>>> a77a792b3862e78980c521905b625d7926e6aace
-				window.onload = () => {
+	script.
+		window.onload = () => {
 			$.validator.addMethod("valueNotEquals", function(value, element, arg){
 				return arg !== value;}, "Value must not equal arg.");
 			$("#form1").validate({
