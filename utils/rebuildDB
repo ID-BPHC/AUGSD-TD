@@ -3,46 +3,140 @@
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 var mongoose = require('mongoose');
-var portalsModel = require('../schemas/portals');
-var adminsModel = require('../schemas/admins');
-var divisionsModel = require('../schemas/divisions');
-var data = require('./assets/data.js');
+var Promise = require('promise');
+var data = require('./assets/data')
+var fq = require('fuzzquire');
 var config = require('../config');
 
-mongoose.connect(config.mongooseConnection, {
-	useMongoClient: true
-});
+var adminsModel = fq('schemas/admins');
+var portalsModel = fq('schemas/portals');
+var studentsModel = fq('schemas/students');
+var coursesModel = fq('schemas/courses');
 
-portalsModel.remove({}, function (err) {
+mongoose.connect(config.mongooseConnection, {});
 
-	if (err) {
-		console.log(err);
-	}
-	console.log("Creating Portals ...");
-	portalsModel.create(data.portals,
+let dropCollections = function () {
+	return new Promise(function (resolve, reject) {
 
-		function (err) {
+		console.log("******** Destroying Database ********");
 
-			if (err) {
-				console.log(err);
-			}
+		let collections = ['admins', 'students', 'courses', 'feedbacks', 'feedbacks-midsems', 'portals'];
 
-			console.log("Adding Superusers ...");
-
-			adminsModel.remove({}, function (err) {
-
+		collections.forEach(function (collection) {
+			console.log("	Dropping ", collection);
+			mongoose.connection.db.dropCollection(collection, function (err, result) {
 				if (err) {
-					console.log(err);
+					return reject(err);
 				}
-
-				adminsModel.create(data.superUsers,function (err) {
-
-					if (err) {
-						console.log(err);
-					}
-					console.log("******** DONE ********");
-					process.exit();
-				});
+				return;
 			});
 		});
+		return resolve();
+	});
+};
+let createSuperUsers = function () {
+	return new Promise(function (resolve, reject) {
+		console.log("******** Creating SuperUsers ********");
+		adminsModel.create(data.superUsers, function (err, result) {
+			if (err) {
+				return reject(err);
+			}
+			return resolve();
+		});
+	});
+};
+
+let createPortals = function () {
+	return new Promise(function (resolve, reject) {
+		console.log("******** Creating Portals ********");
+		portalsModel.create(data.portals, function (err, result) {
+			if (err) {
+				return reject(err);
+			}
+			return resolve();
+		});
+	});
+};
+
+let createStudents = function () {
+	return new Promise(function (resolve, reject) {
+		console.log("******** Creating Students ********");
+
+		data.superUsers.forEach(function (user) {
+			studentsModel.create({
+				name: user.name,
+				email: user.email,
+				idNumber: user.email.split('@')[0],
+				courses: [{
+						courseID: "TEST F111",
+						sections: ["L1"]
+					},
+					{
+						courseID: "TEST F222",
+						sections: ["L1"]
+					},
+					{
+						courseID: "DEV F111",
+						sections: ["L1", "T1"]
+					}
+				]
+			}, function (err, result) {
+				if (err) {
+					console.log(err);
+					return reject(err);
+				}
+				return;
+			});
+		});
+		return resolve();
+	});
+};
+
+let createCourses = function () {
+	return new Promise(function (resolve, reject) {
+		console.log("******** Creating Courses ********");
+		adminsModel.distinct('email', {}, function (err, emails) {
+			coursesModel.create([{
+					courseID: "TEST F111",
+					name: "Test Course 1",
+					sections: [{
+						section: "L1",
+						instructors: emails
+					}]
+				},
+				{
+					courseID: "TEST F222",
+					name: "Test Course 2",
+					sections: [{
+						section: "L1",
+						instructors: emails
+					}]
+				},
+				{
+					courseID: "DEV F111",
+					name: "Dev Course 1",
+					sections: [{
+						section: "L1",
+						instructors: emails
+					}, {
+						section: "T1",
+						instructors: emails
+					}]
+				}
+			], function (err, result) {
+				if (err) {
+					console.log(err);
+					reject(err);
+				}
+				resolve();
+			});
+		});
+	});
+};
+
+mongoose.connection.on('open', function (ref) {
+	dropCollections().then(createSuperUsers).then(createPortals).then(createStudents).then(createCourses).then(function(){
+		console.log("******** Done ********");
+		process.exit();
+	});
 });
