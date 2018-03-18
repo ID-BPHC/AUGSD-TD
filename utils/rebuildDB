@@ -7,6 +7,7 @@ var Promise = require('promise');
 var data = require('./assets/data')
 var fq = require('fuzzquire');
 var config = require('../config');
+var prompt = require('prompt');
 
 var adminsModel = fq('schemas/admins');
 var portalsModel = fq('schemas/portals');
@@ -14,6 +15,29 @@ var studentsModel = fq('schemas/students');
 var coursesModel = fq('schemas/courses');
 
 mongoose.connect(config.mongooseConnection, {});
+
+let confirm = function () {
+	return new Promise(function (resolve, reject) {
+		console.log("This will destroy and rebuild the database. Enter 'YES' to continue.")
+		prompt.start();
+		prompt.get(['confirm'], function (err, result) {
+
+			if (err) {
+				console.log(err);
+				console.log("**** Some error encountered. Terminating to prevent data loss ****");
+				process.exit();
+			}
+
+			if (result.confirm !== 'YES') {
+				console.log("Terminating .....");
+				process.exit();
+			} else {
+				resolve();
+			}
+
+		});
+	});
+}
 
 let dropCollections = function () {
 	return new Promise(function (resolve, reject) {
@@ -135,7 +159,7 @@ let createCourses = function () {
 };
 
 mongoose.connection.on('open', function (ref) {
-	dropCollections().then(createSuperUsers).then(createPortals).then(createStudents).then(createCourses).then(function(){
+	confirm().then(dropCollections).then(createSuperUsers).then(createPortals).then(createStudents).then(createCourses).then(function () {
 		console.log("******** Done ********");
 		process.exit();
 	});
