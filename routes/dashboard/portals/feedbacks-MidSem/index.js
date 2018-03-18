@@ -83,7 +83,7 @@ router.post('/step-3', function (req, res, next) {
         let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
         req.session.courseSection = courseSection;
         req.session.save();
-        let courseSearch = coursesModel.aggregate({
+        let courseSearch = coursesModel.aggregate([{
             $match: {
                 $and: [{
                     courseID: req.session.courseID
@@ -104,7 +104,7 @@ router.post('/step-3', function (req, res, next) {
                 },
                 _id: 0
             }
-        });
+        }]);
         courseSearch.then(function getInstructorName(data) {
             let newdata = {
                 instructors: []
