@@ -148,7 +148,8 @@ router.post('/step-3', function (req, res, next) {
 });
 
 router.post('/step-4', function (req, res, next) {
-    try {
+    // try {
+
         if (req.sanitize(req.body.instructorlist) == '. . .') {
             res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-midsem/step-1",
@@ -158,9 +159,9 @@ router.post('/step-4', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
-        } else if (req.sanitize(req.body.feedbackMidsem1).length == 0 ||
-                   req.sanitize(req.body.feedbackMidsem2).length == 0 ||
-                   req.sanitize(req.body.feedbackMidsem3).length == 0) {
+        } else if ((req.sanitize(req.body.feedbackMidsem1) == undefined ||
+                   req.sanitize(req.body.feedbackMidsem2) == undefined ||
+                   req.sanitize(req.body.feedbackMidsem3) == undefined)) {
             res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-midsem/step-1",
                 timeout: 2,
@@ -198,6 +199,7 @@ router.post('/step-4', function (req, res, next) {
         filter.setGrawlixChars(['']);
         feedbackMidsem1 = filter.clean(feedbackMidsem1);
         feedbackMidsem2 = filter.clean(feedbackMidsem2);
+        feedbackMidsem3 = filter.clean(feedbackMidsem3);
         let dataStore = {
             courseID: courseID,
             section: courseSection,
@@ -224,8 +226,8 @@ router.post('/step-4', function (req, res, next) {
                 details: "Your feedback was recorded. Thank you :). Redirecting"
             });
         });
-    } catch (err) {
-        return res.terminate(err);
-    }
+    // } catch (err) {
+    //     return res.terminate(err);
+    // }
 });
 module.exports = router;
