@@ -8,22 +8,22 @@ var router = express.Router();
 var coursesModel = require('../../../../schemas/courses');
 var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
-var feedbacksModel = require('../../../../schemas/feedbacks-midsem');
+var feedbacksModel = require('../../../../schemas/feedbacks');
 
 router.get('/', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-midsem');
+    res.renderState('dashboard/portals/feedbacks');
 });
 
 router.get('/step-1', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-midsem/step1');
+    res.renderState('dashboard/portals/feedbacks/step1');
 });
 
 router.get('/step-2', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-midsem');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.get('/step-3', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-midsem');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.post('/step-2', function (req, res, next) {
@@ -58,7 +58,7 @@ router.post('/step-2', function (req, res, next) {
             req.session.save();
             return data;
         }).then(function renderStep(data) {
-            res.renderState('dashboard/portals/feedbacks-midsem/step2', {
+            res.renderState('dashboard/portals/feedbacks/step2', {
                 params: data,
                 courseID: req.sanitize(req.body.courselist)
             });

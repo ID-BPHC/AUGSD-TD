@@ -6,7 +6,7 @@ var feedbacksSchema = new Schema({
     section: String,
     instructor: String, // Instructor's email
     type: String, // 24x7 or midsem
-    responses: String,
+    responses: [String],
     createdOn: String
 });
 
