@@ -8,7 +8,23 @@ var projectsModel = fq('schemas/projects');
 var headsModel = fq('schemas/project-heads');
 
 router.get('/', function (req, res, next) {
+	return res.renderState("dashboard/portals/project-allotment-student");
+});
 
+router.get('/view', function (req, res, next) {
+	headsModel.distinct('department', function (err, departments) {
+		if (err) {
+			console.log(err);
+			return res.terminate("Could not find departments");
+		}
+		return res.renderState("dashboard/portals/project-allotment-student/select-department", {
+			departments: departments
+		});
+
+	});
+});
+
+router.post('/view', function (req, res, next) {
 	projectsModel.aggregate(
 		[{
 			$lookup: {
@@ -32,15 +48,19 @@ router.get('/', function (req, res, next) {
 			$unwind: "$department"
 		}, {
 			$unwind: "$instructorName"
+		}, {
+			$match: {
+				department: req.body.departments
+			}
 		}],
-		function (err, result) {
+		function (err, projects) {
 			if (err) {
 				console.log(err);
 				return res.terminate("Aggregate Error");
 			}
-			return res.json(result);
+			return res.json(projects);
+			//return res.renderState("dashboard/portals/project-allotment-student/view-department");
 		});
-
 });
 
 module.exports = router;
