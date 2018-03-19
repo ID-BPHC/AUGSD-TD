@@ -3,13 +3,16 @@ var Schema = mongoose.Schema;
 
 var projectHeadsSchema = new Schema({
     instructor: String, // Instructor's email
-    department: ['Mathematics', 'Computer', 'Chemistry', 'Chemical', 'Civil', 'Economics', 'Physics', 'Biology', 'Pharmacy', 'Electronics', 'Manufacturing', 'Mechanical'],
+    department: {
+        type: String
+        //enum: ['Mathematics', 'Computer', 'Chemistry', 'Chemical', 'Civil', 'Economics', 'Physics', 'Biology', 'Pharmacy', 'Electronics', 'Manufacturing', 'Mechanical'],
+    },
     head: {
-        type: Boolean,
-        default: false
-    }
+        type: Boolean
+    },
+    name: String
 });
 
-var model = mongoose.model('projects', projectHeadsSchema);
+var model = mongoose.model('projectHeads', projectHeadsSchema);
 
 module.exports = model;

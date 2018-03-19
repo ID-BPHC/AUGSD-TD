@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacksMidsem');
+var feedbacksModel = fq('schemas/feedbacks-midsem');
 var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
@@ -97,7 +97,8 @@ router.get('/view/:id', function (req, res, next) {
     }
 });
 
-router.get('/view/:id/feedback/:fid', function (req, res, next) {
+
+router.get('/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.fid)

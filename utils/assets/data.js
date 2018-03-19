@@ -5,7 +5,7 @@ var portals = [{
     active: false,
     admin: false
 }, {
-    displayName: "MidSem Feedbacks",
+    displayName: "Mid-Semester Feedbacks",
     name: "feedbacks-midsem",
     icon: "feedback",
     active: false,

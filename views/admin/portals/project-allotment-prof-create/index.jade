@@ -10,26 +10,37 @@ block content
 		document.getElementById('project-allotment-prof-create').classList.add('menuselectify')
 	div.mdl-cell.mdl-cell--12-col
 		h3(style='text-align:center') Project Allotment
-		p(style='text-align:center') Click on an application to edit / delete it.
+		p(style='text-align:center') Click on a project to view / delete it.
 	div.mdl-cell.mdl-cell--12-col
-		h5(style='text-align:center') 
 	div.mdl-cell.mdl-cell--12-col
 		center
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/create")') Create a new Project
 			div
 				.mdl-grid
-					div.mdl-cell.mdl-cell--12-col
-						button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/create")') Create a new Project
-					div.mdl-cell.mdl-cell--12-col
-					if (typeof(projects) !== 'undefined')
-						table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-							thead
-								tr
-									th.mdl-data-table__cell--non-numeric Title
-									th.mdl-data-table__cell--non-numeric Description
-							tbody
-								for project in projects
-									tr(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/view/#{project._id}")')
-										td.mdl-data-table__cell--non-numeric #{project.title}
-										td.mdl-data-table__cell--non-numeric #{project.description}
+					if (typeof(projects) !== 'undefined' && projects.length > 0)
+						div.mdl-cell.mdl-cell--12-col
+							table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+								thead
+									tr
+										th.mdl-data-table__cell--non-numeric Title
+										th.mdl-data-table__cell--non-numeric Description
+										th.mdl-data-table__cell--non-numeric Professor
+										th.mdl-data-table__cell--non-numeric Type
+								tbody
+									for project in projects
+										tr(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/view/#{project._id}")')
+											td.mdl-data-table__cell--non-numeric #{project.title}
+											td.mdl-data-table__cell--non-numeric #{project.description}
+											td.mdl-data-table__cell--non-numeric #{project.name}
+											if(project.type=='lop')
+												td.mdl-data-table__cell--non-numeric Lab Oriented Project
+											else if(project.type=='dop')
+												td.mdl-data-table__cell--non-numeric Design Oriented Project
+											else
+												td.mdl-data-table__cell--non-numeric Study Oriented Project
 					else
+						div.mdl-cell.mdl-cell--12-col
+							h5(style='text-align:center').center No Projects Added Yet.
+
+
 

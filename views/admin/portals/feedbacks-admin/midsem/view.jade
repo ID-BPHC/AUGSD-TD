@@ -29,9 +29,15 @@ block content
 							th.mdl-data-table__cell--non-numeric Q3
 					tbody
 						for feedback in results.feedback
-							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/#{results._id}/feedback/#{feedback._id}")')
+
+							tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/feedback/#{feedback._id}")')
+
 								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
 								td.mdl-data-table__cell--non-numeric #{feedback.section}
 								td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
 								td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
+
 								td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+								script.
+									alert("#{feedback.responses[0]}");
+

@@ -36,7 +36,6 @@ if (fs.existsSync('./config.js')) {
     var config = require('./config');
 
     mongoose.connect(config.mongooseConnection, {
-        useMongoClient: true
     });
 
     var api = require('./routes/api');
