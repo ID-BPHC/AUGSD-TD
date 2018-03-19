@@ -203,6 +203,9 @@ router.post('/create', function (req, res, next) {
             description: req.sanitize(req.body.description),
             instructor: req.session.passport.user
         };
+        if(data.description.length == 0){
+            data.description = "";
+        }
         const typeproj = req.sanitize(req.body.lablist);
         if (typeproj == 'Lab Oriented Project (LOP)') {
             data.type = 'lop';
