@@ -284,8 +284,7 @@ router.get('/create', function (req, res, next) {
 router.delete('/view/:id', function (req, res, next) {
     try {
         projectsModel.findOneAndRemove({
-            _id: req.sanitize(req.params.id),
-            instructor: req.session.passport.user
+            _id: req.sanitize(req.params.id)
         }, (err, result) => {
             if (err) {
                 return res.terminate(err);
