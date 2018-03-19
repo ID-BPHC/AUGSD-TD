@@ -45,6 +45,7 @@
     "passport-google-oauth2": "^0.1.6",
     "profanity-filter": "^0.2.1",
     "promise": "^8.0.1",
+    "prompt": "^1.0.0",
     "run-sequence": "^2.2.0",
     "serve-favicon": "~2.4.2",
     "uncaught": "^0.0.5",
