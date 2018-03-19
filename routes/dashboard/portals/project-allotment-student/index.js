@@ -58,8 +58,10 @@ router.post('/view', function (req, res, next) {
 				console.log(err);
 				return res.terminate("Aggregate Error");
 			}
-			return res.json(projects);
-			//return res.renderState("dashboard/portals/project-allotment-student/view-department");
+			return res.renderState("dashboard/portals/project-allotment-student/view-department", {
+				projects: projects,
+				department: req.body.departments
+			});
 		});
 });
 
