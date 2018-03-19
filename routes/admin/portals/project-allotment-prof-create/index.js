@@ -182,8 +182,7 @@ function getProfessorType(profmail) {
 router.get('/view/:id', function (req, res, next) {
     try {
         projectsModel.findOne({
-            _id: req.sanitize(req.params.id),
-            instructor: req.session.passport.user
+            _id: req.sanitize(req.params.id)
         }, (err, result) => {
             if (err) {
                 return res.terminate(err);
