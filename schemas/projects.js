@@ -14,7 +14,8 @@ var projectsSchema = new Schema( {
     updated: {
         type:Date, 
         default:Date.now
-    }
+    },
+    type:String
 }); 
 
 var model = mongoose.model('projects', projectsSchema); 

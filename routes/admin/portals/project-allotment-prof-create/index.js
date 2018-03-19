@@ -204,10 +204,20 @@ router.post('/create', function (req, res, next) {
             description: req.sanitize(req.body.description),
             instructor: req.session.passport.user
         };
+        const typeproj = req.sanitize(req.body.lablist);
+        if (typeproj == 'Lab Oriented Project (LOP)') {
+            data.type = 'lop';
+        }
+        else if (typeproj == 'Design Oriented Project (DOP)') {
+            data.type = 'dop';
+        }
+        else{
+            data.type = 'sop';
+        }
         if (req.sanitize(req.body.proflist))
             data.instructor = req.sanitize(req.body.proflist).split('|')[1].replace(" ", "");
         projectHeadModel.findOne({
-            instructor: req.session.passport.user
+            instructor: data.instructor
         }, (err, result) => {
             if (err)
                 return res.terminate(err);

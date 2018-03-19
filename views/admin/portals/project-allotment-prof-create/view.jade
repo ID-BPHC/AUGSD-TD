@@ -34,10 +34,17 @@ block content
 				tbody
 					tr
 						td.mdl-data-table__cell--non-numeric.custom_header Project Title
-						td.mdl-data-table__cell--non-numeric.custom_header Project Description
+						td.mdl-data-table__cell--non-numeric.custom_header Project Description / Prerequisites
+						td.mdl-data-table__cell--non-numeric.custom_header Project Type
 					tr
 						td.mdl-data-table__cell--non-numeric #{project.title}
 						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{project.description}
+						if(project.type=='lop')
+							td.mdl-data-table__cell--non-numeric Lab Oriented Project
+						else if(project.type=='dop')
+							td.mdl-data-table__cell--non-numeric Design Oriented Project
+						else
+							td.mdl-data-table__cell--non-numeric Study Oriented Project
 					input#projectRedirect(name='projectRedirect',type='hidden',value='#{rootURL}/project-allotment-prof-create')
 					input#projectPath(name='projectPath',type='hidden',value='#{rootURL}/project-allotment-prof-create/view/#{project._id}')
 					script.
