@@ -1,4 +1,4 @@
-        var express = require('express');
+var express = require('express');
 var filter = require('profanity-filter');
 var badwordslist = require('badwords-list');
 var fq = require('fuzzquire');
@@ -11,19 +11,19 @@ var studentsModel = require('../../../../schemas/students');
 var feedbacksModel = require('../../../../schemas/feedbacks');
 
 router.get('/', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-24x7');
+    res.renderState('dashboard/portals/feedbacks');
 });
 
 router.get('/step-1', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-24x7/step1');
+    res.renderState('dashboard/portals/feedbacks/step1');
 });
 
 router.get('/step-2', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-24x7');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.get('/step-3', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-24x7');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.post('/step-2', function (req, res, next) {
@@ -59,7 +59,7 @@ router.post('/step-2', function (req, res, next) {
             req.session.save();
             return data;
         }).then(function renderStep(data) {
-            res.renderState('dashboard/portals/feedbacks-24x7/step2', {
+            res.renderState('dashboard/portals/feedbacks/step2', {
                 params: data,
                 courseID: req.sanitize(req.body.courselist)
             });
@@ -159,7 +159,7 @@ router.post('/step-4', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
-        } else if (req.sanitize(req.body.feedback).length == 0) {
+        } else if (typeof req.sanitize(req.body.feedback) =='undefined') {
             res.renderState('custom_errors', {
                 redirect: "/dashboard/feedbacks-24x7/step-1",
                 timeout: 2,
@@ -200,7 +200,7 @@ router.post('/step-4', function (req, res, next) {
             section: courseSection,
             instructor: instructoremail, // Instructor's email
             type: "24x7", // 24x7 or midsem
-            responses: feedback,
+            responses: [feedback],
             createdOn: Date.now()
         };
         feedbacksModel.create(dataStore, function (err, response) {

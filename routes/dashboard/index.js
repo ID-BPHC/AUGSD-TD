@@ -169,7 +169,6 @@ router.use(function(req, res, next) {
             params.dashboard = {
                 type: "Student"
             };
-
             res.render(view, params);
         });
     };

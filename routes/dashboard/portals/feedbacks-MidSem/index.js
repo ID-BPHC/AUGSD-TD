@@ -8,22 +8,22 @@ var router = express.Router();
 var coursesModel = require('../../../../schemas/courses');
 var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
-var feedbacksModel = require('../../../../schemas/feedbacks-midsem');
+var feedbacksModel = require('../../../../schemas/feedbacks');
 
 router.get('/', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-midsem');
+    res.renderState('dashboard/portals/feedbacks');
 });
 
 router.get('/step-1', function (req, res, next) {
-    res.renderState('dashboard/portals/feedbacks-midsem/step1');
+    res.renderState('dashboard/portals/feedbacks/step1');
 });
 
 router.get('/step-2', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-midsem');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.get('/step-3', function (req, res, next) {
-    res.redirect('/dashboard/feedbacks-midsem');
+    res.redirect('/dashboard/feedbacks');
 });
 
 router.post('/step-2', function (req, res, next) {
@@ -58,7 +58,7 @@ router.post('/step-2', function (req, res, next) {
             req.session.save();
             return data;
         }).then(function renderStep(data) {
-            res.renderState('dashboard/portals/feedbacks-midsem/step2', {
+            res.renderState('dashboard/portals/feedbacks/step2', {
                 params: data,
                 courseID: req.sanitize(req.body.courselist)
             });
@@ -83,6 +83,7 @@ router.post('/step-3', function (req, res, next) {
         let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
         req.session.courseSection = courseSection;
         req.session.save();
+
         let courseSearch = coursesModel.aggregate([{
             $match: {
                 $and: [{
@@ -158,6 +159,7 @@ router.post('/step-4', function (req, res, next) {
                 message: "Validation Error",
                 details: "Invalid Instructor Selected. Please select a valid instructor."
             });
+
         } else if (typeof req.sanitize(req.body.feedbackMidsem1) == 'undefined' ||
                    typeof req.sanitize(req.body.feedbackMidsem2) == 'undefined') {
             return res.renderState('custom_errors', {
@@ -176,7 +178,7 @@ router.post('/step-4', function (req, res, next) {
         let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
         let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
         let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
-        
+
         let instructoremail = '';
         instructorarray.forEach(function (element) {
             if (element.name == instructorname) {
@@ -203,6 +205,7 @@ router.post('/step-4', function (req, res, next) {
             section: courseSection,
             instructor: instructoremail, // Instructor's email
             type: "midsem", // 24x7 or midsem
+
             responses: [feedbackMidsem1, feedbackMidsem2, (feedbackMidsem3 ? feedbackMidsem3 : "NA" )],
             createdOn: Date.now()
         };

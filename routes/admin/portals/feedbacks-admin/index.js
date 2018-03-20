@@ -100,6 +100,7 @@ router.get('/24x7/view/:id', function (req, res, next) {
     }
 });
 
+
 router.get('/24x7/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
@@ -132,7 +133,5 @@ router.get('/24x7/view/feedback/:fid', function (req, res, next) {
         return res.terminate(err);
     }
 });
-
-
 
 module.exports = router;
