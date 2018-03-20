@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var fq = require('fuzzquire');
+var mongoose = require('mongoose');
 var Promise = require('promise');
 
 var projectsModel = fq('schemas/projects');
@@ -24,6 +25,57 @@ router.get('/view', function (req, res, next) {
 	});
 });
 
+router.get('/view/:id', function (req, res, next) {
+	projectsModel.aggregate([{
+		$match: {
+			_id: mongoose.Types.ObjectId(req.sanitize(req.params.id))
+		}
+	}, {
+		$lookup: {
+			from: "projectheads",
+			localField: "instructor",
+			foreignField: "instructor",
+			as: "instructorForeign"
+		}
+	}, {
+		$project: {
+			"department": "$instructorForeign.department",
+			"instructorName": "$instructorForeign.name",
+			title: 1,
+			description: 1,
+			instructor: 1,
+			name: 1,
+			updated: 1,
+			type: 1
+		}
+	}, {
+		$unwind: "$department"
+	}, {
+		$unwind: "$instructorName"
+	}], function (err, project) {
+
+		if (err) {
+			console.log(err);
+			return res.terminate("Error: Could not find project");
+		}
+
+		if(project.length == 0) {
+			return res.renderState('custom_errors', {
+				redirect: "/dashboard/project-allotment-student",
+                timeout: 2,
+                supertitle: ".",
+                message: "Project Not Found",
+                details: "Invalid Project ID"
+			});
+		}
+
+		return res.renderState("dashboard/portals/project-allotment-student/view-project", {
+			project: project[0]
+		});
+
+	});
+});
+
 router.post('/view', function (req, res, next) {
 	projectsModel.aggregate(
 		[{
@@ -38,8 +90,7 @@ router.post('/view', function (req, res, next) {
 				"department": "$instructorForeign.department",
 				"instructorName": "$instructorForeign.name",
 				title: 1,
-				description: 1,
-				instrutor: 1,
+				instructor: 1,
 				name: 1,
 				updated: 1,
 				type: 1
