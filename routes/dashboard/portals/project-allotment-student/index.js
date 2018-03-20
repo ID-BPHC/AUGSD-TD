@@ -62,7 +62,7 @@ router.get('/view/:id', function (req, res, next) {
 
 				return res.renderState("dashboard/portals/project-allotment-student/view-project", {
 					project: project[0],
-					generateForm: applications.length == 0 ? true : false 
+					generateForm: applications.length == 0 ? true : false
 				});
 			});
 		}
@@ -169,6 +169,43 @@ router.post('/apply/:id', [check('cgpa').exists().withMessage('No CGPA').isFloat
 
 			});
 		}
+	});
+
+});
+
+router.get('/manage', function (req, res, next) {
+
+	applicationsModel.aggregate([{
+			$match: {
+				student: req.sanitize(req.user.email)
+			}
+		},
+		{
+			$lookup: {
+				from: "projects",
+				localField: "project",
+				foreignField: "_id",
+				as: "projectForeign"
+			}
+		},
+		{
+			$project: {
+				status: 1,
+				updated: 1,
+				"title": "$projectForeign.title"
+			}
+		},
+		{
+			$unwind: "$title"
+		}
+	], function (err, applications) {
+		if (err) {
+			console.log(err);
+			return res.terminate("Could not find applications");
+		}
+		return res.renderState("dashboard/portals/project-allotment-student/manage", {
+			applications: applications
+		});
 	});
 
 });

@@ -1,0 +1,36 @@
+extends ../../../master-dashboard
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('project-allotment-student').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Project Allotment
+		hr
+		h4 Your Applications
+
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.center
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Title
+							th.mdl-data-table__cell--non-numeric Status
+							th.mdl-data-table__cell--non-numeric Last Updated
+							th.mdl-data-table__cell--non-numeric
+					tbody
+						for application in applications
+							tr
+								td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
+								td.mdl-data-table__cell--non-numeric
+									if application.status == "P"
+										| Pending
+									if application.status == "A"
+										| Approved
+									if application.status == "R"
+										| Rejected
+								td.mdl-data-table__cell--non-numeric #{application.updated.toString().substring(4,21)}
+								td.mdl-data-table__cell--non-numeric
+									if application.status == "P"
+										a(href="#{rootURL}/#{reqPortal}/manage/delete/#{application._id}") Delete
