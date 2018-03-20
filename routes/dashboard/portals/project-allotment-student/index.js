@@ -52,12 +52,20 @@ router.get('/view/:id', function (req, res, next) {
 				message: "Project Not Found",
 				details: "Invalid Project ID"
 			});
+		} else {
+			applicationsModel.find({ project: mongoose.Types.ObjectId(req.sanitize(req.params.id)), student: req.sanitize(req.user.email) }, function (err, applications) {
+
+				if (err) {
+					console.log(err);
+					return res.terminate("Could not check application status for form generation");
+				}
+
+				return res.renderState("dashboard/portals/project-allotment-student/view-project", {
+					project: project[0],
+					generateForm: applications.length == 0 ? true : false 
+				});
+			});
 		}
-
-		return res.renderState("dashboard/portals/project-allotment-student/view-project", {
-			project: project[0]
-		});
-
 	});
 });
 
@@ -124,7 +132,6 @@ router.post('/apply/:id', [check('cgpa').exists().withMessage('No CGPA').isFloat
 	var cgpa = req.sanitize(req.body.cgpa);
 	var projectID = mongoose.Types.ObjectId(req.sanitize(req.params.id));
 	var experience = req.body.experience ? req.sanitize(req.body.experience) : "NA";
-	console.log('****', experience);
 
 	applicationsModel.find({ project: projectID, student: req.sanitize(req.user.email) }, function (err, applications) {
 

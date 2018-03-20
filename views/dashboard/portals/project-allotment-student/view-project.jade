@@ -39,17 +39,20 @@ block content
 					div.mdl-cell.mdl-cell--6-col.data #{project.description}
 		div.mdl-cell.mdl-cell--8-col.mdl-cell--2-offset-desktop.center
 			hr
-			h4 Apply Now
-			form(action="#{rootURL}/#{reqPortal}/apply/#{project._id}", method="post", id="form1").mdc-form-field
-				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-					input#cgpa.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='cgpa')
-					label.mdl-textfield__label(for='CGPA') CGPA
-					span.mdl-textfield__error Input is not a number!
-				br
-				br
-				.mdl-textfield.mdl-js-textfield
-					textarea#experience.mdl-textfield__input(type='text', rows='5',name='experience')
-					label.mdl-textfield__label(for='experience') Any previous experience in this field ?
-				br
-				br
-				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply
+			if generateForm
+				h4 Apply Now
+				form(action="#{rootURL}/#{reqPortal}/apply/#{project._id}", method="post", id="form1").mdc-form-field
+					.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#cgpa.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='cgpa')
+						label.mdl-textfield__label(for='CGPA') CGPA
+						span.mdl-textfield__error Input is not a number!
+					br
+					br
+					.mdl-textfield.mdl-js-textfield
+						textarea#experience.mdl-textfield__input(type='text', rows='5',name='experience')
+						label.mdl-textfield__label(for='experience') Any previous experience in this field ?
+					br
+					br
+					button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply
+			else
+				h4 You have applied for this project
