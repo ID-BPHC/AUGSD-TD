@@ -173,6 +173,22 @@ router.post('/apply/:id', [check('cgpa').exists().withMessage('No CGPA').isFloat
 
 });
 
+router.get('/manage/delete/:id', function(req, res, next){
+
+	applicationsModel.remove({
+		_id: req.sanitize(req.params.id),
+		status: "P",
+		student: req.sanitize(req.user.email)
+	}, function(err){
+		if(err) {
+			console.log(err);
+			return res.terminate("Could not delete application");
+		}
+		return res.redirect('/dashboard/project-allotment-student/manage');
+	});
+
+});
+
 router.get('/manage', function (req, res, next) {
 
 	applicationsModel.aggregate([{
