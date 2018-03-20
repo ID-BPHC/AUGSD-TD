@@ -5,6 +5,7 @@ var projectApplicationsSchema = new Schema({
     project: Schema.Types.ObjectId,
     student: String,
     cgpa: Number,
+    experience: String,
     courseCode: String,
     approved: {
         type: String,
@@ -16,6 +17,6 @@ var projectApplicationsSchema = new Schema({
     }
 });
 
-var model = mongoose.model('project-applications', projectsSchema);
+var model = mongoose.model('project-applications', projectApplicationsSchema);
 
 module.exports = model;
