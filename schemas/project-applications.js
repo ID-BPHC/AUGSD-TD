@@ -1,21 +1,22 @@
-var mongoose = require('mongoose'); 
-var Schema = mongoose.Schema; 
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var projectApplicationsSchema = new Schema( {
-    projectID:String, 
-    studentID:String, //Email
-cgpa:Number, 
-    courseCode:String, 
-    approved: {
-        type:Boolean, 
-        default:false
-    }, 
+var projectApplicationsSchema = new Schema({
+    project: Schema.Types.ObjectId,
+    student: String,
+    cgpa: Number,
+    experience: String,
+    courseCode: String,
+    status: {
+        type: String,
+        default: "P"
+    },
     updated: {
-        type:Date, 
-        default:Date.now
+        type: Date,
+        default: Date.now
     }
-}); 
+});
 
-var model = mongoose.model('projectApplications', projectsSchema); 
+var model = mongoose.model('project-applications', projectApplicationsSchema);
 
-module.exports = model; 
+module.exports = model;

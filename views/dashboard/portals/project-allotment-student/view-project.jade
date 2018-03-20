@@ -1,0 +1,58 @@
+extends ../../../master-dashboard
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('project-allotment-student').classList.add('menuselectify')
+	style.
+		.field {
+			font-weight: bold;
+			font-size: 17px
+		}
+		.data {
+			text-align: left;
+			font-size: 17px
+		}
+		#formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+	div.mdl-grid#formBG
+		div.mdl-cell.mdl-cell--12-col
+			h2 Project Allotment
+			hr
+		div.mdl-cell.mdl-cell--8-col.mdl-cell--2-offset-desktop.center
+			h4 #{project.title}
+			br
+			br
+			div.mdl-cell.mdl-cell--12-col
+				div.mdl-grid
+					div.mdl-cell.mdl-cell--6-col.field Instructor
+					div.mdl-cell.mdl-cell--6-col.data #{project.instructorName} (#{project.instructor})
+
+					div.mdl-cell.mdl-cell--6-col.field Project Type
+					div.mdl-cell.mdl-cell--6-col.data #{project.type.toUpperCase()}
+
+					div.mdl-cell.mdl-cell--6-col.field Project Description
+					div.mdl-cell.mdl-cell--6-col.data #{project.description}
+		div.mdl-cell.mdl-cell--8-col.mdl-cell--2-offset-desktop.center
+			hr
+			if generateForm
+				h4 Apply Now
+				form(action="#{rootURL}/#{reqPortal}/apply/#{project._id}", method="post", id="form1").mdc-form-field
+					.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						input#cgpa.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='cgpa')
+						label.mdl-textfield__label(for='CGPA') CGPA
+						span.mdl-textfield__error Input is not a number!
+					br
+					br
+					.mdl-textfield.mdl-js-textfield
+						textarea#experience.mdl-textfield__input(type='text', rows='5',name='experience')
+						label.mdl-textfield__label(for='experience') Any previous experience in this field ?
+					br
+					br
+					button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply
+			else
+				h4 You have applied for this project

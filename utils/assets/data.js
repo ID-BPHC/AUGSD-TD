@@ -76,6 +76,12 @@ var portals = [{
     icon: "feedback",
     active: false,
     admin: true
+}, {
+    displayName: "Project Allotment",
+    name: "project-allotment-student",
+    icon: "feedback",
+    active: false,
+    admin: false
 }];
 
 var superUsers = [{
