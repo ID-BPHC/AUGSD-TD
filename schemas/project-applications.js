@@ -7,7 +7,7 @@ var projectApplicationsSchema = new Schema({
     cgpa: Number,
     experience: String,
     courseCode: String,
-    approved: {
+    status: {
         type: String,
         default: "P"
     },
