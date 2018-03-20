@@ -12,25 +12,28 @@ block content
 	div.mdl-cell.mdl-cell--12-col
 		center
 			div
-				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.center
-					thead
-						tr
-							th.mdl-data-table__cell--non-numeric Title
-							th.mdl-data-table__cell--non-numeric Status
-							th.mdl-data-table__cell--non-numeric Last Updated
-							th.mdl-data-table__cell--non-numeric
-					tbody
-						for application in applications
+				if applications.length !== 0
+					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.center
+						thead
 							tr
-								td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
-								td.mdl-data-table__cell--non-numeric
-									if application.status == "P"
-										| Pending
-									if application.status == "A"
-										| Approved
-									if application.status == "R"
-										| Rejected
-								td.mdl-data-table__cell--non-numeric #{application.updated.toString().substring(4,21)}
-								td.mdl-data-table__cell--non-numeric
-									if application.status == "P"
-										a(href="#{rootURL}/#{reqPortal}/manage/delete/#{application._id}") Delete
+								th.mdl-data-table__cell--non-numeric Title
+								th.mdl-data-table__cell--non-numeric Status
+								th.mdl-data-table__cell--non-numeric Last Updated
+								th.mdl-data-table__cell--non-numeric
+						tbody
+							for application in applications
+								tr
+									td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
+									td.mdl-data-table__cell--non-numeric
+										if application.status == "P"
+											| Pending
+										if application.status == "A"
+											| Approved
+										if application.status == "R"
+											| Rejected
+									td.mdl-data-table__cell--non-numeric #{application.updated.toString().substring(4,21)}
+									td.mdl-data-table__cell--non-numeric
+										if application.status == "P"
+											a(href="#{rootURL}/#{reqPortal}/manage/delete/#{application._id}") Delete
+				else
+					h6 No Applications Found
