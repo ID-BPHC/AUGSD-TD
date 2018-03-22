@@ -30,7 +30,7 @@ block content
 									tbody
 										for project in projects
 											tr(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/view/#{project._id}")')
-												td.mdl-data-table__cell--non-numeric #{project.title}
+												td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)}...
 												td.mdl-data-table__cell--non-numeric #{project.description}
 												td.mdl-data-table__cell--non-numeric #{project.name}
 												if(project.type=='lop')

@@ -30,7 +30,7 @@ block content
 						tbody
 							for project in projects
 								tr(onclick='window.location.replace("#{rootURL}/#{reqPortal}/view/#{project._id}")')
-									td.mdl-data-table__cell--non-numeric #{project.title}
+									td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)} ...
 									td.mdl-data-table__cell--non-numeric #{project.instructorName}
 									td.mdl-data-table__cell--non-numeric #{project.type.toUpperCase()}
 									td.mdl-data-table__cell--non-numeric #{project.updated}
