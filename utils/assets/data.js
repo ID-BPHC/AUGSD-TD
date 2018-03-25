@@ -73,15 +73,21 @@ var portals = [{
 }, {
     displayName: "Project Create",
     name: "project-allotment-prof-create",
-    icon: "feedback",
+    icon: "assignment",
     active: false,
     admin: true
 }, {
     displayName: "Project Allotment",
     name: "project-allotment-student",
-    icon: "feedback",
+    icon: "assignment",
     active: false,
     admin: false
+}, {
+    displayName: "Project Applications",
+    name: "project-applications",
+    icon: "assignment",
+    active: false,
+    admin: true
 }];
 
 var superUsers = [{
