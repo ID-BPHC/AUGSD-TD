@@ -5,10 +5,29 @@ var fq = require('fuzzquire');
 var mongoose = require('mongoose');
 var Promise = require('promise');
 const { check, validationResult } = require('express-validator/check');
+var path = require('path');
 
 var projectsModel = fq('schemas/projects');
 var headsModel = fq('schemas/project-heads');
 var applicationsModel = fq('schemas/project-applications');
+
+router.use(function (req, res, next) {
+	if (req.user.email.indexOf('f2017') == 0) {
+		return res.renderState('custom_errors', {
+			redirect: "/dashboard",
+			timeout: 2,
+			supertitle: "Not Eligible",
+			message: "2017 Batch is not eligible for project type courses",
+			details: " "
+		});
+	} else {
+		next();
+	}
+});
+
+router.get('/faq', function(req, res, next){
+	res.sendFile(path.join(__dirname, './faq.pdf'));
+});
 
 router.get('/view/:id', function (req, res, next) {
 	projectsModel.aggregate([{
@@ -109,6 +128,10 @@ router.post('/view', function (req, res, next) {
 			$match: {
 				department: req.body.departments
 			}
+		, }, {
+			$sort: {
+				updated: -1
+			}
 		}],
 		function (err, projects) {
 			if (err) {
@@ -173,14 +196,14 @@ router.post('/apply/:id', [check('cgpa').exists().withMessage('No CGPA').isFloat
 
 });
 
-router.get('/manage/delete/:id', function(req, res, next){
+router.get('/manage/delete/:id', function (req, res, next) {
 
 	applicationsModel.remove({
 		_id: req.sanitize(req.params.id),
 		status: "P",
 		student: req.sanitize(req.user.email)
-	}, function(err){
-		if(err) {
+	}, function (err) {
+		if (err) {
 			console.log(err);
 			return res.terminate("Could not delete application");
 		}

@@ -11,6 +11,7 @@ block content
 	div.mdl-cell.mdl-cell--12-col.center
 		h2 Project Allotment
 		h4 #{department}
+		h6 Note: This list may be updated. Please check for updates regularly.
 		hr		
 	div.mdl-cell.mdl-cell--12-col.center
 		if projects.length !== 0
@@ -26,14 +27,12 @@ block content
 								th.mdl-data-table__cell--non-numeric Title
 								th.mdl-data-table__cell--non-numeric Instructor
 								th.mdl-data-table__cell--non-numeric Type
-								th.mdl-data-table__cell--non-numeric Last Updated
 						tbody
 							for project in projects
 								tr(onclick='window.location.replace("#{rootURL}/#{reqPortal}/view/#{project._id}")')
 									td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)} ...
 									td.mdl-data-table__cell--non-numeric #{project.instructorName}
 									td.mdl-data-table__cell--non-numeric #{project.type.toUpperCase()}
-									td.mdl-data-table__cell--non-numeric #{project.updated}
 		else
 			br
 			h6 No Projects Found
