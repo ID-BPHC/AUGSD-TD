@@ -1,0 +1,57 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		.application {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+		.green {
+			background: #1B5E20 !important;
+			color: #ffffff !important;
+			margin: 5px !important; 
+		}
+		.red {
+			background: #b71c1c !important;
+			color: #ffffff !important;
+			margin: 5px !important;
+		}
+		.red:hover {
+			color: black !important;
+		}
+		.green:hover {
+			color: black !important;
+		}
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('project-applications').classList.add('menuselectify')
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Project Applications
+		h4 #{project.title}
+		hr
+	div.mdl-cell.mdl-cell--12-col.center
+		if applications.length > 0
+			for application in applications
+				div.mdl-grid.application
+					div.mdl-cell.mdl-cell--8-col.center
+						div.mdl-grid
+							div.mdl-cell.mdl-cell--12-col.center
+								| Name
+							div.mdl-cell.mdl-cell--12-col.center #{application.student}
+							div.mdl-cell.mdl-cell--12-col.center CGPA: #{application.cgpa}
+							div.mdl-cell.mdl-cell--12-col.center
+								p #{application.experience}
+					div.mdl-cell.mdl-cell--2-col.center
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}')")
+							i.material-icons done
+							| Approve
+					div.mdl-cell.mdl-cell--2-col.center
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}')")
+							i.material-icons cancel
+							| Reject
+				br
+		else
+			br
+			h6 No Applications
