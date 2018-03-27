@@ -24,6 +24,13 @@ block content
 		.green:hover {
 			color: black !important;
 		}
+		.head {
+			text-align: left;
+			font-weight: bold;
+		}
+		.value {
+			text-align: left
+		}
 	script(type='text/javascript').
 		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
 		document.getElementById('project-applications').classList.add('menuselectify')
@@ -37,11 +44,15 @@ block content
 				div.mdl-grid.application
 					div.mdl-cell.mdl-cell--8-col.center
 						div.mdl-grid
-							div.mdl-cell.mdl-cell--12-col.center
-								| Name
-							div.mdl-cell.mdl-cell--12-col.center #{application.student}
-							div.mdl-cell.mdl-cell--12-col.center CGPA: #{application.cgpa}
-							div.mdl-cell.mdl-cell--12-col.center
+							div.mdl-cell.mdl-cell--6-col.head Name :
+							div.mdl-cell.mdl-cell--6-col.value #{application.studentName}
+							div.mdl-cell.mdl-cell--6-col.head ID Number :
+							div.mdl-cell.mdl-cell--6-col.value #{application.studentID}
+							div.mdl-cell.mdl-cell--6-col.head Email :
+							div.mdl-cell.mdl-cell--6-col.value #{application.student}
+							div.mdl-cell.mdl-cell--6-col.head CGPA :
+							div.mdl-cell.mdl-cell--6-col.value #{application.cgpa}
+							div.mdl-cell.mdl-cell--12-col.value
 								p #{application.experience}
 					div.mdl-cell.mdl-cell--2-col.center
 						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}')")
