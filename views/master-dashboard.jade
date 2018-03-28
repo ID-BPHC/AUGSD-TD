@@ -190,16 +190,21 @@ html
 						//- img(src="/images/logo/idlogo-02.png" style="outline: 0; max-width: 100%; height: auto;")
 						| Instruction Division
 					nav.mdl-navigation.inner.scrollbar-container.scroll-box.scroll-bar-wrap
-						a.mdl-navigation__link.menuselectify(href=rootURL,id='dashboard')
-							i.material-icons(style='padding-right:20px') dashboard
-							| Dashboard
+						if dashboard.type == "Student"
+							a.mdl-navigation__link.menuselectify(href=rootURL,id='dashboard')
+								i.material-icons(style='padding-right:20px') dashboard
+								| Dashboard
+						else 
+							a.mdl-navigation__link.menuselectify(href=rootURL,id='admin')
+								i.material-icons(style='padding-right:20px') dashboard
+								| Dashboard
 						a.mdl-navigation__link(href=rootURL + '/profile',id='profile')
 							i.material-icons(style='padding-right:20px') account_circle
-							| My Profile
+							| My Profile 
 						a.mdl-navigation__link(href='http://id.bits-hyderabad.ac.in/moodle/mod/forum/view.php?id=1',id='web')
 							i.material-icons(style='padding-right:20px') web
 							| Site News
-						a.mdl-navigation__link(href=rootURL + '/bug',id='bugreport')
+						a.mdl-navigation__link(href=rootURL + '/bug',id='bug')
 							i.material-icons(style='padding-right:20px') bug_report
 							| Bug Report
 						hr
@@ -229,6 +234,10 @@ html
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 			gtag('config', 'UA-107202501-1');
+		script(type='text/javascript').
+			document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+			document.getElementById('#{reqPortal}').classList.add('menuselectify')
+
 		script.
 			function loadScript(src) {
 				return new Promise(function (resolve, reject) {
