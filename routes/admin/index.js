@@ -165,6 +165,7 @@ router.use(function(req, res, next) {
             params.portals = portals;
             params.user = req.user;
             params.rootURL = '/admin';
+            params.switched = req.session.switched;
             params.dashboard = {
                 type: "Administrator"
             };
@@ -173,6 +174,11 @@ router.use(function(req, res, next) {
         });
     };
     next();
+});
+
+router.get('/switch-back', function(req, res, next) {
+    req.session.switched = false;
+    return res.redirect('/admin');
 });
 
 router.get('/', function(req, res, next) {

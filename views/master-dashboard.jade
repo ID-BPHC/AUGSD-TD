@@ -178,10 +178,16 @@ html
 						img.avatar(src=profileImage alt=user.name href=rootURL + '/profile' onclick="window.location.replace('#{rootURL}/profile')")
 						a.mdl-navigation__link(href=rootURL + '/profile')
 							p.profile-header #{user.name}
-							p.profile-subheader #{dashboard.type}
+							p.profile-subheader
+								if switched
+									| Switched Session
+								else
+									|#{dashboard.type}
 						button#demo-menu-lower-right.mdl-button.mdl-js-button.mdl-button--icon.stuff
 							i.material-icons more_vert
 						ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='demo-menu-lower-right')
+							if switched
+								li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/switch-back')") Switch Back
 							li(class="mdl-menu__item" onclick="window.location.replace('#{rootURL}/logout')") Logout
 
 			// Main Content
