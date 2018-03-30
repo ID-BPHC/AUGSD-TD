@@ -6,18 +6,18 @@ var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
 
-	adminsModel.find({}, function(err, admins){
+	adminsModel.find({}, {}, { sort: { "email": 1 } }, function (err, users) {
 
-		if(err) {
+		if (err) {
 			console.log(err);
 			return res.terminate("Could not find admins");
 		}
 
 		return res.renderState('admin/portals/control/switch-user', {
-			admins: admins
+			users: users
 		});
 
-	});	
+	});
 
 });
 
