@@ -1,13 +1,14 @@
-var gulp = require('gulp');
-var os = require('os');
-var prettify = require('gulp-jsbeautifier');
-var jshint = require('gulp-jshint');
-var nodemon = require('gulp-nodemon');
-var spawn = require('child_process').spawn;
-var mongodbData = require('gulp-mongodb-data');
-var gulp = require('gulp-help')(require('gulp'));
-var runSequence = require('run-sequence');
-var minify = require('gulp-minifier');
+const os = require('os');
+const prettify = require('gulp-jsbeautifier');
+const eslint = require('gulp-eslint');
+const nodemon = require('gulp-nodemon');
+const spawn = require('child_process').spawn;
+const mongodbData = require('gulp-mongodb-data');
+const gulp = require('gulp-help')(require('gulp'));
+const runSequence = require('run-sequence');
+const minify = require('gulp-minifier');
+const rename = require("gulp-rename");
+const del = require('del');
 
 // gulp.task('prettify', 'Prettify all server side js.', function () {
 //     gulp.src(['./*.js', '!./gulpfile.js', './middleware/**/*.js', './public/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
@@ -21,8 +22,7 @@ gulp.task('lint', 'Lints all server side js.', function () {
     gulp.src(['./*.js', './middleware/**/*.js', './routes/**/*.js', './schemas/**/*.js', './*.js'], {
             base: './'
         })
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(eslint());
 });
 
 gulp.task('metadata', 'Imports default portals definitions.', function () {
@@ -84,4 +84,19 @@ gulp.task('run', 'Run node server.', function (cb) {
 
 gulp.task('check', 'Prettifying and checks linting.', function () {
     runSequence('install', 'lint', 'run');
+});
+
+gulp.task('switch-to-pug','Switches jade files to pug.', function() {
+    console.log('\nCreated:\n');
+    gulp.src(['./views/**/*.jade'])
+        .pipe(rename(function(path){
+            path.extname = ".pug";
+            console.log(path.dirname+'/'+path.basename + path.extname+'\n');
+        }))
+        .pipe(gulp.dest('./views/'))
+        .on('end', function(){
+            del(['./views/**/*.jade'], { force: true }).then(function(paths){
+                console.log('\nDeleted:\n\n', paths.join('\n'));
+            });
+        });
 });
