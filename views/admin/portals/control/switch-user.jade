@@ -19,7 +19,7 @@ block content
 					label.mdl-textfield__label(for='users') Select User
 					ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='users')
 						each user in users
-							li.mdl-menu__item(data-val='#{user._id}') #{user.email} | #{user.name} 
+							li.mdl-menu__item #{user.email} | #{user.name} 
 				br
 				br
 				button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
