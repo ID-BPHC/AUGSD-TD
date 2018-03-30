@@ -89,4 +89,97 @@ router.get('/project/:id', function (req, res, next) {
 	});
 });
 
+router.get('/approve/:aid/project/:pid', function (req, res, next) {
+
+	var applicationID = req.sanitize(req.params.aid);
+	var projectID = req.sanitize(req.params.pid);
+
+	projectsModel.find({ _id: projectID, instructor: req.sanitize(req.user.email) }, function (err, projects) {
+
+		if (err) {
+			console.log(err);
+			return res.terminate("Could Not Find Project");
+		}
+
+		if (projects.length == 0) {
+
+			return res.status(403).end();
+
+		} else {
+
+			applicationsModel.update({ _id: applicationID, project: projectID }, { $set: { status: "A" } }, function (err, num) {
+
+				if (err) {
+					console.log(err);
+					return res.terminate("Could Not Aprove Application");
+				}
+
+				return res.redirect('/admin/project-applications/project/' + projectID);
+			});
+		}
+	});
+});
+
+router.get('/reject/:aid/project/:pid', function (req, res, next) {
+
+	var applicationID = req.sanitize(req.params.aid);
+	var projectID = req.sanitize(req.params.pid);
+
+	projectsModel.find({ _id: projectID, instructor: req.sanitize(req.user.email) }, function (err, projects) {
+
+		if (err) {
+			console.log(err);
+			return res.terminate("Could Not Find Project");
+		}
+
+		if (projects.length == 0) {
+
+			return res.status(403).end();
+
+		} else {
+
+			applicationsModel.update({ _id: applicationID, project: projectID }, { $set: { status: "R" } }, function (err, num) {
+
+				if (err) {
+					console.log(err);
+					return res.terminate("Could Not Aprove Application");
+				}
+
+				return res.redirect('/admin/project-applications/project/' + projectID);
+			});
+		}
+	});
+});
+
+router.get('/undo/:aid/project/:pid', function (req, res, next) {
+
+	var applicationID = req.sanitize(req.params.aid);
+	var projectID = req.sanitize(req.params.pid);
+
+	projectsModel.find({ _id: projectID, instructor: req.sanitize(req.user.email) }, function (err, projects) {
+
+		if (err) {
+			console.log(err);
+			return res.terminate("Could Not Find Project");
+		}
+
+		if (projects.length == 0) {
+
+			return res.status(403).end();
+
+		} else {
+
+			applicationsModel.update({ _id: applicationID, project: projectID }, { $set: { status: "P" } }, function (err, num) {
+
+				if (err) {
+					console.log(err);
+					return res.terminate("Could Not Aprove Application");
+				}
+
+				return res.redirect('/admin/project-applications/project/' + projectID);
+			});
+		}
+	});
+});
+
 module.exports = router;
