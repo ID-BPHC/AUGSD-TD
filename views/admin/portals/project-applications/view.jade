@@ -55,11 +55,11 @@ block content
 							div.mdl-cell.mdl-cell--12-col.value
 								p #{application.experience}
 					div.mdl-cell.mdl-cell--2-col.center
-						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}')")
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}/approve/#{application._id}/project/#{project._id}')")
 							i.material-icons done
 							| Approve
 					div.mdl-cell.mdl-cell--2-col.center
-						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}')")
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}/reject/#{application._id}/project/#{project._id}')")
 							i.material-icons cancel
 							| Reject
 				br
