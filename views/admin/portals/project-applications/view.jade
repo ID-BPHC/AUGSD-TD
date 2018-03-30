@@ -54,14 +54,34 @@ block content
 							div.mdl-cell.mdl-cell--6-col.value #{application.cgpa}
 							div.mdl-cell.mdl-cell--12-col.value
 								p #{application.experience}
-					div.mdl-cell.mdl-cell--2-col.center
-						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}/approve/#{application._id}/project/#{project._id}')")
-							i.material-icons done
-							| Approve
-					div.mdl-cell.mdl-cell--2-col.center
-						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}/reject/#{application._id}/project/#{project._id}')")
-							i.material-icons cancel
-							| Reject
+					if application.status == "P"
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}/approve/#{application._id}/project/#{project._id}')")
+								i.material-icons done
+								| Approve
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}/reject/#{application._id}/project/#{project._id}')")
+								i.material-icons cancel
+								| Reject
+
+					else if application.status == "A"
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.green
+								i.material-icons done
+								| Approved
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="window.location.replace('#{rootURL}/#{reqPortal}/undo/#{application._id}/project/#{project._id}')")
+								i.material-icons undo
+								| Undo
+					else
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.red
+								i.material-icons cancel
+								| Rejected
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="window.location.replace('#{rootURL}/#{reqPortal}/undo/#{application._id}/project/#{project._id}')")
+								i.material-icons undo
+								| Undo
 				br
 		else
 			br
