@@ -21,4 +21,13 @@ router.get('/', function (req, res, next) {
 
 });
 
+router.post('/switch', function (req, res, next) {
+
+	req.session.switched = true;
+	req.session.newUser = req.sanitize(req.body.users).split('|')[0].trim();
+	req.session.save();
+	return res.redirect('/admin');
+	
+});
+
 module.exports = router;

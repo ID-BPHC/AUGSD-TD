@@ -117,6 +117,7 @@ router.get('/auth/google/callback',
                     } else {
                         req.session.profileImage = req.sanitize(req.user._json.image.url);
                         req.session.userType = "admin";
+                        req.session.switched = false;
                         res.redirect('/admin');
                     }
                 });
