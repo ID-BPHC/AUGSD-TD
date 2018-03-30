@@ -196,7 +196,7 @@ router.post('/bug', function(req, res, next) {
         category: req.sanitize(req.body.feedbacklist),
         report: req.sanitize(req.body.feedback),
         useragent: req.sanitize(req.headers['user-agent']),
-        student: req.session.passport.user
+        student: req.user.email
     };
     bugsModel.create(dataStore, function(err, response) {
         if (err) {

@@ -7,7 +7,7 @@ var adminModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
     try {
-        let usertype = getProfessorType(req.session.passport.user);
+        let usertype = getProfessorType(req.user.email);
         usertype.then(val => {
             console.log(val);
             if (val.admin) {
@@ -63,7 +63,7 @@ router.get('/', function (req, res, next) {
                 });
             } else {
                 projectsModel.find({
-                    instructor: req.session.passport.user
+                    instructor: req.user.email
                 }).lean(true).exec(
                     (err, result) => {
                         console.log(result);
@@ -201,7 +201,7 @@ router.post('/create', function (req, res, next) {
         let data = {
             title: req.sanitize(req.body.title),
             description: req.sanitize(req.body.description),
-            instructor: req.session.passport.user
+            instructor: req.user.email
         };
         if(data.description.length == 0){
             data.description = "";
@@ -242,7 +242,7 @@ router.post('/create', function (req, res, next) {
 router.get('/create', function (req, res, next) {
     try {
         adminModel.findOne({
-            email: req.session.passport.user
+            email: req.user.email
         }, (err, result0) => {
             if (err)
                 return res.terminate(err);
@@ -256,7 +256,7 @@ router.get('/create', function (req, res, next) {
                     });
                 } else {
                     projectHeadModel.findOne({
-                        instructor: req.session.passport.user
+                        instructor: req.user.email
                     }, (err, result1) => {
                         if (err)
                             return res.terminate(err);

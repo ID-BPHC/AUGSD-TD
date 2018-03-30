@@ -24,7 +24,7 @@ router.get('/getCourses', function(req, res, next) {
     if (req.session.userType === "user") {
         // console.log(req.session);
         studentsModel.find({
-            email: req.session.passport.user,
+            email: req.user.email,
         }, {
             name: 0,
             idNumber: 0,
@@ -96,7 +96,7 @@ router.get('/getFeedback/:email/:skip', function(req, res, next) {
             feedback: data[0]
         }));
     } else if (req.session.userType === "admin") {
-        Promise.all([getInstructorFeedback(req.session.passport.user, req.params.skip)]).then(data => res.json({
+        Promise.all([getInstructorFeedback(req.user.email, req.params.skip)]).then(data => res.json({
             feedback: data[0]
         }));
     } else {

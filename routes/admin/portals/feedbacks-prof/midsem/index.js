@@ -7,7 +7,7 @@ var adminsModel = fq('schemas/admins');
 router.get('/', function (req, res, next) {
     try {
         feedbacksModel.find({
-                instructor: req.session.passport.user
+                instructor: req.user.email
             }, {
                 __v: 0
             }, {
@@ -50,7 +50,7 @@ router.get('/midsem/view/:id', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.id),
-            instructor: req.session.passport.user
+            instructor: req.user.email
         }, (err, result) => {
             if (err) {
                 return res.terminate(err);

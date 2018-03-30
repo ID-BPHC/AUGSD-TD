@@ -64,7 +64,7 @@ router.post('/apply', [
 		reason: req.sanitize(req.body.reason),
 		nodejs: typeof req.body.nodejs !== 'undefined' ? true : false
 	};
-	data.user = req.session.passport.user.split("@")[0];
+	data.user = req.user.email.split("@")[0];
 	if (req.files.resume == undefined) {
 		return res.renderState('form-errors', {
 			errors: [{
