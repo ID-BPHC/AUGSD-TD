@@ -11,22 +11,23 @@ block content
 
 	div.mdl-cell.mdl-cell--12-col
 		center
-			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-				thead
-					tr
-						th.mdl-data-table__cell--non-numeric Room
-						th.mdl-data-table__cell--non-numeric From
-						th.mdl-data-table__cell--non-numeric To
-						th.mdl-data-table__cell--non-numeric Booked By
-						th.mdl-data-table__cell--non-numeric Phone
-				tbody
-					for booking in bookings
-						tr(onclick='window.location.replace("#{rootURL}/room-booking-approval/view/#{booking._id}")')
-							td.mdl-data-table__cell--non-numeric #{booking.number}
-							td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
-							td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
-							td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
-							td.mdl-data-table__cell--non-numeric #{booking.phone}
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Room
+							th.mdl-data-table__cell--non-numeric From
+							th.mdl-data-table__cell--non-numeric To
+							th.mdl-data-table__cell--non-numeric Booked By
+							th.mdl-data-table__cell--non-numeric Phone
+					tbody
+						for booking in bookings
+							tr(onclick='window.location.replace("#{rootURL}/room-booking-approval/view/#{booking._id}")')
+								td.mdl-data-table__cell--non-numeric #{booking.number}
+								td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
+								td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
+								td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
+								td.mdl-data-table__cell--non-numeric #{booking.phone}
 		script.
 			window.setInterval(function(){
 				window.location.reload();

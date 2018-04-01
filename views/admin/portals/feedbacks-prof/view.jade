@@ -25,14 +25,15 @@ block content
 				h3 Semester Feedback
 	div.mdl-cell.mdl-cell--12-col
 		center
-			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-				tbody
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Course ID
-						td.mdl-data-table__cell--non-numeric #{feedback.courseID}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Section
-						td.mdl-data-table__cell--non-numeric #{feedback.section}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Feedback
-						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses}
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					tbody
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Course ID
+							td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Section
+							td.mdl-data-table__cell--non-numeric #{feedback.section}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Feedback
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses}

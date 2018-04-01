@@ -25,17 +25,18 @@ block content
 				h3(style='text-align:center') 24x7 Feedback
 	div.mdl-cell.mdl-cell--12-col
 		center
-			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-				tbody
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Instructor Name
-						td.mdl-data-table__cell--non-numeric #{results.name}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Course ID
-						td.mdl-data-table__cell--non-numeric #{results.feedback.courseID}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Section
-						td.mdl-data-table__cell--non-numeric #{results.feedback.section}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Feedback
-						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{results.feedback.responses}
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					tbody
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Instructor Name
+							td.mdl-data-table__cell--non-numeric #{results.name}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Course ID
+							td.mdl-data-table__cell--non-numeric #{results.feedback.courseID}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Section
+							td.mdl-data-table__cell--non-numeric #{results.feedback.section}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Feedback
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{results.feedback.responses}
