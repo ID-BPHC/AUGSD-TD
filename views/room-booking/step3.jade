@@ -33,32 +33,34 @@ block content
 						else
 							p Your request for room booking has been placed. Wait for the confirmation mail from Instruction Division.
 						center
-							table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-								thead
-									tr
-										th.mdl-data-table__cell--non-numeric Room Number
-										th.mdl-data-table__cell--non-numeric Start Time
-										th.mdl-data-table__cell--non-numeric End Time
-								tbody
-									tr
-										td.mdl-data-table__cell--non-numeric #{number}
-										td.mdl-data-table__cell--non-numeric #{start}
-										td.mdl-data-table__cell--non-numeric #{end}
+							div.table-responsive
+								table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+									thead
+										tr
+											th.mdl-data-table__cell--non-numeric Room Number
+											th.mdl-data-table__cell--non-numeric Start Time
+											th.mdl-data-table__cell--non-numeric End Time
+									tbody
+										tr
+											td.mdl-data-table__cell--non-numeric #{number}
+											td.mdl-data-table__cell--non-numeric #{start}
+											td.mdl-data-table__cell--non-numeric #{end}
 							br
 							br
-							table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-								thead
-									tr
-										th.mdl-data-table__cell--non-numeric Phone Number
-										th.mdl-data-table__cell--non-numeric Audio Visual Requirement
-								tbody
-									tr
-										td.mdl-data-table__cell--non-numeric #{phone}
-										td.mdl-data-table__cell--non-numeric
-											if av
-												| Yes
-											else
-												| No
+							div.table-responsive
+								table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+									thead
+										tr
+											th.mdl-data-table__cell--non-numeric Phone Number
+											th.mdl-data-table__cell--non-numeric Audio Visual Requirement
+									tbody
+										tr
+											td.mdl-data-table__cell--non-numeric #{phone}
+											td.mdl-data-table__cell--non-numeric
+												if av
+													| Yes
+												else
+													| No
 
 				.mdl-step__actions
 					button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple', onclick='window.location.replace("#{rootURL}")')

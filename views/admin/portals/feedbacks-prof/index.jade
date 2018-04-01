@@ -11,17 +11,18 @@ block content
 	div.mdl-cell.mdl-cell--12-col
 		center
 			div
-				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-					thead
-						tr
-							th.mdl-data-table__cell--non-numeric Course ID
-							th.mdl-data-table__cell--non-numeric Course Section
-							th.mdl-data-table__cell--non-numeric Feedback
-							th.mdl-data-table__cell--non-numeric Date of Feedback
-					tbody
-						for feedback in feedbacks
-							tr(onclick='window.location.replace("#{rootURL}/feedbacks-prof/view/#{feedback._id}")')
-								td.mdl-data-table__cell--non-numeric #{feedback.courseID}
-								td.mdl-data-table__cell--non-numeric #{feedback.section}
-								td.mdl-data-table__cell--non-numeric #{feedback.responses}
-								td.mdl-data-table__cell--non-numeric #{feedback.createdOn}
+				div.table-responsive
+					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+						thead
+							tr
+								th.mdl-data-table__cell--non-numeric Course ID
+								th.mdl-data-table__cell--non-numeric Course Section
+								th.mdl-data-table__cell--non-numeric Feedback
+								th.mdl-data-table__cell--non-numeric Date of Feedback
+						tbody
+							for feedback in feedbacks
+								tr(onclick='window.location.replace("#{rootURL}/feedbacks-prof/view/#{feedback._id}")')
+									td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+									td.mdl-data-table__cell--non-numeric #{feedback.section}
+									td.mdl-data-table__cell--non-numeric #{feedback.responses}
+									td.mdl-data-table__cell--non-numeric #{feedback.createdOn}

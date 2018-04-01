@@ -25,21 +25,22 @@ block content
 				h3 Mid-Sem Feedback
 	div.mdl-cell.mdl-cell--12-col
 		center
-			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-				tbody
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Course ID
-						td.mdl-data-table__cell--non-numeric #{feedback.courseID}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Section
-						td.mdl-data-table__cell--non-numeric #{feedback.section}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Question 1
-						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[0]}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Question 2
-						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[1]}
-					tr
-						td.mdl-data-table__cell--non-numeric.custom_header Question 3
-						td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[2]}		
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					tbody
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Course ID
+							td.mdl-data-table__cell--non-numeric #{feedback.courseID}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Section
+							td.mdl-data-table__cell--non-numeric #{feedback.section}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Question 1
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[0]}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Question 2
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[1]}
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Question 3
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{feedback.responses[2]}		
 

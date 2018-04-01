@@ -6,18 +6,19 @@ block content
 		h2 Manage Holidays
 	div.mdl-cell.mdl-cell--12-col
 		center
-			table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-				thead
-					tr
-						th.mdl-data-table__cell--non-numeric Date
-						th.mdl-data-table__cell--non-numeric Description
-				tbody
-					for holiday in holidays
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
 						tr
-							td.mdl-data-table__cell--non-numeric #{holiday.date}
-							td.mdl-data-table__cell--non-numeric #{holiday.description}	
-							td.mdl-data-table__cell--non-numeric
-								a(href='./holidays/delete/#{holiday._id}') Delete
+							th.mdl-data-table__cell--non-numeric Date
+							th.mdl-data-table__cell--non-numeric Description
+					tbody
+						for holiday in holidays
+							tr
+								td.mdl-data-table__cell--non-numeric #{holiday.date}
+								td.mdl-data-table__cell--non-numeric #{holiday.description}	
+								td.mdl-data-table__cell--non-numeric
+									a(href='./holidays/delete/#{holiday._id}') Delete
 			br
 			hr
 			h3 Add Holiday
