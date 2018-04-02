@@ -33,6 +33,7 @@
     "https-proxy-agent": "^2.1.1",
     "jade": "~1.11.0",
     "jshint": "^2.9.5",
+    "json2csv": "^4.0.2",
     "material-components-web": "^0.32.0",
     "moment": "^2.20.0",
     "mongoose": "^5.0.10",
