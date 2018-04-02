@@ -88,6 +88,12 @@ var portals = [{
     icon: "assignment",
     active: false,
     admin: true
+}, {
+    displayName: "Export Project List",
+    name: "project-list",
+    icon: "import_export",
+    active: false,
+    admin: true
 }];
 
 var superUsers = [{
@@ -123,7 +129,7 @@ var superUsers = [{
 }];
 
 module.exports = {
-	
+
     portals: portals,
     superUsers: superUsers
 
