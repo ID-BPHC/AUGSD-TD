@@ -62,11 +62,28 @@ router.get('/export/:status', function (req, res, next) {
 		$unwind: '$Project'
 	}], function (err, list) {
 
-		const json2csvParser = new Json2csvParser();
-		const csv = json2csvParser.parse(list);
+		if (list.length == 0) {
 
-		console.log(csv);
+			return res.renderState('custom_errors', {
+				redirect: "/admin/project-list",
+				timeout: 2,
+				supertitle: "No Applications",
+				callback: "/",
+				message: "There are no applications in this category",
+				details: "."
+			});
 
+		} else {
+
+			const json2csvParser = new Json2csvParser();
+			const csv = json2csvParser.parse(list);
+
+			var filenameHash = { 'P': 'Pending.csv', 'A': 'Approved.csv', 'R': 'Rejected.csv' };
+			res.attachment(filenameHash[status]);
+
+			return res.status(200).send(csv);
+
+		}
 	});
 });
 
