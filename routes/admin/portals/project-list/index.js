@@ -62,6 +62,11 @@ router.get('/export/:status', function (req, res, next) {
 		$unwind: '$Project'
 	}], function (err, list) {
 
+		if (err) {
+			console.log(err);
+			return res.terminate("Could not load the list");
+		}
+
 		if (list.length == 0) {
 
 			return res.renderState('custom_errors', {
