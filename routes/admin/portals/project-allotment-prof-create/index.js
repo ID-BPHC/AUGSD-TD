@@ -29,6 +29,9 @@ router.get('/', function (req, res, next) {
                         return res.renderState('admin/portals/project-allotment-prof-create', {
                             projects: result
                         });
+                    }).catch(err => {
+                        console.log(err);
+                        res.terminate(err);
                     });
                 });
             } else if (val.head) {
@@ -104,7 +107,7 @@ function getInstructorName(profmail) {
             if (result != null && result != undefined) {
                 resolve(result.name);
             } else {
-                reject(result);
+                resolve('Missing Professor Data');
             }
         });
     });
@@ -120,7 +123,7 @@ function getProfessorProjects(profmail) {
             if (result != null && result != undefined) {
                 resolve(result);
             } else {
-                reject(result);
+                resolve('Missing Professor Data');
             }
         });
     });
@@ -136,7 +139,7 @@ function getProfessorDepartment(profmail) {
             if (result != null && result != undefined) {
                 resolve(result.department);
             } else
-                reject(result);
+            resolve('Missing Professor Data');
         });
     });
 }
@@ -203,17 +206,15 @@ router.post('/create', function (req, res, next) {
             description: req.sanitize(req.body.description),
             instructor: req.user.email
         };
-        if(data.description.length == 0){
+        if (data.description.length == 0) {
             data.description = "";
         }
         const typeproj = req.sanitize(req.body.lablist);
         if (typeproj == 'Lab Oriented Project (LOP)') {
             data.type = 'lop';
-        }
-        else if (typeproj == 'Design Oriented Project (DOP)') {
+        } else if (typeproj == 'Design Oriented Project (DOP)') {
             data.type = 'dop';
-        }
-        else{
+        } else {
             data.type = 'sop';
         }
         if (req.sanitize(req.body.proflist))
