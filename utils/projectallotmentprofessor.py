@@ -1,6 +1,6 @@
 # WARNING:There should be no commas in the file except csv delimiters
 
-# This generates data for courses schema.
+# This generates data for projectheads schema.
 
 import json
 
@@ -27,7 +27,7 @@ for line in f.readlines():
 	palist['instructor'] = data[instructor]
 	palist['department'] = data[department]
 	palist['name'] = data[name]
-	palist['head'] = 'false'
+	palist['head'] = False
 
 	finalList.append(palist)
 
