@@ -207,7 +207,10 @@ router.post('/create', function (req, res, next) {
             instructor: req.user.email
         };
         if (data.description.length == 0) {
-            data.description = "";
+            data.description = "N/A";
+        }
+        if (data.title.length == 0) {
+            data.description = "N/A";
         }
         const typeproj = req.sanitize(req.body.lablist);
         if (typeproj == 'Lab Oriented Project (LOP)') {
