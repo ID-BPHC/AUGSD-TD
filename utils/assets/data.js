@@ -85,7 +85,7 @@ var portals = [{
 }, {
     displayName: "Project Applications",
     name: "project-applications",
-    icon: "assignment",
+    icon: "format_list_bulleted",
     active: false,
     admin: true
 }, {
