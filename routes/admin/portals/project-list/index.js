@@ -43,11 +43,12 @@ router.get('/export/:status', function (req, res, next) {
 		}
 	}, {
 		$project: {
-			'Student_Name': '$studentForeign.name',
 			'ID_Number': '$studentForeign.idNumber',
+			'Student_Name': '$studentForeign.name',
 			'Instructor': '$instructorForeign.name',
 			'Instructor_Email': '$instructorForeign.instructor',
 			'Project': '$projectForeign.title',
+			'Project_Type': '$projectForeign.type',
 			_id: 0
 		}
 	}, {
@@ -60,6 +61,8 @@ router.get('/export/:status', function (req, res, next) {
 		$unwind: '$Instructor_Email'
 	}, {
 		$unwind: '$Project'
+	}, {
+		$unwind: '$Project_Type'
 	}], function (err, list) {
 
 		if (err) {
