@@ -2,34 +2,122 @@ extends ../../../master-dashboard
 
 block content
 	style.
-		td {
-		cursor: pointer;
+		.application {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+		.green {
+			background: #1B5E20 !important;
+			color: #ffffff !important;
+			margin: 5px !important; 
+		}
+		.red {
+			background: #b71c1c !important;
+			color: #ffffff !important;
+			margin: 5px !important;
+		}
+		.red:hover {
+			color: black !important;
+		}
+		.green:hover {
+			color: black !important;
+		}
+		.head {
+			text-align: left;
+			font-weight: bold;
+		}
+		.value {
+			text-align: left
 		}
 	div.mdl-cell.mdl-cell--12-col.center
-		h2 Project Allotment
-		h4 Your Projects
-		hr		
+		h2 Project Applications
+		hr
 	div.mdl-cell.mdl-cell--12-col.center
-		if projects.length !== 0
+		if applications.length > 0
+			for application in applications
+				if application.status == 'P'
+					div.mdl-grid.application
+						div.mdl-cell.mdl-cell--8-col.center
+							div.mdl-grid
+								div.mdl-cell.mdl-cell--6-col.head Project :
+								div.mdl-cell.mdl-cell--6-col.value #{application.title}
+								div.mdl-cell.mdl-cell--6-col.head Name :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentName}
+								div.mdl-cell.mdl-cell--6-col.head ID Number :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentID}
+								div.mdl-cell.mdl-cell--6-col.head Email :
+								div.mdl-cell.mdl-cell--6-col.value #{application.student}
+								div.mdl-cell.mdl-cell--6-col.head CGPA :
+								div.mdl-cell.mdl-cell--6-col.value #{application.cgpa}
+								div.mdl-cell.mdl-cell--12-col.value
+									p #{application.experience}
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.green(onclick="window.location.replace('#{rootURL}/#{reqPortal}/approve/#{application._id}/project/#{application.projectID}')")
+								i.material-icons done
+								| Approve
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.red(onclick="window.location.replace('#{rootURL}/#{reqPortal}/reject/#{application._id}/project/#{application.projectID}')")
+								i.material-icons cancel
+								| Reject
+					br
 			br
-			h7 Click to view applications
+			br
+			for application in applications
+				if application.status == 'R'
+					div.mdl-grid.application
+						div.mdl-cell.mdl-cell--8-col.center
+							div.mdl-grid
+								div.mdl-cell.mdl-cell--6-col.head Project :
+								div.mdl-cell.mdl-cell--6-col.value #{application.title}
+								div.mdl-cell.mdl-cell--6-col.head Name :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentName}
+								div.mdl-cell.mdl-cell--6-col.head ID Number :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentID}
+								div.mdl-cell.mdl-cell--6-col.head Email :
+								div.mdl-cell.mdl-cell--6-col.value #{application.student}
+								div.mdl-cell.mdl-cell--6-col.head CGPA :
+								div.mdl-cell.mdl-cell--6-col.value #{application.cgpa}
+								div.mdl-cell.mdl-cell--12-col.value
+									p #{application.experience}
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.red
+								i.material-icons cancel
+								| Rejected
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="window.location.replace('#{rootURL}/#{reqPortal}/undo/#{application._id}/project/#{application.projectID}')")
+								i.material-icons undo
+								| Undo
+					br
 			br
 			br
-			center
-				div.table-responsive
-					div.table-responsive
-						table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.center
-							thead
-								tr
-									th.mdl-data-table__cell--non-numeric Title
-									th.mdl-data-table__cell--non-numeric Description
-									th.mdl-data-table__cell--non-numeric Type
-							tbody
-								for project in projects
-									tr(onclick='window.location.replace("#{rootURL}/#{reqPortal}/project/#{project._id}")')
-										td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)} ...
-										td.mdl-data-table__cell--non-numeric #{project.description.substring(0,60)}
-										td.mdl-data-table__cell--non-numeric #{project.type.toUpperCase()}
+			for application in applications
+				if application.status == 'A'
+					div.mdl-grid.application
+						div.mdl-cell.mdl-cell--8-col.center
+							div.mdl-grid
+								div.mdl-cell.mdl-cell--6-col.head Project :
+								div.mdl-cell.mdl-cell--6-col.value #{application.title}
+								div.mdl-cell.mdl-cell--6-col.head Name :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentName}
+								div.mdl-cell.mdl-cell--6-col.head ID Number :
+								div.mdl-cell.mdl-cell--6-col.value #{application.studentID}
+								div.mdl-cell.mdl-cell--6-col.head Email :
+								div.mdl-cell.mdl-cell--6-col.value #{application.student}
+								div.mdl-cell.mdl-cell--6-col.head CGPA :
+								div.mdl-cell.mdl-cell--6-col.value #{application.cgpa}
+								div.mdl-cell.mdl-cell--12-col.value
+									p #{application.experience}
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.green
+								i.material-icons done
+								| Approved
+						div.mdl-cell.mdl-cell--2-col.center
+							button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="window.location.replace('#{rootURL}/#{reqPortal}/undo/#{application._id}/project/#{application.projectID}')")
+								i.material-icons undo
+								| Undo
+					br
 		else
 			br
-			h6 No Projects Found
+			h6 No Applications
