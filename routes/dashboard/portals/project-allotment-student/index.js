@@ -101,6 +101,15 @@ router.get('/view', function (req, res, next) {
 	});
 });
 
+router.get('/update-info', (req,res,next)=>{
+	res.renderState("dashboard/portals/project-allotment-student/update-info");
+});
+
+router.get('/update-info/:id', (req,res,next)=>{
+	res.renderState("dashboard/portals/project-allotment-student/update-info-2");
+});
+
+
 router.post('/view', function (req, res, next) {
 	projectsModel.aggregate(
 		[{

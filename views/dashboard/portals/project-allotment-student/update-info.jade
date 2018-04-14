@@ -1,0 +1,21 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col
+		h2 Project Allotment
+
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div
+				div.table-responsive
+					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+						thead
+							tr
+								th.mdl-data-table__cell--non-numeric Projects
+
+						tbody
+							for project in projects 
+								tr(onclick='window.location.replace("#{rootURL}/project-allotment-student/update-info/#{project._id}")')
+									td.mdl-data-table__cell--non-numeric #{project.desc}
+
+									
