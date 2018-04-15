@@ -94,6 +94,12 @@ var portals = [{
     icon: "import_export",
     active: false,
     admin: true
+}, {
+    displayName: "Project Application Update",
+    name: "project-update",
+    icon: "assignment",
+    active: false,
+    admin: false
 }];
 
 var superUsers = [{
