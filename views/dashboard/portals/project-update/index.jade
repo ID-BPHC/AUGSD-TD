@@ -1,19 +1,40 @@
 extends ../../../master-dashboard
 
 block content
-	div.mdl-cell.mdl-cell--12-col
+	div.mdl-cell.mdl-cell--12-col.center
 		h2 Project Allotment
+		hr
+		h4 Your Applications
 
 	div.mdl-cell.mdl-cell--12-col
 		center
-			div
-				div.table-responsive
-					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+			div.table-responsive
+				if applications.length !== 0
+					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.center
 						thead
 							tr
-								th.mdl-data-table__cell--non-numeric Projects
-
+								th.mdl-data-table__cell--non-numeric Title
+								th.mdl-data-table__cell--non-numeric Course Code
+								th.mdl-data-table__cell--non-numeric Elective Type
+								th.mdl-data-table__cell--non-numeric
 						tbody
-							//- for project in projects 
-							//- 	tr(onclick='window.location.replace("#{rootURL}/project-allotment-student/update-info/#{project._id}")')
-							//- 		td.mdl-data-table__cell--non-numeric #{project.desc}
+							for application in applications
+								tr
+									td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
+
+									td.mdl-data-table__cell--non-numeric
+										if application.course
+											| #{application.course}
+										else
+											| Not Selected
+
+									td.mdl-data-table__cell--non-numeric
+										if application.disciplinary
+											| Disciplinary
+										else
+											| Open
+
+									td.mdl-data-table__cell--non-numeric
+										a(href='#{rootURL}/#{reqPortal}/view/#{application._id}') Update
+				else
+					h6 No Applications Found
