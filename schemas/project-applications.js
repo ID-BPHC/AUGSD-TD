@@ -7,6 +7,7 @@ var projectApplicationsSchema = new Schema({
     cgpa: Number,
     experience: String,
     courseCode: String,
+    disciplinary: Boolean,
     status: {
         type: String,
         default: "P"
