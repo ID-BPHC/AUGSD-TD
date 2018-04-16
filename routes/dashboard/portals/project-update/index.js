@@ -23,9 +23,9 @@ router.get('/', (req, res, next) => {
 		},
 		{
 			$project: {
-				status: 1,
-				updated: 1,
-				"title": "$projectForeign.title"
+				"title": "$projectForeign.title",
+				courseCode: 1,
+				disciplinary: 1
 			}
 		},
 		{
@@ -73,7 +73,24 @@ router.get('/view/:id', (req, res, next) => {
 				});
 			});
 		});
-	});	
+	});
+});
+
+router.post('/update/:id', (req, res, next) => {
+
+	var courseCode = req.sanitize(req.body.courseCode);
+	var disc = req.sanitize(req.body.elective) == "disc" ? true : false;
+
+	applicationsModel.update({ _id: req.sanitize(req.params.id), student: req.sanitize(req.user.email) }, { $set: { courseCode: courseCode, disciplinary: disc } }, function (err, num) {
+		
+		if (err) {
+			console.log(err);
+			return res.terminate("Could not update application");
+		}
+
+		return res.redirect('/dashboard/project-update');
+
+	});
 });
 
 module.exports = router;
