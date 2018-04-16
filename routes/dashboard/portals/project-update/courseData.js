@@ -1,4 +1,5 @@
-let courses = {
+module.exports = {
+
 	"Mechanical Engineering": {
 		"sop": ["ME F266", "MF F266"],
 		"lop": ["ME F366", "ME F367", "MF F366", "MF F367"],
@@ -59,8 +60,5 @@ let courses = {
 		"lop": ["PHY F366", "PHY F367"],
 		"dop": ["PHY F376", "PHY F377"]
 	}
-};
-
-module.exports = {
-	courses: courses
+	
 };
