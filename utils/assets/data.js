@@ -97,7 +97,7 @@ var portals = [{
 }, {
     displayName: "Project Application Update",
     name: "project-update",
-    icon: "assignment",
+    icon: "update",
     active: false,
     admin: false
 }];
