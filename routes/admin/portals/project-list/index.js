@@ -49,6 +49,7 @@ router.get('/export/:status', function (req, res, next) {
 			'Instructor_Email': '$instructorForeign.instructor',
 			'Project': '$projectForeign.title',
 			'Project_Type': '$projectForeign.type',
+			'Department': '$instructorForeign.department',
 			_id: 0
 		}
 	}, {
