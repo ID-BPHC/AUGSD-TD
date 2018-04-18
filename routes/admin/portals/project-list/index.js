@@ -64,6 +64,8 @@ router.get('/export/:status', function (req, res, next) {
 		$unwind: '$Project'
 	}, {
 		$unwind: '$Project_Type'
+	}, {
+		$unwind: '$Department'
 	}], function (err, list) {
 
 		if (err) {
