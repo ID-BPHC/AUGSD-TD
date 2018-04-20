@@ -4,7 +4,7 @@ module.exports = {
 
     //Misc
     siteRoot: siteRoot,
-    fileStorage: ""
+    fileStorage: "",
 
     //Google APIs
     googleClientID: 'YOUR_CLIENT_ID',
