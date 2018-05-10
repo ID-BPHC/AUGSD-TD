@@ -50,6 +50,8 @@ router.get('/export/:status', function (req, res, next) {
 			'Project': '$projectForeign.title',
 			'Project_Type': '$projectForeign.type',
 			'Department': '$instructorForeign.department',
+			courseCode: 1,
+			disciplinary: 1,
 			_id: 0
 		}
 	}, {
