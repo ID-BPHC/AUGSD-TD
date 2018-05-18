@@ -8,6 +8,8 @@ var settingsModel = require('../../schemas/settings');
 
 var auth = require('../../middleware/auth');
 
+var profile = require('./profile');
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function (req, res, next) {
@@ -69,6 +71,7 @@ router.use(session({
 
 router.use(auth.adminPassport.initialize());
 router.use(auth.adminPassport.session());
+router.use('/profile',profile);
 
 router.get('/login', auth.adminPassport.authenticate('google', {
     scope: ['profile', 'email']
@@ -134,6 +137,7 @@ router.get('/logout', function (req, res) {
         res.redirect('/');
     });
 });
+
 
 /********* adminPassport Config End *********/
 
