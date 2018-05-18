@@ -19,9 +19,6 @@ app.set('view engine', 'jade');
 //Favicon
 app.use(favicon(path.join(__dirname, 'public', 'images', 'logo', 'idlogo-short-01.ico')));
 
-var loggermiddleware = require('./middleware/logger');
-app.use(loggermiddleware.logsHandler);
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -31,66 +28,54 @@ app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-if (fs.existsSync('./config.js')) {
+var config = require('./config');
 
-    var config = require('./config');
+mongoose.connect(config.mongooseConnection, {});
 
-    mongoose.connect(config.mongooseConnection, {
-    });
+var api = require('./routes/api');
+var admin = require('./routes/admin');
+var dashboard = require('./routes/dashboard');
+var index = require('./routes');
 
-    var api = require('./routes/api');
-    var admin = require('./routes/admin');
-    var dashboard = require('./routes/dashboard');
-    var index = require('./routes');
-
-    // var referermiddleware = require('./middleware/referer');
-    // app.use(referermiddleware.referHandler);
-
-    // A termination function on any kind of error that occours after login
-    app.use(function (req, res, next) {
-        res.terminate = function (err) {
-            bugsModel.create({
-                category: "Site",
-                error: err,
-                student: req.user.email,
-                useragent: req.sanitize(req.headers['user-agent'])
-            }, function (err1, bug) {
-                if (err1) {
-                    console.log(err1);
-                    res.end();
-                }
-                res.render('custom_errors', {
-                    redirect: "/",
-                    timeout: 5,
-                    supertitle: "Critical Breakdown.",
-                    message: "Server Error",
-                    details: "An unexpected error occoured. Software team has been notified about this. Contact Instruction Division for further assistance."
-                });
+// A termination function on any kind of error that occours after login
+app.use(function (req, res, next) {
+    res.terminate = function (err) {
+        bugsModel.create({
+            category: "Site",
+            error: err,
+            student: req.user.email,
+            useragent: req.sanitize(req.headers['user-agent'])
+        }, function (err1, bug) {
+            if (err1) {
+                console.log(err1);
+                res.end();
+            }
+            res.render('custom_errors', {
+                redirect: "/",
+                timeout: 5,
+                supertitle: "Critical Breakdown.",
+                message: "Server Error",
+                details: "An unexpected error occoured. Software team has been notified about this. Contact Instruction Division for further assistance."
             });
-        };
-        next();
-    });
+        });
+    };
+    next();
+});
 
-    // A function to disable caching on responses
-    app.use(function (req, res, next) {
-        res.nocache = function () {
-            res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-            res.header('Expires', '-1');
-            res.header('Pragma', 'no-cache');
-        };
-        next();
-    });
+// A function to disable caching on responses
+app.use(function (req, res, next) {
+    res.nocache = function () {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+    };
+    next();
+});
 
-    app.use('/admin', admin);
-    app.use('/api', api);
-    app.use('/dashboard', dashboard);
-    app.use('/', index);
-
-} else {
-    var generator = require('./routes/config-generator');
-    app.use('/', generator);
-}
-
+app.use('/admin', admin);
+app.use('/api', api);
+app.use('/dashboard', dashboard);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

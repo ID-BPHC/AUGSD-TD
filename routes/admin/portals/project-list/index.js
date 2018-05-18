@@ -49,6 +49,9 @@ router.get('/export/:status', function (req, res, next) {
 			'Instructor_Email': '$instructorForeign.instructor',
 			'Project': '$projectForeign.title',
 			'Project_Type': '$projectForeign.type',
+			'Department': '$instructorForeign.department',
+			courseCode: 1,
+			disciplinary: 1,
 			_id: 0
 		}
 	}, {
@@ -63,6 +66,8 @@ router.get('/export/:status', function (req, res, next) {
 		$unwind: '$Project'
 	}, {
 		$unwind: '$Project_Type'
+	}, {
+		$unwind: '$Department'
 	}], function (err, list) {
 
 		if (err) {

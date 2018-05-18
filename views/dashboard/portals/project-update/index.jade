@@ -3,6 +3,8 @@ extends ../../../master-dashboard
 block content
 	div.mdl-cell.mdl-cell--12-col.center
 		h2 Project Allotment
+		h4
+			a(href='https://id.bits-hyderabad.ac.in/faq.pdf') FAQs
 		hr
 		h4 Your Applications
 
@@ -23,8 +25,9 @@ block content
 									td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
 
 									td.mdl-data-table__cell--non-numeric
-										if application.course
-											| #{application.course}
+
+										if application.courseCode
+											| #{application.courseCode}
 										else
 											| Not Selected
 
