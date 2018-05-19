@@ -16,8 +16,9 @@ block content
 								th.mdl-data-table__cell--non-numeric Section
 						tbody
 							each course in courses
-								each section in course.sections
-									td.mdl-data-table__cell--non-numeric #{course.courseID}
-									td.mdl-data-table__cell--non-numeric #{course.name}
-									td.mdl-data-table__cell--non-numeric #{section.section}		
+									each section in course.sections
+										tr
+											td.mdl-data-table__cell--non-numeric #{course.courseID}
+											td.mdl-data-table__cell--non-numeric #{course.name}
+											td.mdl-data-table__cell--non-numeric #{section.section}		
 
