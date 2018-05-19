@@ -16,24 +16,12 @@ router.use('/', feedbacks);
 router.post('/step-4', function (req, res, next) {
     try {
         if (req.sanitize(req.body.instructorlist) == '. . .') {
-            return res.renderState('custom_errors', {
-                redirect: "/dashboard/feedbacks-midsem/step-1",
-                timeout: 2,
-                supertitle: ".",
-                callback: "/",
-                message: "Validation Error",
-                details: "Invalid Instructor Selected. Please select a valid instructor."
-            });
+            errorHandler(res, "Invalid Instructor Selected. Please select a valid instructor.");
+            
         } else if (typeof req.sanitize(req.body.feedbackMidsem1) == 'undefined' ||
                    typeof req.sanitize(req.body.feedbackMidsem2) == 'undefined') {
-            return res.renderState('custom_errors', {
-                redirect: "/dashboard/feedbacks-midsem/step-1",
-                timeout: 2,
-                supertitle: ".",
-                callback: "/",
-                message: "Validation Error",
-                details: "Feedback field wasn't filled. Please fill the feedback field before submitting."
-            });
+             errorHandler(res, "Feedback field wasn't filled. Please fill the feedback field before submitting.");
+
         }
         let instructorarray = req.session.instructor[0].instructors;
         let courseID = req.session.courseID;
