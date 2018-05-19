@@ -71,7 +71,6 @@ router.use(session({
 
 router.use(auth.adminPassport.initialize());
 router.use(auth.adminPassport.session());
-router.use('/profile',profile);
 
 router.get('/login', auth.adminPassport.authenticate('google', {
     scope: ['profile', 'email']
@@ -183,6 +182,8 @@ router.use(function (req, res, next) {
     };
     next();
 });
+
+router.use('/profile',profile);
 
 router.get('/switch-back', function (req, res, next) {
     req.session.switched = false;
