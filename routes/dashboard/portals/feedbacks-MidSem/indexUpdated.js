@@ -5,39 +5,22 @@ var fq = require('fuzzquire');
 var mailer = fq('utils/mailer');
 var router = express.Router();
 
-var coursesModel = fq('schemas/courses');
-var adminsModel = fq('schemas/admins');
-var studentsModel = fq('schemas/students');
-var feedbacksModel = fq('schemas/feedbacks');
-var feedbacks = require('./../feedbacks');
+var coursesModel = require('../../../../schemas/courses');
+var adminsModel = require('../../../../schemas/admins');
+var studentsModel = require('../../../../schemas/students');
+var feedbacksModel = require('../../../../schemas/feedbacks-midsem');
+var feedbacks = require('../feedbacks')
 
-['/', '/step-1'].forEach((step) => {
-    router.get(step, feedbacks);
-});
+router.use('/', feedbacks);
 
-router.post('/step-2', feedbacks);
-router.post('/step-3', feedbacks);
-
-let errorHandler = function(req, res, message) {
-    let link = req.originalUrl.split('/');
-    return res.renderState('custom_errors', {
-        redirect: link[0] + "/" + link[1] + "/" + link[2] + "/step-1",
-        timeout: 2,
-        supertitle: ".",
-        callback: "/",
-        message: "Validation Error",
-        details: message
-    });
-};
-
-router.post('/step-4', function(req, res, next) {
+router.post('/step-4', function (req, res, next) {
     try {
         if (req.sanitize(req.body.instructorlist) == '. . .') {
-            errorHandler(req, res, "Invalid Instructor Selected. Please select a valid instructor.");
-
+            errorHandler(res, "Invalid Instructor Selected. Please select a valid instructor.");
+            
         } else if (typeof req.sanitize(req.body.feedbackMidsem1) == 'undefined' ||
-            typeof req.sanitize(req.body.feedbackMidsem2) == 'undefined') {
-            errorHandler(req, res, "Feedback field wasn't filled. Please fill the feedback field before submitting.");
+                   typeof req.sanitize(req.body.feedbackMidsem2) == 'undefined') {
+             errorHandler(res, "Feedback field wasn't filled. Please fill the feedback field before submitting.");
 
         }
         let instructorarray = req.session.instructor[0].instructors;
@@ -47,23 +30,23 @@ router.post('/step-4', function(req, res, next) {
         let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
         let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
         let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
-
+        
         let instructoremail = '';
-        instructorarray.forEach(function(element) {
+        instructorarray.forEach(function (element) {
             if (element.name == instructorname) {
                 instructoremail = element.email;
             }
         });
         filter.setReplacementMethod('grawlix');
-        badwordslist.array.forEach(function(item) {
+        badwordslist.array.forEach(function (item) {
             filter.addWord(item);
-            filter.addWord(item.replace(/\w\S*/g, function(txt) {
+            filter.addWord(item.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             }));
             filter.addWord(item.toUpperCase());
         });
         let customfilter = [];
-        customfilter.forEach(function(item) {
+        customfilter.forEach(function (item) {
             filter.addWord(item);
         });
         filter.setGrawlixChars(['']);
@@ -74,10 +57,10 @@ router.post('/step-4', function(req, res, next) {
             section: courseSection,
             instructor: instructoremail, // Instructor's email
             type: "midsem", // 24x7 or midsem
-            responses: [feedbackMidsem1, feedbackMidsem2, (feedbackMidsem3 ? feedbackMidsem3 : "NA")],
+            responses: [feedbackMidsem1, feedbackMidsem2, (feedbackMidsem3 ? feedbackMidsem3 : "NA" )],
             createdOn: Date.now()
         };
-        feedbacksModel.create(dataStore, function(err, response) {
+        feedbacksModel.create(dataStore, function (err, response) {
             if (err) {
                 return res.renderState('custom_errors', {
                     redirect: "/dashboard",
