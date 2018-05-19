@@ -8,7 +8,7 @@ var router = express.Router();
 var coursesModel = require('../../../../schemas/courses');
 var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
-var feedbacksModel = require('../../../../schemas/feedbacks-midsem');
+var feedbacksModel = require('../../../../schemas/feedbacks');
 var feedbacks = require('../feedbacks')
 
 router.use('/', feedbacks);
