@@ -14,16 +14,20 @@ router.get('/step-1', function (req, res, next) {
     res.renderState('dashboard/portals/feedbacks/step1');
 });
 
+router.get('/', function (req, res, next) {
+    res.renderState('dashboard/portals/feedbacks');
+});
+
 ['/', '/step-2', '/step-3'].forEach((step)=>{
 router.get(step, (req, res, next)=>{
 	res.renderState('dashboard/portals/feedbacks');
 });
-})
+});
 
-let errorHandler = function(res, message)
-{
+let errorHandler = function(req, res, message)
+{   let link =  req.originalUrl.split('/');
     return  res.renderState('custom_errors', {
-            redirect: "/dashboard/feedbacks/step-1",
+            redirect: link[0]+"/"+link[1]+"/"+link[2]+ "/step-1",
             timeout: 2,
             supertitle: ".",
             callback: "/",  
@@ -35,7 +39,7 @@ let errorHandler = function(res, message)
 router.post('/step-2', function (req, res, next) {
     try {
     	if (req.sanitize(req.body.courselist) == '. . .'){
-        errorHandler(res, "Invalid course selected. Please select a valid course.");
+        errorHandler(req, res, "Invalid course selected. Please select a valid course.");
     	}
 
         let courseSearch = coursesModel.find({
@@ -71,7 +75,7 @@ router.post('/step-2', function (req, res, next) {
 router.post('/step-3', function (req, res, next) {
     try {
     	if (req.sanitize(req.body.courselist) == '. . .'){
-        errorHandler(res, "Invalid Class Selected. Please select a valid class.");
+        errorHandler(req, res, "Invalid Class Selected. Please select a valid class.");
     	}
 
         let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
@@ -129,7 +133,8 @@ router.post('/step-3', function (req, res, next) {
             req.session.save();
             return data;
         }).then(function renderStep(data) {
-            res.renderState( req.url+'/step3', {
+            let link =  req.originalUrl.split('/');
+            res.renderState('dashboard/portals/'+link[2]+'/step3', {
                 params: data[0].instructors,
                 courseID: req.session.courseID,
                 courseSection: req.session.courseSection
@@ -141,7 +146,4 @@ router.post('/step-3', function (req, res, next) {
     }
 });
 
-module.exports = {
-router:router, 
-errorHandler: errorHandler
-};
+module.exports = router; 
