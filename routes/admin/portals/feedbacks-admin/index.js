@@ -11,12 +11,12 @@ router.use('/midsem', midsem);
 
 router.get('/24x7', function (req, res, next) {
     try {
-        feedbacksModel.find({}, (err, feedbacks) => {
+        feedbacksModel.find({type:"24x7"}, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
             }
             feedbacks.forEach(element => {
-                element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
+                element.responses[0] = element.responses[0].substring(0, Math.min(element.responses[0].length, 66)) + " ...";
             });
             adminsModel.find({
                 superUser: false
@@ -74,14 +74,15 @@ router.get('/24x7/view/:id', function (req, res, next) {
             }
             if (result != null && result != undefined) {
                 feedbacksModel.find({
-                    instructor: result.email
+                    instructor: result.email,
+                    type: "24x7"
                 }, (err, feedbacks) => {
                     if (err) {
                         return res.terminate(err);
                     }
 
                     feedbacks.forEach(element => {
-                        element.responses = element.responses.substring(0, Math.min(element.responses.length, 66)) + " ...";
+                        element.responses[0] = element.responses[0].substring(0, Math.min(element.responses[0].length, 66)) + " ...";
                     });
 
                     res.renderState('admin/portals/feedbacks-admin/24x7/view', {
@@ -103,7 +104,8 @@ router.get('/24x7/view/:id', function (req, res, next) {
 router.get('/24x7/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
-            _id: req.sanitize(req.params.fid)
+            _id: req.sanitize(req.params.fid),
+            type:"24x7"
         }, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
