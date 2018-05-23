@@ -8,6 +8,8 @@ var settingsModel = require('../../schemas/settings');
 
 var auth = require('../../middleware/auth');
 
+var profile = require('./profile');
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function (req, res, next) {
@@ -135,6 +137,7 @@ router.get('/logout', function (req, res) {
     });
 });
 
+
 /********* adminPassport Config End *********/
 
 
@@ -179,6 +182,8 @@ router.use(function (req, res, next) {
     };
     next();
 });
+
+router.use('/profile',profile);
 
 router.get('/switch-back', function (req, res, next) {
     req.session.switched = false;
