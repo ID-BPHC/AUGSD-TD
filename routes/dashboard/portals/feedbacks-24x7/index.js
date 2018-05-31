@@ -35,7 +35,7 @@ router.post('/step-4', function (req, res, next) {
         if (req.sanitize(req.body.instructorlist) == '. . .') {
             errorHandler(req, res, "Invalid Instructor Selected. Please select a valid instructor.");
 
-        } else if (typeof req.sanitize(req.body.feedback) == undefined) {
+        } else if (req.sanitize(req.body.feedback) == undefined) {
             errorHandler(req, res, "Feedback field wasn't filled. Please fill the feedback field before submitting.");
         }
         

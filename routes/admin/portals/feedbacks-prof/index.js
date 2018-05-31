@@ -9,7 +9,8 @@ var adminsModel = fq('schemas/admins');
 router.get('/', function (req, res, next) {
     try {
         feedbacksModel.find({
-                instructor: req.user.email
+                instructor: req.user.email,
+                type: "24x7"
             }, {
                 __v: 0
             }, {
@@ -23,7 +24,7 @@ router.get('/', function (req, res, next) {
                 }
                 result.forEach((object, index, array) => {
                     array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-                    array[index].responses = array[index].responses.substring(0, Math.min(array[index].responses.length, 66)) + " ...";
+                    array[index].responses[0] = array[index].responses[0].substring(0, Math.min(array[index].responses[0].length, 66)) + " ...";
                 });
                 res.renderState('admin/portals/feedbacks-prof', {
                     feedbacks: result
@@ -51,7 +52,8 @@ router.get('/view/:id', function (req, res, next) {
     try {
         feedbacksModel.findOne({
             _id: req.sanitize(req.params.id),
-            instructor: req.user.email
+            instructor: req.user.email,
+            type:"24x7"
         }, (err, result) => {
             if (err) {
                 return res.terminate(err);
