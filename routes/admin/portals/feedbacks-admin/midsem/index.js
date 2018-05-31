@@ -1,19 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var fq = require('fuzzquire');
-var feedbacksModel = fq('schemas/feedbacks-midsem');
+var feedbacksModel = fq('schemas/feedbacks');
 var adminsModel = fq('schemas/admins');
 
 router.get('/', function (req, res, next) {
     try {
-        feedbacksModel.find({}, (err, feedbacks) => {
+        feedbacksModel.find({type:"midsem"}, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
             }
-            feedbacks.forEach(element => {
+            feedbacks.forEach((element) => {
                 for(i=0; i<3; i++)
-                element.responses[i] = element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
-            });
+                if(element.responses[i]!=undefined)
+                element.responses[i].substring(0, Math.min(element.responses[i].length, 66)) + " ...";
+                else
+                element.responses[i] = "N.A.";     
+                });
             adminsModel.find({
                 superUser: false
             }, {
@@ -40,9 +43,6 @@ router.get('/', function (req, res, next) {
     }
 });
 
-// router.get('/', function (req, res, next) {
-//     res.renderState('admin/portals/feedbacks-admin');
-// });
 
 function getUTCDate(epoch) {
     let utcDate = new Date(epoch);
@@ -70,7 +70,8 @@ router.get('/view/:id', function (req, res, next) {
             }
             if (result != null && result != undefined) {
                 feedbacksModel.find({
-                    instructor: result.email
+                    instructor: result.email,
+                    type:"midsem"
                 }, (err, feedbacks) => {
                     if (err) {
                         return res.terminate(err);
@@ -100,7 +101,8 @@ router.get('/view/:id', function (req, res, next) {
 router.get('/view/feedback/:fid', function (req, res, next) {
     try {
         feedbacksModel.findOne({
-            _id: req.sanitize(req.params.fid)
+            _id: req.sanitize(req.params.fid),
+            type:"midsem"
         }, (err, feedbacks) => {
             if (err) {
                 return res.terminate(err);
