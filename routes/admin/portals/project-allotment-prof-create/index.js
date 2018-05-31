@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var fq = require("fuzzquire");
 var projectsModel = fq("schemas/projects");
-var projectHeadModel = fq("schemas/project-heads");
 var adminModel = fq("schemas/admins");
 
 router.get("/", function(req, res, next) {
@@ -46,34 +45,39 @@ router.get("/", function(req, res, next) {
             });
         });
       } else if (val.head) {
-        projectHeadModel
-          .find({
-            department: val.department
-          })
-          .lean()
+          adminModel.
+          find({
+              department: val.department
+          }).lean()
           .exec((err, projects) => {
-            if (err) return res.terminate(err);
-            let projectquery = [];
-            projects.forEach((o, i, a) => {
-              projectquery.push(getProfessorProjects(a[i].instructor));
-            });
-            let finalresult = [];
-            Promise.all(projectquery).then(vals => {
-              vals.forEach(val => {
-                finalresult = finalresult.concat(val);
+              if (err)  return res.terminate(err);
+              let projectquery = [];
+              projects.forEach((o, i, a) => {
+                  projectquery.push(getProfessorProjects(a[i].email));
               });
-              let promises2 = [];
-              finalresult.forEach((object, index, array) => {
-                array[index].description =
-                  array[index].description.substring(
-                    0,
-                    Math.min(array[index].description.length, 66)
-                  ) + " ...";
-                promises2.push(getInstructorName(array[index].instructor));
+              let finalresult = [];
+              Promise.all(projectquery).then(vals => {
+                  vals.forEach(val => {
+                      finalresult = finalresult.concat(val);
+                  });
+                  let promises2 = [];
+                  finalresult.forEach((object, index, array) => {
+                    array[index].description =
+                    array[index].description.substring(
+                      0,
+                      Math.min(array[index].description.length, 66)
+                    ) + " ...";
+                      promises2.push(getInstructorName(array[index].instructor));
+                  });
+                  Promise.all(promises2).then(vals => {
+                      vals.forEach((object, index, array) => {
+                          finalresult[index].name = array[index];
+                      });
+                      return res.renderState('admin/portals/project-allotment-prof-create', {
+                          projects: finalresult
+                      });
+                  });
               });
-              Promise.all(promises2).then(vals => {
-                vals.forEach((object, index, array) => {
-                  finalresult[index].name = array[index];
                 });
                 return res.renderState(
                   "admin/portals/project-allotment-prof-create",
@@ -81,9 +85,6 @@ router.get("/", function(req, res, next) {
                     projects: finalresult
                   }
                 );
-              });
-            });
-          });
       } else {
         projectsModel
           .find({
@@ -163,19 +164,18 @@ function getProfessorProjects(profmail) {
 }
 
 function getProfessorDepartment(profmail) {
-  return new Promise((resolve, reject) => {
-    projectHeadModel.find(
-      {
-        instructor: profmail
-      },
-      (err, result) => {
-        if (err) reject(err);
-        if (result != null && result != undefined) {
-          resolve(result.department);
-        } else resolve("Missing Professor Data");
-      }
-    );
-  });
+    return new Promise((resolve, reject) => {
+        adminModel.find(
+        {
+            email: profmail
+        }, 
+        (err, result) => {
+            if (err)  reject(err);
+            if (result != null && result != undefined) {
+                resolve(result.department);
+            } else  resolve('Missing Professor Data');
+        });
+    });
 }
 
 function getProfessorType(profmail) {
@@ -204,10 +204,25 @@ function getProfessorType(profmail) {
                       head: true,
                       department: result2.department
                     });
-                  } else {
-                    resolve({
-                      head: false,
-                      department: result2.department
+                } else {
+                    adminModel.findOne({
+                        email: profmail
+                    }, (err, result2) => {
+                        if (err)
+                            reject(err);
+                        if (result2 != null && result2 != undefined) {
+                            if (result2.head == true) {
+                                resolve({
+                                    head: true,
+                                    department: result2.department
+                                });
+                            } else {
+                                resolve({
+                                    head: false,
+                                    department: result2.department
+                                });
+                            }
+                        }
                     });
                   }
                 }
