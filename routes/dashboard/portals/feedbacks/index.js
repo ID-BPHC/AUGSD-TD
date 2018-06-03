@@ -10,41 +10,41 @@ var adminsModel = require('../../../../schemas/admins');
 var studentsModel = require('../../../../schemas/students');
 var feedbacksModel = require('../../../../schemas/feedbacks');
 
-router.get('/step-1', function (req, res, next) {
+router.get('/step-1', function(req, res, next) {
     res.renderState('dashboard/portals/feedbacks/step1');
 });
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.renderState('dashboard/portals/feedbacks');
 });
 
-['/', '/step-2', '/step-3'].forEach((step)=>{
-router.get(step, (req, res, next)=>{
-	res.renderState('dashboard/portals/feedbacks');
-});
+['/', '/step-2', '/step-3'].forEach((step) => {
+    router.get(step, (req, res, next) => {
+        res.renderState('dashboard/portals/feedbacks');
+    });
 });
 
-let errorHandler = function(req, res, message)
-{   let link =  req.originalUrl.split('/');
-    return  res.renderState('custom_errors', {
-            redirect: link[0]+"/"+link[1]+"/"+link[2]+ "/step-1",
-            timeout: 2,
-            supertitle: ".",
-            callback: "/",  
-            message: "Validation Error",
-            details: message
-            });	
+let errorHandler = function(req, res, message) {
+    let link = req.originalUrl.split('/');
+    return res.renderState('custom_errors', {
+        redirect: link[0] + "/" + link[1] + "/" + link[2] + "/step-1",
+        timeout: 2,
+        supertitle: ".",
+        callback: "/",
+        message: "Validation Error",
+        details: message
+    });
 };
 
-router.post('/step-2', function (req, res, next) {
+router.post('/step-2', function(req, res, next) {
     try {
-    	if (req.sanitize(req.body.courselist) == '. . .'){
-        errorHandler(req, res, "Invalid course selected. Please select a valid course.");
-    	}
+        if (req.sanitize(req.body.courselist) == '. . .') {
+            errorHandler(req, res, "Invalid course selected. Please select a valid course.");
+        }
 
         let courseSearch = coursesModel.find({
             courseID: req.sanitize(req.body.courselist)
-        }, function (err, result) {
+        }, function(err, result) {
             if (err) {
                 return res.terminate(err);
             }
@@ -54,7 +54,7 @@ router.post('/step-2', function (req, res, next) {
             let coursedata = req.user.courses;
             for (let i = 0; i < coursedata.length; i++) {
                 if (coursedata[i].courseID == data[0].courseID) {
-                    return req.user.courses[i].sections;            
+                    return req.user.courses[i].sections;
                 }
             }
         }).then(function saveCourseID(data) {
@@ -72,11 +72,11 @@ router.post('/step-2', function (req, res, next) {
     }
 });
 
-router.post('/step-3', function (req, res, next) {
+router.post('/step-3', function(req, res, next) {
     try {
-    	if (req.sanitize(req.body.courselist) == '. . .'){
-        errorHandler(req, res, "Invalid Class Selected. Please select a valid class.");
-    	}
+        if (req.sanitize(req.body.courselist) == '. . .') {
+            errorHandler(req, res, "Invalid Class Selected. Please select a valid class.");
+        }
 
         let courseSection = req.sanitize(req.body.courselist).split("-")[1].replace(" ", "");
         req.session.courseSection = courseSection;
@@ -107,11 +107,12 @@ router.post('/step-3', function (req, res, next) {
             let newdata = {
                 instructors: []
             };
+
             function getInstructorNameProcedure(i) {
                 return new Promise((resolve, reject) => {
                     adminsModel.find({
                         email: data[0].sections[0].instructors[i]
-                    }, function (err, email) {
+                    }, function(err, email) {
                         if (err) {
                             return res.terminate(err);
                         }
@@ -133,8 +134,8 @@ router.post('/step-3', function (req, res, next) {
             req.session.save();
             return data;
         }).then(function renderStep(data) {
-            let link =  req.originalUrl.split('/');
-            res.renderState('dashboard/portals/'+link[2]+'/step3', {
+            let link = req.originalUrl.split('/');
+            res.renderState('dashboard/portals/' + link[2] + '/step3', {
                 params: data[0].instructors,
                 courseID: req.session.courseID,
                 courseSection: req.session.courseSection
@@ -146,4 +147,4 @@ router.post('/step-3', function (req, res, next) {
     }
 });
 
-module.exports = router; 
+module.exports = router;

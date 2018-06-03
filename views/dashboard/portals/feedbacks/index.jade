@@ -7,7 +7,10 @@ block content
 		document.getElementById('feedbacks').classList.add('menuselectify')
 
 	div.mdl-cell.mdl-cell--12-col
-		h2 #{reqPortal.split("-",2)[1]} Feedbacks
+		if reqPortal.split("-",2)[1] == "24x7"
+			h2 24x7 Feedbacks
+		else
+			h2 Mid-Semester Feedbacks
 
 	div.mdl-cell.mdl-cell--12-col
 		ul.mdl-list
