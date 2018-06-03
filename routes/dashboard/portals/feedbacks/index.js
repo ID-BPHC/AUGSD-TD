@@ -5,10 +5,10 @@ var fq = require('fuzzquire');
 var mailer = fq('utils/mailer');
 var router = express.Router();
 
-var coursesModel = require('../../../../schemas/courses');
-var adminsModel = require('../../../../schemas/admins');
-var studentsModel = require('../../../../schemas/students');
-var feedbacksModel = require('../../../../schemas/feedbacks');
+var coursesModel = fq('schemas/courses');
+var adminsModel = fq('schemas/admins');
+var studentsModel = fq('schemas/students');
+var feedbacksModel = fq('schemas/feedbacks');
 
 router.get('/step-1', function(req, res, next) {
     res.renderState('dashboard/portals/feedbacks/step1');
