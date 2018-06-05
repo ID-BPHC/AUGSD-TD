@@ -91,27 +91,35 @@ for row in data:
         del col[4]
 
 for instructor in instructors :  
-    column1Heading = "ID Number"
-    column2Heading = "Name"
-    column3Heading = "Course Code"
-    name = "Dear "+ instructor+ ","
+    title = "Instruction Division - BITS Pilani Hyderabad Campus"
     heading1 = "FIRST SEMESTER 2018-2019"
+    name = "Dear "+ instructor+ ","
     heading2 = "LIST OF ALLOTED PROJECT STUDENTS"
-    para = "The following is the allotted list of project students under your guidance during First Semester \n 2018-19. There is a possibility that some of the allotted project students may not register for the same. The final list of registered students will be sent to the IC of the respective project type course. In case of any discrepancy, please contact Dr. Balaji Gopalan, In-charge, Project Allotment (Extn: 575) or email at gbalaji@hyderabad.bits-pilani.ac.in. "
+    para = "The following is the allotted list of project students under your guidance during First Semester  2018-19. There is a possibility that some of the allotted project students may not register for the same. The final list of registered students will be sent to the IC of the respective project type course. In case of any discrepancy, please contact Dr. Balaji Gopalan, In-charge, Project Allotment (Extn: 575) or email at gbalaji@hyderabad.bits-pilani.ac.in. "
     datetoday = datetime.datetime.today().strftime('%d-%m-%Y')
     elements = []
-    
+    footer1 = "Associate Dean <br/> A Vasan <br/> Instruction Division"
+
+    title = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % title
     ptext = '<font size=12>%s</font>' % name
-    head1text = '<font>%s</font>' % heading1
-    head2text = '<font>%s</font>' % heading2
+    head1text = '<para align = "centre">"<font size = 18><strong>%s</strong></font></para>' % heading1
+    head2text = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % heading2
     paratext = '<font size=12>%s</font>' % para
     date = '<para align="right"><font>%s</font></para>' % datetoday
+    footer = '<para align = "left"><font size = "12">%s</font></para>' % footer1
+    j = 0
+    elements.append(Paragraph(title, styles["Normal"])) 
+    while j < 5 :
+        elements.append(Spacer(1, 12))
+        j = j+1
 
-    elements.append(Paragraph(head1text, styles["title"])) 
+
+
+    elements.append(Paragraph(head1text, styles["Normal"])) 
     elements.append(Spacer(1, 12))
     elements.append(Spacer(1, 12)) 
 
-    elements.append(Paragraph(head2text, styles["title"])) 
+    elements.append(Paragraph(head2text, styles["Normal"])) 
     elements.append(Spacer(1, 12))
     elements.append(Spacer(1, 12)) 
 
@@ -126,12 +134,7 @@ for instructor in instructors :
     elements.append(Spacer(1, 12)) 
     elements.append(Spacer(1, 12)) 
 
-    
-    
- 
-
-
-    doc = SimpleDocTemplate(("./ICpdf/"+ instructor + " _IC.pdf"), pagesize=letter)
+    doc = SimpleDocTemplate(("./ICpdf/"+ instructor.title() + " _IC.pdf"), pagesize=letter)
     
     GRID_STYLE = TableStyle(
               [('GRID', (0,0), (-1,-1), 0.25, colors.black),
@@ -154,4 +157,9 @@ for instructor in instructors :
         t.setStyle(GRID_STYLE)
         i = i+1
         elements.append(t)
+
+        elements.append(Spacer(1, 12)) 
+        elements.append(Spacer(1, 12))
+
+        elements.append(Paragraph(footer, styles["Normal"])) 
         doc.build(elements)
