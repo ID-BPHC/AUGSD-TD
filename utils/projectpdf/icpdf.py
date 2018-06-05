@@ -1,3 +1,6 @@
+# This generates pdf for projects under each IC.
+# Place the csv file in the same directory with the name `projectic.csv` and later run the script.
+
 import csv
 from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
@@ -11,7 +14,7 @@ import datetime
 styles = getSampleStyleSheet()
  
 # csv file name
-filename = "TT(2).csv"
+filename = "projectic.csv"
  
 # initializing the titles and rows list
 fields = []

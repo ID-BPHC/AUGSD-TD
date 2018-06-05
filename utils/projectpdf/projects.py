@@ -1,3 +1,6 @@
+# This generates pdf for projects under each Instructor.
+# Place the csv file in the same directory with the name `projectinst.csv` and later run the script.
+
 # importing csv module
 import csv
 from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -12,7 +15,7 @@ import datetime
 styles = getSampleStyleSheet()
  
 # csv file name
-filename = "PROJECT_FINAL_UPDATED_1.csv"
+filename = "projectinst.csv"
  
 # initializing the titles and rows list
 fields = []
