@@ -1,17 +1,17 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var bugsSchema = new Schema({
-    category: String,
-    report: String,
-    useragent: String,
-    student: String,
-    error: {
-        type: Object,
-        default: null
-    }
+  category: String,
+  report: String,
+  useragent: String,
+  student: String,
+  error: {
+    type: Object,
+    default: null
+  }
 });
 
-var model = mongoose.model('bugs', bugsSchema);
+var model = mongoose.model("bugs", bugsSchema);
 
 module.exports = model;
