@@ -40,14 +40,14 @@ print('Field names are:' + ', '.join(field for field in fields))
  
 #  printing first 5 rows
 print('\nFirst 5 rows are:\n')
-for row in rowsIC:
+for row in rowsIC[:6]:
 	# parsing each column of a row
 	for col in row:
 		print("%10s , "%col),
 	print('\n')
 
 instructors = [] #  -- IC --
-courselist = [] # each list in it will contain each student's data .
+courselist = [] 
 instructoremails = []
 data = []  
 for row in rowsIC :
@@ -77,8 +77,6 @@ i = 0
 
 for row in courselist:
 	data.append([])
-	if i == 22 :
-		print row
 	for col in row:
 		for row1 in rows:
 			if col.strip() == row1[3].strip():
