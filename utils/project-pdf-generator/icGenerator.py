@@ -1,5 +1,7 @@
 # This generates pdf for projects under each IC.
-# Place the csv file in the same directory with the name `projectic.csv` and later run the script.
+# Place the csv file in the same directory with the name `ic_list.csv` and later run the script.
+# Format of ic_list.csv Course Code,Course Name,IC Name,Email ID
+# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE, ELE TYPE, PROJECT TITLE
 
 import csv
 from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -14,7 +16,7 @@ import datetime
 styles = getSampleStyleSheet()
  
 # csv file name
-filename = "projectic.csv"
+filename = "ic_list.csv"
  
 # initializing the titles and rows list
 fields = []
@@ -61,7 +63,7 @@ for row in rowsIC :
 #for row in courselist :
 	#print row
 
-with open('projectinst.csv', 'r') as csvfile:
+with open('allotment_list.csv', 'r') as csvfile:
 	# creating a csv reader object
 	csvreader = csv.reader(csvfile)
 	 
@@ -144,7 +146,7 @@ for instructor in instructors :
 	elements.append(Spacer(1, 12)) 
 	elements.append(Spacer(1, 12)) 
 
-	doc = SimpleDocTemplate(("./ICpdf/"+ instructoremail + ".pdf"), pagesize=letter)
+	doc = SimpleDocTemplate(("./IC-PDF/"+ instructoremail + ".pdf"), pagesize=letter)
 	
 	GRID_STYLE = TableStyle(
 			  [('GRID', (0,0), (-1,-1), 0.25, colors.black),

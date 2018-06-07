@@ -1,5 +1,7 @@
 # This generates pdf for projects under each Instructor.
-# Place the csv file in the same directory with the name `projectinst.csv` and later run the script.
+# Place the csv file in the same directory with the name `allotment_list.csv` and later run the script.
+# Format of ic_list.csv Course Code,Course Name,IC Name,Email ID
+# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE, ELE TYPE, PROJECT TITLE
 
 # importing csv module
 import csv
@@ -15,7 +17,7 @@ import datetime
 styles = getSampleStyleSheet()
  
 # csv file name
-filename = "projectinst.csv"
+filename = "allotment_list.csv"
  
 # initializing the titles and rows list
 fields = []
@@ -113,8 +115,8 @@ for instructor in instructors :
     elements.append(Spacer(1, 12)) 
 
 
-
-    doc = SimpleDocTemplate(("./projectpdf/"+ instructor.title() + " .pdf"), pagesize=letter)
+    print(instructor)
+    doc = SimpleDocTemplate(("./Instructor-PDF/"+ instructor.title() + ".pdf"), pagesize=letter)
     
     GRID_STYLE = TableStyle(
               [('GRID', (0,0), (-1,-1), 0.25, colors.black),
