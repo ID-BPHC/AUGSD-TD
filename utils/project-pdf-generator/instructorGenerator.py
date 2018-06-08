@@ -1,7 +1,9 @@
 # This generates pdf for projects under each Instructor.
 # Place the csv file in the same directory with the name `allotment_list.csv` and later run the script.
 # Format of ic_list.csv Course Code,Course Name,IC Name,Email ID
-# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE, ELE TYPE, PROJECT TITLE
+# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE, ELE TYPE, PROJECT TITLE # 
+# Format of allotment_list_containing_emails.csv ID NO ,NAME,FAC NAME,PROJECT CODE,ELE TYPE,Project Type,Email ID,TITLE
+# Taking projects from allotment_list.csv
 
 # importing csv module
 import csv
@@ -17,8 +19,49 @@ import datetime
 styles = getSampleStyleSheet()
  
 # csv file name
-filename = "allotment_list.csv"
+filename = "allotment_list_containing_emails.csv"
  
+# initializing the titles and rows list
+fields = []
+rows = []
+ 
+# reading csv file
+with open(filename, 'r') as csvfile:
+    # creating a csv reader object
+    csvreader = csv.reader(csvfile)
+     
+    # extracting field names through first row
+    fields = csvreader.next()
+ 
+    # extracting each data row one by one
+    for row in csvreader:
+        rows.append(row)
+ 
+    # get total number of rows
+    print("Total no. of rows: %d"%(csvreader.line_num))
+ 
+# printing the field names
+print('Field names are:' + ', '.join(field for field in fields))
+ 
+#  printing first 5 rows
+print('\nFirst 5 rows are:\n')
+for row in rows[:5]:
+    # parsing each column of a row
+    for col in row:
+        print("%10s , "%col),
+    print('\n')
+instructoremails = [] 
+instructornames = []
+for row in rows :
+    if row[6] not in instructoremails:
+        instructoremails.append(row[6])
+        instructornames.append(row[2])
+
+for email in instructoremails:
+    print email
+
+filename = "allotment_list.csv"
+print filename 
 # initializing the titles and rows list
 fields = []
 rows = []
@@ -71,9 +114,13 @@ for row in data :
 
 i = 0
 
-for instructor in instructors :  
+for instructor in instructors :
+    for instructorname in instructornames:
+        if instructor.lower().strip() == instructorname.lower().strip():
+            instructoremail = instructoremails[instructornames.index(instructorname)]
+    print instructor + '==' + instructoremail
     title = "Instruction Division - BITS Pilani Hyderabad Campus"
-    name = "Dear "+ instructor+ ","
+    name = "Dear "+ instructor.title()+ ","
     heading1 = "FIRST SEMESTER 2018-2019"
     heading2 = "LIST OF ALLOTED PROJECT STUDENTS"
     para = "The following is the allotted list of project students under your guidance during First Semester \n 2018-19. There is a possibility that some of the allotted project students may not register for the same. The final list of registered students will be sent to the IC of the respective project type course. In case of any discrepancy, please contact Dr. Balaji Gopalan, In-charge, Project Allotment (Extn: 575) or email at gbalaji@hyderabad.bits-pilani.ac.in. "
@@ -116,7 +163,7 @@ for instructor in instructors :
 
 
     print(instructor)
-    doc = SimpleDocTemplate(("./Instructor-PDF/"+ instructor.title() + ".pdf"), pagesize=letter)
+    doc = SimpleDocTemplate(("./Instructor-PDF/"+ instructoremail+ ".pdf"), pagesize=letter)
     
     GRID_STYLE = TableStyle(
               [('GRID', (0,0), (-1,-1), 0.25, colors.black),
