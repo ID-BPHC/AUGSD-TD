@@ -97,6 +97,7 @@ i = 0
 #deleting unncecessary column
 for row in data:
 	for col in row:
+		del col[5]
 		del col[4]
 
 for instructor in instructors :  
