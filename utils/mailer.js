@@ -22,19 +22,29 @@ var footer =
 
 module.exports = {
   send: function(params) {
+    if (typeof params.attachments !== "undefined") {
+      params.attachments.push({
+        filename: "head.png",
+        path: appRootDir + "/utils/assets/head.png",
+        cid: "head@idbitshyd.com"
+      });
+    } else {
+      params.attachments = [
+        {
+          filename: "head.png",
+          path: appRootDir + "/utils/assets/head.png",
+          cid: "head@idbitshyd.com"
+        }
+      ];
+    }
+
     var mailOptions = {
       from: config.mailUser,
       to: params.email,
       subject: params.subject,
       html: header + params.body + footer,
 
-      attachments: [
-        {
-          filename: "head.png",
-          path: appRootDir + "/utils/assets/head.png",
-          cid: "head@idbitshyd.com"
-        }
-      ]
+      attachments: params.attachments
     };
 
     transporter.sendMail(mailOptions, function(err, info) {
