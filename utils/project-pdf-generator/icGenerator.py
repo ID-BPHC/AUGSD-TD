@@ -1,7 +1,7 @@
 # This generates pdf for projects under each IC.
 # Place the csv file in the same directory with the name `ic_list.csv` and later run the script.
 # Format of ic_list.csv Course Code,Course Name,IC Name,Email ID
-# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE, ELE TYPE, PROJECT TITLE
+# Format of allotement_list.csv ID NO , STUDENT NAME, FACULTY NAME, PROJECT CODE,EMAIL, ELE TYPE, PROJECT TITLE
 
 import csv
 from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
