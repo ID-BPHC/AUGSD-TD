@@ -47,7 +47,7 @@ function getUTCDate(epoch) {
   date.setUTCMinutes(utcDate.getMinutes());
   date.setUTCSeconds(utcDate.getSeconds());
   date.setUTCMilliseconds(utcDate.getMilliseconds());
-  return date.toLocaleDateString("en-US");
+  return date.toLocaleString("en-US", { timeZone: "UTC" });
 }
 
 module.exports = router;

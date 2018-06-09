@@ -21,7 +21,8 @@ router.get("/24x7", function(req, res, next) {
         },
         {
           __v: 1,
-          name: 1
+          name: 1,
+          email: 1
         },
         {
           sort: {
@@ -32,6 +33,16 @@ router.get("/24x7", function(req, res, next) {
           if (err) {
             return res.terminate(err);
           }
+
+          feedbacks.forEach((object, index, array) => {
+            result.forEach((obj, ind, arr) => {
+              if (arr[ind].email == array[index].instructor) {
+                array[index].name = arr[ind].name;
+              }
+            });
+            array[index].createdOn = getUTCDate(Number(array[index].createdOn));
+          });
+
           res.renderState("admin/portals/feedbacks-admin/24x7", {
             profs: result,
             results: {
@@ -59,7 +70,7 @@ function getUTCDate(epoch) {
   date.setUTCMinutes(utcDate.getMinutes());
   date.setUTCSeconds(utcDate.getSeconds());
   date.setUTCMilliseconds(utcDate.getMilliseconds());
-  return date.toLocaleDateString("en-US");
+  return date.toLocaleString("en-US", { timeZone: "UTC" });
 }
 
 router.get("/24x7/view/:id", function(req, res, next) {
@@ -86,6 +97,13 @@ router.get("/24x7/view/:id", function(req, res, next) {
               if (err) {
                 return res.terminate(err);
               }
+
+              feedbacks.forEach((object, index, array) => {
+                array[index].createdOn = getUTCDate(
+                  Number(array[index].createdOn)
+                );
+              });
+
               res.renderState("admin/portals/feedbacks-admin/24x7/view", {
                 results: {
                   id: result._id,

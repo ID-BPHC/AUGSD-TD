@@ -29,6 +29,8 @@ block content
 									div.mdl-cell.mdl-cell--6-col.head Course Section :
 									div.mdl-cell.mdl-cell--6-col.value #{feedback.section}
 									
+									div.mdl-cell.mdl-cell--6-col.head Instructor :
+									div.mdl-cell.mdl-cell--6-col.value #{results.name}									
 									div.mdl-cell.mdl-cell--6-col.head Which characterstics of this instructor or course have been most valuable to your learning? 
 									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[0]}
 
@@ -36,7 +38,10 @@ block content
 									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[1]}
 
 									div.mdl-cell.mdl-cell--6-col.head Any other confidential information you would like to share with instruction division about the instructor or course? 
-									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[2]}																	
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[2]}	
+
+									div.mdl-cell.mdl-cell--6-col.head Created On :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.createdOn}																									
 				else
 					br
 					h6 No feedbacks			
