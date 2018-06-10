@@ -5,112 +5,176 @@ var projectsModel = fq("schemas/projects");
 var adminModel = fq("schemas/admins");
 
 router.get("/", function (req, res, next) {
-  try {
-      let usertype = getUserType(req.user.email);
-      usertype.then(val => {
-          console.log(val);
-          if (val.admin) {
-              projectsModel.find({}).exec((err, result) => {
-                  if (err) {
-                      return res.terminate(err);
-                  }
-                  let promises2 = [];
-                  result.forEach((object, index, array) => {
-                      array[index].description = array[index].description.substring(0, Math.min(array[index].description.length, 66)) + " ...";
-                      promises2.push(getInstructorName(array[index].instructor));
-                  });
-                  Promise.all(promises2).then(vals => {
-                      vals.forEach((object, index, array) => {
-                          result[index].name = array[index];
-                      });
-                      return res.renderState('admin/portals/project-allotment-prof-create', {
-                          projects: result
-                      });
-                  }).catch(err => {
-                      console.log(err);
-                      res.terminate(err);
-                  });
-              });
-          } else {
-              projectsModel.find({
-                  instructor: req.user.email
-              }).lean(true).exec(
-                  (err, result) => {
-                      console.log(result);
-                      if (err) {
-                          return res.terminate(err);
-                      }
-                      let promises = [];
-                      console.log(result);
-                      result.forEach((object, index, array) => {
-                          array[index].description = array[index].description.substring(0, Math.min(array[index].description.length, 66)) + " ...";
-                          promises.push(getInstructorName(array[index].instructor));
-                          console.log(array[index].instructor);
-                      });
-                      Promise.all(promises).then(vals => {
-                          vals.forEach((object, index, array) => {
-                              result[index].name = array[index];
-                          });
-                          console.log(result);
-                          return res.renderState('admin/portals/project-allotment-prof-create', {
-                              projects: result
-                          });
-                      });
-                  });
-          }
-      });
-  } catch (err) {
-      return res.terminate(err);
-  }
+    try {
+        let usertype = getUserType(req.user.email);
+        usertype.then(val => {
+            console.log(val);
+            if (val.admin) {
+                projectsModel.aggregate([
+                    {
+                        $project:
+                            {
+                                _id :1,
+                                title: 1,
+                                description : { $substr:["$description",0,66]},
+                                instructor:1,
+                                type:1,
+                                updated:1
+                            }
+                    },
+                    {
+                        $project:
+                        {
+                            _id :1,
+                            title: 1,
+                            description : { $concat:["$description","..."]},
+                            instructor:1,
+                            type:1,
+                            updated:1
+                        }
+                    },
+                    {
+                        $lookup:
+                        {
+                            from:"admins",
+                            localField:"instructor",
+                            foreignField: "email",
+                            as:"instructorForeign"
+                        }
+
+                    },
+                    {
+                        $match:
+                        {
+                            "instructorForeign": {$ne : []}
+                        }
+                    },
+                    {
+                        $unwind:"$instructorForeign"
+                    },
+                    {
+                        $addFields: {"name":"$instructorForeign.name"}
+                    }
+                ],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return res.terminate("Error: Could not find project");
+                    }
+                    if (project.length == 0) {
+                        return res.renderState('custom_errors', {
+                            redirect: "/dashboard/project-allotment-prof-create",
+                            timeout: 2,
+                            supertitle: ".",
+                            message: "Project Not Found",
+                            details: "Invalid Project ID"
+                        });
+                    } 
+                    else {
+                        return res.renderState('admin/portals/project-allotment-prof-create', {
+                            projects: result
+                        });
+                    }
+                })
+            } else {
+                projectsModel.aggregate([
+                    {
+                        $match : 
+                            {
+                                instructor: "req.user.mail"
+                            }
+                    },
+                    {
+                        $project:
+                            {
+                                _id :1,
+                                title: 1,
+                                description : { $substr:["$description",0,66]},
+                                instructor:1,
+                                type:1,
+                                updated:1
+                            }
+                    },
+                    {
+                        $project:
+                        {
+                            _id :1,
+                            title: 1,
+                            description : { $concat:["$description","..."]},
+                            instructor:1,
+                            type:1,
+                            updated:1
+                        }
+                    },
+                    {
+                        $lookup:
+                        {
+                            from:"admins",
+                            localField:"instructor",
+                            foreignField: "email",
+                            as:"instructorForeign"
+                        }
+
+                    },
+                    {
+                        $match:
+                        {
+                            "instructorForeign": {$ne : []}
+                        }
+                    },
+                    {
+                        $unwind:"$instructorForeign"
+                    },
+                    {
+                        $addFields: {"name":"$instructorForeign.name"}
+                    }
+                
+                ],function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return res.terminate("Error: Could not find project");
+                    }
+                    if (project.length == 0) {
+                        return res.renderState('custom_errors', {
+                            redirect: "/dashboard/project-allotment-prof-create",
+                            timeout: 2,
+                            supertitle: ".",
+                            message: "Project Not Found",
+                            details: "Invalid Project ID"
+                        });
+                    } 
+                    else {
+                        return res.renderState('admin/portals/project-allotment-prof-create', {
+                            projects: result
+                        });
+                    }
+                })  
+            }
+        });
+    } catch (err) {
+        return res.terminate(err);
+    }
 });
-
-
-function getInstructorName(profmail) {
-  return new Promise((resolve, reject) => {
-    adminModel.findOne(
-      {
-        email: profmail
-      },
-      (err, result) => {
-        if (err) reject(err);
-        if (result != null && result != undefined) {
-          resolve(result.name);
-        } else {
-          resolve("Missing Professor Data");
-        }
-      }
-    );
-  });
-}
-
 function getUserType(profmail) {
-  return new Promise((resolve, reject) => {
-      adminModel.findOne({
-          email: profmail
-      }, (err, result) => {
-          if (err)
-              reject(err);
-          if (result != null && result != undefined) {
-              if (result.superUser == true) {
-                  resolve({
-                      admin: true
-                  });
-              } else {
-                  adminModel.findOne({
-                      email: profmail
-                  }, (err, result2) => {
-                      if (err)
-                          reject(err);
-                      if (result2 != null && result2 != undefined) {
-                          resolve({
-                              department: result2.department
-                          });
-                      }
-                  });
-              }
-          }
-      });
-  });
+    return new Promise((resolve, reject) => {
+        adminModel.findOne({
+            email: profmail
+        }, (err, result) => {
+            if (err)
+                reject(err);
+            if (result != null && result != undefined) {
+                if (result.superUser == true) {
+                    resolve({
+                        admin: true
+                    });
+                } else {
+                    resolve({
+                        department : result.department
+                    });
+                }
+            }
+        });
+    });
 }
 
 router.get("/view/:id", function(req, res, next) {
