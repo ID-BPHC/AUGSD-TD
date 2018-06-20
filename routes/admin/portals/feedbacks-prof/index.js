@@ -1,5 +1,3 @@
-//24x7 feedback
-
 var express = require("express");
 var router = express.Router();
 var fq = require("fuzzquire");
@@ -7,35 +5,41 @@ var feedbacksModel = fq("schemas/feedbacks");
 var adminsModel = fq("schemas/admins");
 
 router.get("/", function(req, res, next) {
-  try {
-    feedbacksModel.find(
-      {
-        instructor: req.user.email,
-        type: "24x7"
-      },
-      {
-        __v: 0
-      },
-      {
-        sort: {
-          createdOn: -1
+  res.renderState("admin/portals/feedbacks");
+});
+
+["24x7", "midsem"].forEach(fb_type => {
+  router.get("/" + fb_type, (req, res, next) => {
+    try {
+      feedbacksModel.find(
+        {
+          instructor: req.user.email,
+          type: fb_type
+        },
+        {
+          __v: 0
+        },
+        {
+          sort: {
+            createdOn: -1
+          }
+        },
+        (err, result) => {
+          if (err) {
+            return res.terminate(err);
+          }
+          result.forEach((object, index, array) => {
+            array[index].createdOn = getUTCDate(Number(array[index].createdOn));
+          });
+          res.renderState("admin/portals/feedbacks-prof/" + fb_type, {
+            feedbacks: result
+          });
         }
-      },
-      (err, result) => {
-        if (err) {
-          return res.terminate(err);
-        }
-        result.forEach((object, index, array) => {
-          array[index].createdOn = getUTCDate(Number(array[index].createdOn));
-        });
-        res.renderState("admin/portals/feedbacks-prof", {
-          feedbacks: result
-        });
-      }
-    );
-  } catch (err) {
-    return res.terminate(err);
-  }
+      );
+    } catch (err) {
+      return res.terminate(err);
+    }
+  });
 });
 
 function getUTCDate(epoch) {
