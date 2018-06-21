@@ -126,35 +126,45 @@ var superUsers = [
     email: "sohailrajdev97@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "",
+    head: true
   },
   {
     name: "Nischay Ram Mamidi",
     email: "nischaymamidi@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "",
+    head: true
   },
   {
     name: "Nishant Aggarwal",
     email: "nishant23799@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "",
+    head: true
   },
   {
     name: "Kailash Bhalaki",
     email: "kailashbhalaki@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "",
+    head: true
   },
   {
     name: "ID Office",
     email: "id@hyderabad.bits-pilani.ac.in",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "",
+    head: true
   }
 ];
 

@@ -6,15 +6,9 @@ var mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
 
-<<<<<<< eb08b1933ecb4e4422cec86f96235fae149bbaed
 var projectsModel = fq("schemas/projects");
 var headsModel = fq("schemas/project-heads");
 var applicationsModel = fq("schemas/project-applications");
-=======
-var projectsModel = fq('schemas/projects');
-var adminsModel = fq('schemas/admins')
-var applicationsModel = fq('schemas/project-applications');
->>>>>>> refactor: Merged projectHead schema with admins
 
 router.use(function(req, res, next) {
   if (req.user.email.indexOf("f2017") == 0) {
@@ -34,7 +28,6 @@ router.get("/faq", function(req, res, next) {
   res.sendFile(path.join(__dirname, "./faq.pdf"));
 });
 
-<<<<<<< eb08b1933ecb4e4422cec86f96235fae149bbaed
 router.get("/view/:id", function(req, res, next) {
   projectsModel.aggregate(
     [
@@ -75,36 +68,6 @@ router.get("/view/:id", function(req, res, next) {
         console.log(err);
         return res.terminate("Error: Could not find project");
       }
-=======
-router.get('/view/:id', function (req, res, next) {
-	projectsModel.aggregate([{
-		$match: {
-			_id: mongoose.Types.ObjectId(req.sanitize(req.params.id))
-		}
-	}, {
-		$lookup: {
-			from: "admins",
-			localField: "instructor",
-			foreignField: "email",
-			as: "instructorForeign"
-		}
-	}, {
-		$project: {
-			"department": "$instructorForeign.department",
-			"instructorName": "$instructorForeign.name",
-			title: 1,
-			description: 1,
-			instructor: 1,
-			name: 1,
-			updated: 1,
-			type: 1
-		}
-	}, {
-		$unwind: "$department"
-	}, {
-		$unwind: "$instructorName"
-	}], function (err, project) {
->>>>>>> refactor: Merged projectHead schema with admins
 
       if (project.length == 0) {
         return res.renderState("custom_errors", {
@@ -142,7 +105,6 @@ router.get('/view/:id', function (req, res, next) {
   );
 });
 
-<<<<<<< eb08b1933ecb4e4422cec86f96235fae149bbaed
 router.get("/view", function(req, res, next) {
   headsModel.distinct("department", function(err, departments) {
     if (err) {
@@ -211,63 +173,6 @@ router.post("/view", function(req, res, next) {
       );
     }
   );
-=======
-router.get('/view', function (req, res, next) {
-	adminsModel.distinct('department', function (err, departments) {
-		if (err) {
-			console.log(err);
-			return res.terminate("Could not find departments");
-		}
-		return res.renderState("dashboard/portals/project-allotment-student/select-department", {
-			departments: departments
-		});
-
-	});
-});
-
-router.post('/view', function (req, res, next) {
-	projectsModel.aggregate(
-		[{
-			$lookup: {
-				from: "admins",
-				localField: "instructor",
-				foreignField: "instructor",
-				as: "instructorForeign"
-			}
-		}, {
-			$project: {
-				"department": "$instructorForeign.department",
-				"instructorName": "$instructorForeign.name",
-				title: 1,
-				instructor: 1,
-				name: 1,
-				updated: 1,
-				type: 1
-			}
-		}, {
-			$unwind: "$department"
-		}, {
-			$unwind: "$instructorName"
-		}, {
-			$match: {
-				department: req.body.departments
-			}
-		, }, {
-			$sort: {
-				updated: -1
-			}
-		}],
-		function (err, projects) {
-			if (err) {
-				console.log(err);
-				return res.terminate("Aggregate Error");
-			}
-			return res.renderState("dashboard/portals/project-allotment-student/view-department", {
-				projects: projects,
-				department: req.body.departments
-			});
-		});
->>>>>>> refactor: Merged projectHead schema with admins
 });
 
 router.post(
