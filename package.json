@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js"
+    "test": "grunt"
   },
   "dependencies": {
     "app-root-dir": "^1.0.2",
