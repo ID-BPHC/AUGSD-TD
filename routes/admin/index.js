@@ -7,6 +7,7 @@ var portalsModel = require("../../schemas/portals");
 var settingsModel = require("../../schemas/settings");
 
 var auth = require("../../middleware/auth");
+var config = require("../../config");
 
 var profile = require("./profile");
 
@@ -73,7 +74,7 @@ router.use(
   session({
     resave: false,
     saveUninitialized: false,
-    secret: "ID-BPHC-ADMIN"
+    secret: config.authSecretAdmin
   })
 );
 

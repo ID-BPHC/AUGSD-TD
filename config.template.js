@@ -18,5 +18,8 @@ module.exports = {
   mailUser: "YOUR_EMAIL",
   mailRefreshToken: "YOUR_EMAIL_REFRESH_TOKEN",
   mailPort: 465,
-  mailSecure: true
+  mailSecure: true,
+
+  authSecretStudent: "STUDENT",
+  authSecretAdmin: "ADMIN"
 };

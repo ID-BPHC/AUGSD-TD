@@ -7,6 +7,7 @@ var portalsModel = require("../../schemas/portals");
 var bugsModel = require("../../schemas/bugs");
 
 var auth = require("../../middleware/auth");
+var config = require("../../config");
 
 /* Configure middleware for portal permissions */
 
@@ -63,7 +64,7 @@ router.use(
   session({
     resave: false,
     saveUninitialized: false,
-    secret: "ID-BPHC-STUDENT"
+    secret: config.authSecretStudent
   })
 );
 
