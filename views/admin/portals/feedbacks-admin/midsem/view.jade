@@ -13,24 +13,40 @@ block content
 			.mdl-cell.mdl-cell--4-col
 				h3(style='text-align:center') Midsem Feedback
 				h6(style='text-align:center') Feedback Report:  #{results.name}
+
 	div.mdl-cell.mdl-cell--12-col
-		center
-			div
-				div.table-responsive
-					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-						thead
-							tr
-								th.mdl-data-table__cell--non-numeric Course ID
-								th.mdl-data-table__cell--non-numeric Course Section
-								th.mdl-data-table__cell--non-numeric Q1
-								th.mdl-data-table__cell--non-numeric Q2
-								th.mdl-data-table__cell--non-numeric Q3
-						tbody
-							for feedback in results.feedback
-								tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/midsem/view/feedback/#{feedback._id}")')
-									td.mdl-data-table__cell--non-numeric #{feedback.courseID}
-									td.mdl-data-table__cell--non-numeric #{feedback.section}
-									td.mdl-data-table__cell--non-numeric #{feedback.responses[0]}
-									td.mdl-data-table__cell--non-numeric #{feedback.responses[1]}
-									td.mdl-data-table__cell--non-numeric #{feedback.responses[2]}
+		div.mdl-cell.mdl-cell--12-col.center
+			if results.feedback != undefined
+				if results.feedback != null
+					each feedback in results.feedback
+						br
+						div.mdl-grid.application
+							div.mdl-cell.mdl-cell--11-col.center
+								div.mdl-grid
+									div.mdl-cell.mdl-cell--6-col.head Course ID :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.courseID}
+									
+									div.mdl-cell.mdl-cell--6-col.head Course Section :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.section}
+									
+									div.mdl-cell.mdl-cell--6-col.head Instructor :
+									div.mdl-cell.mdl-cell--6-col.value #{results.name}									
+									div.mdl-cell.mdl-cell--6-col.head Which characterstics of this instructor or course have been most valuable to your learning? 
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[0]}
+
+									div.mdl-cell.mdl-cell--6-col.head Which characterstics of this instructor, course, classroom or teaching environment require improvement? 
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[1]}
+
+									div.mdl-cell.mdl-cell--6-col.head Any other confidential information you would like to share with instruction division about the instructor or course? 
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[2]}	
+
+									div.mdl-cell.mdl-cell--6-col.head Created On :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.createdOn}																									
+				else
+					br
+					h6 No feedbacks			
+
+			else
+				br
+				h6 No feedbacks	
 									

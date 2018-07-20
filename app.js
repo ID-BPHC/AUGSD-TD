@@ -41,7 +41,6 @@ mongoose.connect(
   {}
 );
 
-var api = require("./routes/api");
 var admin = require("./routes/admin");
 var dashboard = require("./routes/dashboard");
 var index = require("./routes");
@@ -86,7 +85,6 @@ app.use(function(req, res, next) {
 });
 
 app.use("/admin", admin);
-app.use("/api", api);
 app.use("/dashboard", dashboard);
 app.use("/", index);
 

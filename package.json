@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp check",
+    "start": "node ./bin/www",
     "test": "node_modules/.bin/mocha --reporter mocha-circleci-reporter test/*.js",
     "prettier": "pretty-quick --staged"
   },
@@ -26,14 +26,6 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.0.3",
     "fuzzquire": "0.0.7",
-    "gulp": "^3.9.1",
-    "gulp-help": "^1.6.1",
-    "gulp-jsbeautifier": "^2.1.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-minifier": "^1.2.2",
-    "gulp-mongodb-data": "^3.0.0",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-npm-run": "^0.0.3",
     "https-proxy-agent": "^2.1.1",
     "jade": "~1.11.0",
     "jshint": "^2.9.5",
@@ -57,8 +49,6 @@
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "^5.0.4",
-    "mocha-circleci-reporter": "^0.0.2",
     "pre-commit": "^1.2.2",
     "prettier": "1.13.4",
     "pretty-quick": "^1.6.0"

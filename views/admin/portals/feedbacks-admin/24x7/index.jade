@@ -24,22 +24,38 @@ block content
 				ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='proflist')
 					each prof in profs
 						li.mdl-menu__item(data-val='#{prof._id}') #{prof.name}
+	
 	div.mdl-cell.mdl-cell--12-col
-		center
-			div
-				div.table-responsive
-					table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-						thead
-							tr
-								th.mdl-data-table__cell--non-numeric Course ID
-								th.mdl-data-table__cell--non-numeric Course Section
-								th.mdl-data-table__cell--non-numeric Feedback
-						tbody
-							for feedback in results.feedbacks
-								tr(onclick='window.location.replace("#{rootURL}/feedbacks-admin/24x7/view/feedback/#{feedback._id}")')
-									td.mdl-data-table__cell--non-numeric #{feedback.courseID}
-									td.mdl-data-table__cell--non-numeric #{feedback.section}
-									td.mdl-data-table__cell--non-numeric #{feedback.responses}
+		div.mdl-cell.mdl-cell--12-col.center
+			if results.feedbacks != undefined
+				if results.feedbacks != null
+					each feedback in results.feedbacks
+						br
+						div.mdl-grid.application
+							div.mdl-cell.mdl-cell--11-col.center
+								div.mdl-grid
+									div.mdl-cell.mdl-cell--3-col.head Course ID :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.courseID}
+									
+									div.mdl-cell.mdl-cell--3-col.head Course Section :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.section}
+									
+									div.mdl-cell.mdl-cell--3-col.head Instructor :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.name}
+
+									div.mdl-cell.mdl-cell--3-col.head Feedback :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.responses}																
+									div.mdl-cell.mdl-cell--3-col.head Created On :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.createdOn}
+											
+				else 
+					br
+					h6 No feedbacks
+
+			else
+				br
+				h6 No feedbacks			
+
 		script.
 			window.setInterval(function(){
 				window.location.reload();
