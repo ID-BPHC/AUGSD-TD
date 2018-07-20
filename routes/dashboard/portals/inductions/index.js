@@ -3,7 +3,6 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var fileUpload = require("express-fileupload");
 var inductionsModel = fq("schemas/inductions");
-var Promise = require("bluebird");
 var multer = require("multer");
 var fs = Promise.promisifyAll(require("fs"));
 var config = require("./../../../../config");

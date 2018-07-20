@@ -3,7 +3,6 @@ var router = express.Router();
 
 var fq = require("fuzzquire");
 var mongoose = require("mongoose");
-var Promise = require("promise");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
 
