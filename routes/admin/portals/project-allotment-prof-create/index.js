@@ -3,6 +3,7 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var projectsModel = fq("schemas/projects");
 var adminModel = fq("schemas/admins");
+var mongoose = require("mongoose");
 
 router.get("/", function(req, res, next) {
   try {
@@ -16,7 +17,9 @@ router.get("/", function(req, res, next) {
               $project: {
                 _id: 1,
                 title: 1,
-                description: { $substr: ["$description", 0, 66] },
+                description: {
+                  $substr: ["$description", 0, 66]
+                },
                 instructor: 1,
                 type: 1,
                 updated: 1
@@ -26,7 +29,9 @@ router.get("/", function(req, res, next) {
               $project: {
                 _id: 1,
                 title: 1,
-                description: { $concat: ["$description", "..."] },
+                description: {
+                  $concat: ["$description", "..."]
+                },
                 instructor: 1,
                 type: 1,
                 updated: 1
@@ -42,14 +47,18 @@ router.get("/", function(req, res, next) {
             },
             {
               $match: {
-                instructorForeign: { $ne: [] }
+                instructorForeign: {
+                  $ne: []
+                }
               }
             },
             {
               $unwind: "$instructorForeign"
             },
             {
-              $addFields: { name: "$instructorForeign.name" }
+              $addFields: {
+                name: "$instructorForeign.name"
+              }
             }
           ],
           function(err, result) {
@@ -80,14 +89,16 @@ router.get("/", function(req, res, next) {
           [
             {
               $match: {
-                instructor: "req.user.mail"
+                instructor: req.user.email
               }
             },
             {
               $project: {
                 _id: 1,
                 title: 1,
-                description: { $substr: ["$description", 0, 66] },
+                description: {
+                  $substr: ["$description", 0, 66]
+                },
                 instructor: 1,
                 type: 1,
                 updated: 1
@@ -97,7 +108,9 @@ router.get("/", function(req, res, next) {
               $project: {
                 _id: 1,
                 title: 1,
-                description: { $concat: ["$description", "..."] },
+                description: {
+                  $concat: ["$description", "..."]
+                },
                 instructor: 1,
                 type: 1,
                 updated: 1
@@ -113,22 +126,28 @@ router.get("/", function(req, res, next) {
             },
             {
               $match: {
-                instructorForeign: { $ne: [] }
+                instructorForeign: {
+                  $ne: []
+                }
               }
             },
             {
               $unwind: "$instructorForeign"
             },
             {
-              $addFields: { name: "$instructorForeign.name" }
+              $addFields: {
+                name: "$instructorForeign.name"
+              }
             }
           ],
           function(err, result) {
             if (err) {
-              console.log(err);
+              console.log("err is " + err);
               return res.terminate("Error: Could not find project");
             }
-            if (project.length == 0) {
+            if (result.length == 0) {
+              console.log("req.user" + req.user);
+              console.log("length is zero");
               return res.renderState("custom_errors", {
                 redirect: "/dashboard/project-allotment-prof-create",
                 timeout: 2,
@@ -137,6 +156,7 @@ router.get("/", function(req, res, next) {
                 details: "Invalid Project ID"
               });
             } else {
+              console.log(result);
               return res.renderState(
                 "admin/portals/project-allotment-prof-create",
                 {
@@ -152,6 +172,7 @@ router.get("/", function(req, res, next) {
     return res.terminate(err);
   }
 });
+
 function getUserType(profmail) {
   return new Promise((resolve, reject) => {
     adminModel.findOne(
@@ -166,6 +187,7 @@ function getUserType(profmail) {
               admin: true
             });
           } else {
+            console.log(result);
             resolve({
               department: result.department
             });
@@ -247,24 +269,63 @@ router.get("/create", function(req, res, next) {
 });
 
 router.delete("/view/:id", function(req, res, next) {
+  var isAllowed = false;
   try {
-    if (req.user.superUser === true || req.user.head === true) {
-      projectsModel.findOneAndRemove(
-        {
-          _id: req.sanitize(req.params.id)
-        },
-        (err, result) => {
-          if (err) {
-            return res.terminate(err);
+    var checkIfAllowed = new Promise((resolve, reject) => {
+      projectsModel.aggregate(
+        [
+          {
+            $match: {
+              _id: mongoose.Types.ObjectId(req.sanitize(req.params.id))
+            }
+          },
+          {
+            $project: {
+              instructor: 1
+            }
           }
-          res.send("success");
+        ],
+        function(err, doc) {
+          if (err) {
+            console.log("err is " + err);
+            return res.terminate("Error: Could not find project");
+          } else {
+            console.log(doc[0].instructor);
+            if (doc[0].instructor === req.user.email) {
+              isAllowed = true;
+            }
+            resolve(isAllowed);
+          }
         }
       );
-    } else {
-      return res.terminate("You don't have permission to delete the project");
-    }
+    });
+
+    checkIfAllowed.then(isAllowed => {
+      if (isAllowed || req.user.superUser) {
+        projectsModel.findOneAndRemove(
+          {
+            _id: req.sanitize(req.params.id)
+          },
+          (err, result) => {
+            if (err) {
+              return res.terminate(err);
+            }
+            res.send("Success");
+          }
+        );
+      } else {
+        return res.renderState("custom_errors", {
+          redirect: "/dashboard/project-allotment-prof-create",
+          timeout: 2,
+          supertitle: ".",
+          message: "You don't have permission to delete the project",
+          details: "This is not your project"
+        });
+      }
+    });
   } catch (err) {
-    return res.terminate(err);
+    console.log(err);
   }
 });
+
 module.exports = router;
