@@ -1,4 +1,4 @@
-# Instruction-Division-2.0
+# Instruction-Division-2.0 [![Build Status](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0.svg?branch=master)](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0)
 Instruction Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
 
 This project is live at : https://id.bits-hyderabad.ac.in/
