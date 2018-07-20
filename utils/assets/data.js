@@ -42,7 +42,7 @@ var portals = [
     admin: false
   },
   {
-    displayName: "24x7 Feedbacks",
+    displayName: "Feedbacks",
     name: "feedbacks-prof",
     icon: "feedback",
     active: false,
