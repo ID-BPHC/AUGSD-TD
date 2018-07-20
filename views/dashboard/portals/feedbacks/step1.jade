@@ -31,7 +31,10 @@ block content
 						span.mdl-step__label-indicator-content 1
 				.mdl-step__content
 					div
-						h4 #{reqPortal.split("-",2)[1]} Feedback
+						if reqPortal.split("-",2)[1] == "24x7"
+							h4 24x7 Feedbacks
+						else
+							h4 Mid-Semester Feedbacks
 						p Select the course for which you want to write feedback.
 						form(action="#{rootURL}/#{reqPortal}/step-2", method="post", name="form1" id="form1").mdc-form-field
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth

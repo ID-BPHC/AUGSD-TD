@@ -38,7 +38,10 @@ block content
 				.mdl-step__content
 					div.mdl-grid
 						div.mdl-cell.mdl-cell--12-col.center
-							h4 #{reqPortal.split("-",2)[1]} Feedback
+							if reqPortal.split("-",2)[1] == "24x7"
+								h4 24x7 Feedbacks
+							else
+								h4 Mid-Semester Feedbacks
 							p Select the class section you want to write feedback about
 							form(action="#{rootURL}/#{reqPortal}/step-3", method="post", name="form1" id="form1").mdc-form-field
 								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
