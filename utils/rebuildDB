@@ -44,7 +44,7 @@ let dropCollections = function () {
 
 		console.log("******** Destroying Database ********");
 
-		let collections = ['admins', 'students', 'courses', 'feedbacks', 'feedbacks-midsems', 'portals'];
+		let collections = ['admins', 'students', 'courses', 'feedbacks', 'portals'];
 
 		collections.forEach(function (collection) {
 			console.log("	Dropping ", collection);
