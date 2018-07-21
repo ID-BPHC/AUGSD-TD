@@ -6,9 +6,6 @@ var cookieParser = require("cookie-parser");
 var expressSanitizer = require("express-sanitizer");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var expressValidator = require("express-validator");
-var fs = require("fs");
-var session = require("express-session");
 var bugsModel = require("./schemas/bugs");
 var app = express();
 
@@ -79,6 +76,7 @@ app.use(function(req, res, next) {
   res.nocache = function() {
     res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
     res.header("Expires", "-1");
+
     res.header("Pragma", "no-cache");
   };
   next();

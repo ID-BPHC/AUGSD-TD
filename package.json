@@ -43,9 +43,12 @@
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint-plugin-prettier": "^2.6.2",
     "grunt": "^1.0.3",
-    "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-prettier": "^0.6.1"
+    "grunt-eslint": "^21.0.0",
+    "grunt-prettier": "^0.6.1",
+    "prettier": "1.13.7"
   }
 }

@@ -1,35 +1,35 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-
-    jshint: {
-      options: {
-        esversion: 6,
-        laxbreak: true
-      },
-      files: [
+    checkLint: {
+      target: [
         "./*.js",
         "routes/**/*.js",
         "middleware/**/*.js",
         "schemas/**/*.js"
       ]
     },
-
+    fixLint: {
+      options: {
+        fix: true
+      },
+      target: ["<%= checkLint.target %>"]
+    },
     prettier: {
       files: {
-        src: ["<%= jshint.files %>"]
+        src: ["<%= checkLint.target %>"]
       }
-    },
-
-    watch: {
-      files: ["<%= jshint.files %>"],
-      tasks: ["prettier", "jshint"]
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-eslint");
+  grunt.renameTask("eslint", "checkLint");
+
+  grunt.loadNpmTasks("grunt-eslint");
+  grunt.renameTask("eslint", "fixLint");
+
   grunt.loadNpmTasks("grunt-prettier");
 
-  grunt.registerTask("default", ["prettier", "jshint"]);
+  grunt.registerTask("default", ["checkLint"]);
+  grunt.registerTask("fix", ["prettier", "fixLint"]);
 };
