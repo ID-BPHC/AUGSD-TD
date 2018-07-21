@@ -7,6 +7,20 @@ This project is live at : https://id.bits-hyderabad.ac.in/
 1. NodeJS
 1. MongoDB
 
+## Setup Instructions
+1. Install NodeJS & MongoDB
+1. Run MongoDB Instance
+1. Navigate to the project directory
+1. Create a copy of `config.template.js` as `config.js`
+1. Add the required details in `config.js`
+1. Run `npm install`
+1. Run `npm start`
+1. Navigate to `http://localhost:3000`
+
+### Grunt Details
+* Use `grunt` in terminal to check for linter / prettier errors
+* Use `grunt fix` in terminal for fixing auto-fixable linter / prettier errors
+
 ## Project Structure
 
 The project follows a portal based structure. Instruction Division provides it's services in the form of web portals which can be enabled/disabled from time to time. The current state of a portal is stored in a MongoDB collection (`portals`). 
