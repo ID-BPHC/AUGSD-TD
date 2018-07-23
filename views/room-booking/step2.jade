@@ -26,7 +26,7 @@ block content
 						form(action="#{rootURL}/#{reqPortal}/step-3", method="post", id="form1").mdc-form-field
 							ul.mdl-list
 								for room in rooms
-									if room.availible
+									if room.available
 										- roomNum = 1;
 										li.mdl-list__item.mdl-list__item--three-line
 											span.mdl-list__item-primary-content
