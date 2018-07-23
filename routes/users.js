@@ -92,8 +92,20 @@ let users = {
   },
   "Sohail Rajdev": {
     name: "Sohail Rajdev",
-    title: "Software Developer",
+    title: "System Administrator & Software Developer",
     avatar: "/images/team/16.jpg",
+    social: {}
+  },
+  "Kailash Bhalaki": {
+    name: "Kailash Bhalaki",
+    title: "Software Developer",
+    avatar: "/images/team/18.jpg",
+    social: {}
+  },
+  "Nishant Aggarwal": {
+    name: "Nishant Aggarwal",
+    title: "Software Developer",
+    avatar: "/images/team/19.jpg",
     social: {}
   }
 };
