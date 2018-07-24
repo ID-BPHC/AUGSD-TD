@@ -2,10 +2,7 @@ var express = require("express");
 var router = express.Router();
 var fq = require("fuzzquire");
 
-const fs = require("fs");
 const Json2csvParser = require("json2csv").Parser;
-
-var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
 
 router.get("/", function(req, res, next) {
@@ -40,9 +37,9 @@ router.get("/export/:status", function(req, res, next) {
       },
       {
         $lookup: {
-          from: "projectheads",
+          from: "admins",
           localField: "projectForeign.instructor",
-          foreignField: "instructor",
+          foreignField: "email",
           as: "instructorForeign"
         }
       },
@@ -51,7 +48,7 @@ router.get("/export/:status", function(req, res, next) {
           ID_Number: "$studentForeign.idNumber",
           Student_Name: "$studentForeign.name",
           Instructor: "$instructorForeign.name",
-          Instructor_Email: "$instructorForeign.instructor",
+          Instructor_Email: "$instructorForeign.email",
           Project: "$projectForeign.title",
           Project_Type: "$projectForeign.type",
           Department: "$instructorForeign.department",
