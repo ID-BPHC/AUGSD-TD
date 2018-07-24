@@ -2,10 +2,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var adminsSchema = new Schema({
-  name: String,
+  name: String, // Admin Name
   email: String,
   portals: [String],
   home: String,
+  department: String, // Department Name
+  departmentCode: String,
+  maxProjects: Number,
   superUser: Boolean
 });
 

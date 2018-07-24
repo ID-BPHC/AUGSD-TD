@@ -43,19 +43,5 @@ block content
 								td.mdl-data-table__cell--non-numeric Design Oriented Project
 							else
 								td.mdl-data-table__cell--non-numeric Study Oriented Project
-						input#projectRedirect(name='projectRedirect',type='hidden',value='#{rootURL}/project-allotment-prof-create')
-						input#projectPath(name='projectPath',type='hidden',value='#{rootURL}/project-allotment-prof-create/view/#{project._id}')
-						script.
-							function deleteProject(){
-								let xhr = new XMLHttpRequest();
-								xhr.open("DELETE", document.getElementById('projectPath').value, true);
-								xhr.onload = function () {
-									if (xhr.readyState == 4 && xhr.status == "200" && xhr.responseText == 'success') {
-										window.location.replace(document.getElementById('projectRedirect').value);
-									} else {
-									}
-								}
-								xhr.send(null);
-							}
 			br
-			button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='deleteProject()') Delete Project
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/#{reqPortal}/delete/#{project._id}")') Delete Project
