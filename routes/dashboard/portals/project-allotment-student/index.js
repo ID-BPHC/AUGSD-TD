@@ -5,6 +5,7 @@ var fq = require("fuzzquire");
 var mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
+var mailer = fq("utils/mailer");
 
 var courseData = require("./courseData");
 var adminsModel = fq("schemas/admins");
@@ -92,7 +93,8 @@ router.get("/view/:id", function(req, res, next) {
                 "Could not check application status for form generation"
               );
             }
-
+            req.session.project = project[0];
+            req.session.save();
             return res.renderState(
               "dashboard/portals/project-allotment-student/view-project",
               {
@@ -226,12 +228,24 @@ router.post(
               disciplinary: disc,
               experience: experience
             },
-            function(err, result) {
+            function(err, application) {
               if (err) {
                 console.log(err);
                 return res.terminate("Could not create application");
               }
-
+              mailer.send({
+                email: req.user.email,
+                subject: "Project Application",
+                body: `Hi ${
+                  req.user.name
+                }, <br><p> Your application for the project <b>${
+                  req.session.project.title
+                }</b> (Course Code <b>${
+                  application.courseCode
+                }</b>) has been successfully submitted. The application ID is <b>${
+                  application._id
+                }</b>. Please note this for future reference.</p><br>Thanks`
+              });
               return res.renderState("custom_errors", {
                 redirect: "/dashboard/project-allotment-student",
                 timeout: 3,
@@ -258,6 +272,15 @@ router.get("/manage/delete/:id", function(req, res, next) {
         console.log(err);
         return res.terminate("Could not delete application");
       }
+      mailer.send({
+        email: req.user.email,
+        subject: "Project Application Deletion",
+        body: `Hi ${
+          req.user.name
+        }, <br><p>You project application with ID <b>${req.sanitize(
+          req.params.id
+        )}</b> has been deleted</p>Thanks`
+      });
       return res.redirect("/dashboard/project-allotment-student/manage");
     }
   );
