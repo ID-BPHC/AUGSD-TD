@@ -6,9 +6,11 @@ var adminsSchema = new Schema({
   email: String,
   portals: [String],
   home: String,
-  superUser: Boolean
+  superUser: Boolean,
+  department: {
+    type: String
+  }
 });
 
 var model = mongoose.model("admins", adminsSchema);
-
 module.exports = model;
