@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
 
+var adminsModel = fq("schemas/admins");
 var projectsModel = fq("schemas/projects");
-var headsModel = fq("schemas/project-heads");
 var applicationsModel = fq("schemas/project-applications");
 
 router.use(function(req, res, next) {
@@ -38,9 +38,9 @@ router.get("/view/:id", function(req, res, next) {
       },
       {
         $lookup: {
-          from: "projectheads",
+          from: "admins",
           localField: "instructor",
-          foreignField: "instructor",
+          foreignField: "email",
           as: "instructorForeign"
         }
       },
@@ -106,7 +106,7 @@ router.get("/view/:id", function(req, res, next) {
 });
 
 router.get("/view", function(req, res, next) {
-  headsModel.distinct("department", function(err, departments) {
+  adminsModel.distinct("department", function(err, departments) {
     if (err) {
       console.log(err);
       return res.terminate("Could not find departments");
@@ -125,9 +125,9 @@ router.post("/view", function(req, res, next) {
     [
       {
         $lookup: {
-          from: "projectheads",
+          from: "admins",
           localField: "instructor",
-          foreignField: "instructor",
+          foreignField: "email",
           as: "instructorForeign"
         }
       },
