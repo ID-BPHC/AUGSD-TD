@@ -45,6 +45,25 @@ block content
 						span.mdl-textfield__error Input is not a number!
 					br
 					br
+					.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+						input#courseCode.mdl-textfield__input(type='text', value='#{courses[0]}', readonly='', tabindex='-1', name='courseCode')
+						label(for='courseCode')
+							i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+						label.mdl-textfield__label(for='courseCode') Select Course code
+						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='courseCode')
+							for course in courses
+								li.mdl-menu__item #{course}
+					br
+					h5 Elective Type
+					label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='disc')
+						input.mdl-radio__button(type='radio', id='disc', name='elective', value='disc', checked='')
+						span.mdl-radio__label Disciplinary
+					&nbsp; &nbsp; &nbsp; 
+					label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='open')
+						input.mdl-radio__button(type='radio', id='open', name='elective', value='open')
+						span.mdl-radio__label Open
+					br
+					br
 					.mdl-textfield.mdl-js-textfield
 						textarea#experience.mdl-textfield__input(type='text', rows='5',name='experience')
 						label.mdl-textfield__label(for='experience') Any previous experience in this field ?

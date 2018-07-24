@@ -14,14 +14,23 @@ block content
 						thead
 							tr
 								th.mdl-data-table__cell--non-numeric Title
-								th.mdl-data-table__cell--non-numeric Status
+								th.mdl-data-table__cell--non-numeric Course Code
+								th.mdl-data-table__cell--non-numeric Elective Type
 								th.mdl-data-table__cell--non-numeric
 						tbody
 							for application in applications
 								tr
-									td.mdl-data-table__cell--non-numeric #{application.title.substring(0,60)}...
 									td.mdl-data-table__cell--non-numeric
-										| Applied
+										if application.title.length < 60
+											| #{application.title}
+										else
+											| #{application.title.substring(0,60)}...
+									td.mdl-data-table__cell--non-numeric #{application.courseCode}
+									td.mdl-data-table__cell--non-numeric
+										if application.disciplinary
+											| Disciplinary
+										else
+											| Open
 									td.mdl-data-table__cell--non-numeric
 										if application.status == "P"
 											a(href="#{rootURL}/#{reqPortal}/manage/delete/#{application._id}") Delete

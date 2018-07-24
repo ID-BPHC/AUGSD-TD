@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
 
+var courseData = require("./courseData");
 var adminsModel = fq("schemas/admins");
 var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
@@ -47,6 +48,7 @@ router.get("/view/:id", function(req, res, next) {
       {
         $project: {
           department: "$instructorForeign.department",
+          departmentCode: "$instructorForeign.departmentCode",
           instructorName: "$instructorForeign.name",
           title: 1,
           description: 1,
@@ -95,7 +97,8 @@ router.get("/view/:id", function(req, res, next) {
               "dashboard/portals/project-allotment-student/view-project",
               {
                 project: project[0],
-                generateForm: applications.length == 0 ? true : false
+                generateForm: applications.length == 0 ? true : false,
+                courses: courseData[project[0].departmentCode][project[0].type]
               }
             );
           }
@@ -195,6 +198,8 @@ router.post(
     var experience = req.body.experience
       ? req.sanitize(req.body.experience)
       : "NA";
+    var courseCode = req.sanitize(req.body.courseCode);
+    var disc = req.sanitize(req.body.elective) == "disc" ? true : false;
 
     applicationsModel.find(
       { project: projectID, student: req.sanitize(req.user.email) },
@@ -217,6 +222,8 @@ router.post(
               project: projectID,
               student: req.sanitize(req.user.email),
               cgpa: cgpa,
+              courseCode: courseCode,
+              disciplinary: disc,
               experience: experience
             },
             function(err, result) {
@@ -276,6 +283,8 @@ router.get("/manage", function(req, res, next) {
         $project: {
           status: 1,
           updated: 1,
+          courseCode: 1,
+          disciplinary: 1,
           title: "$projectForeign.title"
         }
       },
