@@ -7,9 +7,6 @@ var projectsSchema = new Schema({
   instructor: {
     type: String
   },
-  name: {
-    type: String
-  },
   updated: {
     type: Date,
     default: Date.now

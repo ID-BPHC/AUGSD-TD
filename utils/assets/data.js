@@ -126,35 +126,50 @@ var superUsers = [
     email: "sohailrajdev97@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "Instruction Division",
+    departmentCode: "ID",
+    maxProjects: 2
   },
   {
     name: "Nischay Ram Mamidi",
     email: "nischaymamidi@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "Instruction Division",
+    departmentCode: "ID",
+    maxProjects: 2
   },
   {
     name: "Nishant Aggarwal",
     email: "nishant23799@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "Instruction Division",
+    departmentCode: "ID",
+    maxProjects: 2
   },
   {
     name: "Kailash Bhalaki",
     email: "kailashbhalaki@gmail.com",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "Instruction Division",
+    departmentCode: "ID",
+    maxProjects: 2
   },
   {
     name: "ID Office",
     email: "id@hyderabad.bits-pilani.ac.in",
     portals: [],
     home: "",
-    superUser: true
+    superUser: true,
+    department: "Instruction Division",
+    departmentCode: "ID",
+    maxProjects: 2
   }
 ];
 

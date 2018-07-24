@@ -25,24 +25,14 @@ block content
 								label.mdl-textfield__label(for='description') Type your Project Description / Prerequisites
 						.mdl-cell.mdl-cell--12-col
 							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
-								input#lablist.mdl-textfield__input(type='text', value='Lab Oriented Project (LOP)', readonly='', tabindex='-1', name='lablist')
-								label(for='lablist')
+								input#projectType.mdl-textfield__input(type='text', value='Lab Oriented Project (LOP)', readonly='', tabindex='-1', name='projectType')
+								label(for='projectType')
 									i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-								label.mdl-textfield__label(for='lablist') Project Type
-								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='lablist')
+								label.mdl-textfield__label(for='projectType') Project Type
+								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='projectType')
 									li.mdl-menu__item(data-val='lop') Lab Oriented Project (LOP)
 									li.mdl-menu__item(data-val='dop') Design Oriented Project (DOP)
 									li.mdl-menu__item(data-val='sop') Study Oriented Project (SOP)
-					if(profs)
-						.mdl-cell.mdl-cell--12-col
-							.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
-								input#proflist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='proflist')
-								label(for='proflist')
-									i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-								label.mdl-textfield__label(for='proflist') Select Professor
-								ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='proflist')
-									each item in profs
-										li.mdl-menu__item(data-val='#{item._id}') #{item.name} | #{item.instructor}
 					.mdl-cell.mdl-cell--12-col
 						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='submit', name='action') Create Project
 								

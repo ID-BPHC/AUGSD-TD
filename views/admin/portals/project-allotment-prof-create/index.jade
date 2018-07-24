@@ -22,15 +22,16 @@ block content
 										thead
 											tr
 												th.mdl-data-table__cell--non-numeric Title
-												th.mdl-data-table__cell--non-numeric Description
 												th.mdl-data-table__cell--non-numeric Professor
 												th.mdl-data-table__cell--non-numeric Type
 										tbody
 											for project in projects
 												tr(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create/view/#{project._id}")')
-													td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)}...
-													td.mdl-data-table__cell--non-numeric #{project.description}
-													td.mdl-data-table__cell--non-numeric #{project.name}
+													td.mdl-data-table__cell--non-numeric 
+														| #{project.title.substring(0,60)}
+														if project.title.length > 60
+															| ...
+													td.mdl-data-table__cell--non-numeric #{project.instructorName}
 													if(project.type=='lop')
 														td.mdl-data-table__cell--non-numeric Lab Oriented Project
 													else if(project.type=='dop')
