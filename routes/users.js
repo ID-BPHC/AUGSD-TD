@@ -19,20 +19,8 @@ let users = {
   },
   "Dr. Supradeepan K": {
     name: "Dr. Supradeepan K",
-    title: "Timetable",
+    title: "Test Scheduling (Incharge)",
     avatar: "/images/team/4.jpg",
-    social: {}
-  },
-  "Prof. R Punna Rao": {
-    name: "Prof. R Punna Rao",
-    title: "Test Scheduling and Invigilation Allotment",
-    avatar: "/images/team/5.jpg",
-    social: {}
-  },
-  "Prof. B Mishra": {
-    name: "Prof. B Mishra",
-    title: "Feedback and Monitoring (Incharge)",
-    avatar: "/images/team/6.jpg",
     social: {}
   },
   "Prof. D. Sriram": {
@@ -43,7 +31,7 @@ let users = {
   },
   "Prof. Sridhar Raj​u": {
     name: "Prof. Sridhar Raj​u",
-    title: "Feedback and Monitoring",
+    title: "Feedback and Monitoring (Incharge)",
     avatar: "/images/team/8.jpg",
     social: {}
   },
