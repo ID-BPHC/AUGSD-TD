@@ -75,10 +75,6 @@ Several housekeeping utilities can be found in `utils` directory
 1. `rebuildDB` drops the existing database and creates a new one with dummy values.
 1. `proj-pdf-generator` directory has utilities to create and send PDFs to instructors after the project allotment process is complete
 
-##### Note
-
-`projectallotmentprofessor.py` and `palistgen.py` will be removed from utils after the project-allotment portals have been refactored.
-
 ## Faculty Coordinators
 1. Prof. Vasan Arunachalam (Associate Dean, Instruction Division)
 1. Dr. Aruna Malapati (In-charge Software Development)

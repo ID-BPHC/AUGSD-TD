@@ -12,6 +12,9 @@ finalList = []
 # Index of the corresponding columns in the csv
 facultyEmailIndex = 1
 facultyNameIndex = 0
+departmentIndex = 2
+departmentCodeIndex = 3
+maxProjectsIndex = 4
 
 # Start reading line by line
 for line in f.readlines():
@@ -30,7 +33,10 @@ for line in f.readlines():
 		faculty = {}
 		faculty['name'] = data[facultyNameIndex]
 		faculty['email'] = data[facultyEmailIndex]
-		faculty['portals'] = ['feedbacks-prof', 'room-booking-faculty']
+		faculty['department'] = data[departmentIndex]
+		faculty['departmentCode'] = data[departmentCodeIndex]
+		faculty['maxProjects'] = int(data[maxProjectsIndex])
+		faculty['portals'] = ['feedbacks-prof', 'room-booking-faculty', 'project-allotment-prof-create', 'project-applications']
 		faculty['home'] = '/'
 		faculty['superUser'] = False
 
