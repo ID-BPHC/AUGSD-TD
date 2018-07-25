@@ -70,7 +70,49 @@ router.get("/", function(req, res, next) {
   );
 });
 
-router.get("/:action/:aid/project/:pid", function(req, res, next) {
+let checkCount = function(req, res, next) {
+  var action = req.sanitize(req.params.action);
+  if (action === "approve") {
+    applicationsModel.aggregate(
+      [
+        {
+          $lookup: {
+            from: "projects",
+            localField: "project",
+            foreignField: "_id",
+            as: "projectForeign"
+          }
+        },
+        {
+          $match: {
+            "projectForeign.instructor": req.user.email,
+            status: "A"
+          }
+        }
+      ],
+      function(err, applications) {
+        if (err) return res.terminate("Could not check existing approvals");
+        if (applications.length < req.user.maxProjects) return next();
+        else
+          return res.renderState("custom_errors", {
+            redirect: "/admin/project-applications",
+            timeout: 3,
+            supertitle: "Approval Limit Exceeded",
+            callback: "/",
+            message: `You have already approved ${
+              req.user.maxProjects
+            } projects`,
+            details:
+              "Reject some other application if you want to approve this one."
+          });
+      }
+    );
+  } else {
+    next();
+  }
+};
+
+router.get("/:action/:aid/project/:pid", checkCount, function(req, res, next) {
   var applicationID = req.sanitize(req.params.aid);
   var projectID = req.sanitize(req.params.pid);
   var action = req.sanitize(req.params.action);
@@ -88,7 +130,6 @@ router.get("/:action/:aid/project/:pid", function(req, res, next) {
         console.log(err);
         return res.terminate("Could Not Find Project");
       }
-
       if (projects.length == 0) {
         return res.status(403).end();
       } else {
@@ -100,7 +141,6 @@ router.get("/:action/:aid/project/:pid", function(req, res, next) {
               console.log(err);
               return res.terminate("Could Not Modify Application");
             }
-
             return res.redirect("/admin/project-applications");
           }
         );
