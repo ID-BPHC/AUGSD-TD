@@ -49,7 +49,8 @@ let isSameDay = function(date1, date2) {
 };
 
 let getWorkingDays = function(date, cb) {
-  let range = moment.range(new moment(), date).by("days");
+  let endDate = new moment(date).hour(23).minute(59);
+  let range = moment.range(new moment(), endDate).by("days");
   async.filter(
     range,
     function(currentDate, checkNext) {
