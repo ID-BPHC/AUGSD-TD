@@ -63,8 +63,15 @@ var portals = [
     admin: true
   },
   {
-    displayName: "View Room Bookings",
+    displayName: "ESD- Room Bookings",
     name: "room-booking-esd",
+    icon: "class",
+    active: false,
+    admin: true
+  },
+  {
+    displayName: "Room Bookings",
+    name: "room-booking-all",
     icon: "class",
     active: false,
     admin: true

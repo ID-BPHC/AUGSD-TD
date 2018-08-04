@@ -49,7 +49,7 @@ let isSameDay = function(date1, date2) {
 };
 
 let getWorkingDays = function(date, cb) {
-  let range = moment.range(new moment(), date).by("day");
+  let range = moment.range(new moment(), date).by("days");
   async.filter(
     range,
     function(currentDate, checkNext) {
@@ -80,7 +80,7 @@ let view = function(email, callback) {
   bookingsModel.find(
     {
       start: {
-        $gt: new moment()
+        $gte: new moment()
       },
       bookedBy: email
     },
@@ -143,10 +143,10 @@ let getRooms = function(
     bookingsModel.find(
       {
         start: {
-          $lt: endTime
+          $lte: endTime
         },
         end: {
-          $gt: startTime
+          $gte: startTime
         },
         blockAll: true
       },
@@ -161,10 +161,10 @@ let getRooms = function(
         let roomRegularSearch = roomsModel
           .find({
             lectureCapacity: {
-              $gt: lecture
+              $gte: lecture
             },
             examCapacity: {
-              $gt: exam
+              $gte: exam
             }
           })
           .lean()
@@ -218,10 +218,10 @@ let getRooms = function(
                   {
                     number: room.number,
                     start: {
-                      $lt: endTime
+                      $lte: endTime
                     },
                     end: {
-                      $gt: startTime
+                      $gte: startTime
                     },
                     approval: {
                       $ne: "R"
@@ -271,10 +271,13 @@ let makeBooking = function(
         {
           number: room,
           start: {
-            $lt: endTime
+            $lte: endTime
           },
           end: {
-            $gt: startTime
+            $gte: startTime
+          },
+          approval: {
+            $ne: "R"
           }
         },
         function(err, results) {

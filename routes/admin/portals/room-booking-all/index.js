@@ -6,7 +6,7 @@ var moment = require("moment");
 
 router.get("/", function(req, res, next) {
   bookingsModel.find(
-    { end: { $gt: new moment() }, approval: "A", blockAll: false, av: true },
+    { end: { $gt: new moment() }, approval: "A", blockAll: false },
     null,
     { sort: { start: 1 } },
     function(err, bookings) {
