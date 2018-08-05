@@ -1,5 +1,4 @@
 var express = require("express");
-var path = require("path");
 var router = express.Router();
 var fq = require("fuzzquire");
 var holidaysModel = fq("schemas/holidays");
