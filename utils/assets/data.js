@@ -70,7 +70,7 @@ var portals = [
     admin: true
   },
   {
-    displayName: "Room Bookings",
+    displayName: "View Room Bookings",
     name: "room-booking-all",
     icon: "class",
     active: false,

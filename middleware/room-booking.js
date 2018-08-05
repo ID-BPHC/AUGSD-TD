@@ -159,10 +159,10 @@ let getRooms = function(
       bookingsModel.find(
         {
           start: {
-            $lte: endTime
+            $lt: endTime
           },
           end: {
-            $gte: startTime
+            $gt: startTime
           },
           blockAll: true
         },
@@ -235,10 +235,10 @@ let getRooms = function(
                     {
                       number: room.number,
                       start: {
-                        $lte: endTime
+                        $lt: endTime
                       },
                       end: {
-                        $gte: startTime
+                        $gt: startTime
                       },
                       approval: {
                         $ne: "R"
@@ -289,10 +289,10 @@ let makeBooking = function(
         {
           number: room,
           start: {
-            $lte: endTime
+            $lt: endTime
           },
           end: {
-            $gte: startTime
+            $gt: startTime
           },
           approval: {
             $ne: "R"
