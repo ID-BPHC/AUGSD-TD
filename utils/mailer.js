@@ -11,7 +11,10 @@ var transporter = nodemailer.createTransport({
     user: config.mailUser,
     clientId: config.googleClientID,
     clientSecret: config.googleClientSecret,
-    refreshToken: config.mailRefreshToken
+    refreshToken: config.mailRefreshToken,
+    tls: {
+      rejectUnauthorized: false
+    }
   }
 });
 
