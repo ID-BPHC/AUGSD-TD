@@ -152,9 +152,9 @@ router.post(
           });
         }
 
-        if (rooms.noWorkingDays == 1) {
+        if (rooms.noWorkingHours == 1) {
           return res.renderState("custom_errors", {
-            message: "No Working Days",
+            message: "No Working Hours",
             details:
               "There are no working office hours to process your application",
             redirect: "/admin/room-booking-faculty/step-1",

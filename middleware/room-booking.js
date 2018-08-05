@@ -32,23 +32,6 @@ let isHoliday = function(date, cb) {
   });
 };
 
-let isToday = function(date) {
-  let now = new moment();
-  return (
-    now.date() === date.date() &&
-    now.month() === date.month() &&
-    now.year() === date.year()
-  );
-};
-
-let isSameDay = function(date1, date2) {
-  return (
-    date1.date() === date2.date() &&
-    date1.month() === date2.month() &&
-    date1.year() === date2.year()
-  );
-};
-
 let getWeekDay = function(date, cb) {
   ttExceptionsModel.findOne({ date: date }, function(err, result) {
     if (err) throw err;
@@ -57,23 +40,19 @@ let getWeekDay = function(date, cb) {
   });
 };
 
-let getWorkingDays = function(date, cb) {
-  let endDate = new moment(date).hour(23).minute(59);
-  let range = moment.range(new moment(), endDate).by("days");
+let getWorkingHours = function(date, cb) {
+  let range = moment.range(new moment(), date).by("hours");
   async.filter(
     range,
-    function(currentDate, checkNext) {
-      isHoliday(currentDate, function(holiday) {
+    function(currentHour, checkNext) {
+      isHoliday(currentHour, function(holiday) {
         if (holiday) checkNext(null, false);
         else if (
-          isToday(currentDate) &&
-          currentDate.day() === 6 &&
-          currentDate.hour() >= 12
+          currentHour.day() === 6 &&
+          (currentHour.hour() <= 8 || currentHour.hour() >= 12)
         )
           checkNext(null, false);
-        else if (isToday(currentDate) && currentDate.hour() >= 16)
-          checkNext(null, false);
-        else if (isSameDay(currentDate, date) && currentDate.hour() < 8)
+        else if (currentHour.hour() <= 8 || currentHour.hour() >= 16)
           checkNext(null, false);
         else checkNext(null, true);
       });
@@ -153,9 +132,9 @@ let getRooms = function(
     let lecture = bookedForExam ? 0 : parseInt(capacity);
     let exam = bookedForExam ? parseInt(capacity) : 0;
 
-    getWorkingDays(startTime, function(workingDays) {
-      if (workingDays.length === 0)
-        return callback(false, { noWorkingDays: 1 });
+    getWorkingHours(startTime, function(workingHours) {
+      if (workingHours.length === 0)
+        return callback(false, { noWorkingHours: 1 });
       bookingsModel.find(
         {
           start: {
