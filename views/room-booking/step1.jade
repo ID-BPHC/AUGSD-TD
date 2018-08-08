@@ -121,7 +121,9 @@ block content
 			startTimePicker.time = moment().endOf('hour').add(1, 'minute');
 
 			var selectedDate = parseInt(datePicker.time.get('date').toString());
+			var selectedMonth = parseInt(datePicker.time.get('month').toString());
 			var todayDate = parseInt(moment().get('date').toString())			
+			var todayMonth = parseInt(moment().get('month').toString())			
 			var hours = document.getElementById('mddtp-time__hourView').childNodes;
 
 			var i = 1;
@@ -131,7 +133,7 @@ block content
 					hours[i-1].style.visibility = "visible";
 			}
 
-			if(selectedDate == todayDate) {
+			if(selectedDate == todayDate && selectedMonth == todayMonth) {
 				var nowHour = parseInt(moment().get('hour').toString());
 				for(i=1; i <= nowHour; i++){
 					hours[i-1].style.visibility = "hidden";
