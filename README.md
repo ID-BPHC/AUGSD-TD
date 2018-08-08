@@ -67,7 +67,8 @@ The project follows a portal based structure. Instruction Division provides it's
 
 ## Utils
 Several housekeeping utilities can be found in `utils` directory
-1. `adminGenerator.py` generates the JSON data from CSV for `admins` schema.
+1. `adminFacultyGenerator.py` generates the Faculty JSON data from CSV for `admins` schema.
+1. `adminDeptGenerator.py` generates the Department JSON data from CSV for `admins` schema.
 1. `courseGenerator.py` generates the JSON data from CSV for `courses` schema.
 1. `roomGenerator.py` generates the JSON data from CSV for `rooms` schema.
 1. `studenteGenerator.py` generates the JSON data from CSV for `students` schema.
