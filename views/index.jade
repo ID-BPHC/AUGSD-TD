@@ -49,16 +49,6 @@ html(lang='en')
 		link(rel='shortcut icon', href='/images/logo/idlogo-short-01.ico')
 
 		// Page styles
-		//- link(rel='stylesheet', href='/stylesheets/outdatedbrowser.min.css')
-		//- link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en')
-		//- link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
-		//- link(rel='stylesheet', href='https://code.getmdl.io/1.3.0/material.min.css')
-		//- link(rel='stylesheet', href='/stylesheets/indexstyle.css')
-
-
-		//- script(defer='', src='https://code.getmdl.io/1.3.0/material.min.js')
-		//- script(defer='', src='/scripts/jquery-3.2.1.slim.js')
-		//- script(defer='', src='/scripts/jquery.validate.min.js')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		style.
 			.custom-title {
@@ -427,7 +417,10 @@ html(lang='en')
 			.android-drawer.mdl-layout__drawer
 				span.mdl-layout-title(style='background: #64B5F6')
 					img.android-logo-image(src='images/logo/idlogo-02.png')
-				nav.mdl-navigation
+				nav.mdl-navigation				
+					a.mdl-navigation__link(href='http://bio.bits-hyderabad.ac.in/Bitsclassroom/login.aspx')
+						//- img(src="/images/logo/impartus.png" alt="Impartus" height="32" width="32" style="padding-right:20px")
+						| Biometric
 					a.mdl-navigation__link(href='https://a.impartus.com/login/#/')
 						//- img(src="/images/logo/impartus.png" alt="Impartus" height="32" width="32" style="padding-right:20px")
 						| Impartus
