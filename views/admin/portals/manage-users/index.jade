@@ -1,0 +1,68 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	style.
+		.custom-title {
+			font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+			line-height: 1;
+			color: #767777;
+			font-weight: 500;
+			margin: unset;
+		}
+		.custom-title2 {
+			font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+			line-height: 1;
+			color: #767777;
+			font-weight: 500;
+			margin: 10px -20px;
+		}
+		.profile{
+			width: 64px;
+			height: 64px;
+			border-radius: 0%;
+			display: block;
+			padding-top: 24px;
+			margin: 0 auto;
+		}
+		.profile-select:hover{
+			background-color: rgba(243,243,243,1);
+			cursor: pointer;
+		}
+		.signin{
+			font-weight: 400!important;
+			font-family: "Roboto","Helvetica","Arial",sans-serif;
+			font-size: 16px;
+			opacity: .68;
+			font-weight: 400;
+			line-height: 40px;
+		}
+		.signin-image{
+			width: 48px;
+			height: 48px;
+			display: block;
+			padding-top: 8px;
+			padding-left: 12px;
+			margin: 0 auto;
+		}
+		.custom{
+			opacity: .68;
+		}		
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+			.android-customized-section
+				.android-customized-section-text
+					.mdl-typography--font-light.mdl-typography--display-1-color-contrast.center Manage Users
+					p.mdl-typography--font-light
+						.mdl-grid
+							.mdl-layout-spacer
+							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/adduser')")
+								img.profile(src='/images/manage-user/add-user.png')
+								h4.center.custom Add Users							
+							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/updateuser')")
+								img.profile(src='/images/manage-user/update-user.png')
+								h4.center.custom Update User
+							.mdl-layout-spacer
