@@ -1,7 +1,7 @@
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
-var logger = require("morgan");
+var morgan = require("morgan");
 var cookieParser = require("cookie-parser");
 var expressSanitizer = require("express-sanitizer");
 var bodyParser = require("body-parser");
@@ -20,7 +20,20 @@ app.use(
   )
 );
 
-app.use(logger("dev"));
+morgan.token("user", function(req) {
+  if (typeof req.user !== "undefined") return req.user.email;
+  else return "";
+});
+
+app.use(
+  morgan(":date[clf] :user :remote-addr :user-agent - :method :status :url", {
+    skip: function(req, res) {
+      return (
+        req.url.indexOf("/scripts") >= 0 || req.url.indexOf("/stylesheets") >= 0
+      );
+    }
+  })
+);
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
