@@ -30,7 +30,9 @@ app.use(
   morgan(":date[clf] :user :remote-addr :user-agent - :method :status :url", {
     skip: function(req, res) {
       return (
-        req.url.indexOf("/scripts") >= 0 || req.url.indexOf("/stylesheets") >= 0
+        req.url.indexOf("/scripts") >= 0 ||
+        req.url.indexOf("/stylesheets") >= 0 ||
+        req.url.indexOf("/images") >= 0
       );
     }
   })
