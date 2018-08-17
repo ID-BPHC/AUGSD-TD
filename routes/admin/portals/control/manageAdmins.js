@@ -16,7 +16,7 @@ router.get("/", function(req, res, next) {
         if (err) return res.terminate("Can not find portals");
         return res.renderState("admin/portals/control/manageAdmins", {
           admins,
-          portals
+          adminPortals: portals
         });
       });
     }
