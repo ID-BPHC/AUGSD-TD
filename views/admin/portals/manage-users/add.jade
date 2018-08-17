@@ -41,20 +41,6 @@ block content
                     input#project.mdl-textfield__input(type="text", name="project" pattern="-?[0-9]*(\.[0-9]+)?") 
                     label.mdl-textfield__label(for="project") Max Projects
                     span.mdl-textfield__error Input is not a number!
-                br
-                .mdl-grid
-                    div.mdl-cell.mdl-cell--2-col    
-                    div.mdl-cell.mdl-cell--4-col.right
-                        label(style="font-family: arial; !important") Super-user 
-                    div.mdl-cell.mdl-cell--1-col.left
-                        label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for="yes")
-                            input#yes.mdl-radio__button(name="superuser", type="radio")
-                            span.mdl-checkbox__label Yes
-                    div.mdl-cell.mdl-cell--1-col.left               
-                        label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for="no")
-                            input#no.mdl-radio__button(name="superuser", type="radio", checked)
-                            span.mdl-checkbox__label No                                     
-                    div.mdl-cell.mdl-cell--4-col
 
                 br
                 div.mdl-grid
@@ -68,7 +54,7 @@ block content
                                     span.mdl-list__item-primary-content #{port.displayName}
                                     span.mdl-list__item-secondary-action 
                                         label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for="#{port.name}")
-                                            input.mdl-checkbox__input(type="checkbox", name="portals", id="#{port.name}")
+                                            input.mdl-checkbox__input(type="checkbox", name="portals", id="#{port.name}" value="#{port.name}")
 
                 button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Add 
 
