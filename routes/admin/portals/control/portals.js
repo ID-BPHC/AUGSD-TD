@@ -19,7 +19,7 @@ router.get("/toggle/:id", function(req, res, next) {
         if (err) {
           return res.terminate(err);
         }
-        return res.redirect("/admin/control/portalToggle");
+        return res.redirect("/admin/control/portal-toggle");
       }
     );
   });
