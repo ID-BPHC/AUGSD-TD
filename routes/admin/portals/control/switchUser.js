@@ -11,7 +11,7 @@ router.get("/", function(req, res, next) {
       return res.terminate("Could not find admins");
     }
 
-    return res.renderState("admin/portals/control/switch-user", {
+    return res.renderState("admin/portals/control/switchUser", {
       users: users
     });
   });
