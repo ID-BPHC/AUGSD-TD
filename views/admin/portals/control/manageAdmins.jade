@@ -1,0 +1,14 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Admin Management
+	div.mdl-cell.mdl-cell--12-col
+		hr
+		center
+			h4 Delete Admin
+				form(action="#{rootURL}/#{reqPortal}/manage-admins/delete", method="post", name="deleteForm" id="deleteForm")
+					select#admin(name="admin")
+						for admin in admins
+							option(value="#{admin.email}") #{admin.name} | #{admin.email}
+					button(type="submit") Delete
