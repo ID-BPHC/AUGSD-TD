@@ -1,0 +1,60 @@
+extends ../../../master-dashboard
+
+block content
+    style.
+        #formBG{
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+            background: white;
+            width: 100%;
+            margin: 5px;
+        }
+        .mdl-textfield{
+            width: 600px
+        }
+
+    div.mdl-grid#formBG
+        div.mdl-cell.mdl-cell--12-col.center
+            h2 Manage Users
+            h4 Add Professor
+            hr
+            br
+        div.mdl-cell.mdl-cell--12-col.center
+            form(action="#{rootURL}/#{reqPortal}/adduser/add", method="post", id="add")
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                    input#name.mdl-textfield__input(type="text", name="name" pattern="[A-Z,a-z, ]*") 
+                    label.mdl-textfield__label(for="name") Name
+                    span.mdl-textfield__error Letters and spaces only
+                br
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label   
+                    input#email.mdl-textfield__input(type="text", name="email") 
+                    label.mdl-textfield__label(for="email") E-mail                  
+                br
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label   
+                    input#dep.mdl-textfield__input(type="text", name="dep") 
+                    label.mdl-textfield__label(for="dep") Department
+                br
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label   
+                    input#depcode.mdl-textfield__input(type="text", name="depcode") 
+                    label.mdl-textfield__label(for="depcode") Department Code
+                br
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label   
+                    input#project.mdl-textfield__input(type="text", name="project" pattern="-?[0-9]*(\.[0-9]+)?") 
+                    label.mdl-textfield__label(for="project") Max Projects
+                    span.mdl-textfield__error Input is not a number!
+
+                br
+                div.mdl-grid
+                    div.mdl-cell.mdl-cell--2-col
+                    div.mdl-cell.mdl-cell--4-col.right 
+                        label(style="font-family: arial; !important") Portals' Access: 
+                    div.mdl-cell-mdl-cell--6-col-left                   
+                        ul.mdl-list(style="width:300px;")
+                            for port in access
+                                li.mdl-list__item
+                                    span.mdl-list__item-primary-content #{port.displayName}
+                                    span.mdl-list__item-secondary-action 
+                                        label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for="#{port.name}")
+                                            input.mdl-checkbox__input(type="checkbox", name="portals", id="#{port.name}" value="#{port.name}")
+
+                button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Add 
+
