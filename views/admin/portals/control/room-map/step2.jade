@@ -5,129 +5,137 @@ block content
         td.hour{
             font-family: "Roboto","Helvetica","Arial",sans-serif;
             font-weight: 500;
-            transition: all 0.2s ease-in-out;
+            font-size: 12px;
+            border-bottom: solid blue 1px;
+            padding: 12px;
+            min-width: 85px;
+
+        }
+        td.day{
+            font-family: "Roboto","Helvetica","Arial",sans-serif;
+            font-weight: 800;
+            font-size:15px;
+        }
+        th {
+            padding: 15px;
         }
         td.hour:hover {
-            transform: scale(1.1);
-            font-weight: 600;
+            color:blue;
+            cursor: pointer;
+        }
+        .mdl-grid{
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+        select{
+            margin-right:45px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+        .mdl-button{
+            float:right;
         }
     div.mdl-cell.mdl-cell--12-col.center
-        div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
-            div.mdl-step
-                span.mdl-step__label
-                    span.mdl-step__title
-                        span.mdl-step__title-text Select Room
-                    span.mdl-step__label-indicator
-                        span.mdl-step__label-indicator-content 1
+        .mdl-grid
+            .mdl-cell.mdl-cell--10-col
+                table
+                    thead
+                        tr
+                            th 
+                            th 1
+                            th 2
+                            th 3
+                            th 4
+                            th 5
+                            th 6
+                            th 7
+                            th 8
+                            th 9
+                            th 10
 
-            div.mdl-step.is-active
-                span.mdl-step__label
-                    span.mdl-step__title
-                        span.mdl-step__title-text Room Map
-                    span.mdl-step__label-indicator
-                        span.mdl-step__label-indicator-content 2
-                .mdl-step__content
-                    .mdl-grid
-                        .mdl-cell.mdl-cell--1-col
-                            table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-                                thead
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric Hour
-                                            
-                                    tr  
-                                        th.mdl-data-table__cell--non-numeric  MON 
-                                            
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  TUE
-                                            
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  WED    
-                                            
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  THU
-                                            
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  FRI
-                                            
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  SAT
-                                           
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric  SUN
-                        .mdl-cell.mdl-cell--10-col
-                            table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-                                thead
-                                    tr
-                                        th.mdl-data-table__cell--non-numeric 1
-                                        th.mdl-data-table__cell--non-numeric 2
-                                        th.mdl-data-table__cell--non-numeric 3
-                                        th.mdl-data-table__cell--non-numeric 4
-                                        th.mdl-data-table__cell--non-numeric 5
-                                        th.mdl-data-table__cell--non-numeric 6
-                                        th.mdl-data-table__cell--non-numeric 7
-                                        th.mdl-data-table__cell--non-numeric 8
-                                        th.mdl-data-table__cell--non-numeric 9
-                                        th.mdl-data-table__cell--non-numeric 10
+                    tbody
+                        -   for   (var day = 0 ; day < classes.length; day++ ){
+                            tr
+                                if    day == 0
+                                    td.day  Mon
+                                if    day == 1
+                                    td.day  Tue
+                                if    day == 2
+                                    td.day  Wed
+                                if    day == 3
+                                    td.day Thu
+                                if    day == 4
+                                    td.day Fri
+                                if    day == 5
+                                    td.day Sat
+                                if    day == 6
+                                    td.day Sun           
+                                -   for   (var hour = 0; hour < classes[day].length; hour++) {
+                                        td.hour= classes[day][hour]
+                                -   }
+                        -   }
 
-                                tbody
-                                    each day in classes
-                                        tr
-                                            each hour in day 
-                                                td.hour.mdl-data-table__cell--non-numeric #{hour}
-                    |Present Room : #{room}
-                    hr
-                                          
-                    form(action="#{rootURL}/control/room-map/#{room}/shiftclass", method="post", name="form1" id="form1").mdc-form-field
-                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field
-                            input#hours.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='hour')
-                            label(for='hours')
-                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-                            label.mdl-textfield__label Present Hour
-                            ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='hours')
-                                each hour in hours
-                                    li.mdl-menu__item(data-val='#{hour}') #{hour}
-                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field
-                            input#days.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='day')
-                            label(for='days')
-                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-                            label.mdl-textfield__label Present Day 
-                            ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='days')
-                                each day in days
-                                    li.mdl-menu__item(data-val='#{day}') #{day}
+        |Present Room : #{room}
+        hr
 
-                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field
-                            input#rooms.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='room')
-                            label(for='rooms')
-                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-                            label.mdl-textfield__label Change Room To
-                            ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='rooms')
-                                each room in rooms
-                                    li.mdl-menu__item(data-val='#{room}') #{room} 
-                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field
-                            input#hours1.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='hour1')
-                            label(for='hours1')
-                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-                            label.mdl-textfield__label Change Hour To
-                            ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='hours1')
-                                each hour in hours
-                                    li.mdl-menu__item(data-val='#{hour}') #{hour} 
-                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field
-                            input#days1.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='day1')
-                            label(for='days1')
-                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-                            label.mdl-textfield__label Change Day To
-                            ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='days1')
-                                each day in days
-                                    li.mdl-menu__item(data-val='#{day}') #{day}
-                        
-                     button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
-                        | Shift Class
-                        span.mdl-button__ripple-container
-                            span.mdl-ripple
-                        
-                .mdl-step__actions
-                    button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
-                        | Cancel
-                        span.mdl-button__ripple-container
-                            span.mdl-ripple
-    
+        form(action="#{rootURL}/control/room-map/#{room}/shiftclass", method="post", name="form1" id="form1").mdc-form-field
+            |Select Present Day 
+            select#day(name="day")
+                option(value="0") Monday
+                option(value="1") Tuesday
+                option(value="2") Wednesday
+                option(value="3") Thursday
+                option(value="4") Friday
+                option(value="5") Saturday
+
+            |Select Present Hour
+            select#hour(name="hour")
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") 4
+                option(value="5") 5
+                option(value="6") 6
+                option(value="7") 7
+                option(value="8") 8
+                option(value="9") 9
+                option(value="10") 10
+            
+            
+            br
+            |Select New Room
+            select#room(name= "room1")
+                    each room in rooms
+                        option #{room} 
+            |Select New Day
+            select#day(name="day1")
+                option(value="0") Monday
+                option(value="1") Tuesday
+                option(value="2") Wednesday
+                option(value="3") Thursday
+                option(value="4") Friday
+                option(value="5") Saturday
+            |Select New Hour
+            select#hour(name="hour1")
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") 4
+                option(value="5") 5
+                option(value="6") 6
+                option(value="7") 7
+                option(value="8") 8
+                option(value="9") 9
+                option(value="10") 10
+           
+        button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
+            | Cancel
+            span.mdl-button__ripple-container
+                span.mdl-ripple
+
+        button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
+            | Shift Class
+            span.mdl-button__ripple-container
+                span.mdl-ripple
+
+        

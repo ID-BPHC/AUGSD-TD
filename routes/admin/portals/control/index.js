@@ -9,13 +9,10 @@ let manageAdmins = require("./manageAdmins.js");
 let portalToggle = require("./portals.js");
 let switchUser = require("./switchUser.js");
 let ttExceptions = require("./ttExceptions");
-<<<<<<< HEAD
 let projectGuidelines = require("./projectAllotmentGuidelines.js");
 let projAllotmentForbiddenBatches = require("./projAllotmentForbiddenBatches.js");
 let blockAllRooms = require("./blockAllRooms.js");
-=======
-var roomMap = require("./room-map.js")
->>>>>>> control: init roommap portal
+var roomMap = require("./room-map.js");
 
 router.use("/holidays", holiday);
 router.use("/manage-admins", manageAdmins);
