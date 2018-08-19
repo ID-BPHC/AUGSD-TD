@@ -1,9 +1,9 @@
-var express = require("express");
-var router = express.Router();
-var fq = require("fuzzquire");
-var roomsModel = fq("schemas/rooms");
+let express = require("express");
+let router = express.Router();
+let fq = require("fuzzquire");
+let roomsModel = fq("schemas/rooms");
 
-var rooms = [];
+let rooms = [];
 router.get("/", function(req, res, next) {
   return res.redirect("/admin/control/room-map/step1");
 });
@@ -24,7 +24,7 @@ router.get("/step2", function(req, res, next) {
 router.post("/step2", function(req, res, next) {
   roomsModel.find(
     {
-      number: req.body.room
+      number: req.sanitize(req.body.room)
     },
     function(err, data) {
       if (err) {
@@ -41,14 +41,14 @@ router.post("/step2", function(req, res, next) {
   );
 });
 router.post("/:room/shiftclass", function(req, res, next) {
-  var presentRoom = req.params.room;
-  var presentHour = req.body.hour;
-  var presentDay = req.body.day;
-  var newRoom = req.body.room1;
-  var newDay = req.body.day1;
-  var newHour = req.body.hour1;
-  var sub;
-  var getPresentRoomDetails = function getPresentRoomDetails() {
+  let presentRoom = req.sanitize(req.params.room);
+  let presentHour = parseInt(req.sanitize(req.body.hour));
+  let presentDay = parseInt(req.sanitize(req.body.day));
+  let newRoom = req.sanitize(req.body.room1);
+  let newDay = parseInt(req.sanitize(req.body.day1));
+  let newHour = parseInt(req.sanitize(req.body.hour1));
+  let sub;
+  let getPresentRoomDetails = function getPresentRoomDetails() {
     return new Promise(function(resolve, reject) {
       roomsModel.find(
         {
@@ -67,10 +67,10 @@ router.post("/:room/shiftclass", function(req, res, next) {
     });
   };
   getPresentRoomDetails().then(sub => {
-    var presentRoomNewData;
-    var newRoomNewData;
+    let presentRoomNewData;
+    let newRoomNewData;
 
-    var findPresentRoomData = new Promise(function(resolve, reject) {
+    let findPresentRoomData = new Promise(function(resolve, reject) {
       roomsModel.findOne(
         {
           number: presentRoom
@@ -85,7 +85,7 @@ router.post("/:room/shiftclass", function(req, res, next) {
         }
       );
     });
-    var findNewRoomData = new Promise(function(resolve, reject) {
+    let findNewRoomData = new Promise(function(resolve, reject) {
       roomsModel.findOne(
         {
           number: newRoom
