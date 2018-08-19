@@ -1,7 +1,5 @@
 var express = require("express");
-var path = require("path");
 var router = express.Router();
-var session = require("express-session");
 var fq = require("fuzzquire");
 var roomsModel = fq("schemas/rooms");
 
@@ -14,7 +12,7 @@ router.get("/step1", function(req, res, next) {
     if (err) console.log(err);
     else {
       rooms = result;
-      return res.renderState("admin/portals/control/room-map/step1", {
+      return res.renderState("admin/portals/control/roomMap/step1", {
         result: result
       });
     }
@@ -33,7 +31,7 @@ router.post("/step2", function(req, res, next) {
         console.log(err);
         return res.terminate(err);
       } else {
-        return res.renderState("admin/portals/control/room-map/step2", {
+        return res.renderState("admin/portals/control/roomMap/step2", {
           classes: data[0].fixedClasses,
           room: data[0].number,
           rooms: rooms
