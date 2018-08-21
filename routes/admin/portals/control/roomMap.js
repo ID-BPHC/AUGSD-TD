@@ -48,6 +48,9 @@ router.post("/:room/shiftclass", function(req, res, next) {
   let newDay = parseInt(req.sanitize(req.body.day1));
   let newHour = parseInt(req.sanitize(req.body.hour1));
   let sub;
+  /*
+    function `getPresentRoomDetails` is used to retreive the the present hour details that user wants to remove.
+  */
   let getPresentRoomDetails = function getPresentRoomDetails() {
     return new Promise(function(resolve, reject) {
       roomsModel.find(
@@ -60,6 +63,7 @@ router.post("/:room/shiftclass", function(req, res, next) {
             reject(err);
           } else {
             sub = data[0].fixedClasses[presentDay][presentHour - 1];
+            console.log("getPresentRoomDetails gives subject:", sub);
             resolve(sub);
           }
         }
@@ -67,10 +71,11 @@ router.post("/:room/shiftclass", function(req, res, next) {
     });
   };
   getPresentRoomDetails().then(sub => {
-    let presentRoomNewData;
-    let newRoomNewData;
+    let presentRoomNewData; //stores the updated Present Room data (i.e . after removing the hour user changed, if no clashing)
+    let newRoomNewData; // stores the updated new Room data (i.e after adding the hour user added, if no clashing)
 
-    let findPresentRoomData = new Promise(function(resolve, reject) {
+    let changePresentRoomData = new Promise(function(resolve, reject) {
+      // this finds the present room and equals presentRoomNewData to actual classes removing the hour changed.Only a promise, resolved only when no clashing.
       roomsModel.findOne(
         {
           number: presentRoom
@@ -78,14 +83,18 @@ router.post("/:room/shiftclass", function(req, res, next) {
         function(err, data) {
           if (err) console.log(err);
           else {
-            presentRoomNewData = data.fixedClasses;
+            if (presentRoom != newRoom) {
+              presentRoomNewData = data.fixedClasses;
+            } else {
+              presentRoomNewData = newRoomNewData;
+            }
             presentRoomNewData[presentDay][presentHour - 1] = "";
             resolve();
           }
         }
       );
     });
-    let findNewRoomData = new Promise(function(resolve, reject) {
+    let changeNewRoomData = new Promise(function(resolve, reject) {
       roomsModel.findOne(
         {
           number: newRoom
@@ -106,7 +115,7 @@ router.post("/:room/shiftclass", function(req, res, next) {
         }
       );
     });
-    findNewRoomData.then(param => {
+    changeNewRoomData.then(param => {
       if (param) {
         roomsModel.update(
           {
@@ -120,7 +129,8 @@ router.post("/:room/shiftclass", function(req, res, next) {
           }
         );
         console.log("new room updated");
-        findPresentRoomData.then(() => {
+
+        changePresentRoomData.then(() => {
           roomsModel.update(
             {
               number: presentRoom
