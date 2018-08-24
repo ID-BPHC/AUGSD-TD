@@ -33,7 +33,7 @@ let securityCheck = function(req, res, next) {
           callback: "/dashboard",
           message: "Disabled Portal",
           details:
-            "This portal has been disabled by the Administrator. Please contact Instruction Division for assistance."
+            "This portal has been disabled by the Administrator. Please contact Academic - Undergraduate Studies Division for assistance."
         });
       }
     }
@@ -97,7 +97,7 @@ router.get(
             callback: "/",
             message: "Server Error",
             details:
-              "An unexpected error occoured. Contact Instruction Division software team for assistance."
+              "An unexpected error occoured. Contact Academic - Undergraduate Studies Division software team for assistance."
           });
         }
         if (result.length == 0) {
