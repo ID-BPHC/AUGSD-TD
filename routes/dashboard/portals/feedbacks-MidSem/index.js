@@ -108,15 +108,15 @@ router.post("/step-4", function(req, res, next) {
         body:
           "Dear " +
           instructorname +
-          "<p>Instruction Division has received the following qualitative feedback (Mid-Semester) from your students for your course " +
+          "<p>Timetable Division has received the following qualitative feedback (Mid-Semester) from your students for your course " +
           courseID +
           " and section " +
           courseSection +
-          " through online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Instruction Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><br><b>Q. Which characteristics of this instructor or course have been most valuable to your learning ?</b><br>Ans. " +
+          " through online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Timetable Division would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><br><b>Q. Which characteristics of this instructor or course have been most valuable to your learning ?</b><br>Ans. " +
           feedbackMidsem1 +
           "</p><br><p><b>Q. Which characteristics of this instructor, course, classroom or teaching environment require improvement ?</b><br>Ans. " +
           feedbackMidsem2 +
-          "</p><br><p>You may access all your feedbacks from the Instruction Division Dashboard by visiting the website.</p>"
+          "</p><br><p>You may access all your feedbacks from the Timetable Division Dashboard by visiting the website.</p>"
       });
 
       return res.renderState("custom_errors", {

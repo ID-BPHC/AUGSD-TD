@@ -81,7 +81,7 @@ router.post(
                 body:
                   "Your application for Teacher Assistant of " +
                   division +
-                  " is under process. You can track your application status on Instruction Division's Website."
+                  " is under process. You can track your application status on Timetable Division's Website."
               });
 
               return res.renderState("custom_errors", {
@@ -218,7 +218,7 @@ router.post(
                 body:
                   "Your application for Teacher Assistant of " +
                   course +
-                  " is under process. You can track your application status on Instruction Division's Website."
+                  " is under process. You can track your application status on Timetable Division's Website."
               });
 
               return res.renderState("custom_errors", {
