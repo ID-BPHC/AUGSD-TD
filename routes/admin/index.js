@@ -32,8 +32,7 @@ let securityCheck = function(req, res, next) {
         } else {
           res.render("custom_errors", {
             message: "You do not have permission to access this portal",
-            details:
-              "Contact Timetable Division software team for assistance.",
+            details: "Contact Timetable Division software team for assistance.",
             redirect: "/admin",
             timeout: 5
           });
