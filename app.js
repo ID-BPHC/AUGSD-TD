@@ -17,7 +17,7 @@ app.set("trust proxy", true);
 //Favicon
 app.use(
   favicon(
-    path.join(__dirname, "public", "images", "logo", "idlogo-short-01.ico")
+    path.join(__dirname, "public", "images", "logo", "tdlogo-short-01.png")
   )
 );
 
