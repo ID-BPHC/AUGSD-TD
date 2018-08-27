@@ -87,7 +87,7 @@ for instructor in instructors :
     para = "The following is the allotted list of project students under your guidance during First Semester \n 2018-19. There is a possibility that some of the allotted project students may not register for the same. The final list of registered students will be sent to the IC of the respective project type course. In case of any discrepancy, please contact Dr. Balaji Gopalan, In-charge, Project Allotment (Extn: 575) or email at gbalaji@hyderabad.bits-pilani.ac.in. "
     datetoday = datetime.datetime.today().strftime('%d-%m-%Y')
     elements = []
-    footer1 = "Associate Dean <br/> A Vasan <br/> Timetable Division"
+    footer1 = "Faculty in-charge <br/> PK Sahoo <br/> Timetable Division"
 
     title = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % title
     ptext = '<font size=12>%s</font>' % name

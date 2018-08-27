@@ -77,7 +77,7 @@ Several housekeeping utilities can be found in `utils` directory
 1. `proj-pdf-generator` directory has utilities to create and send PDFs to instructors after the project allotment process is complete
 
 ## Faculty Coordinators
-1. Prof. Vasan Arunachalam (Associate Dean, Timetable Division)
+1. Prof. PK Sahoo (Faculty in-charge, Timetable Division)
 1. Dr. Aruna Malapati (In-charge Software Development)
 
 ## Contributors
