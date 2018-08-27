@@ -51,14 +51,14 @@ The project follows a portal based structure. Timetable Division provides it's s
 1. `project-allotment-prof-create` - For professors to create projects
 1. `project-applications` - For professors to Approve / Reject project applications
 1. `project-list` - To Export the final CSV after the project allotment process is complete
-1. `room-booking-approval` - For SWD / ID to approve room booking requests
+1. `room-booking-approval` - For SWD / TD to approve room booking requests
 1. `room-booking-esd` - For ESD to get the list of approved room bookings
 1. `room-booking-faculty` - For professors / staff member to initiate a room booking request
 
 #### Student Portals
 1. `feedbacks-24x7` - For provding 24x7 feedback for courses
 1. `feedbacks-MidSem` - For providing Mid-Semester feedback for courses
-1. `inductions` - For inducting new students to the ID team :P
+1. `inductions` - For inducting new students to the TD team :P
 1. `project-allotment-student` - For applying to projects offered by various departments
 1. `room-booking-student` - For students to initiate a room booking request
 
