@@ -1,13 +1,7 @@
 let users = {
-  "Vasan Arunachalam": {
-    name: "Vasan Arunachalam",
-    title: "Associate Dean",
-    avatar: "/images/team/1.jpg",
-    social: {}
-  },
   "Prof. PK Sahoo": {
     name: "Prof. PK Sahoo",
-    title: "Timetable (Incharge)",
+    title: "Faculty in-charge, Timetable Division",
     avatar: "/images/team/2.jpg",
     social: {}
   },
@@ -23,24 +17,6 @@ let users = {
     avatar: "/images/team/4.jpg",
     social: {}
   },
-  "Prof. D. Sriram": {
-    name: "Prof. D. Sriram",
-    title: "Feedback and Monitoring",
-    avatar: "/images/team/7.jpg",
-    social: {}
-  },
-  "Prof. Sridhar Raj​u": {
-    name: "Prof. Sridhar Raj​u",
-    title: "Feedback and Monitoring (Incharge)",
-    avatar: "/images/team/8.jpg",
-    social: {}
-  },
-  "Dr. Balaji Gopalan": {
-    name: "Dr. Balaji Gopalan",
-    title: "Project Allotment & First Degree Teaching Assistantship",
-    avatar: "/images/team/9.jpg",
-    social: {}
-  },
   "Prof. R Krishnan": {
     name: "Prof. R Krishnan",
     title:
@@ -52,12 +28,6 @@ let users = {
     name: "Dr. Aruna Malapati",
     title: "CMS & Software Development",
     avatar: "/images/team/11.jpg",
-    social: {}
-  },
-  "Mr. G Naresh": {
-    name: "Mr.G Naresh",
-    title: "Staff",
-    avatar: "/images/team/12.jpg",
     social: {}
   },
   "Mr. Anil Zedia": {
