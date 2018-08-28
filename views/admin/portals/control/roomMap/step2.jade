@@ -56,20 +56,8 @@ block content
                     tbody
                         -   for   (var day = 0 ; day < classes.length; day++ ){
                             tr
-                                if    day == 0
-                                    td.day  Mon
-                                if    day == 1
-                                    td.day  Tue
-                                if    day == 2
-                                    td.day  Wed
-                                if    day == 3
-                                    td.day Thu
-                                if    day == 4
-                                    td.day Fri
-                                if    day == 5
-                                    td.day Sat
-                                if    day == 6
-                                    td.day Sun           
+                                td.day=weekDayHash[day]    
+                                        
                                 -   for   (var hour = 0; hour < classes[day].length; hour++) {
                                         td.hour= classes[day][hour]
                                 -   }

@@ -2,6 +2,8 @@ let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
 let roomsModel = fq("schemas/rooms");
+let bookingsModel = fq("schemas/room-bookings");
+let moment = require("moment");
 
 let rooms = [];
 router.get("/", function(req, res, next) {
@@ -31,10 +33,12 @@ router.post("/step2", function(req, res, next) {
         console.log(err);
         return res.terminate(err);
       } else {
+        let weekDayHash = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         return res.renderState("admin/portals/control/roomMap/step2", {
           classes: data[0].fixedClasses,
           room: data[0].number,
-          rooms: rooms
+          rooms: rooms,
+          weekDayHash: weekDayHash
         });
       }
     }
@@ -48,6 +52,46 @@ router.post("/:room/shiftclass", function(req, res, next) {
   let newDay = parseInt(req.sanitize(req.body.day1));
   let newHour = parseInt(req.sanitize(req.body.hour1));
   let sub;
+  let param = 1;
+
+  function checkRoomBookings(room, day, hour) {
+    bookingsModel.find(
+      {
+        number: room
+      },
+      function(err, bookings) {
+        if (err) {
+          console.log(err);
+          res.terminate(err);
+        } else {
+          bookings.forEach(booking => {
+            let nowDate = moment();
+            let bookingDate = moment(booking.start);
+            if (
+              moment(booking.start).isoWeekday() == day && // 1 - Monday .... 7 - Sunday
+              bookingDate.diff(nowDate, "days") >= 1
+            ) {
+              let startTime =
+                moment(booking.start).hours() -
+                7 +
+                moment(booking.start).minutes() / 60;
+
+              let endTime =
+                moment(booking.end).hours() -
+                7 +
+                moment(booking.end).minutes() / 60;
+
+              if (hour >= startTime && hour <= endTime) {
+                param = 0;
+              }
+            }
+          });
+          if (!param) console.log("Booked!");
+          return param; // 1 if room-shift is possible, 0 if not.
+        }
+      }
+    );
+  }
   /*
     function `getPresentRoomDetails` is used to retreive the the present hour details that user wants to remove.
   */
@@ -103,7 +147,10 @@ router.post("/:room/shiftclass", function(req, res, next) {
           if (err) console.log(err);
           else {
             newRoomNewData = data.fixedClasses;
-            if (data.fixedClasses[newDay][newHour - 1]) {
+            if (
+              data.fixedClasses[newDay][newHour - 1] ||
+              !checkRoomBookings(newRoom, newDay + 1, newHour)
+            ) {
               console.log("Some class is already there.");
               resolve(0);
             } else {
@@ -153,7 +200,7 @@ router.post("/:room/shiftclass", function(req, res, next) {
           callback: "/",
           message: "",
           details:
-            "The place you want to move is already alloted . Try moving that to some other place"
+            "The place you want to move is already alloted by another class or booked by someone.Consider moving that to some other place"
         });
       }
     });
