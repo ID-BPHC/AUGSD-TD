@@ -53,44 +53,52 @@ router.post("/:room/shiftclass", function(req, res, next) {
   let newHour = parseInt(req.sanitize(req.body.hour1));
   let sub;
   let param = 1;
+  let roomBookings = [];
 
   function checkRoomBookings(room, day, hour) {
-    bookingsModel.find(
-      {
-        number: room
-      },
-      function(err, bookings) {
-        if (err) {
-          console.log(err);
-          res.terminate(err);
-        } else {
-          bookings.forEach(booking => {
-            let nowDate = moment();
-            let bookingDate = moment(booking.start);
-            if (
-              moment(booking.start).isoWeekday() == day && // 1 - Monday .... 7 - Sunday
-              bookingDate.diff(nowDate, "days") >= 1
-            ) {
-              let startTime =
-                moment(booking.start).hours() -
-                7 +
-                moment(booking.start).minutes() / 60;
+    return new Promise((resolve, reject) => {
+      bookingsModel.find(
+        {
+          number: room
+        },
+        function(err, bookings) {
+          if (err) {
+            console.log(err);
+            res.terminate(err);
+            reject(err);
+          } else {
+            bookings.forEach(booking => {
+              let nowDate = moment();
+              let bookingDate = moment(booking.start);
+              if (
+                moment(booking.start).isoWeekday() == day && // 1 - Monday .... 7 - Sunday
+                bookingDate.diff(nowDate, "days") >= 1
+              ) {
+                let startTime =
+                  moment(booking.start).hours() -
+                  7 +
+                  moment(booking.start).minutes() / 60;
 
-              let endTime =
-                moment(booking.end).hours() -
-                7 +
-                moment(booking.end).minutes() / 60;
+                let endTime =
+                  moment(booking.end).hours() -
+                  7 +
+                  moment(booking.end).minutes() / 60;
 
-              if (hour >= startTime && hour <= endTime) {
-                param = 0;
+                if (hour >= startTime && hour <= endTime) {
+                  roomBookings.push(booking);
+                  param = 0;
+                }
               }
+            });
+            console.log("booked-room:", roomBookings);
+            if (!param) {
+              console.log("Booked!");
             }
-          });
-          if (!param) console.log("Booked!");
-          return param; // 1 if room-shift is possible, 0 if not.
+            resolve(param); // 1 if room-shift is possible, 0 if not.
+          }
         }
-      }
-    );
+      );
+    });
   }
   /*
     function `getPresentRoomDetails` is used to retreive the the present hour details that user wants to remove.
@@ -118,26 +126,32 @@ router.post("/:room/shiftclass", function(req, res, next) {
     let presentRoomNewData; //stores the updated Present Room data (i.e . after removing the hour user changed, if no clashing)
     let newRoomNewData; // stores the updated new Room data (i.e after adding the hour user added, if no clashing)
 
-    let changePresentRoomData = new Promise(function(resolve, reject) {
-      // this finds the present room and equals presentRoomNewData to actual classes removing the hour changed.Only a promise, resolved only when no clashing.
-      roomsModel.findOne(
-        {
-          number: presentRoom
-        },
-        function(err, data) {
-          if (err) console.log(err);
-          else {
-            if (presentRoom != newRoom) {
-              presentRoomNewData = data.fixedClasses;
-            } else {
-              presentRoomNewData = newRoomNewData;
+    let changePresentRoomData = function() {
+      return new Promise(function(resolve, reject) {
+        // this finds the present room and equals presentRoomNewData to actual classes removing the hour changed.Only a promise, resolved only when no clashing.
+        roomsModel.findOne(
+          {
+            number: presentRoom
+          },
+          function(err, data) {
+            if (err) console.log(err);
+            else {
+              if (presentRoom != newRoom) {
+                console.log("rooms are not equal");
+                presentRoomNewData = data.fixedClasses;
+              } else {
+                console.log("rooms are equal");
+                presentRoomNewData = newRoomNewData;
+                console.log("presentRoomNewData", presentRoomNewData);
+                console.log("newRoomNewdata", newRoomNewData);
+              }
+              presentRoomNewData[presentDay][presentHour - 1] = "";
+              resolve();
             }
-            presentRoomNewData[presentDay][presentHour - 1] = "";
-            resolve();
           }
-        }
-      );
-    });
+        );
+      });
+    };
     let changeNewRoomData = new Promise(function(resolve, reject) {
       roomsModel.findOne(
         {
@@ -146,53 +160,28 @@ router.post("/:room/shiftclass", function(req, res, next) {
         function(err, data) {
           if (err) console.log(err);
           else {
-            newRoomNewData = data.fixedClasses;
-            if (
-              data.fixedClasses[newDay][newHour - 1] ||
-              !checkRoomBookings(newRoom, newDay + 1, newHour)
-            ) {
-              console.log("Some class is already there.");
-              resolve(0);
-            } else {
+            checkRoomBookings(newRoom, newDay + 1, newHour).then(param => {
+              console.log("param is ", param);
               newRoomNewData = data.fixedClasses;
-              newRoomNewData[newDay][newHour - 1] = sub;
-              resolve(1);
-            }
+              if (data.fixedClasses[newDay][newHour - 1]) {
+                console.log("Some class is already there.");
+                resolve(0); // Clashing Class!
+              } else {
+                newRoomNewData = data.fixedClasses;
+                newRoomNewData[newDay][newHour - 1] = sub;
+                resolve(1); // Either no clashing class or some booking is there. (Either way we have to change)
+              }
+            });
           }
         }
       );
     });
     changeNewRoomData.then(param => {
-      if (param) {
-        roomsModel.update(
-          {
-            number: newRoom
-          },
-          {
-            fixedClasses: newRoomNewData
-          },
-          function(err) {
-            if (err) console.log(err);
-          }
-        );
-        console.log("new room updated");
+      console.log("change new room data , then", param);
+      if (param === 0) {
+        console.log("not happening");
+        console.log("room-bookings are:", roomBookings);
 
-        changePresentRoomData.then(() => {
-          roomsModel.update(
-            {
-              number: presentRoom
-            },
-            {
-              fixedClasses: presentRoomNewData
-            },
-            function(err) {
-              if (err) console.log(err);
-            }
-          );
-        });
-        console.log("old room updated");
-        res.redirect("/admin/control/room-map");
-      } else {
         res.renderState("custom_errors", {
           redirect: "/admin/control/room-map",
           timeout: 3,
@@ -200,8 +189,47 @@ router.post("/:room/shiftclass", function(req, res, next) {
           callback: "/",
           message: "",
           details:
-            "The place you want to move is already alloted by another class or booked by someone.Consider moving that to some other place"
+            "The place you want to move is already alloted by another class .Consider moving that to some other place"
         });
+      } else {
+        if (roomBookings && roomBookings.length > 0) {
+          console.log("bookings are :", roomBookings);
+          res.renderState("admin/portals/control/roomMap/existingBookings", {
+            bookings: roomBookings
+          });
+        }
+        if (param) {
+          roomsModel.update(
+            {
+              number: newRoom
+            },
+            {
+              fixedClasses: newRoomNewData
+            },
+            function(err) {
+              if (err) console.log(err);
+            }
+          );
+          console.log("new room updated");
+
+          changePresentRoomData().then(() => {
+            roomsModel.update(
+              {
+                number: presentRoom
+              },
+              {
+                fixedClasses: presentRoomNewData
+              },
+              function(err) {
+                if (err) console.log(err);
+              }
+            );
+          });
+          console.log("old room updated");
+          if (!(roomBookings && roomBookings.length > 0)) {
+            res.redirect("/admin/control/room-map");
+          }
+        }
       }
     });
   });
