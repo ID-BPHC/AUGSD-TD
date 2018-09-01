@@ -5,23 +5,28 @@ let users = {
     avatar: "/images/team/2.jpg",
     social: {}
   },
-  "Dr. Ramakrishnan Ganeshan": {
-    name: "Dr. Ramakrishnan Ganeshan",
-    title: "Timetable",
-    avatar: "/images/team/3.jpg",
-    social: {}
-  },
   "Dr. Supradeepan K": {
     name: "Dr. Supradeepan K",
-    title: "Test Scheduling (Incharge)",
+    title: "Timetable",
     avatar: "/images/team/4.jpg",
     social: {}
   },
-  "Prof. R Krishnan": {
-    name: "Prof. R Krishnan",
-    title:
-      "Handouts, Textbooks, Scrutiny, Question Paper & Solutions, Mid ​Semester Grades, Class Room Booking",
-    avatar: "/images/team/10.jpg",
+  "Prof. D. Sriram": {
+    name: "Prof. D. Sriram",
+    title: "Feedback and Monitoring",
+    avatar: "/images/team/7.jpg",
+    social: {}
+  },
+  "Prof. Sridhar Raj​u": {
+    name: "Prof. Sridhar Raj​u",
+    title: "Feedback and Monitoring (Incharge)",
+    avatar: "/images/team/8.jpg",
+    social: {}
+  },
+  "Dr. Balaji Gopalan": {
+    name: "Dr. Balaji Gopalan",
+    title: "Project Allotment & First Degree Teaching Assistantship",
+    avatar: "/images/team/9.jpg",
     social: {}
   },
   "Dr. Aruna Malapati": {
