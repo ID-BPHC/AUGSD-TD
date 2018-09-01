@@ -1,0 +1,207 @@
+.at-section__title {
+    margin: 0 0 70px;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 2.625rem;
+    text-align: center;
+}
+
+.at-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: #FFF;
+    border: 1px solid #E2E9ED;
+}
+
+.at-grid[data-column="1"] .at-column {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    flex-basis: 100%;
+}
+
+.at-grid[data-column="2"] .at-column {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+    flex-basis: 50%;
+}
+
+.at-grid[data-column="3"] .at-column {
+    width: 33.33333333%;
+    max-width: 33.33333333%;
+    min-width: 33.33333333%;
+    flex-basis: 33.33333333%;
+}
+
+.at-grid[data-column="4"] .at-column {
+    width: 25%;
+    max-width: 25%;
+    min-width: 25%;
+    flex-basis: 25%;
+}
+
+.at-grid[data-column="5"] .at-column {
+    width: 20%;
+    max-width: 20%;
+    min-width: 20%;
+    flex-basis: 20%;
+}
+
+.at-grid[data-column="6"] .at-column {
+    width: 16.66666667%;
+    max-width: 16.66666667%;
+    min-width: 16.66666667%;
+    flex-basis: 16.66666667%;
+}
+
+.at-grid[data-column="7"] .at-column {
+    width: 14.28571429%;
+    max-width: 14.28571429%;
+    min-width: 14.28571429%;
+    flex-basis: 14.28571429%;
+}
+
+.at-grid[data-column="8"] .at-column {
+    width: 12.5%;
+    max-width: 12.5%;
+    min-width: 12.5%;
+    flex-basis: 12.5%;
+}
+
+.at-grid[data-column="9"] .at-column {
+    width: 11.11111111%;
+    max-width: 11.11111111%;
+    min-width: 11.11111111%;
+    flex-basis: 11.11111111%;
+}
+
+.at-column {
+    z-index: 0;
+    position: relative;
+    background: #FFF;
+    box-shadow: 0 0 0 1px #E2E9ED;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0.2s ease;
+}
+
+.at-column:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.at-column:hover {
+    z-index: 1;
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0s ease;
+}
+
+.at-column:hover .at-social {
+    margin: 16px 0 0;
+    opacity: 1;
+}
+
+@media (max-width: 800px) {
+    .at-column {
+        width: 50% !important;
+        max-width: 50% !important;
+        min-width: 50% !important;
+        flex-basis: 50% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .at-column {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex-basis: 100% !important;
+    }
+}
+
+.at-user {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translate(0, -50%);
+    text-align: center;
+}
+
+.at-user__avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+
+.at-user__avatar img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.at-user__name {
+    color: #313435;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2.625rem;
+}
+
+.at-user__title {
+    color: #6F808A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
+    line-height: 2.375rem;
+}
+
+.at-social {
+    margin: 0 0 -18px;
+    opacity: 0;
+    transition: margin 0.2s ease, opacity 0.2s ease;
+}
+
+.at-social__item {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.at-social__item a {
+    display: block;
+}
+
+.at-social__item svg {
+    fill: #515F65;
+    display: block;
+    height: 18px;
+    transition: fill 0.2s ease;
+}
+
+.at-social__item svg:hover {
+    fill: #788D96;
+}
+
+body {
+    background: #FFF;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1170px;
+    width: 100%;
+    margin: 100px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transform-origin: top center;
+    transform: scale(0.8);
+}

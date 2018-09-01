@@ -18,7 +18,14 @@ app.set("trust proxy", true);
 //Favicon
 app.use(
   favicon(
-    path.join(__dirname, "public", "images", "logo", "tdlogo-short-01.png")
+    path.join(
+      __dirname,
+      "public",
+      config.siteMode,
+      "images",
+      "logo",
+      "tdlogo-short-01.png"
+    )
   )
 );
 
@@ -46,7 +53,7 @@ app.use(
 );
 app.use(expressSanitizer());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public", config.siteMode)));
 
 mongoose.connect(
   config.mongooseConnection,
