@@ -17,7 +17,7 @@ app.set("trust proxy", true);
 //Favicon
 app.use(
   favicon(
-    path.join(__dirname, "public", "images", "logo", "idlogo-short-01.ico")
+    path.join(__dirname, "public", "images", "logo", "tdlogo-short-01.png")
   )
 );
 
@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
           supertitle: "Critical Breakdown.",
           message: "Server Error",
           details:
-            "An unexpected error occoured. Software team has been notified about this. Contact Instruction Division for further assistance."
+            "An unexpected error occoured. Software team has been notified about this. Contact Timetable Division for further assistance."
         });
       }
     );

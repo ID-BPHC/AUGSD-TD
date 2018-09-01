@@ -21,7 +21,7 @@ var transporter = nodemailer.createTransport({
 var header =
   '<img src="cid:head@idbitshyd.com" width="100%"><br><br><br><font size="4">';
 var footer =
-  '<br><br><br><font color="#000000">This is an auto-generated mail. Please do not reply.</font><br><font color="#000000"><strong><font color="#f1c232">+++++++++++++</font><font color="#6fa8dc">++++++++++++</font><font color="#ff0000">+++++<wbr>+++++++</font></strong></font><br><font color="#0000ff"><strong>A Vasan</strong><br></font><font color="#0000ff">Associate Dean, Instruction Division<br>BITS Pilani - Hyderabad Campus</font></font></font><br>';
+  '<br><br><br><font color="#000000">This is an auto-generated mail. Please do not reply.</font><br><font color="#000000"><strong><font color="#f1c232">+++++++++++++</font><font color="#6fa8dc">++++++++++++</font><font color="#ff0000">+++++<wbr>+++++++</font></strong></font><br><font color="#0000ff"><strong>PK Sahoo</strong><br></font><font color="#0000ff">Faculty in-charge, Timetable Division<br>BITS Pilani - Hyderabad Campus</font></font></font><br>';
 
 module.exports = {
   send: function(params) {

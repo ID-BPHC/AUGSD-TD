@@ -127,7 +127,7 @@ var superUsers = [
     portals: [],
     home: "",
     superUser: true,
-    department: "Instruction Division",
+    department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
   },
@@ -137,7 +137,7 @@ var superUsers = [
     portals: [],
     home: "",
     superUser: true,
-    department: "Instruction Division",
+    department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
   },
@@ -147,7 +147,7 @@ var superUsers = [
     portals: [],
     home: "",
     superUser: true,
-    department: "Instruction Division",
+    department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
   },
@@ -157,7 +157,7 @@ var superUsers = [
     portals: [],
     home: "",
     superUser: true,
-    department: "Instruction Division",
+    department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
   },
@@ -167,7 +167,7 @@ var superUsers = [
     portals: [],
     home: "",
     superUser: true,
-    department: "Instruction Division",
+    department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
   }

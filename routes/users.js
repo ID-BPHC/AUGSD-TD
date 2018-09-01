@@ -1,13 +1,7 @@
 let users = {
-  "Vasan Arunachalam": {
-    name: "Vasan Arunachalam",
-    title: "Associate Dean",
-    avatar: "/images/team/1.jpg",
-    social: {}
-  },
   "Prof. PK Sahoo": {
     name: "Prof. PK Sahoo",
-    title: "Timetable (Incharge)",
+    title: "Faculty in-charge, Timetable Division",
     avatar: "/images/team/2.jpg",
     social: {}
   },
@@ -39,12 +33,6 @@ let users = {
     name: "Dr. Aruna Malapati",
     title: "CMS & Software Development",
     avatar: "/images/team/11.jpg",
-    social: {}
-  },
-  "Mr. G Naresh": {
-    name: "Mr.G Naresh",
-    title: "Staff",
-    avatar: "/images/team/12.jpg",
     social: {}
   },
   "Mr. Anil Zedia": {
