@@ -5,6 +5,7 @@ module.exports = {
   siteRoot: siteRoot,
   fileStorage: "",
   siteMode: "TD", // TD or AUGSD
+  port: "3000",
 
   //Google APIs
   googleClientID: "YOUR_CLIENT_ID",
