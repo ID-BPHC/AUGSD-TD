@@ -1,0 +1,69 @@
+extends ../../../master-dashboard
+
+block content
+	script(type='text/javascript').
+		document.getElementsByClassName('mdl-navigation__link menuselectify')[0].classList.remove('menuselectify')
+		document.getElementById('feedbacks').classList.add('menuselectify')
+				window.onload = () => {
+			$.validator.addMethod("valueNotEquals", function(value, element, arg){
+				return arg !== value;}, "Value must not equal arg.");
+			$("#form1").validate({
+				focusInvalid: true,
+				onfocusout: false,
+				rules :{
+					courselist : { valueNotEquals: ". . ." }
+				},
+				messages: {
+					courselist : { valueNotEquals: "Please select a class!" }
+				},
+				errorPlacement: (err,ele) => {
+					materialAlert('Class Selection',err[0].innerText,function(result){console.log(result)})
+				}
+			});
+			}
+	div.mdl-cell.mdl-cell--12-col.center
+		div#demo-stepper-linear.mdl-stepper.mdl-stepper--linear.mdl-stepper--horizontal(data-upgraded=',MaterialStepper')
+			div.mdl-step.mdl-step--completed
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Select Course
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 1
+			div.mdl-step.is-active
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Select Class
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 2
+				.mdl-step__content
+					div.mdl-grid
+						div.mdl-cell.mdl-cell--12-col.center
+							if reqPortal.split("-",2)[1] == "24x7"
+								h4 24x7 Feedbacks
+							else
+								h4 Mid-Semester Feedbacks
+							p Select the class section you want to write feedback about
+							form(action="#{rootURL}/#{reqPortal}/step-3", method="post", name="form1" id="form1").mdc-form-field
+								.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+									input#courselist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='courselist')
+									label(for='courselist')
+										i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+									label.mdl-textfield__label(for='courselist') Select Class
+									ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='courselist')
+										each item in params
+											li.mdl-menu__item(data-val='#{item}') #{courseID} - #{item} 
+				.mdl-step__actions
+					button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
+						| Continue
+						span.mdl-button__ripple-container
+							span.mdl-ripple
+					button.mdl-button.mdl-js-button.mdl-js-ripple-effect(data-stepper-cancel='', data-upgraded=',MaterialButton,MaterialRipple', onclick="window.location.replace('#{rootURL}')")
+						| Cancel
+						span.mdl-button__ripple-container
+							span.mdl-ripple
+			div.mdl-step
+				span.mdl-step__label
+					span.mdl-step__title
+						span.mdl-step__title-text Provide Feedback
+					span.mdl-step__label-indicator
+						span.mdl-step__label-indicator-content 3

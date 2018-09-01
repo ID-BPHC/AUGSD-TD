@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
+var config = require("./config");
 var morgan = require("morgan");
 var cookieParser = require("cookie-parser");
 var expressSanitizer = require("express-sanitizer");
@@ -10,7 +11,7 @@ var bugsModel = require("./schemas/bugs");
 var app = express();
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views", config.siteMode));
 app.set("view engine", "jade");
 app.set("trust proxy", true);
 
@@ -46,8 +47,6 @@ app.use(
 app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-var config = require("./config");
 
 mongoose.connect(
   config.mongooseConnection,

@@ -6,6 +6,7 @@ var portalsSchema = new Schema({
   name: String,
   icon: String,
   active: Boolean,
+  mode: String,
   admin: Boolean
 });
 

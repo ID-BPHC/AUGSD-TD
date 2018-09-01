@@ -1,0 +1,22 @@
+extends ../../../master-dashboard
+
+block content
+
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Project Allotment
+		h4 Export List
+		hr
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/export/A')")
+			i.material-icons done
+			| Approved
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/export/R')")
+			i.material-icons clear
+			| Rejected
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/export/P')")
+			| Pending

@@ -1,0 +1,44 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col
+		h2 Project Allotment
+
+	div.mdl-cell.mdl-cell--12-col
+		ul.mdl-list
+			li.mdl-list__item.
+				2016 batch students are eligible to choose only ONE project type course in this semester. 
+
+			li.mdl-list__item.
+				2015 batch DUAL DEGREE students are allowed to take ONE project type courses in this semester.
+
+			li.mdl-list__item.
+				2015 batch SINGLE DEGREE students are allowed to take TWO project type courses in this semester.
+
+			li.mdl-list__item.
+				2017 batch students are not allowed to take project-type courses.
+
+			li.mdl-list__item
+				span.mdl-list__item-primary-content
+					i.material-icons.mdl-list__item-icon note
+					| These courses will be available only to those students who have elective slot(s) in their prescribed semester wise chart for the semester and who are eligible to register in these courses as per Academic Regulations
+
+			li.mdl-list__item
+				span.mdl-list__item-primary-content
+					i.material-icons.mdl-list__item-icon note
+					| Students who want to propose their own project idea, can contact the concerned faculty member.					
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
+			i.material-icons add
+			| View Projects
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/faq')")
+			i.material-icons question_answer
+			| FAQs
+
+	div.mdl-cell.mdl-cell--4-col.center
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/manage')")
+			i.material-icons settings
+			| Application Status

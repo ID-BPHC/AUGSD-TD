@@ -1,0 +1,21 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col
+		h2 Project Allotment
+	div.mdl-cell.mdl-cell--12-col.center
+		h4 Select Department
+		p Select the department for which you want to view all the projects.
+		form(action="#{rootURL}/#{reqPortal}/view", method="post", name="form1" id="form1").mdc-form-field
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+				input#departments.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='departments')
+				label(for='departments')
+					i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+				label.mdl-textfield__label(for='departments') Select Department
+				ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='departments')
+					each department in departments
+						li.mdl-menu__item(data-val='#{department}') #{department} 
+			br
+			br
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
+						| Continue

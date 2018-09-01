@@ -1,0 +1,49 @@
+extends ../../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	div.mdl-cell.mdl-cell--12-col
+		h3(style='text-align:center') Mid-Sem Feedback
+	
+	div.mdl-cell.mdl-cell--12-col
+		div.mdl-cell.mdl-cell--12-col.center
+			
+			if feedbacks != undefined 
+				if feedbacks != null
+					each feedback in feedbacks
+						br
+						div.mdl-grid.application
+							div.mdl-cell.mdl-cell--11-col.center
+								div.mdl-grid
+									div.mdl-cell.mdl-cell--6-col.head Course ID :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.courseID}
+									
+									div.mdl-cell.mdl-cell--6-col.head Course Section :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.section}
+								
+									div.mdl-cell.mdl-cell--6-col.head Which characterstics of this instructor or course have been most valuable to your learning? 
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[0]}
+
+									div.mdl-cell.mdl-cell--6-col.head Which characterstics of this instructor, course, classroom or teaching environment require improvement? 
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.responses[1]}
+
+									div.mdl-cell.mdl-cell--6-col.head Created On :
+									div.mdl-cell.mdl-cell--6-col.value #{feedback.createdOn}																								
+				else
+					br
+					h6 No feedbacks
+
+			else
+				br
+				h6 No feedbacks	
+
+		script.
+			window.setInterval(function(){
+				window.location.reload();
+			}, 300000);
+			function loadProf(s){
+				window.location.replace('#{rootURL}/feedbacks-admin/midsem/view/' + s.getAttribute('data-val'));
+			}

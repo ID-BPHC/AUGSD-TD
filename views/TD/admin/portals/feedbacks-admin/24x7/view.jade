@@ -1,0 +1,45 @@
+extends ../../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col.mdl-cell--middle
+				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/feedbacks-admin/24x7")')
+					i.material-icons arrow_back
+			.mdl-cell.mdl-cell--4-col
+				h3(style='text-align:center') 24x7 Feedback
+				h6(style='text-align:center') Feedback Report:  #{results.name}
+	div.mdl-cell.mdl-cell--12-col
+		div.mdl-cell.mdl-cell--12-col.center
+			if results.feedback != undefined
+				if results.feedback != null
+					each feedback in results.feedback
+						br
+						div.mdl-grid.application
+							div.mdl-cell.mdl-cell--11-col.center
+								div.mdl-grid
+									div.mdl-cell.mdl-cell--3-col.head Course ID :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.courseID}
+									
+									div.mdl-cell.mdl-cell--3-col.head Instructor :
+									div.mdl-cell.mdl-cell--9-col.value #{results.name}	
+									
+									div.mdl-cell.mdl-cell--3-col.head Course Section :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.section}
+									
+									div.mdl-cell.mdl-cell--3-col.head Feedback :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.responses}
+									
+									div.mdl-cell.mdl-cell--3-col.head Created On :
+									div.mdl-cell.mdl-cell--9-col.value #{feedback.createdOn}									
+				else 
+					br
+					h6 No feedbacks
+									
+			else
+				br
+				h6 No feedbacks

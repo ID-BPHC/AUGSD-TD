@@ -1,0 +1,53 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		#formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+		.mdl-textfield {
+			width: 600px
+		}
+	
+	div.mdl-grid#formBG
+		div.mdl-cell.mdl-cell--12-col.center
+			h2 Teacher Assistantship Application
+			h4 Course Work
+			hr
+		div.mdl-cell.mdl-cell--12-col.center
+				div.mdl-cell.mdl-cell--12-col.center
+					strong
+						| #{user.name}
+						br
+						br
+						| #{user.idNumber}
+				div.mdl-cell.mdl-cell--12-col.center
+					form(action="#{rootURL}/#{reqPortal}/course/apply", method="post", id="form1").mdc-form-field
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+							input#cgpa.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='cgpa')
+							label.mdl-textfield__label(for='CGPA') CGPA
+							span.mdl-textfield__error Input is not a number!
+						br
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+												input#course.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='course')
+												label(for='course')
+													i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+												label.mdl-textfield__label(for='course') Course
+												ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='course')
+													ul
+														for course in courses
+															li.mdl-menu__item(data-val="#{course.courseID}") #{course.courseID} - #{course.name}
+						br
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+							input#grade.mdl-textfield__input(type='text', name='grade')
+							label.mdl-textfield__label(for='grade') Grade In The Course (If Completed)
+						br
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+							input#hours.mdl-textfield__input(type='text', name='hours', pattern='-?[0-9]*(\.[0-9]+)?')
+							label.mdl-textfield__label(for='hours') Hours/Week You Can Spend For This TA
+							span.mdl-textfield__error Input is not a number!
+						br
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply

@@ -1,0 +1,49 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		#formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+		.mdl-textfield {
+			width: 600px
+		}
+	
+	div.mdl-grid#formBG
+		div.mdl-cell.mdl-cell--12-col.center
+			h2 Teacher Assistantship Application
+			h4 Division Work
+			hr
+		div.mdl-cell.mdl-cell--12-col.center
+				div.mdl-cell.mdl-cell--12-col.center
+					strong
+						| #{user.name}
+						br
+						br
+						| #{user.idNumber}
+				div.mdl-cell.mdl-cell--12-col.center
+					form(action="#{rootURL}/#{reqPortal}/division/apply", method="post", id="form1").mdc-form-field
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+							input#cgpa.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='cgpa')
+							label.mdl-textfield__label(for='cgpa') CGPA
+							span.mdl-textfield__error Input is not a number!
+						br
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+												input#division.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='division')
+												label(for='division')
+													i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+												label.mdl-textfield__label(for='division') Division
+												ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='division')
+													ul
+														for division in divisions
+															li.mdl-menu__item #{division.name}
+						br
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+							input#hours.mdl-textfield__input(type='text', name='hours', pattern='-?[0-9]*(\.[0-9]+)?')
+							label.mdl-textfield__label(for='hours') Hours/Week You Can Spend For This TA
+							span.mdl-textfield__error Input is not a number!
+						br
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(type='submit') Apply

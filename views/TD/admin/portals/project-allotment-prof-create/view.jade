@@ -1,0 +1,47 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		.custom_header {
+			font-size: 0.9375rem;
+			font-weight: bold;
+		}
+		.custom {
+			-ms-word-break: break-all;
+			word-break: break-all;
+			word-break: break-word;
+
+			-webkit-hyphens: auto;
+			-moz-hyphens: auto;
+			-ms-hyphens: auto;
+			hyphens: auto;
+		}
+	div.mdl-cell.mdl-cell--12-col
+		.mdl-grid
+			.mdl-cell.mdl-cell--4-col.mdl-cell--middle
+				button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/project-allotment-prof-create")')
+					i.material-icons arrow_back
+			.mdl-cell.mdl-cell--4-col
+				center
+					h3 Project Allotment
+				
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					tbody
+						tr
+							td.mdl-data-table__cell--non-numeric.custom_header Project Title
+							td.mdl-data-table__cell--non-numeric.custom_header Project Description / Prerequisites
+							td.mdl-data-table__cell--non-numeric.custom_header Project Type
+						tr
+							td.mdl-data-table__cell--non-numeric #{project.title}
+							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{project.description}
+							if(project.type=='lop')
+								td.mdl-data-table__cell--non-numeric Lab Oriented Project
+							else if(project.type=='dop')
+								td.mdl-data-table__cell--non-numeric Design Oriented Project
+							else
+								td.mdl-data-table__cell--non-numeric Study Oriented Project
+			br
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/#{reqPortal}/delete/#{project._id}")') Delete Project

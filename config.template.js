@@ -4,6 +4,7 @@ module.exports = {
   //Misc
   siteRoot: siteRoot,
   fileStorage: "",
+  siteMode: "TD", // TD or AUGSD
 
   //Google APIs
   googleClientID: "YOUR_CLIENT_ID",

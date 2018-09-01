@@ -1,0 +1,31 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Room Bookings
+
+	div.mdl-cell.mdl-cell--12-col
+		center
+			div.table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr
+							th.mdl-data-table__cell--non-numeric Room
+							th.mdl-data-table__cell--non-numeric From
+							th.mdl-data-table__cell--non-numeric To
+							th.mdl-data-table__cell--non-numeric Booked By
+							th.mdl-data-table__cell--non-numeric Phone
+							th.mdl-data-table__cell--non-numeric Audio/Visual
+					tbody
+						for booking in bookings
+							tr
+								td.mdl-data-table__cell--non-numeric #{booking.number}
+								td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
+								td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
+								td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
+								td.mdl-data-table__cell--non-numeric #{booking.phone}
+								td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
+		script.
+			window.setInterval(function(){
+				window.location.reload();
+			}, 300000);
