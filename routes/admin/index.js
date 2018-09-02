@@ -20,6 +20,7 @@ let securityCheck = function(req, res, next) {
     {
       name: reqPortal,
       active: true,
+      mode: config.siteMode,
       admin: true
     },
     function(err, result) {
@@ -51,7 +52,8 @@ let securityCheck = function(req, res, next) {
 
 portalsModel.find(
   {
-    admin: true
+    admin: true,
+    mode: config.siteMode
   },
   function(err, portals) {
     portals.forEach(function(portal) {
@@ -178,7 +180,8 @@ router.use(function(req, res, next) {
     portalsModel.find(
       {
         admin: true,
-        active: true
+        active: true,
+        mode: config.siteMode
       },
       function(err, portals) {
         if (err) {

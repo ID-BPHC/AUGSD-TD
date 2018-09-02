@@ -1,0 +1,26 @@
+extends ../../../master-dashboard
+
+block content
+	div.mdl-cell.mdl-cell--12-col
+			h2 Switch User
+		div.mdl-cell.mdl-cell--12-col.center
+
+			style.
+				.getmdl-select {
+				    width: 70% !important;
+				}
+
+			h4 Select User
+			form(action="#{rootURL}/#{reqPortal}/switch-user/switch", method="post", name="form1" id="form1").mdc-form-field
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+					input#users.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='users')
+					label(for='users')
+						i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+					label.mdl-textfield__label(for='users') Select User
+					ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='users')
+						each user in users
+							li.mdl-menu__item #{user.email} | #{user.name} 
+				br
+				br
+				button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
+							| Continue

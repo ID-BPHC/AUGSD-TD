@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
+let config = fq("config");
 
 let adminsModel = fq("schemas/admins");
 let portalsModel = fq("schemas/portals");
@@ -12,7 +13,10 @@ router.get("/", function(req, res, next) {
     { sort: { email: 1 } },
     function(err, admins) {
       if (err) return res.terminate("Can not find admins");
-      portalsModel.find({ admin: true }, function(err, portals) {
+      portalsModel.find({ admin: true, mode: config.siteMode }, function(
+        err,
+        portals
+      ) {
         if (err) return res.terminate("Can not find portals");
         return res.renderState("admin/portals/control/manageAdmins", {
           admins,
