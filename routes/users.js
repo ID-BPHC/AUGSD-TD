@@ -12,24 +12,6 @@ let users = {
       avatar: "/images/team/4.jpg",
       social: {}
     },
-    "Prof. D. Sriram": {
-      name: "Prof. D. Sriram",
-      title: "Feedback and Monitoring",
-      avatar: "/images/team/7.jpg",
-      social: {}
-    },
-    "Prof. Sridhar Raj​u": {
-      name: "Prof. Sridhar Raj​u",
-      title: "Feedback and Monitoring (Incharge)",
-      avatar: "/images/team/8.jpg",
-      social: {}
-    },
-    "Dr. Balaji Gopalan": {
-      name: "Dr. Balaji Gopalan",
-      title: "Project Allotment & First Degree Teaching Assistantship",
-      avatar: "/images/team/9.jpg",
-      social: {}
-    },
     "Dr. Aruna Malapati": {
       name: "Dr. Aruna Malapati",
       title: "CMS & Software Development",
