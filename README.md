@@ -1,3 +1,6 @@
+## Notice
+As Instruction Division is being split into two different and independent divisions namely Timetable Division and AUGSD, two different repositories will be created. This repository will be renamed to Timetable-Division and a new repository will be created for AUGSD. The portals in this repository will be divided among both the repositories.
+
 # Instruction-Division-2.0 [![Build Status](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0.svg?branch=master)](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0)
 Instruction Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
 
