@@ -18,14 +18,7 @@ app.set("trust proxy", true);
 //Favicon
 app.use(
   favicon(
-    path.join(
-      __dirname,
-      "public",
-      config.siteMode,
-      "images",
-      "logo",
-      "tdlogo-short-01.png"
-    )
+    path.join(__dirname, "public", config.siteMode, "images", "favicon.png")
   )
 );
 
