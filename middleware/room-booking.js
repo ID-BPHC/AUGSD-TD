@@ -202,7 +202,7 @@ let getRooms = function(
               });
             });
           let checkExisting = function(rooms) {
-            if (endTime < startTime) {
+            if (endTime <= startTime) {
               return callback(true);
             }
 
