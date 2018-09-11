@@ -49,8 +49,7 @@ a img {
 }
 
 .android-logo-image {
-    height: 28px;
-    width: 140px
+    width: 150px
 }
 
 .android-header {
@@ -423,12 +422,6 @@ a img {
 
 .android-link-menu:hover {
     cursor: pointer
-}
-
-#heading {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 25px;
 }
 
 @media (max-width:900px) {

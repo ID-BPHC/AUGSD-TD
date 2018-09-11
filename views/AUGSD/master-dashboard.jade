@@ -2,51 +2,51 @@ doctype html
 html
 	head
 		// Meta
-		title Timetable Division | Dashboard
-		meta(content='Timetable Division', name='title')
-		meta(content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.", name='description')
+		title AUGS Division | Dashboard
+		meta(content='AUGS Division', name='title')
+		meta(content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback,  Student Coursework and formalizing Student-Professor projects.", name='description')
 		meta(content='initial-scale=1, minimum-scale=1, width=device-width', name='viewport')
 		meta(content='IE=11;IE=Edge', http-equiv='X-UA-Compatible')
-		meta(name='thumbnail', content='/images/logo/tdlogo-01.png')
-		meta(itemprop='name', content='Timetable Division')
-		meta(itemprop='description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(itemprop='image', content='/images/logo/tdlogo-01.png')
+		meta(name='thumbnail', content='/images/augsd-logo.png')
+		meta(itemprop='name', content='AUGS Division')
+		meta(itemprop='description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback,Student Coursework,and formalizing Student-Professor projects.")
+		meta(itemprop='image', content='/images/logo/augsd-logo.png')
 		meta(name='twitter:card', content='summary_large_image')
 		meta(name='twitter:site', content='@bitshyd')
-		meta(name='twitter:title', content='Timetable Division')
-		meta(name='twitter:description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(name='twitter:image', content='/images/logo/tdlogo-01.png')
-		meta(name='twitter:url', content='http://id.bits-hyderabad.ac.in')
+		meta(name='twitter:title', content='AUGS Division')
+		meta(name='twitter:description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework and formalizing Student-Professor projects.")
+		meta(name='twitter:image', content='/images/logo/augsd-logo.png')
+		meta(name='twitter:url', content='http://augsd.bits-hyderabad.ac.in')
 		meta(property='og:type', content='website')
-		meta(property='og:title', content='Timetable Division')
-		meta(property='og:description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(property='og:url', content='http://id.bits-hyderabad.ac.in')
-		meta(property='og:image', content='/images/logo/tdlogo-01.png')
-		meta(property='og:site_name', content='Timetable Division')
+		meta(property='og:title', content='AUGS Division')
+		meta(property='og:description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework and formalizing Student-Professor projects.")
+		meta(property='og:url', content='http://augsd.bits-hyderabad.ac.in')
+		meta(property='og:image', content='/images/logo/augsd-logo.png')
+		meta(property='og:site_name', content='AUGS Division')
 		meta(property='og:locale', content='en_IN')
 		script(type='application/ld+json').
 			{
 			"@context": "http://schema.org",
 			"@type": "Website",
-			"url": "http://id.bits-hyderabad.ac.in",
+			"url": "http://augsd.bits-hyderabad.ac.in",
 			"publisher": {
 			"@type": "Organization",
-			"name": "Timetable Division",
+			"name": "AUGS Division",
 			"logo": {
 			"@type": "ImageObject",
-			"url": "/images/logo/tdlogo-01.png",
+			"url": "/images/logo/augsd-logo.png",
 			"height": 103,
 			"width": 100
 			},
 			"parentOrganization": "BITS Pilani Hyderabad Campus"
 			},
-			"name": "Timetable Division",
-			"description": "Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.",
+			"name": "AUGS Division",
+			"description": "AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.",
 			"sameAs": [
 			"https://www.facebook.com/bitshyderabad/",
 			"https://twitter.com/bitshyd"]
 			}
-		link(rel='shortcut icon', href='/images/logo/tdlogo-short-01.png')
+		link(rel='shortcut icon', href='/images/logo/augsd-logo.png')
 		// Styles
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		style.
@@ -163,7 +163,7 @@ html
 		div.loader(id="loader")
 			.loader-overlay.hidden
 			#loader-pitch
-				h1 Timetable Division.
+				h1 AUGS Division.
 				p(id="errormessage").hidden Something went wrong. Try refreshing the page.
 				
 		// Layout start
@@ -196,7 +196,7 @@ html
 			main.mdl-layout__drawer
 					span.mdl-layout__title
 						//- img(src="/images/logo/tdlogo-02.png" style="outline: 0; max-width: 100%; height: auto;")
-						| Timetable Division
+						| AUGS Division
 					nav.mdl-navigation.inner.scrollbar-container.scroll-box.scroll-bar-wrap
 						if dashboard.type == "Student"
 							a.mdl-navigation__link.menuselectify(href=rootURL,id='dashboard')
@@ -259,7 +259,7 @@ html
 			}
 			loadScript("/scripts/jquery-3.2.1.slim.js").then(() => {
 				let stage1 = ["/scripts/jquery.validate.min.js", "https://code.getmdl.io/1.3.0/material.min.js", "/scripts/select.js", "/scripts/material-alerts.js"];
-				let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "https://code.getmdl.io/1.3.0/material.indigo-blue.min.css", "/stylesheets/select.css", "/stylesheets/stepper.min.css", "/stylesheets/dashboard.css", "/stylesheets/material-alerts.css"]
+				let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css", "/stylesheets/select.css", "/stylesheets/stepper.min.css", "/stylesheets/dashboard.css", "/stylesheets/material-alerts.css"]
 				let asyncLoad = new CSSLoader();
 				stage2.forEach((item) => {asyncLoad.add(item)});
 				asyncLoad.load();
