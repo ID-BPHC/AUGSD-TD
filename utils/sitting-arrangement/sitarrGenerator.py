@@ -1,6 +1,12 @@
+#FOLLOW THE INSTRUCTIONS GIVEN BELOW :
+
 #This file generates the sitting arrangement for the mid-semester and comprehensive examination.
-#Save the csv file as room.csv, course.csv in the same location as this file and then run the script.
-#Format of the room.csv file is: Room no, Exam capacity and that of course.csv: Course ID, Course Name, Exam date, Exam timings, Student's ID, Name of the Student
+#Save the csv file as room.csv, student.csv, course.csv in the same location as this file and then run the script by typing the following in the console: python sitarrGenerator.py
+#Follow the order of the Columns of the following files :(NO EXTRA COLUMNS SHOULD BE PRESENT)
+
+#room.csv: room no. , exam capacity
+#student.csv: student id, student name, course ID they are enrolled in(one at a time)
+#exam.csv: course id, course name, date of the exam, session of the exam
 
 import csv
 from datetime import datetime
@@ -16,8 +22,8 @@ from reportlab.lib import colors
 # import datetime
 # styles = getSampleStyleSheet()
 
-room = "RoomCapacity.csv"
-student = "student1.csv"
+room = "room.csv"
+student = "student.csv"
 exam = "exam.csv"
 
 dates = []
@@ -197,7 +203,7 @@ for subject in sitting:
 
 #WRITING THE PDF FILE OF SITTING ARRANGEMENT
 
-doc = SimpleDocTemplate(("tt.pdf"), pagesize=letter)
+doc = SimpleDocTemplate(("sitting-arrangement.pdf"), pagesize=letter)
 t = Table(sitting, repeatRows= 1, style= [('GRID',(0,0),(-1,-1),1,colors.black)])
 elements = []
 elements.append(t)
