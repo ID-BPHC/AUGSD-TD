@@ -111,6 +111,13 @@ def roomallot(exam):
 	else: 
 		return [xl,l,m,s,xs]
 
+#ROOM REFRESHMENT
+def roomrefresh():
+	for room in rooms:
+		room[2] = room[1]
+
+
+
 #ROOM ALLOTMENT
 def fillstudent(exam,room,examstudents,temproom, counter, roomrange):
 	for student in examstudents:
@@ -141,6 +148,7 @@ def fillstudent(exam,room,examstudents,temproom, counter, roomrange):
 for date in dates:
 	for session in ["AN", "FN"]: 
 		pExam.clear()
+		roomrefresh()
 		for exam in exams:
 			if exam[2]==date and exam[3] ==session:
 				pExam.append(exam)
@@ -208,5 +216,5 @@ t = Table(sitting, repeatRows= 1, style= [('GRID',(0,0),(-1,-1),1,colors.black)]
 elements = []
 elements.append(t)
 doc.build(elements)
-print("The file is created as sitting-arrangement.pdf. Happy midsems :P")
+print("The file is created as sitting-arrangement.pdf.")
 	
