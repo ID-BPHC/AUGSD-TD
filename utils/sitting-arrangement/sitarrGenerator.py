@@ -4,19 +4,20 @@
 
 import csv
 from datetime import datetime
-# from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-# from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
-# from reportlab.lib.pagesizes import letter
-# from reportlab.lib.units import inch
-# from reportlab.lib import colors
+from reportlab.pdfgen import canvas
+from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
+from reportlab.lib import colors
 # #from WebKit.Page import Page
 # from time import strftime
 # from cStringIO import StringIO
 # import datetime
 # styles = getSampleStyleSheet()
 
-room = "room.csv"
-student = "student.csv"
+room = "RoomCapacity.csv"
+student = "student1.csv"
 exam = "exam.csv"
 
 dates = []
@@ -24,6 +25,7 @@ roomfields, studentfields, examfields = [], [], []
 rooms, students, exams = [], [], [] 
 pExam = []
 examstudents = []
+sitting = []
 
 #Room list 
 with open(room, 'r') as room:
@@ -42,7 +44,7 @@ with open(student, 'r') as stu:
 	stureader = csv.reader(stu)
 	
 	studentfields = next(stureader)
-	studentfields.append(room)
+	studentfields.append("room")
 	
 	for row in stureader:
 		row.append("")
@@ -69,9 +71,13 @@ for exam in exams:
 
 #COUNTS THE NUMBER OF STUDENTS REGISTERED IN THE COURSE
 def stucounter(exam):		
-	count = sum(1 for student in students if student[2] == exam[0])		
+	count = sum(1 for student in students if student[2] == exam[0])			
 	return count
 
+#COUNTS THE NUMBER OF STUDENTS IN A PARTICULAR ROOM ENROLLED IN A PARTICULAR COURSE
+def sturoomcounter(cid, room):		
+	count = sum(1 for student in students if student[2] == cid and student[3]==room)			
+	return count
 
 #ROOM SET 
 xs, s, m, l, xl = [], [], [], [], []
@@ -87,7 +93,6 @@ for room in rooms:
 	elif room[1] >30 and room[1]<50:
 		s.append(room)
 
-
 def roomallot(exam):
 	if exam[4]<30:
 		return [xs,s,m,l,xl] 
@@ -101,14 +106,28 @@ def roomallot(exam):
 		return [xl,l,m,s,xs]
 
 #ROOM ALLOTMENT
-def fillstudent(exam,room,examstudents):
+def fillstudent(exam,room,examstudents,temproom, counter, roomrange):
 	for student in examstudents:
+
 		if exam[4] == 0 or room[2] == 0:
 			break
+		
 		if student[2] == exam[0] and student[3] == "":
 			student[3] = room[0]
 			room[2] -= 1
 			exam[4] -= 1	
+
+			if counter ==0: 
+				startstudent = student[0]
+				counter = 1
+			
+			if exam[4] == 0 or room[2] == 0:
+				roomrange.append([exam[0],room[0], startstudent, student[0]])
+				exam[5].append(roomrange)
+				break
+			
+			if not room[0] in temproom:
+				temproom.append(room[0])
 				
 
 
@@ -122,6 +141,7 @@ for date in dates:
 		
 		for exam in pExam: 
 			exam.append(stucounter(exam))
+			exam.append([])
 
 		pExam.sort(key = lambda x:x[4])
 		pExam.reverse()
@@ -135,25 +155,52 @@ for date in dates:
 			
 			examstudents.sort()
 			allot = roomallot(exam)
+			temproom = []
 			for roomset in allot:
 					
 				if exam[4] == 0:
 					break
 				
 				for room in roomset:
+					roomrange = []
+					counter = 0
 					if exam[4]==0:
 						break
 					if room[2] == 0:
 						continue
 					if exam[4]<=room[2]:
-						fillstudent(exam, room, examstudents)
+						fillstudent(exam, room, examstudents,temproom, counter,roomrange)
 						break
 					else:
-						fillstudent(exam, room, examstudents)
+						fillstudent(exam, room, examstudents,temproom, counter,roomrange)
 
 
+exams.sort()
 
 
+headings = ["Course ID", "Course name", "Date", "Session", "Room", "Number", "Starting ID", "Ending ID"]
+sitting.append(headings)
+
+for exam in exams:
+	for allot in exam[5]:
+		sitting.append([exam[0], exam[1], "{:%d/%m/%Y}".format(exam[2]), exam[3], allot[0][1],str(sturoomcounter(exam[0], allot[0][1])), allot[0][2], allot[0][3]])
 
 
+repeatid = []
+for subject in sitting:
+	if subject[0] == "Course ID":
+		continue
+	if subject[0] in repeatid:
+		subject[0], subject[1], subject[2], subject[3] = "", "", "", ""
+	else:
+		repeatid.append(subject[0])
 
+#WRITING THE PDF FILE OF SITTING ARRANGEMENT
+
+doc = SimpleDocTemplate(("tt.pdf"), pagesize=letter)
+t = Table(sitting, repeatRows= 1, style= [('GRID',(0,0),(-1,-1),1,colors.black)])
+elements = []
+elements.append(t)
+doc.build(elements)
+print("The file is created as sitting-arrangement.pdf. Happy midsems :P")
+	
