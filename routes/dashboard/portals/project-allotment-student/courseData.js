@@ -76,6 +76,6 @@ module.exports = {
   ID: {
     sop: ["TEST F111", "TEST F222", "DEV F111"],
     lop: ["TEST F111", "TEST F222", "DEV F111"],
-    dop: ["TEST F111", "TEST F222", "DEV F111"]
+    dop: ["TEST F111"]
   }
 };

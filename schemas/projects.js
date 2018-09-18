@@ -11,7 +11,11 @@ var projectsSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  type: String
+  type: String,
+  visible: {
+    type: Boolean,
+    default: true
+  }
 });
 
 var model = mongoose.model("projects", projectsSchema);
