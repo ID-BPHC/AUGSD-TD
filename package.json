@@ -9,7 +9,6 @@
   "dependencies": {
     "app-root-dir": "^1.0.2",
     "app-root-path": "^2.0.1",
-    "badwords-list": "^1.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "chai": "^4.1.2",
@@ -35,7 +34,6 @@
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth2": "^0.1.6",
-    "profanity-filter": "^0.2.1",
     "promise": "^8.0.1",
     "prompt": "^1.0.0",
     "run-sequence": "^2.2.0",
