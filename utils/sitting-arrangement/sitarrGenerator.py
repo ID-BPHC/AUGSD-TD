@@ -19,9 +19,9 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
 from functools import partial
 
-room = "room.csv"
+room = "RoomCapacity.csv"
 student = "student.csv"
-exam = "exam.csv"
+exam = "TT.csv"
 
 dates = [] # list containg the dates on which exams are conducted
 roomfields, studentfields, examfields = [], [], [] # list containing the heading of the columns of the respective lists
@@ -71,7 +71,6 @@ with open(exam, 'r') as exam:
 			row[4] = row[4].replace(" ","")
 			row[5]=row[5].replace(",","")
 			row[5] = int(row[5])
-			row[2] = datetime.strptime(row[2], '%d-%m-%Y')
 			row.append([])
 			exams.append(row)
 
@@ -165,7 +164,6 @@ for date in dates:
 		# 	exam.append([])
 
 		pExam.sort(key = lambda x:x[5])
-		pExam.reverse()
 
 		for exam in pExam:
 			examstudents.clear()
@@ -186,6 +184,8 @@ for date in dates:
 			for room in rooms:
 				if room[0] in roomset:
 					allotrooms.append(room)
+			allotrooms.sort(key = lambda x:x[2])
+			allotrooms.reverse()
 			for room in allotrooms:
 				room[0].replace(" ","")
 				roomrange = []
@@ -201,14 +201,14 @@ for date in dates:
 					fillstudent(exam, room, examstudents, counter,roomrange)
 
 
-# exams.sort()
+exams.sort()
 # for exam in exams:
 # 	print(exam)
 
 
 for exam in exams:
 	for allot in exam[6]:
-		sitting.append([exam[0], exam[1], "{:%d/%m/%Y}".format(exam[2]), exam[3], allot[0][1],str(sturoomcounter(exam[0], allot[0][1])), allot[0][2], allot[0][3]])
+		sitting.append([exam[0], exam[1], exam[2], exam[3], allot[0][1],str(sturoomcounter(exam[0], allot[0][1])), allot[0][2], allot[0][3]])
 
 
 repeatid = []
@@ -222,12 +222,12 @@ for subject in sitting:
 
 
 #WRITING THE PDF FILE OF SITTING ARRANGEMENT
-
+doc = SimpleDocTemplate(("sitting-arrangement.pdf"), pagesize=A4)
 t = Table(sitting, repeatRows= 1, 
 	style= [('GRID',(0,0),(-1,-1),1,colors.black),
-			('FONTSIZE',(0,0),(-1,-1),8)])
+			('FONTSIZE',(0,0),(-1,-1),6)])
 elements = []
 elements.append(t)
 doc.build(elements)
 print("The file is created as sitting-arrangement.pdf.")
-	
+
