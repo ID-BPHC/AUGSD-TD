@@ -28,6 +28,11 @@ let errorHandler = function(req, res, message) {
   });
 };
 
+let spacechecker = function(a){
+  a = a.replace(/ /g, "");
+  return a;
+}
+
 router.post("/step-4", function(req, res, next) {
   try {
     if (req.sanitize(req.body.instructorlist) == ". . .") {
@@ -42,7 +47,13 @@ router.post("/step-4", function(req, res, next) {
         res,
         "Feedback field wasn't filled. Please fill the feedback field before submitting."
       );
-    }
+    }else if (spacechecker(req.body.feedback) == "") {
+      errorHandler(
+        req,
+        res,
+        "Invalid Feedback. Please fill the feedback field before submitting."
+      );
+    }else{
 
     let instructorarray = req.session.instructor[0].instructors;
     let courseID = req.session.courseID;
@@ -95,6 +106,7 @@ router.post("/step-4", function(req, res, next) {
         details: "Your feedback was recorded. Thank you :). Redirecting"
       });
     });
+    }
   } catch (err) {
     console.log(err);
     return res.terminate(err);
