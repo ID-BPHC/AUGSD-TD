@@ -144,7 +144,8 @@ router.post("/view", function(req, res, next) {
           instructor: 1,
           name: 1,
           updated: 1,
-          type: 1
+          type: 1,
+          visible: 1
         }
       },
       {
@@ -155,7 +156,8 @@ router.post("/view", function(req, res, next) {
       },
       {
         $match: {
-          department: req.body.departments
+          department: req.body.departments,
+          visible: true
         }
       },
       {
@@ -330,6 +332,89 @@ router.get("/manage", function(req, res, next) {
   );
 });
 
+router.get("/blank", function(req, res, next) {
+  adminsModel.distinct("department", function(err, departments) {
+    if (err) {
+      console.log(err);
+      return res.terminate("Could not find departments");
+    }
+    return res.renderState(
+      "dashboard/portals/project-allotment-student/blank-step-1",
+      {
+        departments: departments
+      }
+    );
+  });
+});
+
+router.post("/blank", function(req, res, next) {
+  adminsModel.find(
+    { department: req.sanitize(req.body.departments) },
+    {},
+    { sort: { email: 1 } },
+    function(err, facultyList) {
+      if (err) {
+        console.log(err);
+        return res.terminate("Could not find departments");
+      }
+      return res.renderState(
+        "dashboard/portals/project-allotment-student/blank-step-2",
+        {
+          facultyList
+        }
+      );
+    }
+  );
+});
+
+router.post(
+  "/blank/create",
+  [
+    check("title")
+      .exists()
+      .withMessage("No Project Title")
+      .not()
+      .isEmpty()
+      .withMessage("No Project Title"),
+    check("description")
+      .exists()
+      .withMessage("No Project Description")
+      .not()
+      .isEmpty()
+      .withMessage("No Project Description")
+  ],
+  function(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.renderState("form-errors", { errors: errors.mapped() });
+    }
+    let data = {
+      title: req.sanitize(req.body.title),
+      description: req.sanitize(req.body.description),
+      instructor: req
+        .sanitize(req.body.faculty)
+        .split("|")[0]
+        .trim(),
+      visible: false
+    };
+    const typeproj = req.sanitize(req.body.projectType);
+    if (typeproj == "Lab Oriented Project (LOP)") {
+      data.type = "lop";
+    } else if (typeproj == "Design Oriented Project (DOP)") {
+      data.type = "dop";
+    } else {
+      data.type = "sop";
+    }
+    projectsModel.create(data, (err, result) => {
+      if (err) {
+        return res.terminate(err);
+      }
+      return res.redirect(
+        `/dashboard/project-allotment-student/view/${result._id}`
+      );
+    });
+  }
+);
 router.get("/", function(req, res, next) {
   return res.renderState("dashboard/portals/project-allotment-student");
 });

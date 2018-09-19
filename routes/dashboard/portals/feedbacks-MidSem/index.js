@@ -1,6 +1,4 @@
 var express = require("express");
-var filter = require("profanity-filter");
-var badwordslist = require("badwords-list");
 var fq = require("fuzzquire");
 var mailer = fq("utils/mailer");
 var router = express.Router();
@@ -62,23 +60,6 @@ router.post("/step-4", function(req, res, next) {
         instructoremail = element.email;
       }
     });
-    filter.setReplacementMethod("grawlix");
-    badwordslist.array.forEach(function(item) {
-      filter.addWord(item);
-      filter.addWord(
-        item.replace(/\w\S*/g, function(txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
-      );
-      filter.addWord(item.toUpperCase());
-    });
-    let customfilter = [];
-    customfilter.forEach(function(item) {
-      filter.addWord(item);
-    });
-    filter.setGrawlixChars([""]);
-    feedbackMidsem1 = filter.clean(feedbackMidsem1);
-    feedbackMidsem2 = filter.clean(feedbackMidsem2);
     let dataStore = {
       courseID: courseID,
       section: courseSection,

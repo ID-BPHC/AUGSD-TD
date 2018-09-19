@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
+let config = fq("config");
 
 let adminsModel = fq("schemas/admins");
 let portalsModel = fq("schemas/portals");

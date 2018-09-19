@@ -4,6 +4,7 @@ var portals = [
     name: "feedbacks-24x7",
     icon: "feedback",
     active: false,
+    mode: "AUGSD",
     admin: false
   },
   {
@@ -11,6 +12,7 @@ var portals = [
     name: "feedbacks-midsem",
     icon: "feedback",
     active: false,
+    mode: "AUGSD",
     admin: false
   },
   {
@@ -18,6 +20,7 @@ var portals = [
     name: "room-booking-student",
     icon: "class",
     active: false,
+    mode: "TD",
     admin: false
   },
   {
@@ -25,6 +28,7 @@ var portals = [
     name: "room-booking-approval",
     icon: "done",
     active: false,
+    mode: "TD",
     admin: true
   },
   {
@@ -32,6 +36,7 @@ var portals = [
     name: "room-booking-faculty",
     icon: "class",
     active: false,
+    mode: "TD",
     admin: true
   },
   {
@@ -39,6 +44,7 @@ var portals = [
     name: "ta-application",
     icon: "supervisor_account",
     active: false,
+    mode: "AUGSD",
     admin: false
   },
   {
@@ -46,6 +52,7 @@ var portals = [
     name: "feedbacks-prof",
     icon: "feedback",
     active: false,
+    mode: "AUGSD",
     admin: true
   },
   {
@@ -53,6 +60,15 @@ var portals = [
     name: "control",
     icon: "build",
     active: true,
+    mode: "AUGSD",
+    admin: true
+  },
+  {
+    displayName: "Admin Controls",
+    name: "control",
+    icon: "build",
+    active: true,
+    mode: "TD",
     admin: true
   },
   {
@@ -60,6 +76,7 @@ var portals = [
     name: "ta-app-ic",
     icon: "assignment",
     active: false,
+    mode: "AUGSD",
     admin: true
   },
   {
@@ -67,6 +84,7 @@ var portals = [
     name: "room-booking-esd",
     icon: "class",
     active: false,
+    mode: "TD",
     admin: true
   },
   {
@@ -74,6 +92,7 @@ var portals = [
     name: "room-booking-all",
     icon: "class",
     active: false,
+    mode: "TD",
     admin: true
   },
   {
@@ -81,6 +100,7 @@ var portals = [
     name: "inductions",
     icon: "work",
     active: false,
+    mode: "AUGSD",
     admin: false
   },
   {
@@ -88,6 +108,7 @@ var portals = [
     name: "feedbacks-admin",
     icon: "feedback",
     active: false,
+    mode: "AUGSD",
     admin: true
   },
   {
@@ -95,6 +116,7 @@ var portals = [
     name: "project-allotment-prof-create",
     icon: "assignment",
     active: false,
+    mode: "AUGSD",
     admin: true
   },
   {
@@ -102,6 +124,7 @@ var portals = [
     name: "project-allotment-student",
     icon: "assignment",
     active: false,
+    mode: "AUGSD",
     admin: false
   },
   {
@@ -109,6 +132,7 @@ var portals = [
     name: "project-applications",
     icon: "format_list_bulleted",
     active: false,
+    mode: "AUGSD",
     admin: true
   },
   {
@@ -116,6 +140,7 @@ var portals = [
     name: "project-list",
     icon: "import_export",
     active: false,
+    mode: "AUGSD",
     admin: true
   }
 ];
