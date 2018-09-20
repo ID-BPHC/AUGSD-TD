@@ -57,7 +57,7 @@ The project follows a portal based structure. Timetable Division provides it's s
 
 #### Student Portals
 1. `feedbacks-24x7` - For provding 24x7 feedback for courses
-1. `feedbacks-MidSem` - For providing Mid-Semester feedback for courses
+1. `feedbacks-midsem` - For providing Mid-Semester feedback for courses
 1. `inductions` - For inducting new students to the TD team :P
 1. `project-allotment-student` - For applying to projects offered by various departments
 1. `room-booking-student` - For students to initiate a room booking request
