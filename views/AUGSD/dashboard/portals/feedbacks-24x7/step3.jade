@@ -59,7 +59,7 @@ block content
 										h7 You are writing feedback for #{courseID} #{courseSection}
 									div.mdl-cell.mdl-cell--12-col
 										.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
-											input#instructorlist.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='instructorlist')
+											input#instructorlist.mdl-textfield__input(type='text', value='#{params[0].name}', readonly='', tabindex='-1', name='instructorlist')
 											label(for='instructorlist')
 												i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
 											label.mdl-textfield__label(for='instructorlist') Select Instructor
