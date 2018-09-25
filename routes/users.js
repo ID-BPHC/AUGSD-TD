@@ -18,6 +18,12 @@ let users = {
       avatar: "/images/team/11.jpg",
       social: {}
     },
+    "K Venkata Ratnam": {
+      name: "Dr. K Venkata Ratnam",
+      title: "Timetable Nucleus Member",
+      avatar: "/images/team/17.jpg",
+      social: {}
+    },
     "Mr. Anil Zedia": {
       name: "Mr. Anil Zedia",
       title: "Staff",
