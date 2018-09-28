@@ -3,6 +3,7 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var bookingsModel = fq("schemas/room-bookings");
 var moment = require("moment");
+let mapByDays = require("../common").mapByDays;
 
 router.get("/", function(req, res, next) {
   bookingsModel.find(
@@ -14,7 +15,7 @@ router.get("/", function(req, res, next) {
         return res.terminate(err);
       }
       return res.renderState("admin/portals/room-booking-all", {
-        bookings: bookings
+        bookings: mapByDays(bookings)
       });
     }
   );
