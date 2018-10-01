@@ -1,13 +1,16 @@
 extends ../../../master-dashboard
 
 block content
+  script(src="/scripts/print.min.js")
   div.mdl-cell.mdl-cell--12-col.center
     h2 Room Bookings
 
   div.mdl-cell.mdl-cell--12-col
     center
       for day in bookings
-        div.table-responsive
+        - let date = day[0].start.getDate().toString() + day[0].start.getMonth().toString() + day[0].start.getFullYear().toString()
+        i.material-icons(onclick="printJS({printable: \"#{date}\", type: \"html\", header:\"Timetable Division - Room Bookings\", documentTitle: \"Room Bookings\"})") print 
+        div.table-responsive(id="#{date}")
           table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
             thead
               tr
@@ -16,7 +19,7 @@ block content
                 th.mdl-data-table__cell--non-numeric To
                 th.mdl-data-table__cell--non-numeric Booked By
                 th.mdl-data-table__cell--non-numeric Phone
-                th.mdl-data-table__cell--non-numeric Audio/Visual
+                th.mdl-data-table__cell--non-numeric Audio/Visual   
             tbody						
               for booking in day
                 tr
@@ -26,7 +29,7 @@ block content
                   td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
                   td.mdl-data-table__cell--non-numeric #{booking.phone}
                   td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
-          br
+          hr
           br
     script.
       window.setInterval(function(){
