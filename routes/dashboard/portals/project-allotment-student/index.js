@@ -13,12 +13,12 @@ var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
 
 router.use(function(req, res, next) {
-  if (req.user.email.indexOf("f2017") == 0) {
+  if (!(req.user.email.indexOf("f2017") && req.user.email.indexOf("f2018"))) {
     return res.renderState("custom_errors", {
       redirect: "/dashboard",
       timeout: 2,
       supertitle: "Not Eligible",
-      message: "2017 Batch is not eligible for project type courses",
+      message: "2017 and 2018 Batch is not eligible for project type courses",
       details: " "
     });
   } else {
