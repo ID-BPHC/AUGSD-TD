@@ -37,76 +37,79 @@ router.post("/step-4", function(req, res, next) {
         "Invalid Instructor Selected. Please select a valid instructor."
       );
     } else if (
-      typeof req.sanitize(req.body.feedbackMidsem1) == "undefined" ||
-      typeof req.sanitize(req.body.feedbackMidsem2) == "undefined"
+      !req.sanitize(req.body.feedbackMidsem1) ||
+      !req.sanitize(req.body.feedbackMidsem2) ||
+      req.body.feedbackMidsem1.trim() === "" ||
+      req.body.feedbackMidsem2.trim() === ""
     ) {
       errorHandler(
         req,
         res,
         "Feedback field wasn't filled. Please fill the feedback field before submitting."
       );
-    }
-    let instructorarray = req.session.instructor[0].instructors;
-    let courseID = req.session.courseID;
-    let courseSection = req.session.courseSection;
-    let instructorname = req.sanitize(req.body.instructorlist);
-    let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
-    let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
-    let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
+    } else {
+      let instructorarray = req.session.instructor[0].instructors;
+      let courseID = req.session.courseID;
+      let courseSection = req.session.courseSection;
+      let instructorname = req.sanitize(req.body.instructorlist);
+      let feedbackMidsem1 = req.sanitize(req.body.feedbackMidsem1);
+      let feedbackMidsem2 = req.sanitize(req.body.feedbackMidsem2);
+      let feedbackMidsem3 = req.sanitize(req.body.feedbackMidsem3);
 
-    let instructoremail = "";
-    instructorarray.forEach(function(element) {
-      if (element.name == instructorname) {
-        instructoremail = element.email;
-      }
-    });
-    let dataStore = {
-      courseID: courseID,
-      section: courseSection,
-      instructor: instructoremail, // Instructor's email
-      type: "midsem", // 24x7 or midsem
-      responses: [
-        feedbackMidsem1,
-        feedbackMidsem2,
-        feedbackMidsem3 ? feedbackMidsem3 : "NA"
-      ],
-      createdOn: Date.now()
-    };
-    feedbacksModel.create(dataStore, function(err, response) {
-      if (err) {
+      let instructoremail = "";
+      instructorarray.forEach(function(element) {
+        if (element.name == instructorname) {
+          instructoremail = element.email;
+        }
+      });
+      let dataStore = {
+        courseID: courseID,
+        section: courseSection,
+        instructor: instructoremail, // Instructor's email
+        type: "midsem", // 24x7 or midsem
+        responses: [
+          feedbackMidsem1,
+          feedbackMidsem2,
+          feedbackMidsem3 ? feedbackMidsem3 : "NA"
+        ],
+        createdOn: Date.now()
+      };
+      feedbacksModel.create(dataStore, function(err, response) {
+        if (err) {
+          return res.renderState("custom_errors", {
+            redirect: "/dashboard",
+            timeout: 5,
+            supertitle: "Couldn't submit feedback",
+            message: "Failure",
+            details: err
+          });
+        }
+
+        mailer.send({
+          email: instructoremail,
+          subject: "Mid-Semester Feedback",
+          body:
+            "Dear " +
+            instructorname +
+            "<p>Academic Undergraduate Studies Division (AUGSD) has received the following qualitative feedback (Mid-Semester) from your students for your course " +
+            courseID +
+            " and section " +
+            courseSection +
+            " through online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Academic Undergraduate Studies Division (AUGSD) would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><br><b>Q. Which characteristics of this instructor or course have been most valuable to your learning ?</b><br>Ans. " +
+            feedbackMidsem1 +
+            "</p><br><p><b>Q. Which characteristics of this instructor, course, classroom or teaching environment require improvement ?</b><br>Ans. " +
+            feedbackMidsem2
+        });
+
         return res.renderState("custom_errors", {
           redirect: "/dashboard",
-          timeout: 5,
-          supertitle: "Couldn't submit feedback",
-          message: "Failure",
-          details: err
+          timeout: 2,
+          supertitle: "Submitted Feedback.",
+          message: "Success",
+          details: "Your feedback was recorded. Thank you :). Redirecting"
         });
-      }
-
-      mailer.send({
-        email: instructoremail,
-        subject: "Mid-Semester Feedback",
-        body:
-          "Dear " +
-          instructorname +
-          "<p>Academic Undergraduate Studies Division (AUGSD) has received the following qualitative feedback (Mid-Semester) from your students for your course " +
-          courseID +
-          " and section " +
-          courseSection +
-          " through online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, Academic Undergraduate Studies Division (AUGSD) would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><br><b>Q. Which characteristics of this instructor or course have been most valuable to your learning ?</b><br>Ans. " +
-          feedbackMidsem1 +
-          "</p><br><p><b>Q. Which characteristics of this instructor, course, classroom or teaching environment require improvement ?</b><br>Ans. " +
-          feedbackMidsem2
       });
-
-      return res.renderState("custom_errors", {
-        redirect: "/dashboard",
-        timeout: 2,
-        supertitle: "Submitted Feedback.",
-        message: "Success",
-        details: "Your feedback was recorded. Thank you :). Redirecting"
-      });
-    });
+    }
   } catch (err) {
     return res.terminate(err);
   }
