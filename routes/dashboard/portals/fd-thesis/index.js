@@ -12,12 +12,7 @@ var forms = [
 ];
 forms.forEach(form => {
   router.get("/" + form, (req, res, next) => {
-    console.log("heerre", form);
     res.sendFile(path.join(__dirname, "./" + form + ".pdf"));
   });
-});
-router.get("/Off-Campus-Form-A", (req, res, next) => {
-  console.log("here");
-  res.sendFile(path.join(__dirname, "./Off-Campus-Form-A.pdf"));
 });
 module.exports = router;
