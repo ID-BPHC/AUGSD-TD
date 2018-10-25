@@ -93,8 +93,6 @@ router.get("/view/:id", function(req, res, next) {
                 "Could not check application status for form generation"
               );
             }
-            req.session.project = project[0];
-            req.session.save();
             return res.renderState(
               "dashboard/portals/project-allotment-student/view-project",
               {
@@ -221,41 +219,47 @@ router.post(
             message: "You have already applied for this project."
           });
         } else {
-          applicationsModel.create(
-            {
-              project: projectID,
-              student: req.sanitize(req.user.email),
-              cgpa: cgpa,
-              courseCode: courseCode,
-              disciplinary: disc,
-              experience: experience
-            },
-            function(err, application) {
-              if (err) {
-                console.log(err);
-                return res.terminate("Could not create application");
-              }
-              mailer.send({
-                email: req.user.email,
-                subject: "Project Application",
-                body: `Hi ${
-                  req.user.name
-                }, <br><p> Your application for the project <b>${
-                  req.session.project.title
-                }</b> (Course Code <b>${
-                  application.courseCode
-                }</b>) has been successfully submitted. The application ID is <b>${
-                  application._id
-                }</b>. Please note this for future reference.</p><br>Thanks`
-              });
-              return res.renderState("custom_errors", {
-                redirect: "/dashboard/project-allotment-student",
-                timeout: 3,
-                supertitle: "Success",
-                message: "Your application has been submitted."
-              });
+          projectsModel.findOne({ _id: projectID }, function(err, project) {
+            if (err || !project) {
+              console.log(err);
+              return res.terminate("Could not find project");
             }
-          );
+            applicationsModel.create(
+              {
+                project: projectID,
+                student: req.sanitize(req.user.email),
+                cgpa: cgpa,
+                courseCode: courseCode,
+                disciplinary: disc,
+                experience: experience
+              },
+              function(err, application) {
+                if (err) {
+                  console.log(err);
+                  return res.terminate("Could not create application");
+                }
+                mailer.send({
+                  email: req.user.email,
+                  subject: "Project Application",
+                  body: `Hi ${
+                    req.user.name
+                  }, <br><p> Your application for the project <b>${
+                    project.title
+                  }</b> (Course Code <b>${
+                    application.courseCode
+                  }</b>) has been successfully submitted. The application ID is <b>${
+                    application._id
+                  }</b>. Please note this for future reference.</p><br>Thanks`
+                });
+                return res.renderState("custom_errors", {
+                  redirect: "/dashboard/project-allotment-student",
+                  timeout: 3,
+                  supertitle: "Success",
+                  message: "Your application has been submitted."
+                });
+              }
+            );
+          });
         }
       }
     );
