@@ -6,22 +6,22 @@ let users = {
       avatar: "/images/team/2.jpg",
       social: {}
     },
-    "Dr. Supradeepan K": {
-      name: "Dr. Supradeepan K",
-      title: "Timetable",
-      avatar: "/images/team/4.jpg",
-      social: {}
-    },
-    "Dr. Aruna Malapati": {
-      name: "Dr. Aruna Malapati",
-      title: "CMS & Software Development",
-      avatar: "/images/team/11.jpg",
-      social: {}
-    },
-    "K Venkata Ratnam": {
+    "Prof. K Venkata Ratnam": {
       name: "Dr. K Venkata Ratnam",
       title: "Timetable Nucleus Member",
       avatar: "/images/team/17.jpg",
+      social: {}
+    },
+    "Prof. Sashideep Gutti": {
+      name: "Dr. Sashideep Gutti",
+      title: "Timetable Nucleus Member",
+      avatar: "",
+      social: {}
+    },
+    "Prof. Runa Kumari ": {
+      name: "Dr. Runa Kumari",
+      title: "Timetable Nucleus Member",
+      avatar: "",
       social: {}
     },
     "Mr. Anil Zedia": {
