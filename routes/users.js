@@ -15,13 +15,13 @@ let users = {
     "Prof. Sashideep Gutti": {
       name: "Dr. Sashideep Gutti",
       title: "Timetable Nucleus Member",
-      avatar: "",
+      avatar: "/images/team/20.jpg",
       social: {}
     },
     "Prof. Runa Kumari ": {
       name: "Dr. Runa Kumari",
       title: "Timetable Nucleus Member",
-      avatar: "",
+      avatar: "/images/team/21.png",
       social: {}
     },
     "Mr. Anil Zedia": {
