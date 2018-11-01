@@ -54,7 +54,7 @@ router.get("/cancel/:id", function(req, res, next) {
 // POST Requests
 
 router.post(
-  "/step-2",
+  "/step-2/:timestamp",
   [
     check("capacity")
       .exists()
