@@ -101,7 +101,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.renderState("form-errors", { errors: errors.mapped() });
     }
-//     console.log(req.params.timestamp);
 
     var startTime = new moment(
       req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-start"]),
