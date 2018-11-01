@@ -54,7 +54,7 @@ router.get("/cancel/:id", function(req, res, next) {
 // POST Requests
 
 router.post(
-  "/step-2",
+  "/step-2/:timestamp",
   [
     check("capacity")
       .exists()
@@ -101,6 +101,8 @@ router.post(
     if (!errors.isEmpty()) {
       return res.renderState("form-errors", { errors: errors.mapped() });
     }
+    console.log("Here!");
+    console.log(req.params.timestamp);
 
     var startTime = new moment(
       req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-start"]),
