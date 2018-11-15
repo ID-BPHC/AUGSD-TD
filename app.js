@@ -86,17 +86,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-// A function to disable caching on responses
-app.use(function(req, res, next) {
-  res.nocache = function() {
-    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
-    res.header("Expires", "-1");
-
-    res.header("Pragma", "no-cache");
-  };
-  next();
-});
-
 app.use("/admin", admin);
 app.use("/dashboard", dashboard);
 app.use("/", index);

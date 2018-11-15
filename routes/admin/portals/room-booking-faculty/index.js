@@ -3,10 +3,13 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var roomBookingFaculty = fq("middleware/room-booking");
 var moment = require("moment");
+var nocache = require("nocache");
 
 const { check, validationResult } = require("express-validator/check");
 
 // GET Requests
+
+router.use(nocache());
 
 router.get("/", function(req, res, next) {
   res.renderState("room-booking");
@@ -170,7 +173,6 @@ router.post(
         req.session.phone = req.sanitize(req.body.phone);
         req.session.save();
 
-        res.nocache();
         res.renderState("room-booking/step2", {
           rooms: rooms
         });
