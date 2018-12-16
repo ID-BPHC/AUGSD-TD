@@ -1,10 +1,7 @@
-## Notice
-As Instruction Division is being split into two different and independent divisions namely Timetable Division and AUGSD, two different repositories will be created. This repository will be renamed to Timetable-Division and a new repository will be created for AUGSD. The portals in this repository will be divided among both the repositories.
+# Timetable Division | AUGS Division [![Build Status](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0.svg?branch=master)](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0)
+Timetable Division and AUGS Divsion are sub-divisions of BITS Pilani Hyderabad Campus. They together oversee operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
 
-# Instruction-Division-2.0 [![Build Status](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0.svg?branch=master)](https://travis-ci.com/ID-BPHC/Instruction-Division-2.0)
-Instruction Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
-
-This project is live at : https://td.bits-hyderabad.ac.in/
+This project is live at : https://td.bits-hyderabad.ac.in/ , https://augsd.bits-hyderabad.ac.in/
 
 ## Technology Stack
 1. NodeJS
@@ -46,28 +43,38 @@ The project follows a portal based structure. Timetable Division provides it's s
 | Activated Student Portal    |No             |No                                           |Yes            |
 | Deactivated Student Portal  |No             |No                                           |No             |
 
-## Portals
-#### Admin Portals
+## Config and Views
+While the general configuration is same for both of the sites, an option `siteMode` has been added in config file which takes two values `TD` and `AUGSD`. This option enables the selection of the folder `AUGSD` or `TD` in the `views` directory from which the views will be rendered.
+
+## Portals 
+Portals are different for TD and AUGSD.
+#### **TIMETABLE DIVISION**
+##### Admin Portals
 1. `control` - For managing site administration (Enabling/Disabling) other portals, Add holidays for room booking, Switching users
-1. `feedbacks-admin` - For viewing all the feedbacks received
-1. `feedbacks-prof` - Shows feedback of currently logged in admin.
-1. `project-allotment-prof-create` - For professors to create projects
-1. `project-applications` - For professors to Approve / Reject project applications
-1. `project-list` - To Export the final CSV after the project allotment process is complete
-1. `room-booking-approval` - For SWD / TD to approve room booking requests
-1. `room-booking-esd` - For ESD to get the list of approved room bookings
-1. `room-booking-faculty` - For professors / staff member to initiate a room booking request
+2. `room-booking-approval` - For SWD / TD to approve room booking requests
+3. `room-booking-esd` - For ESD to get the list of approved room bookings
+4. `room-booking-faculty` - For professors / staff member to initiate a room booking request
 
-#### Student Portals
-1. `feedbacks-24x7` - For provding 24x7 feedback for courses
-1. `feedbacks-midsem` - For providing Mid-Semester feedback for courses
+##### Student Portals
 1. `inductions` - For inducting new students to the TD team :P
-1. `project-allotment-student` - For applying to projects offered by various departments
-1. `room-booking-student` - For students to initiate a room booking request
+2. `room-booking-student` - For students to initiate a room booking request
+####
+#### **AUGS DIVISION**
+##### Admin Portals
+1. `control` - For managing site administration (Enabling/Disabling) other portals, Add holidays for room booking, Switching users
+2. `feedbacks-admin` - For viewing all the feedbacks received
+3. `feedbacks-prof` - Shows feedback of currently logged in admin.
+4. `project-allotment-prof-create` - For professors to create projects
+5. `project-applications` - For professors to Approve / Reject project applications
+6. `project-list` - To Export the final CSV after the project allotment process is complete
 
-#### Under Development
+##### Student Portals
+1. `feedbacks-24x7` - For provding 24x7 feedback for courses
+2. `feedbacks-midsem` - For providing Mid-Semester feedback for courses
+3. `project-allotment-student` - For applying to projects offered by various departments
+##### Under Development
 1. Online teacher Assistantship Application - (`ta-app-ic`, `ta-application`)
-
+###
 ## Utils
 Several housekeeping utilities can be found in `utils` directory
 1. `adminFacultyGenerator.py` generates the Faculty JSON data from CSV for `admins` schema.
@@ -81,10 +88,11 @@ Several housekeeping utilities can be found in `utils` directory
 
 ## Faculty Coordinators
 1. Prof. PK Sahoo (Faculty in-charge, Timetable Division)
-1. Dr. Aruna Malapati (In-charge Software Development)
+1. Prof. Vasan Arunachalam (Associate Dean, AUGS Division)
+1. Dr. Runa Kumari (In-charge Software Development, Timetable Division)
 
 ## Contributors
 1. [Sohail Rajdev](https://www.github.com/sohailrajdev97)
-1. [Nischay Ram Mamidi](https://github.com/Nischay-Pro)
-1. [Kailash Bhalaki](https://www.github.com/Kailash0311)
-1. [Nishant Aggarwal](https://www.github.com/nish-sapio)
+2. [Nischay Ram Mamidi](https://github.com/Nischay-Pro)
+3. [Kailash Bhalaki](https://www.github.com/Kailash0311)
+4. [Nishant Aggarwal](https://www.github.com/nish-sapio)
