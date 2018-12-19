@@ -5,7 +5,7 @@
 
 # importing csv module
 import csv
-from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
@@ -18,7 +18,7 @@ styles = getSampleStyleSheet()
  
 # csv file name
 
-filename = "allotment_list.csv"
+filename = "instructor_new.csv"
 print filename 
 # initializing the titles and rows list
 fields = []
@@ -80,25 +80,30 @@ i = 0
 for instructor in instructors :
     instructoremail = instructoremails[instructors.index(instructor)]
     print 'instructor: '+instructor +' , email: '+instructoremail
-    title = "Timetable Division - BITS Pilani Hyderabad Campus"
     name = "Dear "+ instructor.title()+ ","
-    heading1 = "FIRST SEMESTER 2018-2019"
+    heading1 = "SECOND SEMESTER 2018-2019"
     heading2 = "LIST OF ALLOTED PROJECT STUDENTS"
-    para = "The following is the allotted list of project students under your guidance during First Semester \n 2018-19. There is a possibility that some of the allotted project students may not register for the same. The final list of registered students will be sent to the IC of the respective project type course. In case of any discrepancy, please contact Dr. Balaji Gopalan, In-charge, Project Allotment (Extn: 575) or email at gbalaji@hyderabad.bits-pilani.ac.in. "
+    para = "The following is the allotted list of project students under your guidance during Second Semester 2018-19. There is a possibility that some of the allotted project students may not register for the same.The final list of registered students will be available with the IC of the respective project type course. Incase of any discrepancy, please contact the office of AUGSD (Extn: 822) or email at augsd@hyderabad.bits-pilani.ac.in."
     datetoday = datetime.datetime.today().strftime('%d-%m-%Y')
     elements = []
-    footer1 = "Faculty in-charge <br/> PK Sahoo <br/> Timetable Division"
+    footer1 = "(Prof. A. Vasan)<br/> Associate Dean <br/>"
 
-    title = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % title
+    # title = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % title
     ptext = '<font size=12>%s</font>' % name
     head1text = '<para align = "centre">"<font size = 18><strong>%s</strong></font></para>' % heading1
     head2text = '<para align = "centre"><font size = 18><strong>%s</strong></font></para>' % heading2
-    paratext = '<font size=12>%s</font>' % para
+    paratext = '<para leading=22><font size=12>%s</font></para>' % para
     date = '<para align="right"><font>%s</font></para>' % datetoday
     footer = '<para align = "left"><font size = "12">%s</font></para>' % footer1
 
     j = 0
-    elements.append(Paragraph(title, styles["Normal"])) 
+    im = Image("head.png", width=4*inch, height=0.75*inch)
+    im.hAlign = "LEFT"
+
+    elements.append(im)
+
+    elements.append(Spacer(1, 12))
+    elements.append(Spacer(1, 12))
     while j < 5 :
         elements.append(Spacer(1, 12))
         j = j+1
@@ -135,6 +140,7 @@ for instructor in instructors :
     data[i].insert(0,['S. No','ID No.','Student Name','Course Code'])
     for j in range(1,len(data[i])):
             data[i][j].insert(0,str(j))
+    number_of_students = len(data[i])-1
    
     t=Table(data[i])
     t.setStyle(GRID_STYLE)
@@ -143,6 +149,8 @@ for instructor in instructors :
 
     elements.append(Spacer(1, 12)) 
     elements.append(Spacer(1, 12))
-         
+    elements.append(Paragraph("Number of students alloted to your course: "+str(number_of_students), styles["Normal"]))
+    elements.append(Spacer(1, 12)) 
+    elements.append(Spacer(1, 12))
     elements.append(Paragraph(footer, styles["Normal"])) 
     doc.build(elements)
