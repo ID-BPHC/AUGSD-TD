@@ -27,6 +27,9 @@ router.get("/", (req, res, next) => {
 
         adminsModel.find(
           {
+            superUser: false
+          },
+          {
             __v: 1,
             name: 1,
             email: 1
@@ -38,7 +41,7 @@ router.get("/", (req, res, next) => {
 
             feedbacks.forEach((object, index, array) => {
               profs.forEach((obj, ind, arr) => {
-                if (arr[ind].email === array[index].email) {
+                if (arr[ind].email === array[index].instructor) {
                   array[index].InstructorName = arr[ind].name;
                 }
               });
