@@ -3,6 +3,11 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var feedbacksModel = fq("schemas/feedbacks");
 var adminsModel = fq("schemas/admins");
+const dump = require("./export.js");
+
+["/export/24x7", "/export/midsem"].forEach(exportType => {
+  router.use(exportType, dump);
+});
 
 ["24x7", "midsem"].forEach(fb_type => {
   router.get("/" + fb_type, function(req, res, next) {
