@@ -5,32 +5,33 @@ block content
 		h2 Project Allotment
 
 	div.mdl-cell.mdl-cell--12-col
-		ul.mdl-list
-			li.mdl-list__item.
-				2018 and 2017 batch students are not allowed to take project-type courses.
-			
-			li.mdl-list__item.
-				2016 batch DUAL DEGREE students are allowed to take ONE project type course, provided they should meet the maximum requirement of 25 units.
+		if(lines)
+			ul.mdl-list
+				li.mdl-list__item.
+					#{lines[0]}
+				
+				li.mdl-list__item.
+					#{lines[1]}
 
-			li.mdl-list__item.
-				2016 batch SINGLE DEGREE students are allowed to take ONE project type course.
+				li.mdl-list__item.
+					#{lines[2]}	
 
-			li.mdl-list__item.
-				2015 batch DUAL DEGREE students can take two project type courses.
-			
-			li.mdl-list__item.
-				2015 batch SINGLE DEGREE students can take two project type courses. Students doing a thesis are not allowed to take project type courses.
+				li.mdl-list__item.
+					#{lines[3]}
+				
+				li.mdl-list__item.
+					#{lines[4]}
 
 
-			li.mdl-list__item
-				span.mdl-list__item-primary-content
-					i.material-icons.mdl-list__item-icon note
-					| These courses will be available only to those students who have elective slot(s) in their prescribed semester wise chart for the semester and who are eligible to register in these courses as per Academic Regulations
+				li.mdl-list__item
+					span.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-icon note
+						| These courses will be available only to those students who have elective slot(s) in their prescribed semester wise chart for the semester and who are eligible to register in these courses as per Academic Regulations
 
-			li.mdl-list__item
-				span.mdl-list__item-primary-content
-					i.material-icons.mdl-list__item-icon note
-					| Students who want to propose their own project idea, can contact the concerned faculty member.					
+				li.mdl-list__item
+					span.mdl-list__item-primary-content
+						i.material-icons.mdl-list__item-icon note
+						| Students who want to propose their own project idea, can contact the concerned faculty member.					
 
 	div.mdl-cell.mdl-cell--3-col.center
 		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")

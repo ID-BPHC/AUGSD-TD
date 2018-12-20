@@ -1,0 +1,45 @@
+extends ../../../master-dashboard
+
+block content
+    style.
+        form {
+            width: 100%;
+            margin-left: 25%;
+        }
+        .mdl-textfield{
+            width: 75% !important;
+            display: block !important;
+        }
+    form(action="./project-allotment-guidelines/project-guidelines-submit", method="POST")
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input#line1(type="text", name="line1")
+            label.mdl-textfield__label Line1
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input#line2(type="text", name="line2")
+            label.mdl-textfield__label Line2
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input#line3(type="text", name="line3")
+            label.mdl-textfield__label Line3
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input#line4(type="text", name="line4")
+            label.mdl-textfield__label Line4
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input#line5(type="text", name="line5")
+            label.mdl-textfield__label Line5
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(type="submit") Submit
+    script(src="/scripts/jquery-3.2.1.slim.js")
+    script(type="text/javascript").
+        $(document).ready(function(){
+            let line1 = !{JSON.stringify(lines[0])};
+            let line2 = !{JSON.stringify(lines[1])};
+            let line3 = !{JSON.stringify(lines[2])};
+            let line4 = !{JSON.stringify(lines[3])};
+            let line5 = !{JSON.stringify(lines[4])};
+            if(line1 || line2 || line3 || line4 || line5){
+                $("#line1").val(line1);
+                $("#line2").val(line2);
+                $("#line3").val(line3);
+                $("#line4").val(line4);
+                $("#line5").val(line5);
+            }
+        })

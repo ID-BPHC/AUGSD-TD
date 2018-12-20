@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator/check");
 var path = require("path");
 var mailer = fq("utils/mailer");
+const settingsModel = fq("schemas/settings");
 
 var courseData = require("./courseData");
 var adminsModel = fq("schemas/admins");
@@ -420,7 +421,17 @@ router.post(
   }
 );
 router.get("/", function(req, res, next) {
-  return res.renderState("dashboard/portals/project-allotment-student");
+  settingsModel.find({ name: "Project-Allotment-Guidelines" }, function(
+    err,
+    docs
+  ) {
+    if (docs[0])
+      return res.renderState("dashboard/portals/project-allotment-student", {
+        lines: docs[0].value
+      });
+    else if (err) return res.terminate(err);
+    else return res.renderState("dashboard/portals/project-allotment-student");
+  });
 });
 
 module.exports = router;
