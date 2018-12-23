@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
     docs
   ) {
     res.renderState("admin/portals/control/project-allotment-guidelines", {
-      lines: docs[0] ? docs[0].value : ""
+      lines: docs[0] ? docs[0].value : null
     });
   });
 });
@@ -37,13 +37,12 @@ router.post("/project-guidelines-submit", (req, res, next) => {
         } else console.log("Saved!");
       });
     } else if (docs[0]) {
-      console.log(docs[0].value);
       docs[0].value = [line1, line2, line3, line4, line5];
       docs[0].save(function(err) {
         if (err) {
           console.log(err);
           res.terminate(err);
-        } else console.log("Updated and saved.");
+        }
       });
     }
   });
