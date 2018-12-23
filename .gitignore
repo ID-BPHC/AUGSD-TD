@@ -161,3 +161,4 @@ utils/**/*.pdf
 config.js
 
 inductions/*
+.vscode/*

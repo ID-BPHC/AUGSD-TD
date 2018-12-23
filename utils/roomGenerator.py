@@ -1,54 +1,47 @@
-# This generated data for rooms schema
-
-# WARNING : There should be no line breaks / carriage returns in the csv except the ones at the end
-
+import tabula
 import json
 
-#Config
+startPage = 2
+endPage = 20
 
-lectureCapacityIndex = 7
-examCapacityIndex = 9
-
-f = open('map.csv')
-currentLine = 1
 rooms = []
-room = {}
-room['fixedClasses'] = []
 
-#Read file line by line
+for pageNumber in range(startPage, endPage + 1):
 
-for line in f.readlines():
+	print("********************************************")
+	print("\nReading page : " + str(pageNumber) + "\n")
 
-	# Strip new line characters at end
-	line = line.rstrip('\n')
-	data = line.split(',')
+	room = {}
 
-	# Reset the line counter and room object after each room (Assumed each room has 9 lines in map csv)
-	if currentLine == 10:
-		room['fixedClasses'].append(['', '', '', '', '', '', '', '', '', ''])
-		rooms.append(room)
-		room = {}
-		room['fixedClasses'] = []
-		currentLine = 1
+	df = tabula.read_pdf("room_map.pdf", pages=pageNumber, lattice=True, pandas_options={'header': None})
 
-	# Fetch room number from first line
-	if currentLine == 1:
-		room['number'] = data[0][7:].strip()
+	room['lectureCapacity'] = int(df.iloc[1][1])
+	room['examCapacity'] = int(df.iloc[1][2])
+	room['number'] = df.iloc[0][0].split('\r')[1]
+	room['type'] = df.iloc[1][0].split('\r')[1]
+	room['fixedClasses'] = []
 
-	# Fetch room capacities from second line
-	elif currentLine == 2:
-		room['type'] = data[0][4:].strip()
-		room['lectureCapacity'] = int(data[lectureCapacityIndex])
-		room['examCapacity'] = int(data[examCapacityIndex])
+	for i in range(3,9):
 
-	# Fetch fixed classes from remaining lines
-	elif currentLine > 3:
-		# Append room to the final list
-		room['fixedClasses'].append(data[1:])
+		day = []
 
-	currentLine = currentLine + 1
+		for j in range(1,11):
 
-f.close()
+			val = str(df.iloc[i][j])
+
+			if(val != "nan"):
+				day.append(val.split("\r")[0])
+
+			else:
+				day.append("")
+
+		room['fixedClasses'].append(day)
+	
+	room['fixedClasses'].append(["", "", "", "", "", "", "", "", "", ""])
+
+	print("\nParsed Room: " + room['number'] + "\n")
+	print("********************************************")
+	rooms.append(room)
 
 # Dump to JSON
 f = open('rooms.json', 'w')
