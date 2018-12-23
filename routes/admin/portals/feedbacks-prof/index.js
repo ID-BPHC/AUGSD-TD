@@ -3,6 +3,11 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var feedbacksModel = fq("schemas/feedbacks");
 var adminsModel = fq("schemas/admins");
+const dump = require("./../feedbacks-admin/export");
+
+["/export/24x7", "/export/midsem"].forEach(exportType => {
+  router.use(exportType, dump);
+});
 
 router.get("/", function(req, res, next) {
   res.renderState("admin/portals/feedbacks");
