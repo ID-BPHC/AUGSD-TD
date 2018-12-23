@@ -5,7 +5,7 @@ var settingsSchema = new Schema({
   name: String,
   description: String,
   type: String,
-  value: [String],
+  value: Object,
   options: String
 });
 
