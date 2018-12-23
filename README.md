@@ -1,4 +1,4 @@
-# Timetable Division | AUGS Division [![Build Status](https://api.travis-ci.com/ID-BPHC/AUGSD-TD.svg?branch=master)](https://travis-ci.com/ID-BPHC/AUGSD-TS)
+# Timetable Division | AUGS Division [![Build Status](https://api.travis-ci.com/ID-BPHC/AUGSD-TD.svg?branch=master)](https://travis-ci.com/ID-BPHC/AUGSD-TD)
 Timetable Division and AUGS Divsion are sub-divisions of BITS Pilani Hyderabad Campus. They together oversee operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
 
 This project is live at : https://td.bits-hyderabad.ac.in/ , https://augsd.bits-hyderabad.ac.in/
