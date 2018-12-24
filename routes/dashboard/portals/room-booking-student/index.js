@@ -15,16 +15,8 @@ router.get("/", function(req, res, next) {
   res.renderState("room-booking");
 });
 
-router.get("/step-1", function(req, res, next) {
-  res.renderState("room-booking/step1");
-});
-
-router.get("/step-2", function(req, res, next) {
-  res.renderState("room-booking");
-});
-
-router.get("/step-3", function(req, res, next) {
-  res.renderState("room-booking");
+router.get("/book", function(req, res, next) {
+  res.renderState("room-booking/book");
 });
 
 router.get("/view", function(req, res, next) {

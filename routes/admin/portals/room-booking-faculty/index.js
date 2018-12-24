@@ -4,6 +4,7 @@ let fq = require("fuzzquire");
 let roomBookingFaculty = fq("common/room-booking");
 let moment = require("moment");
 let nocache = require("nocache");
+let Booking = fq("common/BookingClass");
 
 const { check, validationResult } = require("express-validator/check");
 
@@ -15,16 +16,8 @@ router.get("/", function(req, res, next) {
   res.renderState("room-booking");
 });
 
-router.get("/step-1", function(req, res, next) {
-  res.renderState("room-booking/step1");
-});
-
-router.get("/step-2", function(req, res, next) {
-  res.renderState("room-booking");
-});
-
-router.get("/step-3", function(req, res, next) {
-  res.renderState("room-booking");
+router.get("/book", function(req, res, next) {
+  res.renderState("room-booking/book");
 });
 
 router.get("/view", function(req, res, next) {
@@ -105,16 +98,17 @@ router.post(
       return res.renderState("form-errors", { errors: errors.mapped() });
     }
 
-    let startTime = new moment(
-      req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-start"]),
-      "ddd DD MMM YYYY HH:mm"
-    ).toDate();
-    let endTime = new moment(
-      req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-end"]),
-      "ddd DD MMM YYYY HH:mm"
-    ).toDate();
+    let booking = new Booking(
+      req.sanitize(req.body.date),
+      req.sanitize(req.body["time-start"]),
+      req.sanitize(req.body["time-end"]),
+      (req.session.purpose = req.sanitize(req.body.purpose)),
+      (req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false),
+      req.sanitize(req.body.phone),
+      true
+    );
 
-    if (endTime < startTime) {
+    if (booking.endTimeObj <= booking.startTimeObj) {
       return res.renderState("custom_errors", {
         redirect: "/admin/room-booking-faculty/step-1",
         timeout: 5,
@@ -123,61 +117,42 @@ router.post(
       });
     }
 
-    let exam = req.sanitize(req.body.le) == "Yes" ? true : false;
+    roomBookingFaculty.getRooms(booking, function(err, rooms) {
+      if (err) {
+        return res.terminate("Error");
+      }
 
-    roomBookingFaculty.getRooms(
-      req.sanitize(req.body.date),
-      req.sanitize(req.body["time-start"]),
-      req.sanitize(req.body["time-end"]),
-      req.sanitize(req.body.capacity),
-      exam,
-      true,
-      function(err, rooms) {
-        if (err) {
-          return res.terminate("Error");
-        }
-
-        if (rooms.high == 1) {
-          return res.renderState("custom_errors", {
-            message: "No room with given capacity",
-            details: "Try booking multiple rooms with smaller capacity",
-            redirect: "/admin/room-booking-faculty/step-1",
-            timeout: 5
-          });
-        }
-
-        if (rooms.allBlocked == 1) {
-          return res.renderState("custom_errors", {
-            message: "Rooms Blocked",
-            details: "All the rooms for the given time are blocked",
-            redirect: "/admin/room-booking-faculty/step-1",
-            timeout: 5
-          });
-        }
-
-        if (rooms.noWorkingHours == 1) {
-          return res.renderState("custom_errors", {
-            message: "No Working Hours",
-            details:
-              "There are no working office hours to process your application",
-            redirect: "/admin/room-booking-faculty/step-1",
-            timeout: 5
-          });
-        }
-
-        req.session.rooms = rooms;
-        req.session.startTime = startTime;
-        req.session.endTime = endTime;
-        req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false;
-        req.session.purpose = req.sanitize(req.body.purpose);
-        req.session.phone = req.sanitize(req.body.phone);
-        req.session.save();
-
-        res.renderState("room-booking/step2", {
-          rooms: rooms
+      if (rooms.allBlocked == 1) {
+        return res.renderState("custom_errors", {
+          message: "Rooms Blocked",
+          details: "All the rooms for the given time are blocked",
+          redirect: "/admin/room-booking-faculty/step-1",
+          timeout: 5
         });
       }
-    );
+
+      if (rooms.noWorkingHours == 1) {
+        return res.renderState("custom_errors", {
+          message: "No Working Hours",
+          details:
+            "There are no working office hours to process your application",
+          redirect: "/admin/room-booking-faculty/step-1",
+          timeout: 5
+        });
+      }
+
+      // req.session.rooms = rooms;
+      // req.session.startTime = startTime;
+      // req.session.endTime = endTime;
+      // req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false;
+      // req.session.purpose = req.sanitize(req.body.purpose);
+      // req.session.phone = req.sanitize(req.body.phone);
+      // req.session.save();
+
+      res.renderState("room-booking/step2", {
+        rooms: rooms
+      });
+    });
   }
 );
 

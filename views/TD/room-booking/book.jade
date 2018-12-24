@@ -1,0 +1,147 @@
+extends ../master-dashboard
+
+block content
+	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
+	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
+	style.
+		#formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 5px;
+			background: white;
+			width: 100%;
+		}
+
+	div.mdl-cell.mdl-cell--12-col.center
+		div#formBG
+			br
+			h4 Room Booking
+			p Provide the following details before proceeding.
+			form.mdc-form-field
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#date.mdl-textfield__input(type='text', name='date', readonly='true')
+					label.mdl-textfield__label(for='date') Date
+				button.mdl-button.mdl-js-button.mdl-button--icon#dateBtn(type="button")
+					i.material-icons calendar_today
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#time-start.mdl-textfield__input(type='text', name='time-start', readonly='true')
+					label.mdl-textfield__label(for='time-start') Start Time
+				button.mdl-button.mdl-js-button.mdl-button--icon#startBtn(type="button")
+					i.material-icons alarm
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#time-end.mdl-textfield__input(type='text', name='time-end', readonly='true')
+					label.mdl-textfield__label(for='time-end') End Time
+				button.mdl-button.mdl-js-button.mdl-button--icon#endBtn(type="button")
+					i.material-icons alarm
+				br
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#purpose.mdl-textfield__input(type='text', name='purpose')
+					label.mdl-textfield__label(for='purpose') Room Booking Purpose
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#phone.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?', name='phone')
+					label.mdl-textfield__label(for='phone') Phone Number
+					span.mdl-textfield__error Input is not a number!
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
+					input#av.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='av')
+					label(for='av')
+						i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+					label.mdl-textfield__label(for='av') Audio Visual Equipment Required
+					ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='av')
+						ul
+							li.mdl-menu__item Yes
+							li.mdl-menu__item No 
+				br
+				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored
+					| Find
+				br
+				br
+
+	script(src='/scripts/date-picker/moment.min.js')
+	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
+	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
+	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
+	script(type='text/javascript').
+		(function() {
+		
+		var datePicker = new mdDateTimePicker.default({
+			type: 'date',
+			past: moment(),
+			future: moment().add(6, 'months')
+		});
+
+		var startTimePicker = new mdDateTimePicker.default({
+			type: 'time',
+			mode: true
+		});
+
+		var endTimePicker = new mdDateTimePicker.default({
+			type: 'time',
+			mode: true
+		});		
+
+		document.getElementById('dateBtn').addEventListener('click', function() {
+			datePicker.toggle();
+			document.getElementById('time-end').value = "";
+			document.getElementById('time-end').parentNode.classList.remove('is-dirty');
+			document.getElementById('time-start').value = "";
+			document.getElementById('time-start').parentNode.classList.remove('is-dirty');
+		});
+
+		document.getElementById('startBtn').addEventListener('click', function() {
+
+			startTimePicker.time = moment().endOf('hour').add(1, 'minute');
+
+			var selectedDate = parseInt(datePicker.time.get('date').toString());
+			var selectedMonth = parseInt(datePicker.time.get('month').toString());
+			var todayDate = parseInt(moment().get('date').toString())			
+			var todayMonth = parseInt(moment().get('month').toString())			
+			var hours = document.getElementById('mddtp-time__hourView').childNodes;
+
+			var i = 1;
+			startTimePicker.toggle();
+
+			for(i=1; i <= 24; i++){
+					hours[i-1].style.visibility = "visible";
+			}
+
+			if(selectedDate == todayDate && selectedMonth == todayMonth) {
+				var nowHour = parseInt(moment().get('hour').toString());
+				for(i=1; i <= nowHour; i++){
+					hours[i-1].style.visibility = "hidden";
+				}
+			}
+
+			document.getElementById('time-end').value = "";
+			document.getElementById('time-end').parentNode.classList.remove('is-dirty');					
+		});
+
+		document.getElementById('endBtn').addEventListener('click', function() {
+			endTimePicker.time = startTimePicker.time;	
+			var hours = document.getElementById('mddtp-time__hourView').childNodes;		
+			endTimePicker.toggle();
+			var startHour = parseInt(startTimePicker.time.get('hour').toString());
+			var i = 1;
+			for(i=1; i <= (startHour-1); i++) {
+				hours[i-1].style.visibility = "hidden";
+			}
+			
+		});
+
+		datePicker.trigger = document.getElementById('date');
+		startTimePicker.trigger = document.getElementById('time-start');
+		endTimePicker.trigger = document.getElementById('time-end');
+
+		document.getElementById('date').addEventListener('onOk', function() {
+			this.value = moment(datePicker.time).format('ddd DD MMM YYYY');
+			this.parentNode.classList.add('is-dirty');
+		});
+
+		document.getElementById('time-start').addEventListener('onOk', function() {
+			this.value = moment(startTimePicker.time).format('HH:mm');
+			this.parentNode.classList.add('is-dirty');
+		});
+
+		document.getElementById('time-end').addEventListener('onOk', function() {
+			this.value = moment(endTimePicker.time).format('HH:mm');
+			this.parentNode.classList.add('is-dirty');
+		});
+		}).call(this);

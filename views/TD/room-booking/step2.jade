@@ -26,19 +26,17 @@ block content
 						form(action="#{rootURL}/#{reqPortal}/step-3", method="post", id="form1").mdc-form-field
 							ul.mdl-list
 								for room in rooms
-									if room.available
-										- roomNum = 1;
-										li.mdl-list__item.mdl-list__item--three-line
-											span.mdl-list__item-primary-content
-												i.mdl-list__item-icon
-													img(src='/images/material-letter-icons/png/#{room.number.substr(0,1)}.png' width='55px')
-												span #{room.number}
-												span.mdl-list__item-text-body #{room.type}
-											span.mdl-list__item-secondary-content
-												span.mdl-list__item-secondary-action
-													label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
-														input.mdl-radio__button(type='radio', name='room', value='#{room.number}', id='room-#{room.number}')
-						if roomNum == 0
+									li.mdl-list__item.mdl-list__item--three-line
+										span.mdl-list__item-primary-content
+											i.mdl-list__item-icon
+												img(src='/images/material-letter-icons/png/#{room.number.substr(0,1)}.png' width='55px')
+											span #{room.number}
+											span.mdl-list__item-text-body #{room.type}
+										span.mdl-list__item-secondary-content
+											span.mdl-list__item-secondary-action
+												label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
+													input.mdl-radio__button(type='radio', name='room', value='#{room.number}', id='room-#{room.number}')
+						if rooms.length == 0
 							| No Rooms Found					
 					
 				.mdl-step__actions
