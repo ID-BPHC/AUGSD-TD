@@ -6,7 +6,8 @@ module.exports = function(grunt) {
         "./*.js",
         "routes/**/*.js",
         "middleware/**/*.js",
-        "schemas/**/*.js"
+        "schemas/**/*.js",
+        "common/**/*.js"
       ]
     },
     fixLint: {
