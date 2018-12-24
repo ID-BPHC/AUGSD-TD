@@ -57,9 +57,9 @@ let getWorkingHours = function(date, cb) {
         else checkNext(null, true);
       });
     },
-    function(err, workingDays) {
+    function(err, workingHours) {
       if (err) throw err;
-      cb(workingDays);
+      cb(workingHours);
     }
   );
 };

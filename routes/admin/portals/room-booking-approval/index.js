@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
-var fq = require("fuzzquire");
-var bookingsModel = fq("schemas/room-bookings");
-var studentsModel = fq("schemas/students");
-var mailer = fq("utils/mailer");
-var moment = require("moment");
+let express = require("express");
+let router = express.Router();
+let fq = require("fuzzquire");
+let bookingsModel = fq("schemas/room-bookings");
+let studentsModel = fq("schemas/students");
+let mailer = fq("utils/mailer");
+let moment = require("moment");
 
 router.get("/", function(req, res, next) {
   bookingsModel.find(

@@ -1,9 +1,9 @@
-var express = require("express");
-var router = express.Router();
-var fq = require("fuzzquire");
-var roomBookingStudent = fq("middleware/room-booking");
-var moment = require("moment");
-var nocache = require("nocache");
+let express = require("express");
+let router = express.Router();
+let fq = require("fuzzquire");
+let roomBookingStudent = fq("middleware/room-booking");
+let moment = require("moment");
+let nocache = require("nocache");
 
 const { check, validationResult } = require("express-validator/check");
 
@@ -101,11 +101,11 @@ router.post(
       return res.renderState("form-errors", { errors: errors.mapped() });
     }
 
-    var startTime = new moment(
+    let startTime = new moment(
       req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-start"]),
       "ddd DD MMM YYYY HH:mm"
     ).toDate();
-    var endTime = new moment(
+    let endTime = new moment(
       req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-end"]),
       "ddd DD MMM YYYY HH:mm"
     ).toDate();
@@ -176,7 +176,7 @@ router.post(
 );
 
 router.post("/step-3", function(req, res, next) {
-  var room = req.sanitize(req.body.room);
+  let room = req.sanitize(req.body.room);
 
   roomBookingStudent.makeBooking(
     room,
