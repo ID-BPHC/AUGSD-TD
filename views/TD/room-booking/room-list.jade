@@ -1,0 +1,22 @@
+div
+	br
+	p
+	| Select the room(s) from the following list for
+	br
+	b #{date} : #{start} - #{end}
+	form(action="#{rootURL}/#{reqPortal}/step-3", method="post", id="form1").mdc-form-field
+		ul.mdl-list
+			for room in rooms
+				li.mdl-list__item.mdl-list__item--three-line.room-list-item(id="#{room.number}")
+					span.mdl-list__item-primary-content
+						i.mdl-list__item-icon
+							img(src='/images/material-letter-icons/png/#{room.number.substr(0,1)}.png' width='55px')
+						span #{room.number}
+						span.mdl-list__item-text-body #{room.type} - Lecture Capacity: #{room.lectureCapacity} - Exam Capacity: #{room.examCapacity}
+					span.mdl-list__item-secondary-content
+						span.mdl-list__item-secondary-action
+							label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
+								input.mdl-checkbox__input(type='checkbox', name='room', value='#{room.number}', id='room-#{room.number}')
+	if rooms.length == 0
+		| No Rooms Found
+	

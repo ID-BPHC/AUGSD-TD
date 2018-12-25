@@ -50,52 +50,54 @@ router.get("/cancel/:id", function(req, res, next) {
 // POST Requests
 
 router.post(
-  "/step-2/:timestamp",
+  "/fetch-list/:timestamp",
   [
-    check("capacity")
-      .exists()
-      .withMessage("No Capacity")
-      .isNumeric()
-      .withMessage("Invalid Capacity")
-      .not()
-      .isEmpty()
-      .withMessage("No Capacity"),
     check("purpose")
       .exists()
-      .withMessage("No Purpose")
+      .withMessage("No Purpose Specified")
       .not()
       .isEmpty()
-      .withMessage("No Purpose"),
+      .withMessage("No Purpose Specified"),
+    check("time-start")
+      .exists()
+      .withMessage("No Start Time Specified")
+      .not()
+      .isEmpty()
+      .withMessage("No Start Time Specified"),
+    check("time-end")
+      .exists()
+      .withMessage("No End Time Specified")
+      .not()
+      .isEmpty()
+      .withMessage("No End Time Specified"),
     check("date")
       .exists()
-      .withMessage("No Date")
+      .withMessage("No Date Specified")
       .not()
       .isEmpty()
       .withMessage("No Date Specified"),
     check("phone")
       .exists()
-      .withMessage("No Phone")
+      .withMessage("No Phone Specified")
       .isNumeric()
-      .withMessage("Invalid Phone")
+      .withMessage("Invalid Phone Specified")
       .isLength({ min: 10, max: 10 })
-      .withMessage("Invalid Phone")
+      .withMessage("Invalid Phone Specified")
       .not()
       .isEmpty()
-      .withMessage("No Phone"),
+      .withMessage("No Phone Specified"),
     check("av")
       .exists()
-      .withMessage("No AV Value")
+      .withMessage("No Audio-Visual Value Specified")
       .isIn(["Yes", "No"])
-      .withMessage("Invalid AV Value"),
-    check("le")
-      .exists()
-      .isIn(["Yes", "No"])
-      .withMessage("Lecture/Exam not specified")
+      .withMessage("Invalid Audio-Visual Value Specified")
   ],
   function(req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.renderState("form-errors", { errors: errors.mapped() });
+      return res.renderState("room-booking/form-errors", {
+        errors: errors.mapped()
+      });
     }
 
     let booking = new Booking(
@@ -109,10 +111,7 @@ router.post(
     );
 
     if (booking.endTimeObj <= booking.startTimeObj) {
-      return res.renderState("custom_errors", {
-        redirect: "/admin/room-booking-faculty/step-1",
-        timeout: 5,
-        supertitle: "Time Error",
+      return res.renderState("room-booking/errors", {
         message: "End Time was chosen before Start Time"
       });
     }
@@ -123,21 +122,14 @@ router.post(
       }
 
       if (rooms.allBlocked == 1) {
-        return res.renderState("custom_errors", {
-          message: "Rooms Blocked",
-          details: "All the rooms for the given time are blocked",
-          redirect: "/admin/room-booking-faculty/step-1",
-          timeout: 5
+        return res.renderState("room-booking/errors", {
+          message: "Rooms Blocked"
         });
       }
 
       if (rooms.noWorkingHours == 1) {
-        return res.renderState("custom_errors", {
-          message: "No Working Hours",
-          details:
-            "There are no working office hours to process your application",
-          redirect: "/admin/room-booking-faculty/step-1",
-          timeout: 5
+        return res.renderState("room-booking/errors", {
+          message: "No Working Hours"
         });
       }
 
@@ -149,8 +141,11 @@ router.post(
       // req.session.phone = req.sanitize(req.body.phone);
       // req.session.save();
 
-      res.renderState("room-booking/step2", {
-        rooms: rooms
+      res.renderState("room-booking/room-list", {
+        rooms,
+        date: booking.dateString,
+        start: booking.startString,
+        end: booking.endString
       });
     });
   }
