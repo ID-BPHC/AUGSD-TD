@@ -1,34 +1,58 @@
 extends ../../../master-dashboard
 
 block content
-	style.
-		.mdl-button--file input {
-		cursor: pointer;
-		height: 100%;
-		right: 0;
-		opacity: 0;
-		position: absolute;
-		top: 0;
-		width: 300px;
-		z-index: 4;
-		}
-		.mdl-textfield--file .mdl-textfield__input {
-		box-sizing: border-box;
-		width: calc(100% - 32px);
-		}
-		.mdl-textfield--file .mdl-button--file {
-		right: 0;
-		}
-	div.mdl-cell.mdl-cell--12-col
-		h3(style='text-align:center') Settings
-		p(style='text-align:center') Configure AUGS Division Portal
-	div.mdl-cell.mdl-cell--12-col
-		ul
-			li 
-				a(href='./control/portal-toggle') Portal Management
-			li 
-				a(href='./control/manage-admins') Manage admin accounts
-			li 
-				a(href='./control/project-allotment-guidelines')  Project Allotment Guidelines
-			li 
-				a(href='./control/switch-user') Switch User
+    style.
+        .mdl-button--file input {
+        cursor: pointer;
+        height: 100%;
+        right: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        width: 300px;
+        z-index: 4;
+        }
+        .mdl-textfield--file .mdl-textfield__input {
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        }
+        .mdl-textfield--file .mdl-button--file {
+        right: 0;
+        }
+        #input-guidelines {
+            display: block;
+        }
+    div.mdl-cell.mdl-cell--12-col
+        h3(style='text-align:center') Settings
+        p(style='text-align:center') Configure AUGS Division Portal
+    div.mdl-cell.mdl-cell--12-col
+        ul
+            li 
+                a(href='./control/portal-toggle') Portal Management
+            li 
+                a(href='./control/manage-admins') Manage admin accounts
+            li 
+                a(href='./control/project-allotment-guidelines')  Project Allotment Guidelines
+            li 
+                a(href='./control/switch-user') Switch User
+            li 
+                a(href="#" onclick = "showInput()") Select forbidden batches for Project Allotment
+                form(action="./control/project-allotment-forbidden-batches" method = "POST" style="display: none")#form
+                    | Forbidden batches are 
+                    if(years)
+                        for year in years
+                            li=year
+                    #input-guidelines Mention the years of batches which you wish to forbid from Project-Allotment Portal WITHOUT spaces.(E.g = 20172018)
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                        input#year.mdl-textfield__input(pattern='-?[0-9]*(\.[0-9]+)?', type='text', name="year")
+                        label.mdl-textfield__label(for='year') Batch Year
+                        span.mdl-textfield__error Input is not a number.
+                    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(type="submit") Submit
+            script.
+                function showInput() {
+                    var x = document.getElementById("form");
+                    if(x.style.display === "none")
+                        x.style.display = "block";
+                    else 
+                        x.style.display = "none";
+                }

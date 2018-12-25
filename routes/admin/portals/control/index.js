@@ -2,6 +2,7 @@ let express = require("express");
 let path = require("path");
 let router = express.Router();
 let fq = require("fuzzquire");
+let settingsModel = fq("schemas/settings");
 
 let holiday = require("./holidays.js");
 let manageAdmins = require("./manageAdmins.js");
@@ -9,6 +10,7 @@ let portalToggle = require("./portals.js");
 let switchUser = require("./switchUser.js");
 let ttExceptions = require("./ttExceptions");
 let project_guidelines = require("./project-allotment-guidelines");
+let proj_allotment_forbidden_batches = require("./proj-allotment-forbidden-batches");
 
 router.use("/holidays", holiday);
 router.use("/manage-admins", manageAdmins);
@@ -16,9 +18,22 @@ router.use("/portal-toggle", portalToggle);
 router.use("/switch-user", switchUser);
 router.use("/tt-exceptions", ttExceptions);
 router.use("/project-allotment-guidelines", project_guidelines);
+router.use(
+  "/project-allotment-forbidden-batches",
+  proj_allotment_forbidden_batches
+);
 
 router.get("/", function(req, res, next) {
-  res.renderState("admin/portals/control");
+  settingsModel.find(
+    {
+      name: "proj-allotment-forbidden-batches"
+    },
+    function(err, docs) {
+      res.renderState("admin/portals/control", {
+        years: docs[0] ? docs[0].value : null
+      });
+    }
+  );
 });
 
 module.exports = router;

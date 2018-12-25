@@ -13,13 +13,32 @@ var adminsModel = fq("schemas/admins");
 var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
 
+var forbidden_batches = [];
+settingsModel.find(
+  {
+    name: "proj-allotment-forbidden-batches"
+  },
+  function(err, docs) {
+    if (docs[0]) {
+      forbidden_batches = docs[0].value;
+    }
+  }
+);
+function forbidOrNot(email) {
+  let allow = false; // don't forbid
+  forbidden_batches.forEach(batch => {
+    if (email.includes(batch)) allow = true;
+  });
+  if (allow == false) return false;
+  else return true;
+}
 router.use(function(req, res, next) {
-  if (!(req.user.email.indexOf("f2017") && req.user.email.indexOf("f2018"))) {
+  if (forbidOrNot(req.user.email)) {
     return res.renderState("custom_errors", {
       redirect: "/dashboard",
       timeout: 2,
       supertitle: "Not Eligible",
-      message: "2017 and 2018 Batch is not eligible for project type courses",
+      message: "Your Batch is not eligible for project type courses",
       details: " "
     });
   } else {
