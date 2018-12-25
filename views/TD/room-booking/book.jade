@@ -4,19 +4,19 @@ block content
 	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
 	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
 	style.
-		#formBG {
+		.formBG {
 			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
-			margin: 5px;
+			margin: 15px;
 			background: white;
 			width: 100%;
 		}
 
 	div.mdl-cell.mdl-cell--12-col.center
-		div#formBG
+		div.formBG
 			br
 			h4 Room Booking
 			p Provide the following details before proceeding.
-			form.mdc-form-field
+			form.mdc-form-field#form
 				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 					input#date.mdl-textfield__input(type='text', name='date', readonly='true')
 					label.mdl-textfield__label(for='date') Date
@@ -50,12 +50,15 @@ block content
 							li.mdl-menu__item Yes
 							li.mdl-menu__item No 
 				br
-				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored
+				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#findBtn(type="button")
 					| Find
 				br
 				br
+		br
+		.formBG#resDiv.center
 
 	script(src='/scripts/date-picker/moment.min.js')
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
 	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
 	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
@@ -80,6 +83,7 @@ block content
 
 		document.getElementById('dateBtn').addEventListener('click', function() {
 			datePicker.toggle();
+			document.getElementById("resDiv").innerHTML = "";
 			document.getElementById('time-end').value = "";
 			document.getElementById('time-end').parentNode.classList.remove('is-dirty');
 			document.getElementById('time-start').value = "";
@@ -89,6 +93,7 @@ block content
 		document.getElementById('startBtn').addEventListener('click', function() {
 
 			startTimePicker.time = moment().endOf('hour').add(1, 'minute');
+			document.getElementById("resDiv").innerHTML = "";
 
 			var selectedDate = parseInt(datePicker.time.get('date').toString());
 			var selectedMonth = parseInt(datePicker.time.get('month').toString());
@@ -115,6 +120,7 @@ block content
 		});
 
 		document.getElementById('endBtn').addEventListener('click', function() {
+			document.getElementById("resDiv").innerHTML = "";
 			endTimePicker.time = startTimePicker.time;	
 			var hours = document.getElementById('mddtp-time__hourView').childNodes;		
 			endTimePicker.toggle();
@@ -143,5 +149,27 @@ block content
 		document.getElementById('time-end').addEventListener('onOk', function() {
 			this.value = moment(endTimePicker.time).format('HH:mm');
 			this.parentNode.classList.add('is-dirty');
+		});
+
+		document.getElementById("findBtn").addEventListener("click", function() {
+			document.getElementById("resDiv").innerHTML = "<br><div class='loadingSign'></div><br>"
+			axios.post("./fetch-list/" + (+ new Date()), {
+				date: document.getElementById("date").value,
+				"time-start": document.getElementById('time-start').value,
+				"time-end": document.getElementById('time-end').value,
+				purpose: document.getElementById('purpose').value,
+				phone: document.getElementById('phone').value,
+				av: document.getElementById('av').value
+			})
+			.then(function(res) {
+				document.getElementById("resDiv").innerHTML = res.data;
+				var listItems = Array.prototype.slice.call(document.getElementsByClassName('room-list-item'));
+				listItems.forEach(function(item){
+					item.onclick = function() {
+						let state = document.getElementById('room-' + item.id).checked;
+						document.getElementById('room-' + item.id).checked = !state;
+					}
+				});				
+			});
 		});
 		}).call(this);
