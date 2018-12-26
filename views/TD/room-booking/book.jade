@@ -162,14 +162,35 @@ block content
 				av: document.getElementById('av').value
 			})
 			.then(function(res) {
+
 				document.getElementById("resDiv").innerHTML = res.data;
+
 				var listItems = Array.prototype.slice.call(document.getElementsByClassName('room-list-item'));
 				listItems.forEach(function(item){
 					item.onclick = function() {
 						let state = document.getElementById('room-' + item.id).checked;
 						document.getElementById('room-' + item.id).checked = !state;
 					}
-				});				
+				});	
+
+				document.getElementById("bookBtn").addEventListener("click", function(){
+					let checkboxes = document.getElementsByClassName("room-checkbox");
+					let rooms = [];
+					let i = 0;
+
+					for(i = 0; i < checkboxes.length; i++) {
+						if(checkboxes[i].checked)
+							rooms.push(checkboxes[i].name);
+					}
+
+					axios.post("./submit", {rooms})
+						.then(function(res) {
+							
+						});
+				});
+			})
+			.catch(function(err) {
+				document.getElementById("resDiv").innerHTML = err.response.data;
 			});
 		});
 		}).call(this);

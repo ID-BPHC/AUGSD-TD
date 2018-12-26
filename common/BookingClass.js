@@ -4,6 +4,7 @@ let moment = MomentRange.extendMoment(Moment);
 
 class Booking {
   constructor(
+    email,
     dateString,
     startString,
     endString,
@@ -12,6 +13,7 @@ class Booking {
     phone,
     isFaculty
   ) {
+    this.email = email;
     this.dateString = dateString;
     this.startString = startString;
     this.endString = endString;

@@ -141,7 +141,6 @@ let getRoomList = function(booking, cb) {
         rooms,
         function(room, filterCallback) {
           checkAvailability(room, booking, function(available) {
-            console.log(room);
             filterCallback(null, available);
           });
         },
@@ -216,63 +215,54 @@ let getRooms = function(booking, callback) {
 
 // To make checks and do booking
 
-let makeBooking = function(
-  room,
-  rooms,
-  endTime,
-  startTime,
-  email,
-  av,
-  purpose,
-  phone,
-  bookedByFaculty,
-  callback
-) {
-  rooms.forEach(function(roomL, index) {
-    if (roomL.number == room && roomL.available) {
-      bookingsModel.find(
-        {
-          number: room,
-          start: {
-            $lt: endTime
-          },
-          end: {
-            $gt: startTime
-          },
-          approval: {
-            $ne: "R"
-          }
-        },
-        function(err, results) {
-          if (err) {
-            console.log(err);
-            return callback(true, {});
-          }
+let makeBooking = function(booking, rooms, callback) {
+  getWorkingHours(booking.startTimeObj, function(workingHours) {
+    if (workingHours.length === 0)
+      return callback(false, { noWorkingHours: 1 });
 
-          if (results.length == 0) {
+    checkIfAllBlocked(booking.startTimeObj, booking.endTimeObj, function(
+      allBlocked
+    ) {
+      if (allBlocked) return callback(false, { allBlocked: 1 });
+
+      async.filter(
+        rooms,
+        function(room, next) {
+          roomsModel.findOne({ number: room }, function(err, roomDB) {
+            if (err) {
+              console.log(err);
+              throw err;
+            }
+            checkAvailability(roomDB, booking, function(available) {
+              next(null, available);
+            });
+          });
+        },
+        function(err, filteredRooms) {
+          if (filteredRooms.length == rooms.length) {
             bookingsModel.create(
               {
-                number: room,
-                start: startTime,
-                end: endTime,
-                bookedBy: email,
-                av: av,
-                purpose: purpose,
-                phone: phone,
-                approval: bookedByFaculty ? "A" : "P"
+                number: rooms,
+                start: booking.startTimeObj,
+                end: booking.endTimeObj,
+                bookedBy: booking.email,
+                av: booking.av,
+                purpose: booking.purpose,
+                phone: booking.phone,
+                approval: booking.isFaculty ? "A" : "P"
               },
               function(err, result) {
                 if (err) {
                   console.log(err);
-                  return callback(true, {});
+                  throw err;
                 }
-                if (!bookedByFaculty) {
+                if (booking.isFaculty) {
                   mailer.send({
-                    email: email,
+                    email: booking.email,
                     subject: "Room Booking",
                     body:
-                      "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
-                      room +
+                      "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
+                      filteredRooms.toString() +
                       "</td></tr><tr><td><b>From</b></td><td>" +
                       result.start.toString() +
                       "</td></tr><tr><td><b>To</b></td><td>" +
@@ -281,11 +271,11 @@ let makeBooking = function(
                   });
                 } else {
                   mailer.send({
-                    email: email,
+                    email: booking.email,
                     subject: "Room Booking",
                     body:
-                      "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
-                      room +
+                      "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
+                      filteredRooms.toString() +
                       "</td></tr><tr><td><b>From</b></td><td>" +
                       result.start.toString() +
                       "</td></tr><tr><td><b>To</b></td><td>" +
@@ -293,17 +283,24 @@ let makeBooking = function(
                       "</td></tr></table>"
                   });
                 }
-                return callback(false, result);
+                return callback(null, { booked: 1 });
               }
             );
           } else {
-            return callback(false, {
-              alreadyBooked: 1
-            });
+            async.filter(
+              rooms,
+              function(room, checkNext) {
+                if (filteredRooms.indexOf(room) === -1) checkNext(null, true);
+                else checkNext(null, false);
+              },
+              function(err, notAvailable) {
+                return callback(false, { partialBooking: 1, notAvailable });
+              }
+            );
           }
         }
       );
-    }
+    });
   });
 };
 

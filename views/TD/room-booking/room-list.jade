@@ -4,7 +4,10 @@ div
 	| Select the room(s) from the following list for
 	br
 	b #{date} : #{start} - #{end}
-	form(action="#{rootURL}/#{reqPortal}/step-3", method="post", id="form1").mdc-form-field
+	br
+	br
+	button#bookBtn.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored Book
+	form(id="room-list-form").mdc-form-field
 		ul.mdl-list
 			for room in rooms
 				li.mdl-list__item.mdl-list__item--three-line.room-list-item(id="#{room.number}")
@@ -16,7 +19,8 @@ div
 					span.mdl-list__item-secondary-content
 						span.mdl-list__item-secondary-action
 							label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
-								input.mdl-checkbox__input(type='checkbox', name='room', value='#{room.number}', id='room-#{room.number}')
+								input.mdl-checkbox__input.room-checkbox(type='checkbox', name='#{room.number}', value='#{room.number}', id='room-#{room.number}')
 	if rooms.length == 0
 		| No Rooms Found
-	
+	script.
+		alert("hello")
