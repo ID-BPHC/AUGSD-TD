@@ -147,7 +147,7 @@
               } else if (res.data.partialBooking == 1) {
                 materialAlert(
                   "Error",
-                  "The following room were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
+                  "The following rooms were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
                     res.data.notAvailable.toString(),
                   function(result) {}
                 );
@@ -160,7 +160,7 @@
               } else if (res.data.allBlocked == 1) {
                 materialAlert(
                   "Error",
-                  "All room for the selected date/time are blocked.",
+                  "All rooms for the selected date/time are blocked.",
                   function(result) {}
                 );
               }
