@@ -78,14 +78,14 @@ router.post(
       .withMessage("No Date Specified"),
     check("phone")
       .exists()
-      .withMessage("No Phone Specified")
+      .withMessage("No Phone Number Specified")
       .isNumeric()
-      .withMessage("Invalid Phone Specified")
+      .withMessage("Invalid Phone Number Specified")
       .isLength({ min: 10, max: 10 })
-      .withMessage("Invalid Phone Specified")
+      .withMessage("Invalid Phone Number Specified")
       .not()
       .isEmpty()
-      .withMessage("No Phone Specified"),
+      .withMessage("No Phone Number Specified"),
     check("av")
       .exists()
       .withMessage("No Audio-Visual Value Specified")
@@ -126,13 +126,15 @@ router.post(
 
       if (rooms.allBlocked == 1) {
         return res.renderState("room-booking/errors", {
-          message: "Rooms Blocked"
+          message:
+            "All the rooms for the selected date-time have been blocked by the administrator. Please contact Timetable Office for further assistance"
         });
       }
 
       if (rooms.noWorkingHours == 1) {
         return res.renderState("room-booking/errors", {
-          message: "No Working Hours"
+          message:
+            "There are no working office hours to process your application."
         });
       }
 
