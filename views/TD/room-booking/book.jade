@@ -3,6 +3,7 @@ extends ../master-dashboard
 block content
 	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
 	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
+	link(rel='stylesheet' href='/stylesheets/material-alerts.css')
 	style.
 		.formBG {
 			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
@@ -62,6 +63,7 @@ block content
 	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
 	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
+	script(type='text/javascript' src='/scripts/material-alerts.js')
 	script(type='text/javascript').
 		(function() {
 		
@@ -185,7 +187,20 @@ block content
 
 					axios.post("./submit", {rooms})
 						.then(function(res) {
-							
+							if(res.data.booked == 1) {
+								materialAlert("Success", "Your booking request has been placed. Please check your email for further details.", function(result) {
+									window.location.replace("./view");
+								});
+							} else if(res.data.partialBooking == 1) {
+								materialAlert("Error", "The following room were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" + res.data.notAvailable.toString(), function(result) {
+								});
+							} else if(res.data.noWorkingHours == 1) {
+								materialAlert("Error", "There are no working office-hours to process your booking.", function(result) {
+								});
+							} else if(res.data.allBlocked == 1) {
+								materialAlert("Error", "All room for the selected date/time are blocked.", function(result) {
+								});
+							}
 						});
 				});
 			})
