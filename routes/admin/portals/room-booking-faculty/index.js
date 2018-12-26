@@ -93,6 +93,8 @@ router.post(
       .withMessage("Invalid Audio-Visual Value Specified")
   ],
   function(req, res, next) {
+    res.status(400);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.renderState("room-booking/form-errors", {
@@ -101,6 +103,7 @@ router.post(
     }
 
     let booking = new Booking(
+      req.sanitize(req.user.email),
       req.sanitize(req.body.date),
       req.sanitize(req.body["time-start"]),
       req.sanitize(req.body["time-end"]),
@@ -133,13 +136,9 @@ router.post(
         });
       }
 
-      // req.session.rooms = rooms;
-      // req.session.startTime = startTime;
-      // req.session.endTime = endTime;
-      // req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false;
-      // req.session.purpose = req.sanitize(req.body.purpose);
-      // req.session.phone = req.sanitize(req.body.phone);
-      // req.session.save();
+      req.session.booking = booking;
+      req.session.save();
+      res.status(200);
 
       res.renderState("room-booking/room-list", {
         rooms,
@@ -151,43 +150,16 @@ router.post(
   }
 );
 
-router.post("/step-3", function(req, res, next) {
-  let room = req.sanitize(req.body.room);
-
-  roomBookingFaculty.makeBooking(
-    room,
-    req.session.rooms,
-    req.session.endTime,
-    req.session.startTime,
-    req.user.email,
-    req.session.av,
-    req.session.purpose,
-    req.session.phone,
-    true,
-    function(err, result) {
-      if (err) {
-        return res.terminate("Error");
-      }
-
-      if (result.alreadyBooked == 1) {
-        return res.renderState("custom_errors", {
-          message: "Oops.. Room already booked.",
-          details:
-            "Someone else booked this room while you were booking. Please book some other room.",
-          redirect: "/admin/room-booking-faculty/step-1",
-          timeout: 5
-        });
-      }
-
-      res.renderState("room-booking/step3", {
-        number: room,
-        start: result.start.toString(),
-        end: result.end.toString(),
-        phone: req.session.phone,
-        av: req.session.av
-      });
+router.post("/submit", function(req, res, next) {
+  roomBookingFaculty.makeBooking(req.session.booking, req.body.rooms, function(
+    err,
+    result
+  ) {
+    if (err) {
+      return res.terminate("Error");
     }
-  );
+    return res.json(result);
+  });
 });
 
 module.exports = router;

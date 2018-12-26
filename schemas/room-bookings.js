@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var bookingSchema = new Schema({
-  number: String,
+  number: [String],
   start: {
     type: Date,
     default: new Date()
