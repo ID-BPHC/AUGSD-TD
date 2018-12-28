@@ -33,35 +33,6 @@ router.get("/", function(req, res, next) {
   );
 });
 
-router.get("/view/:id", function(req, res, next) {
-  bookingsModel.findOne(
-    {
-      _id: req.sanitize(req.params.id)
-    },
-    function(err, booking) {
-      if (err) {
-        res.terminate(err);
-      }
-
-      studentsModel.findOne(
-        {
-          email: booking.bookedBy
-        },
-        function(err, student) {
-          if (err) {
-            res.terminate(err);
-          }
-
-          res.renderState("admin/portals/room-booking-approval/view", {
-            booking: booking,
-            student: student
-          });
-        }
-      );
-    }
-  );
-});
-
 router.get("/approve/:id", function(req, res, next) {
   bookingsModel.findOneAndUpdate(
     {
