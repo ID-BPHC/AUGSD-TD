@@ -15,6 +15,21 @@
     mode: true
   });
 
+  document.getElementById("date").addEventListener("focus", function() {
+    document.getElementById("date").blur();
+    document.getElementById("dateBtn").click();
+  });
+
+  document.getElementById("time-start").addEventListener("focus", function() {
+    document.getElementById("time-start").blur();
+    document.getElementById("startBtn").click();
+  });
+
+  document.getElementById("time-end").addEventListener("focus", function() {
+    document.getElementById("time-end").blur();
+    document.getElementById("endBtn").click();
+  });
+
   document.getElementById("dateBtn").addEventListener("click", function() {
     datePicker.toggle();
     document.getElementById("resDiv").innerHTML = "";
