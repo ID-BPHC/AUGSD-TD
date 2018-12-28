@@ -6,9 +6,7 @@ let settingsModel = fq("schemas/settings");
 router.post("/", function(req, res) {
   let years = req.sanitize(req.body.year);
   let years_arr = [];
-  for (let i = 0; i < years.length; i = i + 4) {
-    years_arr.push(years.slice(i, i + 4));
-  }
+  years_arr = years.split(",");
   settingsModel.find({ name: "proj-allotment-forbidden-batches" }, function(
     err,
     docs
