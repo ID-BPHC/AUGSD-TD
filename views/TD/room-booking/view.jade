@@ -2,103 +2,30 @@ extends ../master-dashboard
 
 block content
 	link(rel='stylesheet' href='/stylesheets/material-alerts.css')
-	style.
-		.event-card.mdl-card {
-		width: 212px;		
-		}
-		.pending {
-		background: #607D8B !important;
-		}
-		.accepted {
-		background: #1B5E20 !important;
-		}
-		.rejected {
-		background: #b71c1c !important;
-		}
-		.event-card > .mdl-card__actions {
-		border-color: rgba(255, 255, 255, 0.2);
-		}
-		.event-card > .mdl-card__title {
-		align-items: flex-start;
-		}
-		.event-card > .mdl-card__title > h4 {
-		margin-top: 0;
-		}
-		.event-card > .mdl-card__actions {
-		display: flex;
-		box-sizing:border-box;
-		align-items: center;
-		}
-		.event-card > .mdl-card__actions > .material-icons {
-		padding-right: 10px;
-		}
-		.event-card > .mdl-card__title,
-		.event-card > .mdl-card__actions,
-		.event-card > .mdl-card__actions > .mdl-button {
-		color: #fff;
-		}
-		
-	div.mdl-cell.mdl-cell--12-col
-		h2 Your Room Bookings
 
 	div.mdl-cell.mdl-cell--12-col
-		div.mdl-grid
-			for booking in bookings
-				div.mdl-cell.mdl-cell--3-col
-					if booking.approval == "P"
-						.event-card.mdl-card.mdl-shadow--2dp.pending
-							.mdl-card__title.mdl-card--expand
-								span
-									h5 #{booking.number}		
-									if booking.purpose.length > 42
-										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
-									else
-										p #{booking.purpose}
-									p From: #{booking.start}
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button
-									| PENDING
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Are you sure to CANCEL this booking ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/#{reqPortal}/cancel/#{booking._id.toString()}'); } })")
-									| Cancel Booking
-								.mdl-layout-spacer
-								i.material-icons cancel
-					else if booking.approval == "A"
-						.event-card.mdl-card.mdl-shadow--2dp.accepted
-							.mdl-card__title.mdl-card--expand
-								span
-									h5 #{booking.number}		
-									if booking.purpose.length > 42
-										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
-									else
-										p #{booking.purpose}
-									p From: #{booking.start}
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button
-									| ACCEPTED
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Are you sure to CANCEL this booking ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/#{reqPortal}/cancel/#{booking._id.toString()}'); } })")
-									| Cancel Booking
-								.mdl-layout-spacer
-								i.material-icons cancel
-					else
-						.event-card.mdl-card.mdl-shadow--2dp.rejected
-							.mdl-card__title.mdl-card--expand
-								span
-									h5 #{booking.number}		
-									if booking.purpose.length > 42
-										p(title='#{booking.purpose}') #{booking.purpose.substring(0, 42)}...
-									else
-										p #{booking.purpose}
-									p From: #{booking.start}
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button
-									| REJECTED		
-							.mdl-card__actions.mdl-card--border
-								a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href='#{rootURL}/#{reqPortal}/cancel/#{booking._id.toString()}')
-									| Clear Booking
-								.mdl-layout-spacer
-								i.material-icons cancel			
+		h2 Your Upcoming Room Bookings
+
+	for booking in bookings
+		div.mdl-cell.mdl-cell--12-col
+			div.mdl-grid.application
+				div.mdl-cell.mdl-cell--8-col.center
+					div.mdl-grid
+						div.mdl-cell.mdl-cell--6-col.head Rooms :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.number}
+						div.mdl-cell.mdl-cell--6-col.head Start Time :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.start.toString().substring(0, booking.start.toString().indexOf("GMT"))}
+						div.mdl-cell.mdl-cell--6-col.head End Time :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.end.toString().substring(0, booking.end.toString().indexOf("GMT"))}
+						div.mdl-cell.mdl-cell--6-col.head Status :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.approval == "P" ? "Pending" : booking.approval == "A" ? "Approved" : "Rejected"}
+						div.mdl-cell.mdl-cell--6-col.head Audio / Visual :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.av ? "Yes" : "No"}
+						div.mdl-cell.mdl-cell--6-col.head Purpose :
+						div.mdl-cell.mdl-cell--6-col.value #{booking.purpose}
+				div.mdl-cell.mdl-cell--4-col.center
+					button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Are you sure to CANCEL this booking ?',function(confirm){ if(confirm) { window.location.replace('#{rootURL}/#{reqPortal}/cancel/#{booking._id.toString()}'); } })")
+						| Delete Booking
 
 	div.mdl-cell.mdl-cell--12-col.center
 

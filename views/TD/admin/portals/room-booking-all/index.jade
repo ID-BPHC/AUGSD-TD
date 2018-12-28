@@ -22,13 +22,14 @@ block content
                 th.mdl-data-table__cell--non-numeric Audio/Visual   
             tbody						
               for booking in day
-                tr
-                  td.mdl-data-table__cell--non-numeric #{booking.number}
-                  td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
-                  td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
-                  td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
-                  td.mdl-data-table__cell--non-numeric #{booking.phone}
-                  td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
+                for number in booking.number
+                  tr
+                    td.mdl-data-table__cell--non-numeric #{number}
+                    td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
+                    td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
+                    td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
+                    td.mdl-data-table__cell--non-numeric #{booking.phone}
+                    td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
           hr
           br
     script.
