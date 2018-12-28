@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
 let settingsModel = fq("schemas/settings");
+
 router.post("/", function(req, res) {
   let years = req.sanitize(req.body.year);
   let years_arr = [];
@@ -27,11 +28,10 @@ router.post("/", function(req, res) {
       forbidden_batches.save(function(err) {
         if (err) {
           res.terminate(err);
-        } else {
-          console.log("Saved!");
         }
       });
     }
   });
+  res.redirect(req.get("referer"));
 });
 module.exports = router;

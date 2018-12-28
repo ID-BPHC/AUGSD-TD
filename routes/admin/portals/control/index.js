@@ -9,18 +9,18 @@ let manageAdmins = require("./manageAdmins.js");
 let portalToggle = require("./portals.js");
 let switchUser = require("./switchUser.js");
 let ttExceptions = require("./ttExceptions");
-let project_guidelines = require("./project-allotment-guidelines");
-let proj_allotment_forbidden_batches = require("./proj-allotment-forbidden-batches");
+let projectGuidelines = require("./projectAllotmentGuidelines.js");
+let projAllotmentForbiddenBatches = require("./projAllotmentForbiddenBatches.js");
 
 router.use("/holidays", holiday);
 router.use("/manage-admins", manageAdmins);
 router.use("/portal-toggle", portalToggle);
 router.use("/switch-user", switchUser);
 router.use("/tt-exceptions", ttExceptions);
-router.use("/project-allotment-guidelines", project_guidelines);
+router.use("/project-allotment-guidelines", projectGuidelines);
 router.use(
   "/project-allotment-forbidden-batches",
-  proj_allotment_forbidden_batches
+  projAllotmentForbiddenBatches
 );
 
 router.get("/", function(req, res, next) {

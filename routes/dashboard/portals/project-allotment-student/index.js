@@ -13,37 +13,39 @@ var adminsModel = fq("schemas/admins");
 var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
 
-var forbidden_batches = [];
-settingsModel.find(
-  {
-    name: "proj-allotment-forbidden-batches"
-  },
-  function(err, docs) {
-    if (docs[0]) {
-      forbidden_batches = docs[0].value;
-    }
-  }
-);
-function forbidOrNot(email) {
-  let allow = false; // don't forbid
-  forbidden_batches.forEach(batch => {
-    if (email.includes(batch)) allow = true;
-  });
-  if (allow == false) return false;
-  else return true;
-}
 router.use(function(req, res, next) {
-  if (forbidOrNot(req.user.email)) {
-    return res.renderState("custom_errors", {
-      redirect: "/dashboard",
-      timeout: 2,
-      supertitle: "Not Eligible",
-      message: "Your Batch is not eligible for project type courses",
-      details: " "
+  function forbidOrNot(email) {
+    let allow = false; // don't forbid
+    forbiddenBatches.forEach(batch => {
+      if (email.indexOf(batch) == 1) allow = true;
     });
-  } else {
-    next();
+    if (allow == false) return false;
+    else return true;
   }
+  let forbiddenBatches = [];
+  settingsModel.find(
+    {
+      name: "proj-allotment-forbidden-batches"
+    },
+    function(err, docs) {
+      if (docs[0]) {
+        forbiddenBatches = docs[0].value;
+        if (forbidOrNot(req.user.email)) {
+          return res.renderState("custom_errors", {
+            redirect: "/dashboard",
+            timeout: 2,
+            supertitle: "Not Eligible",
+            message: "Your Batch is not eligible for project type courses",
+            details: " "
+          });
+        } else {
+          next();
+        }
+      } else {
+        next();
+      }
+    }
+  );
 });
 
 router.get("/faq", function(req, res, next) {
