@@ -2,15 +2,12 @@ let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
 let roomBookingFaculty = fq("common/room-booking");
-let moment = require("moment");
 let nocache = require("nocache");
 let Booking = fq("common/BookingClass");
 
 const { check, validationResult } = require("express-validator/check");
 
 // GET Requests
-
-router.use(nocache());
 
 router.get("/", function(req, res, next) {
   res.renderState("room-booking");
@@ -92,6 +89,7 @@ router.post(
       .isIn(["Yes", "No"])
       .withMessage("Invalid Audio-Visual Value Specified")
   ],
+  nocache(),
   function(req, res, next) {
     res.status(400);
 

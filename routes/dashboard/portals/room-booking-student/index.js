@@ -1,13 +1,11 @@
 let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
-let roomBookingStudent = fq("middleware/room-booking");
-let moment = require("moment");
+let roomBookingFaculty = fq("common/room-booking");
 let nocache = require("nocache");
+let Booking = fq("common/BookingClass");
 
 const { check, validationResult } = require("express-validator/check");
-
-router.use(nocache());
 
 // GET Requests
 
@@ -20,7 +18,7 @@ router.get("/book", function(req, res, next) {
 });
 
 router.get("/view", function(req, res, next) {
-  roomBookingStudent.view(req.sanitize(req.user.email), function(
+  roomBookingFaculty.view(req.sanitize(req.user.email), function(
     err,
     bookings
   ) {
@@ -34,14 +32,14 @@ router.get("/view", function(req, res, next) {
 });
 
 router.get("/cancel/:id", function(req, res, next) {
-  roomBookingStudent.cancel(
+  roomBookingFaculty.cancel(
     req.sanitize(req.params.id),
     req.sanitize(req.user.email),
     function(err) {
       if (err) {
         return res.terminate("Error");
       }
-      res.redirect("/dashboard/room-booking-student/view");
+      res.redirect("/admin/room-booking-faculty/view");
     }
   );
 });
@@ -49,161 +47,119 @@ router.get("/cancel/:id", function(req, res, next) {
 // POST Requests
 
 router.post(
-  "/step-2/:timestamp",
+  "/fetch-list/:timestamp",
   [
-    check("capacity")
-      .exists()
-      .withMessage("No Capacity")
-      .isNumeric()
-      .withMessage("Invalid Capacity")
-      .not()
-      .isEmpty()
-      .withMessage("No Capacity"),
     check("purpose")
       .exists()
-      .withMessage("No Purpose")
+      .withMessage("No Purpose Specified")
       .not()
       .isEmpty()
-      .withMessage("No Purpose"),
+      .withMessage("No Purpose Specified"),
+    check("time-start")
+      .exists()
+      .withMessage("No Start Time Specified")
+      .not()
+      .isEmpty()
+      .withMessage("No Start Time Specified"),
+    check("time-end")
+      .exists()
+      .withMessage("No End Time Specified")
+      .not()
+      .isEmpty()
+      .withMessage("No End Time Specified"),
     check("date")
       .exists()
-      .withMessage("No Date")
+      .withMessage("No Date Specified")
       .not()
       .isEmpty()
       .withMessage("No Date Specified"),
     check("phone")
       .exists()
-      .withMessage("No Phone")
+      .withMessage("No Phone Number Specified")
       .isNumeric()
-      .withMessage("Invalid Phone")
+      .withMessage("Invalid Phone Number Specified")
       .isLength({ min: 10, max: 10 })
-      .withMessage("Invalid Phone")
+      .withMessage("Invalid Phone Number Specified")
       .not()
       .isEmpty()
-      .withMessage("No Phone"),
+      .withMessage("No Phone Number Specified"),
     check("av")
       .exists()
-      .withMessage("No AV Value")
+      .withMessage("No Audio-Visual Value Specified")
       .isIn(["Yes", "No"])
-      .withMessage("Invalid AV Value")
+      .withMessage("Invalid Audio-Visual Value Specified")
   ],
+  nocache(),
   function(req, res, next) {
+    res.status(400);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.renderState("form-errors", { errors: errors.mapped() });
+      return res.renderState("room-booking/form-errors", {
+        errors: errors.mapped()
+      });
     }
 
-    let startTime = new moment(
-      req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-start"]),
-      "ddd DD MMM YYYY HH:mm"
-    ).toDate();
-    let endTime = new moment(
-      req.sanitize(req.body.date) + " " + req.sanitize(req.body["time-end"]),
-      "ddd DD MMM YYYY HH:mm"
-    ).toDate();
+    let booking = new Booking(
+      req.sanitize(req.user.email),
+      req.sanitize(req.body.date),
+      req.sanitize(req.body["time-start"]),
+      req.sanitize(req.body["time-end"]),
+      (req.session.purpose = req.sanitize(req.body.purpose)),
+      (req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false),
+      req.sanitize(req.body.phone),
+      false
+    );
 
-    if (endTime < startTime) {
-      return res.renderState("custom_errors", {
-        redirect: "/dashboard/room-booking-student/step-1",
-        timeout: 5,
-        supertitle: "Time Error",
+    if (booking.endTimeObj <= booking.startTimeObj) {
+      return res.renderState("room-booking/errors", {
         message: "End Time was chosen before Start Time"
       });
     }
 
-    roomBookingStudent.getRooms(
-      req.sanitize(req.body.date),
-      req.sanitize(req.body["time-start"]),
-      req.sanitize(req.body["time-end"]),
-      req.sanitize(req.body.capacity),
-      false,
-      false,
-      function(err, rooms) {
-        if (err) {
-          return res.terminate("Error");
-        }
-
-        if (rooms.high == 1) {
-          return res.renderState("custom_errors", {
-            message: "No room with given capacity",
-            details: "Try booking multiple rooms with smaller capacity",
-            redirect: "/dashboard/room-booking-student/step-1",
-            timeout: 5
-          });
-        }
-
-        if (rooms.allBlocked == 1) {
-          return res.renderState("custom_errors", {
-            message: "Rooms Blocked",
-            details: "All the rooms for the given time are blocked",
-            redirect: "/dashboard/room-booking-student/step-1",
-            timeout: 5
-          });
-        }
-
-        if (rooms.noWorkingHours == 1) {
-          return res.renderState("custom_errors", {
-            message: "No Working Hours",
-            details:
-              "There are no working office hours to process your application",
-            redirect: "/dashboard/room-booking-student/step-1",
-            timeout: 5
-          });
-        }
-
-        req.session.rooms = rooms;
-        req.session.startTime = startTime;
-        req.session.endTime = endTime;
-        req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false;
-        req.session.purpose = req.sanitize(req.body.purpose);
-        req.session.phone = req.sanitize(req.body.phone);
-        req.session.save();
-
-        res.renderState("room-booking/step2", {
-          rooms: rooms
-        });
-      }
-    );
-  }
-);
-
-router.post("/step-3", function(req, res, next) {
-  let room = req.sanitize(req.body.room);
-
-  roomBookingStudent.makeBooking(
-    room,
-    req.session.rooms,
-    req.session.endTime,
-    req.session.startTime,
-    req.user.email,
-    req.session.av,
-    req.session.purpose,
-    req.session.phone,
-    false,
-    function(err, result) {
+    roomBookingFaculty.getRooms(booking, function(err, rooms) {
       if (err) {
         return res.terminate("Error");
       }
 
-      if (result.alreadyBooked == 1) {
-        return res.renderState("custom_errors", {
-          message: "Oops.. Room already booked.",
-          details:
-            "Someone else booked this room while you were booking. Please book some other room.",
-          redirect: "/dashboard/room-booking-student/step-1",
-          timeout: 5
+      if (rooms.allBlocked == 1) {
+        return res.renderState("room-booking/errors", {
+          message:
+            "All the rooms for the selected date-time have been blocked by the administrator. Please contact Timetable Office for further assistance"
         });
       }
 
-      res.renderState("room-booking/step3", {
-        number: room,
-        start: result.start.toString(),
-        end: result.end.toString(),
-        phone: req.session.phone,
-        av: req.session.av
+      if (rooms.noWorkingHours == 1) {
+        return res.renderState("room-booking/errors", {
+          message:
+            "There are no working office hours to process your application."
+        });
+      }
+
+      req.session.booking = booking;
+      req.session.save();
+      res.status(200);
+
+      res.renderState("room-booking/room-list", {
+        rooms,
+        date: booking.dateString,
+        start: booking.startString,
+        end: booking.endString
       });
+    });
+  }
+);
+
+router.post("/submit", function(req, res, next) {
+  roomBookingFaculty.makeBooking(req.session.booking, req.body.rooms, function(
+    err,
+    result
+  ) {
+    if (err) {
+      return res.terminate("Error");
     }
-  );
+    return res.json(result);
+  });
 });
 
 module.exports = router;
