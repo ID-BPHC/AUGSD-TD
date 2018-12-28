@@ -160,6 +160,8 @@ let view = function(email, callback) {
       },
       bookedBy: email
     },
+    null,
+    { sort: { start: 1 } },
     function(err, bookings) {
       if (err) {
         console.log(err);
