@@ -14,17 +14,37 @@ var projectsModel = fq("schemas/projects");
 var applicationsModel = fq("schemas/project-applications");
 
 router.use(function(req, res, next) {
-  if (!(req.user.email.indexOf("f2017") && req.user.email.indexOf("f2018"))) {
-    return res.renderState("custom_errors", {
-      redirect: "/dashboard",
-      timeout: 2,
-      supertitle: "Not Eligible",
-      message: "2017 and 2018 Batch is not eligible for project type courses",
-      details: " "
+  function forbidOrNot(email) {
+    let forbid = false; // don't forbid
+    forbiddenBatches.forEach(batch => {
+      if (email.indexOf(batch) == 1) forbid = true;
     });
-  } else {
-    next();
+    return forbid;
   }
+  let forbiddenBatches = [];
+  settingsModel.find(
+    {
+      name: "proj-allotment-forbidden-batches"
+    },
+    function(err, docs) {
+      if (docs[0]) {
+        forbiddenBatches = docs[0].value;
+        if (forbidOrNot(req.user.email)) {
+          return res.renderState("custom_errors", {
+            redirect: "/dashboard",
+            timeout: 2,
+            supertitle: "Not Eligible",
+            message: "Your Batch is not eligible for project type courses",
+            details: " "
+          });
+        } else {
+          next();
+        }
+      } else {
+        next();
+      }
+    }
+  );
 });
 
 router.get("/faq", function(req, res, next) {
