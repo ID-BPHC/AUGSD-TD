@@ -5,14 +5,17 @@ let settingsModel = fq("schemas/settings");
 
 router.post("/", function(req, res) {
   let years = req.sanitize(req.body.year);
-  let years_arr = [];
-  years_arr = years.split(",");
+  let yearsArr = [];
+  yearsArr = years.split(",");
+  yearsArr.forEach(year => {
+    year = year.trim();
+  });
   settingsModel.find({ name: "proj-allotment-forbidden-batches" }, function(
     err,
     docs
   ) {
     if (docs[0]) {
-      docs[0].value = years_arr;
+      docs[0].value = yearsArr;
       docs[0].save(function(err) {
         if (err) res.terminate(err);
       });
@@ -21,7 +24,7 @@ router.post("/", function(req, res) {
         name: "proj-allotment-forbidden-batches",
         description:
           "These are the forbidden batches for which the portal won't be opened.",
-        value: years_arr
+        value: yearsArr
       });
       forbidden_batches.save(function(err) {
         if (err) {

@@ -15,12 +15,11 @@ var applicationsModel = fq("schemas/project-applications");
 
 router.use(function(req, res, next) {
   function forbidOrNot(email) {
-    let allow = false; // don't forbid
+    let forbid = false; // don't forbid
     forbiddenBatches.forEach(batch => {
-      if (email.indexOf(batch) == 1) allow = true;
+      if (email.indexOf(batch) == 1) forbid = true;
     });
-    if (allow == false) return false;
-    else return true;
+    return forbid;
   }
   let forbiddenBatches = [];
   settingsModel.find(
