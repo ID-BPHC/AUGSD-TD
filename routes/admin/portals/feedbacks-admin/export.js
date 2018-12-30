@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 
     adminsModel.find(
       {
-        email: req.session.passport.user
+        email: req.user.email
       },
       (err, profile) => {
         if (err) {
@@ -109,27 +109,9 @@ router.get("/", (req, res, next) => {
                 "-" +
                 d.getDate() +
                 ".csv";
-              const relPath = path.join("./public/AUGSD/", fileName);
-              const absPath = path.join(
-                __dirname,
-                "./../../../../public/AUGSD/",
-                fileName
-              );
-              fs.writeFile(relPath, csv, err => {
-                if (err) {
-                  console.log(err);
-                }
-                res.download(absPath, err => {
-                  if (err) {
-                    console.log(err);
-                  }
-                  fs.unlink(relPath, err => {
-                    if (err) {
-                      console.log(err);
-                    }
-                  });
-                });
-              });
+
+              res.attachment(fileName);
+              return res.status(200).send(csv);
             }
           );
         });
