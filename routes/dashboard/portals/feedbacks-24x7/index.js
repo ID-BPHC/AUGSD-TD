@@ -1,13 +1,10 @@
-var express = require("express");
-var fq = require("fuzzquire");
-var mailer = fq("utils/mailer");
-var router = express.Router();
+let express = require("express");
+let fq = require("fuzzquire");
+let mailer = fq("utils/mailer");
+let router = express.Router();
 
-var coursesModel = fq("schemas/courses");
-var adminsModel = fq("schemas/admins");
-var studentsModel = fq("schemas/students");
-var feedbacksModel = fq("schemas/feedbacks");
-var feedbacks = require("./../feedbacks");
+let feedbacksModel = fq("schemas/feedbacks");
+let feedbacks = require("./../feedbacks");
 
 ["/", "/step-1"].forEach(step => {
   router.get(step, feedbacks);
