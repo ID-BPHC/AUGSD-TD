@@ -11,6 +11,7 @@ let switchUser = require("./switchUser.js");
 let ttExceptions = require("./ttExceptions");
 let projectGuidelines = require("./projectAllotmentGuidelines.js");
 let projAllotmentForbiddenBatches = require("./projAllotmentForbiddenBatches.js");
+let blockAllRooms = require("./blockAllRooms.js");
 
 router.use("/holidays", holiday);
 router.use("/manage-admins", manageAdmins);
@@ -22,7 +23,7 @@ router.use(
   "/project-allotment-forbidden-batches",
   projAllotmentForbiddenBatches
 );
-
+router.use("/block-all-rooms", blockAllRooms);
 router.get("/", function(req, res, next) {
   settingsModel.find(
     {

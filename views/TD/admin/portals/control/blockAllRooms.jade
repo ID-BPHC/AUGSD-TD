@@ -1,0 +1,72 @@
+extends ../../../master-dashboard
+
+block content
+	link(href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en', rel='stylesheet', type='text/css')
+	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
+	link(rel='stylesheet' href='/stylesheets/material-alerts.css')
+	style.
+		.formBG {
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 15px;
+			background: white;
+			width: 100%;
+		}
+
+	div.mdl-cell.mdl-cell--12-col.center
+		div.formBG
+			br
+			h4 Room Booking
+			p Provide the following details before proceeding.
+			form(action="./block-all-rooms" method="POST").mdc-form-field#form
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#date.mdl-textfield__input(type='text', name='date', readonly='true')
+					label.mdl-textfield__label(for='date') Date
+				button.mdl-button.mdl-js-button.mdl-button--icon#dateBtn(type="button")
+					i.material-icons calendar_today
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#time-start.mdl-textfield__input(type='text', name='time-start', readonly='true')
+					label.mdl-textfield__label(for='time-start') Start Time
+				button.mdl-button.mdl-js-button.mdl-button--icon#startBtn(type="button")
+					i.material-icons alarm
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#time-end.mdl-textfield__input(type='text', name='time-end', readonly='true')
+					label.mdl-textfield__label(for='time-end') End Time
+				button.mdl-button.mdl-js-button.mdl-button--icon#endBtn(type="button")
+					i.material-icons alarm
+				br
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#purpose.mdl-textfield__input(type='text', name='purpose')
+					label.mdl-textfield__label(for='purpose') Room Booking Purpose(Optional)
+				br
+				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#findBtn(type="submit")
+					| Block All Rooms for this Time
+				br
+				br
+		br
+		for booking in bookings
+			div.mdl-cell.mdl-cell--12-col
+				div.mdl-grid.application
+					div.mdl-cell.mdl-cell--8-col.center
+						div.mdl-grid
+							div.mdl-cell.mdl-cell--6-col.head Rooms :
+							div.mdl-cell.mdl-cell--6-col.value #{booking.number}
+							div.mdl-cell.mdl-cell--6-col.head Start Time :
+							div.mdl-cell.mdl-cell--6-col.value #{booking.start.toString().substring(0, booking.start.toString().indexOf("GMT"))}
+							div.mdl-cell.mdl-cell--6-col.head End Time :
+							div.mdl-cell.mdl-cell--6-col.value #{booking.end.toString().substring(0, booking.end.toString().indexOf("GMT"))}
+							div.mdl-cell.mdl-cell--6-col.head Status :
+							div.mdl-cell.mdl-cell--6-col.value #{booking.approval == "P" ? "Pending" : booking.approval == "A" ? "Approved" : "Rejected"}
+							div.mdl-cell.mdl-cell--6-col.head Purpose :
+							div.mdl-cell.mdl-cell--6-col.value #{booking.purpose}
+					div.mdl-cell.mdl-cell--4-col.center
+						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Are you sure to CANCEL this booking ?',function(confirm){ if(confirm) { window.location.replace('./block-all-rooms/cancel/#{booking._id.toString()}'); } })")
+							| Delete Booking
+
+
+	script(src='/scripts/date-picker/moment.min.js')
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
+	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
+	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
+	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
+	script(type='text/javascript' src='/scripts/material-alerts.js')
+	script(type='text/javascript' src='/scripts/room-booking.js')		
