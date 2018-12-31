@@ -1,14 +1,9 @@
-var express = require("express");
-var filter = require("profanity-filter");
-var badwordslist = require("badwords-list");
-var fq = require("fuzzquire");
-var mailer = fq("utils/mailer");
-var router = express.Router();
+let express = require("express");
+let fq = require("fuzzquire");
+let router = express.Router();
 
-var coursesModel = fq("schemas/courses");
-var adminsModel = fq("schemas/admins");
-var studentsModel = fq("schemas/students");
-var feedbacksModel = fq("schemas/feedbacks");
+let coursesModel = fq("schemas/courses");
+let adminsModel = fq("schemas/admins");
 
 router.get("/step-1", function(req, res, next) {
   res.renderState("dashboard/portals/feedbacks/step1");

@@ -55,14 +55,25 @@ block content
 		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
 			.android-customized-section
 				.android-customized-section-text
-					.mdl-typography--font-light.mdl-typography--display-1-color-contrast.center Select Feedback Type
+					.mdl-typography--font-light.mdl-typography--display-1-color-contrast.center 24x7 Feedbacks
 					p.mdl-typography--font-light
 						.mdl-grid
 							.mdl-layout-spacer
 							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/24x7')")
 								img.profile(src='/images/feedback/24.png')
-								h4.center.custom 24x7 Feedback							
+								h4.center.custom View Feedbacks							
+							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/export/24x7')")
+								img.profile(src='/images/feedback/export.png')
+								h4.center.custom Export Feedbacks
+							.mdl-layout-spacer
+					.mdl-typography--font-light.mdl-typography--display-1-color-contrast.center Midsem Feedbacks
+					p.mdl-typography--font-light
+						.mdl-grid
+							.mdl-layout-spacer
 							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/midsem')")
 								img.profile(src='/images/feedback/sem.png')
-								h4.center.custom Mid-Sem Feedback
+								h4.center.custom View Feedbacks							
+							.mdl-cell.mdl-cell--4-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('#{rootURL}/#{reqPortal}/export/midsem')")
+								img.profile(src='/images/feedback/export.png')
+								h4.center.custom Export Feedbacks
 							.mdl-layout-spacer
