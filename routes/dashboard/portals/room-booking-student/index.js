@@ -39,7 +39,7 @@ router.get("/cancel/:id", function(req, res, next) {
       if (err) {
         return res.terminate("Error");
       }
-      res.redirect("/admin/room-booking-faculty/view");
+      res.redirect("/dashboard/room-booking-faculty/view");
     }
   );
 });
