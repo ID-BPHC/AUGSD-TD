@@ -15,7 +15,7 @@ block content
 	div.mdl-cell.mdl-cell--12-col.center
 		div.formBG
 			br
-			h4 Room Booking
+			h4 Block All Rooms
 			p Provide the following details before proceeding.
 			form(action="./block-all-rooms" method="POST").mdc-form-field#form
 				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -36,37 +36,33 @@ block content
 				br
 				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 					input#purpose.mdl-textfield__input(type='text', name='purpose')
-					label.mdl-textfield__label(for='purpose') Room Booking Purpose(Optional)
+					label.mdl-textfield__label(for='purpose') Room Block Purpose (Optional)
 				br
 				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#findBtn(type="submit")
-					| Block All Rooms for this Time
+					| Block All
 				br
 				br
+		br
+		hr
 		br
 		for booking in bookings
 			div.mdl-cell.mdl-cell--12-col
 				div.mdl-grid.application
 					div.mdl-cell.mdl-cell--8-col.center
 						div.mdl-grid
-							div.mdl-cell.mdl-cell--6-col.head Rooms :
-							div.mdl-cell.mdl-cell--6-col.value #{booking.number}
 							div.mdl-cell.mdl-cell--6-col.head Start Time :
 							div.mdl-cell.mdl-cell--6-col.value #{booking.start.toString().substring(0, booking.start.toString().indexOf("GMT"))}
 							div.mdl-cell.mdl-cell--6-col.head End Time :
 							div.mdl-cell.mdl-cell--6-col.value #{booking.end.toString().substring(0, booking.end.toString().indexOf("GMT"))}
-							div.mdl-cell.mdl-cell--6-col.head Status :
-							div.mdl-cell.mdl-cell--6-col.value #{booking.approval == "P" ? "Pending" : booking.approval == "A" ? "Approved" : "Rejected"}
 							div.mdl-cell.mdl-cell--6-col.head Purpose :
 							div.mdl-cell.mdl-cell--6-col.value #{booking.purpose}
 					div.mdl-cell.mdl-cell--4-col.center
 						button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(onclick="materialConfirm('Confirm','Are you sure to CANCEL this booking ?',function(confirm){ if(confirm) { window.location.replace('./block-all-rooms/cancel/#{booking._id.toString()}'); } })")
-							| Delete Booking
-
+							| Delete Block
 
 	script(src='/scripts/date-picker/moment.min.js')
-	script(src='https://unpkg.com/axios/dist/axios.min.js')
 	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
 	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
 	script(type='text/javascript' src='/scripts/material-alerts.js')
-	script(type='text/javascript' src='/scripts/room-booking.js')		
+	script(type='text/javascript' src='/scripts/block-all-rooms.js')		

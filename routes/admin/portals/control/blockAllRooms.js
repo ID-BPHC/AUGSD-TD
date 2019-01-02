@@ -2,22 +2,35 @@ let express = require("express");
 let router = express.Router();
 let fq = require("fuzzquire");
 let bookingsModel = fq("schemas/room-bookings");
-let roomBookingFaculty = fq("common/room-booking");
 let Booking = fq("common/BookingClass");
 let mongoose = require("mongoose");
 
+let Moment = require("moment");
+let MomentRange = require("moment-range");
+let moment = MomentRange.extendMoment(Moment);
+
 const { check, validationResult } = require("express-validator/check");
-let nocache = require("nocache");
 
 router.get("/", function(req, res) {
-  bookingsModel.find({ blockAll: true }, function(err, docs) {
-    if (docs) {
-      res.renderState("admin/portals/control/blockAllRooms", {
-        bookings: docs
-      });
+  bookingsModel.find(
+    {
+      blockAll: true,
+      start: {
+        $gte: new moment()
+      }
+    },
+    null,
+    { sort: { start: 1 } },
+    function(err, docs) {
+      if (docs) {
+        res.renderState("admin/portals/control/blockAllRooms", {
+          bookings: docs
+        });
+      }
     }
-  });
+  );
 });
+
 router.post(
   "/",
   [
@@ -40,11 +53,10 @@ router.post(
       .isEmpty()
       .withMessage("No Date Specified")
   ],
-  nocache(),
   function(req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.renderState("room-booking/form-errors", {
+      return res.renderState("form-errors", {
         errors: errors.mapped()
       });
     }
@@ -62,11 +74,11 @@ router.post(
     }
 
     let newDoc = new bookingsModel({
-      number: 1000,
+      number: ["Block"],
       start: booking.startTimeObj,
       end: booking.endTimeObj,
       bookedBy: booking.email,
-      purpose: booking.purpose || "",
+      purpose: booking.purpose || "NA",
       blockAll: true
     });
     newDoc.save(function(err) {
@@ -75,6 +87,7 @@ router.post(
     res.redirect(req.get("referer"));
   }
 );
+
 router.get("/cancel/:id", function(req, res, next) {
   bookingsModel.remove(
     {
