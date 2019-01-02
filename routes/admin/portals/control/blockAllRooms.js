@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
   bookingsModel.find(
     {
       blockAll: true,
-      start: {
+      end: {
         $gte: new moment()
       }
     },
@@ -76,7 +76,7 @@ router.post(
     booking.endTimeObj = new moment(
       req.sanitize(req.body["end-date"]) +
         " " +
-        req.sanitize(req.body["end-time"]),
+        req.sanitize(req.body["time-end"]),
       "ddd DD MMM YYYY HH:mm"
     ).utcOffset("+05:30");
     if (booking.endTimeObj <= booking.startTimeObj) {
