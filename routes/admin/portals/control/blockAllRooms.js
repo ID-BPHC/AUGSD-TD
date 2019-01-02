@@ -46,7 +46,13 @@ router.post(
       .not()
       .isEmpty()
       .withMessage("No End Time Specified"),
-    check("date")
+    check("start-date")
+      .exists()
+      .withMessage("No Date Specified")
+      .not()
+      .isEmpty()
+      .withMessage("No Date Specified"),
+    check("end-date")
       .exists()
       .withMessage("No Date Specified")
       .not()
@@ -62,11 +68,17 @@ router.post(
     }
     let booking = new Booking(
       req.sanitize(req.user.email),
-      req.sanitize(req.body.date),
+      req.sanitize(req.body["start-date"]),
       req.sanitize(req.body["time-start"]),
-      req.sanitize(req.body["time-end"]),
+      "",
       req.sanitize(req.body.purpose)
     );
+    booking.endTimeObj = new moment(
+      req.sanitize(req.body["end-date"]) +
+        " " +
+        req.sanitize(req.body["end-time"]),
+      "ddd DD MMM YYYY HH:mm"
+    ).utcOffset("+05:30");
     if (booking.endTimeObj <= booking.startTimeObj) {
       return res.renderState("room-booking/errors", {
         message: "End Time was chosen before Start Time"
