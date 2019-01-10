@@ -1,0 +1,203 @@
+doctype html
+html(lang='en')
+	head
+		// Meta
+		title AUGS Division
+		meta(content='AUGS Division', name='title')
+		meta(content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework, Teaching Assistantship and formalizing Student-Professor projects.", name='description')
+		meta(content='initial-scale=1, minimum-scale=1, width=device-width', name='viewport')
+		meta(content='IE=11;IE=Edge', http-equiv='X-UA-Compatible')
+		meta(name='thumbnail', content='/images/logo/tdlogo-01.png')
+		meta(itemprop='name', content='AUGS Division')
+		meta(itemprop='description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework, Teaching Assistantship and formalizing Student-Professor projects.")
+		meta(itemprop='image', content='/images/logo/tdlogo-01.png')
+		meta(name='twitter:card', content='summary_large_image')
+		meta(name='twitter:site', content='@bitshyd')
+		meta(name='twitter:title', content='AUGS Division')
+		meta(name='twitter:description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework, Teaching Assistantship and formalizing Student-Professor projects.")
+		meta(name='twitter:image', content='/images/logo/tdlogo-01.png')
+		meta(name='twitter:url', content='http://augsd.bits-hyderabad.ac.in')
+		meta(property='og:type', content='website')
+		meta(property='og:title', content='AUGS Division')
+		meta(property='og:description', content="AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework, Teaching Assistantship and formalizing Student-Professor projects.")
+		meta(property='og:url', content='http://id.bits-hyderabad.ac.in')
+		meta(property='og:image', content='/images/logo /tdlogo-01.png')
+		meta(property='og:site_name', content='AUGS Division')
+		meta(property='og:locale', content='en_IN')
+		script(type='application/ld+json').
+			{
+			"@context": "http://schema.org",
+			"@type": "Website",
+			"url": "http://id.bits-hyderabad.ac.in",
+			"publisher": {
+			"@type": "Organization",
+			"name": "AUGS Division",
+			"logo": {
+			"@type": "ImageObject",
+			"url": "/images/logo/tdlogo-01.png",
+			"height": 103,
+			"width": 100
+			},
+			"parentOrganization": "BITS Pilani Hyderabad Campus"
+			},
+			"name": "AUGS Division",
+			"description": "AUGS Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Student Coursework, Teaching Assistantship and formalizing Student-Professor projects.",
+			"sameAs": [
+			"https://www.facebook.com/bitshyderabad/",
+			"https://twitter.com/bitshyd]
+			}
+		link(rel='shortcut icon', href='/images/favicon.png')
+
+		// Page styles
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		style.
+			.custom-title {
+				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+				line-height: 1;
+				color: #767777;
+				font-weight: 500;
+				margin: unset;
+			}
+			.custom-title2 {
+				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+				line-height: 1;
+				color: #767777;
+				font-weight: 500;
+				margin: 10px -20px;
+			}
+			.hidden {
+				display: none;
+			}
+			#loader-pitch{
+			position: fixed;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'Roboto'!important;
+			width: 92%;
+			color: #CC6060;
+			text-align: center;
+			margin: 0 auto;
+			}
+			h1{
+				font-family: "Roboto","Helvetica","Arial",sans-serif;
+				font-weight: 400;
+				font-size: 56px;
+				line-height: 1.35;
+				letter-spacing: -.02em;
+				margin: 24px 0;
+			}
+
+	body
+		div.loader(id="loader")
+			.loader-overlay.hidden
+			#loader-pitch
+				h1 AUGS Division.
+				p(id="errormessage").hidden Something went wrong. Try refreshing the page.
+				// Layout start
+		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header(id="body_main").hidden
+			.android-header.mdl-layout__header.mdl-layout__header--waterfall
+				.mdl-layout__header-row
+					span.android-title.mdl-layout-title
+						p.custom-title BITS Pilani Hyderabad Campus
+					// Add spacer, to align navigation to the right in desktop
+					.android-header-spacer.mdl-layout-spacer
+					// Navigation
+					.android-navigation-container
+						nav.android-navigation.mdl-navigation
+							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/type') Access Dashboard
+					span.android-mobile-title.mdl-layout-title
+						p.custom-title2 BITS Pilani Hyderabad Campus
+			.android-drawer.mdl-layout__drawer
+				span.mdl-layout-title(style='background: #64B5F6')
+					img.android-logo-image(src='images/logo/augsd-logo.png')
+				nav.mdl-navigation
+					a.mdl-navigation__link(href='/') Home
+					a.mdl-navigation__link(href='/type') Access Dashboard
+			.container
+				.mdl-grid
+					.mdl-cell.mdl-cell--4-col
+						button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(style='width: 64px; height: 64px; min-width: initial;' onclick='location.href="/"')
+							i.material-icons arrow_back
+					.mdl-cell.mdl-cell--4-col
+						.at-section
+							.at-section__title FD Thesis
+				.mdl-grid
+
+					.mdl-cell.mdl-cell--12-col.center
+						center
+							h5
+								| Forms for Off-Campus Thesis Students:
+								br
+								a(href="/Off-Campus-Form-A", target="_blank") Off-Campus-Form-A
+								br
+								a(href="/Off-Campus-Form-B", target="_blank") Off-Campus-Form-B
+								br
+								hr
+								| Guidelines for First Degree Thesis Students:
+								br
+								a(href="/Pre-allotment-Guidelines", target="_blank") General Guidelines for Pre-Registration of FD thesis.
+							hr 			
+				
+		script.
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-107202501-1');
+		script.
+			let stage1 = ["https://code.getmdl.io/1.3.0/material.min.js"];
+			let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "https://code.getmdl.io/1.3.0/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
+			let asyncLoad = new CSSLoader();
+			stage2.forEach((item) => {asyncLoad.add(item)});
+			asyncLoad.load();
+			asyncLoad = new ScriptLoader();
+			stage1.forEach((item) => {asyncLoad.add(item)});
+			asyncLoad.load(function(){
+				window.onload = function(){
+				body_main.classList.remove('hidden');
+				loader.classList.add('hidden');
+			}
+			});
+			function ScriptLoader() {
+				var promises = [];
+				this.add = function(url) {
+					var promise = new Promise(function(resolve, reject) {
+						var script = document.createElement('script');
+						script.src = url;
+						script.addEventListener('load', function() {
+							resolve(script);
+						}, false);
+						script.addEventListener('error', function() {
+							reject(script);
+							console.log('was rej');
+						}, false);
+						document.body.appendChild(script);
+					});
+					promises.push(promise);
+				};
+				this.load = function(resolve) {
+					Promise.all(promises).then(resolve);
+				};
+			}
+			function CSSLoader() {
+				var promises = [];
+				this.add = function(url) {
+					var promise = new Promise(function(resolve, reject) {
+						var css = document.createElement('link');
+						css.rel = 'stylesheet';
+						css.href = url;
+						css.addEventListener('load', function() {
+							resolve(css);
+						}, false);
+						css.addEventListener('error', function() {
+							console.log('was rej');
+							reject(css);
+						}, false);
+						document.body.appendChild(css);
+					});
+					promises.push(promise);
+				};
+				this.load = function(resolve) {
+					Promise.all(promises).then(resolve);
+				};
+			}
