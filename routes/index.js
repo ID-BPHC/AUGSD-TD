@@ -26,6 +26,8 @@ router.get("/fd-thesis", (req, res, next) => {
 var forms = [
   "Off-Campus-Form-A",
   "Off-Campus-Form-B",
+  "Pre-allotment-Off-Campus-Abroad-Form-C",
+  "Pre-allotment-Off-Campus-Form-D",
   "Pre-allotment-Guidelines"
 ];
 
