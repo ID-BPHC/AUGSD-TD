@@ -9,6 +9,8 @@ var bugsModel = require("../../schemas/bugs");
 var auth = require("../../middleware/auth");
 var config = require("../../config");
 
+var originalPath = "/dashboard";
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
@@ -132,7 +134,7 @@ router.get(
           // console.log(req.user);
           req.session.profileImage = req.sanitize(req.user._json.image.url);
           req.session.userType = "user";
-          res.redirect("/dashboard");
+          res.redirect(originalPath);
         }
       }
     );
@@ -155,6 +157,7 @@ router.get("/portals", function(req, res) {
 
 router.use(function(req, res, next) {
   if (!req.user) {
+    originalPath = req.originalUrl;
     res.redirect("/dashboard/login");
   } else {
     next();
@@ -164,6 +167,7 @@ router.use(function(req, res, next) {
 router.use(function(req, res, next) {
   if (req.session.userType !== "user") {
     req.session.destroy(function(err) {
+      originalPath = req.originalUrl;
       res.redirect("/dashboard/login");
     });
   } else {

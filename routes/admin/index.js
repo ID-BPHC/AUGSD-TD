@@ -11,6 +11,8 @@ var config = require("../../config");
 
 var profile = require("./profile");
 
+var originalPath = "/admin";
+
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
@@ -145,7 +147,7 @@ router.get(
                 );
                 req.session.userType = "admin";
                 req.session.switched = false;
-                res.redirect("/admin");
+                res.redirect(originalPath);
               }
             }
           );
@@ -167,6 +169,7 @@ router.get("/logout", function(req, res) {
 
 router.use(function(req, res, next) {
   if (!req.user) {
+    originalPath = req.originalUrl;
     res.redirect("/admin/login");
   } else {
     next();
