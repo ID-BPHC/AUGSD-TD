@@ -142,14 +142,6 @@ var portals = [
     active: false,
     mode: "AUGSD",
     admin: true
-  },
-  {
-    displayName: "FD THESIS",
-    name: "fd-thesis",
-    icon: "format_list_bulleted",
-    active: false,
-    mode: "AUGSD",
-    admin: false
   }
 ];
 
