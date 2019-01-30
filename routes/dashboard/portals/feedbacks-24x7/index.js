@@ -78,7 +78,7 @@ router.post("/step-4", function(req, res, next) {
             courseSection +
             " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, AUGSD would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b>" +
             feedback +
-            "</b></p><p>You may access all your feedbacks from the AUGSD Dashboard by visiting the website.</p>"
+            "</b></p>"
         });
         res.renderState("custom_errors", {
           redirect: "/dashboard",
