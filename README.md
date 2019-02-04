@@ -83,7 +83,7 @@ Several housekeeping utilities can be found in `utils` directory
 1. `roomGenerator.py` generates the JSON data from CSV for `rooms` schema.
 1. `studenteGenerator.py` generates the JSON data from CSV for `students` schema.
 1. `mailer.js` provides a method to send emails using the tokens provided in `config.js`.
-1. `rebuildDB` drops the existing database and creates a new one with dummy values.
+1. `rebuildDatabase` drops the existing database and creates a new one with dummy values.
 1. `checkDatabase` checks the database for errors in course - instructor mapping
 1. `proj-pdf-generator` directory has utilities to create and send PDFs to instructors after the project allotment process is complete
 

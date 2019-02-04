@@ -2,17 +2,17 @@
 
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
-var mongoose = require('mongoose');
-var Promise = require('promise');
-var data = require('./assets/data')
-var fq = require('fuzzquire');
-var config = require('../config');
-var prompt = require('prompt');
+let mongoose = require('mongoose');
+let Promise = require('promise');
+let data = require('./assets/data')
+let fq = require('fuzzquire');
+let config = require('../config');
+let prompt = require('prompt');
 
-var adminsModel = fq('schemas/admins');
-var portalsModel = fq('schemas/portals');
-var studentsModel = fq('schemas/students');
-var coursesModel = fq('schemas/courses');
+let adminsModel = fq('schemas/admins');
+let portalsModel = fq('schemas/portals');
+let studentsModel = fq('schemas/students');
+let coursesModel = fq('schemas/courses');
 
 mongoose.connect(config.mongooseConnection, {});
 
