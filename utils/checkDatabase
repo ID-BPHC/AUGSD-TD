@@ -5,61 +5,112 @@
 let mongoose = require("mongoose");
 let fq = require("fuzzquire");
 let config = require("../config");
+let Promise = require('promise');
 let async = require("async");
 
 let adminsModel = fq("schemas/admins");
 let coursesModel = fq("schemas/courses");
+let studentsModel = fq("schemas/students");
 
 mongoose.connect(
-  config.mongooseConnection,
-  {}
+  config.mongooseConnection, {}
 );
 
-mongoose.connection.on("open", function(ref) {
-  console.log("Please wait. This may take some time...");
-  coursesModel.find({}, (err, courses) => {
-    if (err) {
-      console.log(err);
-      process.exit();
-    }
-    async.eachSeries(
-      courses,
-      (course, nextCourse) => {
-        async.eachSeries(
-          course.sections,
-          (section, nextSection) => {
-            async.eachSeries(
-              section.instructors,
-              (instructor, nextInstructor) => {
-                adminsModel.find({ email: instructor }, (err, result) => {
-                  if (err) {
-                    console.log(err);
-                    process.exit();
-                  }
-                  if (result.length == 0) {
-                    console.log(
-                      `ERROR: Could not find instructor ${instructor} for ${
-                        course.courseID
-                      } - ${section.section}`
-                    );
-                  }
-                  nextInstructor();
-                });
-              },
-              () => {
-                nextSection();
-              }
-            );
-          },
-          () => {
-            nextCourse();
-          }
-        );
-      },
-      () => {
-        console.log("Finished");
+let checkCourseInstructorMap = () => {
+  return new Promise((resolve, reject) => {
+    coursesModel.find({}, (err, courses) => {
+      if (err) {
+        console.log(err);
         process.exit();
       }
-    );
+      async.eachSeries(
+        courses,
+        (course, nextCourse) => {
+          async.eachSeries(
+            course.sections,
+            (section, nextSection) => {
+              async.eachSeries(
+                section.instructors,
+                (instructor, nextInstructor) => {
+                  adminsModel.find({
+                    email: instructor
+                  }, (err, result) => {
+                    if (err) {
+                      console.log(err);
+                      process.exit();
+                    }
+                    if (result.length == 0) {
+                      console.log(
+                        `ERROR: Could not find instructor ${instructor} for ${
+                        course.courseID
+                      } - ${section.section}`
+                      );
+                    }
+                    nextInstructor();
+                  });
+                },
+                () => {
+                  nextSection();
+                }
+              );
+            },
+            () => {
+              nextCourse();
+            }
+          );
+        },
+        () => {
+          console.log("**** Finished checking course instructor-map ****");
+          resolve();
+        }
+      );
+    });
   });
+};
+
+let checkStudentCourseMap = () => {
+  return new Promise((resolve, reject) => {
+    studentsModel.find({}, (err, students) => {
+      if(err) {
+        console.log(err);
+        process.exit();
+      }
+      async.eachSeries(students, (student, nextStudent) => {
+        async.eachSeries(student.courses, (course, nextCourse) => {
+          coursesModel.find({ courseID: course.courseID }, (err, result) => {
+            if(err) {
+              console.log(err);
+              process.exit();
+            }
+            if (result.length == 0) {
+              console.log(`ERROR: Could not find course: ${course.courseID} registered to student: ${student.email}`);
+              nextCourse();
+            }
+            else {
+              async.eachSeries(course.sections, (section, nextSection) => {
+                let sectionMap = result[0].sections.map(section => section.section);
+                if(sectionMap.indexOf(section) == -1){
+                  console.log(`ERROR: Could not find section: ${section} of course ${course.courseID} registered to student: ${student.email}`);
+                }
+                nextSection();
+              }, () => {
+                nextCourse();
+              })
+            }
+          });
+        }, () => {
+          nextStudent();
+        });
+      }, () => {
+        console.log("**** Finished checking student-course map ****");
+        console.log("**** Done ****");
+        process.exit();
+      });
+    });
+  });
+}
+
+mongoose.connection.on("open", function (ref) {
+  console.log("Please wait. This may take a while...");
+  checkCourseInstructorMap().then(checkStudentCourseMap);
 });
