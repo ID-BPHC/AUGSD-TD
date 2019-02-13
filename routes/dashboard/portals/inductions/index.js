@@ -33,7 +33,7 @@ router.use(function(req, res, next) {
       timeout: 3,
       supertitle: "Error",
       message: "Not Eligible",
-      details: "Sorry. Only 2016 / 2017 Batch Students can apply."
+      details: "Sorry. Only 2017 / 2018 Batch Students can apply."
     });
   }
 });
