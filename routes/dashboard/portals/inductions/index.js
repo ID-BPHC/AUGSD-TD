@@ -3,7 +3,7 @@ var router = express.Router();
 var fq = require("fuzzquire");
 var fileUpload = require("express-fileupload");
 var inductionsModel = fq("schemas/inductions");
-var multer = require("multer");
+var Promise = require("bluebird");
 var fs = Promise.promisifyAll(require("fs"));
 var config = require("./../../../../config");
 var path = require("path");
@@ -24,7 +24,7 @@ router.use(
 router.use(function(req, res, next) {
   if (
     req.user.email.indexOf("f2017") == 0 ||
-    req.user.email.indexOf("f2016") == 0
+    req.user.email.indexOf("f2018") == 0
   ) {
     next();
   } else {
@@ -33,7 +33,7 @@ router.use(function(req, res, next) {
       timeout: 3,
       supertitle: "Error",
       message: "Not Eligible",
-      details: "Sorry. Only 2016 / 2017 Batch Students can apply."
+      details: "Sorry. Only 2017 / 2018 Batch Students can apply."
     });
   }
 });
