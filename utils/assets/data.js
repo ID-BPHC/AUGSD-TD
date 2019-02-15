@@ -100,7 +100,7 @@ var portals = [
     name: "inductions",
     icon: "work",
     active: false,
-    mode: "AUGSD",
+    mode: "TD",
     admin: false
   },
   {
