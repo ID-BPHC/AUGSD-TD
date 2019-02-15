@@ -1,13 +1,14 @@
-var express = require("express");
-var router = express.Router();
-var fq = require("fuzzquire");
-var fileUpload = require("express-fileupload");
-var inductionsModel = fq("schemas/inductions");
-var Promise = require("bluebird");
-var fs = Promise.promisifyAll(require("fs"));
-var config = require("./../../../../config");
-var path = require("path");
-var appRoot = require("app-root-path");
+let express = require("express");
+let router = express.Router();
+let fq = require("fuzzquire");
+let fileUpload = require("express-fileupload");
+let Promise = require("bluebird");
+let async = require("async");
+let inductionsModel = fq("schemas/inductions");
+let fs = Promise.promisifyAll(require("fs"));
+let config = fq("config");
+let path = require("path");
+let appRoot = require("app-root-path");
 
 const { check, validationResult } = require("express-validator/check");
 
@@ -22,20 +23,24 @@ router.use(
 );
 
 router.use(function(req, res, next) {
-  if (
-    req.user.email.indexOf("f2017") == 0 ||
-    req.user.email.indexOf("f2018") == 0
-  ) {
-    next();
-  } else {
-    res.renderState("custom_errors", {
-      redirect: "/dashboard",
-      timeout: 3,
-      supertitle: "Error",
-      message: "Not Eligible",
-      details: "Sorry. Only 2017 / 2018 Batch Students can apply."
-    });
-  }
+  async.each(
+    config.inductionBatchPrefixes,
+    function(prefix, checkNext) {
+      if (req.user.idNumber.indexOf(prefix) == 0) {
+        return next();
+      }
+      checkNext();
+    },
+    function() {
+      res.renderState("custom_errors", {
+        redirect: "/dashboard",
+        timeout: 3,
+        supertitle: "Error",
+        message: "Not Eligible",
+        details: "Sorry. You are not eligible to participate in the inductions."
+      });
+    }
+  );
 });
 
 router.get("/", function(req, res, next) {

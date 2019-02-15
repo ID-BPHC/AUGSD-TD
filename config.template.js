@@ -6,6 +6,7 @@ module.exports = {
   fileStorage: "",
   siteMode: "TD", // TD or AUGSD
   port: "3000",
+  inductionBatchPrefixes: ["20"],
 
   //Google APIs
   googleClientID: "YOUR_CLIENT_ID",
