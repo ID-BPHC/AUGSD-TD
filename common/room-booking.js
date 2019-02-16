@@ -93,7 +93,7 @@ let checkAvailability = function(room, booking, cb) {
   if (booking.startHour <= 9) {
     for (i = booking.startHour; i <= booking.endHour; i++) {
       if (
-        i >=0 &&
+        i >= 0 &&
         typeof room.fixedClasses[booking.weekDay][i] !== "undefined" &&
         room.fixedClasses[booking.weekDay][i] !== ""
       ) {
