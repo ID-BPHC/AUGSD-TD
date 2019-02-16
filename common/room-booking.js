@@ -90,8 +90,8 @@ let checkIfAllBlocked = function(startTime, endTime, cb) {
 };
 
 let checkAvailability = function(room, booking, cb) {
-  if (booking.startHour >= 0 && booking.startHour <= 9) {
-    for (i = booking.startHour; i <= booking.endHour; i++) {
+  if (booking.startHour <= 9) {
+    for (i = 0; i <= booking.endHour; i++) {
       if (
         typeof room.fixedClasses[booking.weekDay][i] !== "undefined" &&
         room.fixedClasses[booking.weekDay][i] !== ""
