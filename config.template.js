@@ -11,6 +11,7 @@ module.exports = {
   //Redis
   redisHost: "localhost",
   redisPort: 6379,
+  redisPass: "",
 
   //Google APIs
   googleClientID: "YOUR_CLIENT_ID",

@@ -83,8 +83,8 @@ router.use(
     store: new redisStore({
       host: config.redisHost,
       port: config.redisPort,
-      client: client,
-      ttl: 260
+      pass: config.redisPass,
+      client: client
     }),
     secret: config.authSecretAdmin
   })
