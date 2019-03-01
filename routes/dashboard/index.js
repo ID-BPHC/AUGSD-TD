@@ -1,20 +1,23 @@
-var express = require("express");
-var router = express.Router();
-var session = require("express-session");
+let express = require("express");
+let router = express.Router();
+let session = require("express-session");
+let redis = require("redis");
+let redisStore = require("connect-redis")(session);
+let client = redis.createClient();
 
-var studentsModel = require("../../schemas/students");
-var portalsModel = require("../../schemas/portals");
-var bugsModel = require("../../schemas/bugs");
+let studentsModel = require("../../schemas/students");
+let portalsModel = require("../../schemas/portals");
+let bugsModel = require("../../schemas/bugs");
 
-var auth = require("../../middleware/auth");
-var config = require("../../config");
+let auth = require("../../middleware/auth");
+let config = require("../../config");
 
-var originalPath = "/dashboard";
+let originalPath = "/dashboard";
 
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
-  var reqPortal = req.originalUrl.split("/")[2];
+  let reqPortal = req.originalUrl.split("/")[2];
   portalsModel.find(
     {
       name: reqPortal,
@@ -51,7 +54,7 @@ portalsModel.find(
   function(err, portals) {
     portals.forEach(function(portal) {
       try {
-        var portalPath = require("./portals/" + portal.name);
+        let portalPath = require("./portals/" + portal.name);
         router.use("/" + portal.name, securityCheck, portalPath);
       } catch (err) {
         console.log(err);
@@ -68,6 +71,12 @@ router.use(
   session({
     resave: false,
     saveUninitialized: false,
+    store: new redisStore({
+      host: config.redisHost,
+      port: config.redisPort,
+      client: client,
+      ttl: 260
+    }),
     secret: config.authSecretStudent
   })
 );

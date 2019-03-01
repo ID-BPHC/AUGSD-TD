@@ -1,22 +1,25 @@
-var express = require("express");
-var router = express.Router();
-var session = require("express-session");
+let express = require("express");
+let router = express.Router();
+let session = require("express-session");
+let redis = require("redis");
+let redisStore = require("connect-redis")(session);
+let client = redis.createClient();
 
-var adminsModel = require("../../schemas/admins");
-var portalsModel = require("../../schemas/portals");
-var settingsModel = require("../../schemas/settings");
+let adminsModel = require("../../schemas/admins");
+let portalsModel = require("../../schemas/portals");
+let settingsModel = require("../../schemas/settings");
 
-var auth = require("../../middleware/auth");
-var config = require("../../config");
+let auth = require("../../middleware/auth");
+let config = require("../../config");
 
-var profile = require("./profile");
+let profile = require("./profile");
 
-var originalPath = "/admin";
+let originalPath = "/admin";
 
 /* Configure middleware for portal permissions */
 
 let securityCheck = function(req, res, next) {
-  var reqPortal = req.originalUrl.split("/")[2];
+  let reqPortal = req.originalUrl.split("/")[2];
 
   portalsModel.find(
     {
@@ -60,7 +63,7 @@ portalsModel.find(
   function(err, portals) {
     portals.forEach(function(portal) {
       try {
-        var portalPath = require("./portals/" + portal.name);
+        let portalPath = require("./portals/" + portal.name);
         router.use("/" + portal.name, securityCheck, portalPath);
       } catch (err) {
         console.log(err);
@@ -77,6 +80,12 @@ router.use(
   session({
     resave: false,
     saveUninitialized: false,
+    store: new redisStore({
+      host: config.redisHost,
+      port: config.redisPort,
+      client: client,
+      ttl: 260
+    }),
     secret: config.authSecretAdmin
   })
 );
@@ -106,22 +115,22 @@ router.get(
           return res.terminate(err);
         }
         if (result.length == 0) {
-          var CreateAdmin = adminsModel.create({
+          let CreateAdmin = adminsModel.create({
             email: req.user.emails[0].value,
             name: req.user.displayName,
             superUser: true
           });
-          var SettingsAdd = settingsModel.create({
+          let SettingsAdd = settingsModel.create({
             name: "config",
             description: "Sets the Super Admin during first run.",
             value: [req.user.emails[0].value]
           });
-          var CheckAdmin = function() {
+          let CheckAdmin = function() {
             req.session.destroy(function() {
               res.redirect("/admin/login");
             });
           };
-          var AfterCreateAdmin = CreateAdmin.then(SettingsAdd).then(CheckAdmin);
+          let AfterCreateAdmin = CreateAdmin.then(SettingsAdd).then(CheckAdmin);
         } else {
           adminsModel.find(
             {

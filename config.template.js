@@ -8,6 +8,10 @@ module.exports = {
   port: "3000",
   inductionBatchPrefixes: ["20"],
 
+  //Redis
+  redisHost: "localhost",
+  redisPort: 6379,
+
   //Google APIs
   googleClientID: "YOUR_CLIENT_ID",
   googleClientSecret: "YOUR_CLIENT_SECRET",

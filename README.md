@@ -9,6 +9,7 @@ This project is live at : https://td.bits-hyderabad.ac.in/ , https://augsd.bits-
 
 ## Setup Instructions
 1. Install NodeJS & MongoDB
+1. Install redis server
 1. Run MongoDB Instance
 1. Navigate to the project directory
 1. Create a copy of `config.template.js` as `config.js`
