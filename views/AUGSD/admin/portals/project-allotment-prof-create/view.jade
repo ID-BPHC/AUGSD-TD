@@ -38,10 +38,10 @@ block content
 							td.mdl-data-table__cell--non-numeric #{project.title}
 							td.mdl-data-table__cell--non-numeric(style="white-space:normal!important;") #{project.description}
 							if(project.type=='lop')
-								td.mdl-data-table__cell--non-numeric Lab Oriented Project
+								td.mdl-data-table__cell--non-numeric Lab Project
 							else if(project.type=='dop')
-								td.mdl-data-table__cell--non-numeric Design Oriented Project
+								td.mdl-data-table__cell--non-numeric Design Project
 							else
-								td.mdl-data-table__cell--non-numeric Study Oriented Project
+								td.mdl-data-table__cell--non-numeric Study Project
 			br
 			button.mdl-button.mdl-js-button.mdl-js-ripple-effect(onclick='window.location.replace("#{rootURL}/#{reqPortal}/delete/#{project._id}")') Delete Project
