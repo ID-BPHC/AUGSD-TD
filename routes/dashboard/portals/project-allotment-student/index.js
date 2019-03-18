@@ -363,6 +363,9 @@ router.get("/blank", function(req, res, next) {
       console.log(err);
       return res.terminate("Could not find departments");
     }
+    departments = departments.filter(function(department) {
+      if (department) return department;
+    });
     return res.renderState(
       "dashboard/portals/project-allotment-student/blank-step-1",
       {
