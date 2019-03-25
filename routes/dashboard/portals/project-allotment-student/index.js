@@ -429,9 +429,9 @@ router.post(
       visible: false
     };
     const typeproj = req.sanitize(req.body.projectType);
-    if (typeproj == "Lab Oriented Project (LOP)") {
+    if (typeproj == "Lab Project (LP)") {
       data.type = "lop";
-    } else if (typeproj == "Design Oriented Project (DOP)") {
+    } else if (typeproj == "Design Project (DP)") {
       data.type = "dop";
     } else {
       data.type = "sop";

@@ -30,7 +30,7 @@ block content
 					div.mdl-cell.mdl-cell--6-col.data #{project.instructorName} (#{project.instructor})
 
 					div.mdl-cell.mdl-cell--6-col.field Project Type
-					div.mdl-cell.mdl-cell--6-col.data #{project.type.toUpperCase()}
+					div.mdl-cell.mdl-cell--6-col.data #{project.type.toUpperCase() == "LOP" ? "Lab Project" : project.type.toUpperCase() == "DOP" ? "Design Project" : "Study Project"}
 
 					div.mdl-cell.mdl-cell--6-col.field Project Description
 					div.mdl-cell.mdl-cell--6-col.data #{project.description}

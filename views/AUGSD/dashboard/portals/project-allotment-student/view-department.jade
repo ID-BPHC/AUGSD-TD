@@ -24,7 +24,7 @@ block content
 								tr
 									td.mdl-data-table__cell--non-numeric #{project.title.substring(0,60)} ...
 									td.mdl-data-table__cell--non-numeric #{project.instructorName}
-									td.mdl-data-table__cell--non-numeric #{project.type.toUpperCase()}
+									td.mdl-data-table__cell--non-numeric #{project.type.toUpperCase() == "LOP" ? "Lab Project" : project.type.toUpperCase() == "DOP" ? "Design Project" : "Study Project"}
 									td.mdl-data-table__cell--non-numeric 
 										a(href="#{rootURL}/#{reqPortal}/view/#{project._id}") View/Apply
 		else
