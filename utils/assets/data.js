@@ -195,6 +195,16 @@ var superUsers = [
     department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
+  },
+  {
+    name: "Divyanshu Agrawal",
+    email: "f20180267@hyderabad.bits-pilani.ac.in",
+    portals: [],
+    home: "",
+    superUser: true,
+    department: "Timetable Division",
+    departmentCode: "ID",
+    maxProjects: 2
   }
 ];
 
