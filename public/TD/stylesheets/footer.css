@@ -26,3 +26,6 @@ p.footer-desc {
         height: 600px !important;
     }
 }
+hr {
+    width: 50%;
+}
