@@ -9,12 +9,16 @@ p.footer-desc {
 }
 .mdl-mega-footer__heading{
     color:#3a3a3a !important;
+    font-weight: bold !important;
 }
 .material-icons {
     font-size: inherit;
     vertical-align: middle;
     margin: 0px;
     padding-right: 5px;
+}
+.mdl-mega-footer__link-list a {
+    text-decoration: underline !important;
 }
 
 @media (max-width: 900px) {
