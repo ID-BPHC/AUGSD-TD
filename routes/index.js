@@ -4,6 +4,8 @@ var fq = require("fuzzquire");
 var users = fq("users");
 var config = fq("config");
 var path = require("path");
+var fs = require("fs");
+let appRoot = require("app-root-path");
 
 router.get("/", function(req, res, next) {
   res.render("index");
@@ -19,24 +21,9 @@ router.get("/type", function(req, res, next) {
   res.render("type");
 });
 
-router.get("/fd-thesis", (req, res, next) => {
-  res.render("fd-thesis");
-});
-
-var forms = [
-  "Off-Campus-Form-A",
-  "Off-Campus-Form-B",
-  "Pre-allotment-Off-Campus-Abroad-Form-C",
-  "Pre-allotment-Off-Campus-Form-D",
-  "Pre-allotment-Guidelines"
-];
-
-forms.forEach(form => {
-  router.get("/" + form, (req, res, next) => {
-    res.sendFile(
-      path.join(__dirname + "./../public/AUGSD/fd-thesis/" + form + ".pdf")
-    );
+router.get("/fd-thesis", function(req, res) {
+  fs.readdir(appRoot.path + "/public/AUGSD/fd-thesis", function(err, files) {
+    res.render("fd-thesis", { forms: files });
   });
 });
-
 module.exports = router;

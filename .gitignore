@@ -162,3 +162,5 @@ config.js
 
 inductions/*
 .vscode/*
+
+public/AUGSD/fd-thesis/*
