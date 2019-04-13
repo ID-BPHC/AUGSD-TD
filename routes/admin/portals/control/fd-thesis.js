@@ -38,7 +38,7 @@ router.post("/addNewForms", function(req, res) {
     }
 
     // adding new files.
-    fs.mkdirAsync(path.join(appRoot.path, "/public/AUGSD/fd-thesis"))
+    fs.mkdir(path.join(appRoot.path, "/public/AUGSD/fd-thesis"))
       .catch(
         {
           code: "EEXIST"
