@@ -41,7 +41,7 @@ router.post("/addNewForms", function(req, res) {
 
     // adding new files.
     fs.mkdir(path.join(appRoot.path, "/public/AUGSD/fd-thesis"), function(err) {
-      if (err.code !== "EEXIST") {
+      if (err && err.code !== "EEXIST") {
         res.terminate(err);
       }
       if (req.files) {
