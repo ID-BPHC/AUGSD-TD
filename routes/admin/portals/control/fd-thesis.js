@@ -71,15 +71,16 @@ router.post("/addNewForms", function(req, res) {
               }
             );
           });
+        } else {
+          return res.renderState("custom_errors", {
+            redirect: "/fd-thesis",
+            timeout: 2,
+            supertitle: "Submitted the FD-Thesis Forms.",
+            message: "Success",
+            details: "Redirecting to FD-thesis portal."
+          });
         }
       });
-    return res.renderState("custom_errors", {
-      redirect: "/fd-thesis",
-      timeout: 2,
-      supertitle: "Submitted the FD-Thesis Forms.",
-      message: "Success",
-      details: "Redirecting to FD-thesis portal."
-    });
   });
 });
 module.exports = router;
