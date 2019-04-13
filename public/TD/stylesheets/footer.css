@@ -1,0 +1,31 @@
+p.footer-desc {
+    margin-right: 30px;
+}
+
+.mdl-mega-footer {
+    padding: 16px 40px;
+    color: #424242 !important;
+    background-color: #F5F5F5 !important;
+}
+.mdl-mega-footer__heading{
+    color:#3a3a3a !important;
+    font-weight: bold !important;
+}
+.material-icons {
+    font-size: inherit;
+    vertical-align: middle;
+    margin: 0px;
+    padding-right: 5px;
+}
+.mdl-mega-footer__link-list a {
+    text-decoration: underline !important;
+}
+
+@media (max-width: 900px) {
+    .android-be-together-section {
+        height: 600px !important;
+    }
+}
+hr {
+    width: 50%;
+}

@@ -105,7 +105,10 @@ html(lang='en')
 			text-align: center;
 			margin: 0 auto;
 			}
-
+			body{
+				background:#2e2f33;
+				
+			}
 			#loader-pitch h3{
 			transform: translate(0px,25px);
 			-webkit-transform: translate(0px,25px);
@@ -438,8 +441,10 @@ html(lang='en')
 					//- .logo-font.android-sub-slogan
 					//- 	span(style="padding:5px;background-color:#333;color:#ccc;")
 					//- 		a(style="color:#ccc;text-decoration:none;" href="/team") #team
+				include footer
+				
 		div(id="outdated").hidden
-		script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-107202501-1')
+	script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-107202501-1')
 		script.
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
