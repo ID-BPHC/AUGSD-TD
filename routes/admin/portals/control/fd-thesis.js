@@ -24,11 +24,13 @@ router.post("/addNewForms", function(req, res) {
     //removing old files.
     let oldForms = Object.keys(req.body);
     let deletedOldForms = [];
-    files.forEach(file => {
-      if (oldForms.indexOf(file) == -1) {
-        deletedOldForms.push(file);
-      }
-    });
+    if (files) {
+      files.forEach(file => {
+        if (oldForms.indexOf(file) == -1) {
+          deletedOldForms.push(file);
+        }
+      });
+    }
     if (deletedOldForms) {
       deletedOldForms.forEach(function(deletedOldForm) {
         fs.unlinkSync(
@@ -38,29 +40,25 @@ router.post("/addNewForms", function(req, res) {
     }
 
     // adding new files.
-    fs.mkdir(path.join(appRoot.path, "/public/AUGSD/fd-thesis"))
-      .catch(
-        {
-          code: "EEXIST"
-        },
-        function(e) {}
-      )
-      .catch(function(e) {
-        console.log("Error to create folder: " + e);
-        return res.terminate(e);
-      })
-      .then(function() {
-        if (req.files) {
-          newFiles = Object.keys(req.files);
-          newFiles.forEach(file => {
-            req.files[file].mv(
-              path.join(
-                appRoot.path,
-                "/public/AUGSD/fd-thesis",
-                req.files[file].name
-              ),
-              function(err) {
-                if (err) return res.terminate(err);
+    fs.mkdir(path.join(appRoot.path, "/public/AUGSD/fd-thesis"), function(err) {
+      if (err.code !== "EEXIST") {
+        res.terminate(err);
+      }
+      if (req.files) {
+        newFiles = Object.keys(req.files);
+        newFiles.forEach(file => {
+          req.files[file].mv(
+            path.join(
+              appRoot.path,
+              "/public/AUGSD/fd-thesis",
+              req.files[file].name
+            ),
+            function(err) {
+              if (err) {
+                console.log("Error is ", err);
+                return res.terminate(err);
+              } else {
+                console.log("I am here 1...");
                 return res.renderState("custom_errors", {
                   redirect: "/fd-thesis",
                   timeout: 2,
@@ -69,18 +67,20 @@ router.post("/addNewForms", function(req, res) {
                   details: "Redirecting to FD-thesis portal."
                 });
               }
-            );
-          });
-        } else {
-          return res.renderState("custom_errors", {
-            redirect: "/fd-thesis",
-            timeout: 2,
-            supertitle: "Submitted the FD-Thesis Forms.",
-            message: "Success",
-            details: "Redirecting to FD-thesis portal."
-          });
-        }
-      });
+            }
+          );
+        });
+      } else {
+        console.log("I am here 2...");
+        return res.renderState("custom_errors", {
+          redirect: "/fd-thesis",
+          timeout: 2,
+          supertitle: "Submitted the FD-Thesis Forms.",
+          message: "Success",
+          details: "Redirecting to FD-thesis portal."
+        });
+      }
+    });
   });
 });
 module.exports = router;
