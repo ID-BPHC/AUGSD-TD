@@ -5,7 +5,7 @@ var bugsSchema = new Schema({
   category: String,
   report: String,
   useragent: String,
-  student: String,
+  user: String,
   error: {
     type: Object,
     default: null

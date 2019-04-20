@@ -7,14 +7,11 @@ let client = redis.createClient();
 
 let studentsModel = require("../../schemas/students");
 let portalsModel = require("../../schemas/portals");
-let bugsModel = require("../../schemas/bugs");
 
 let auth = require("../../middleware/auth");
 let config = require("../../config");
 
 let originalPath = "/dashboard";
-
-const { check, validationResult } = require("express-validator/check");
 
 /* Configure middleware for portal permissions */
 
@@ -227,78 +224,6 @@ router.use(function(req, res, next) {
 
 router.get("/", function(req, res, next) {
   res.renderState("dashboard/index");
-});
-
-router.get("/bug", function(req, res, next) {
-  let params = req.params;
-  params.categories = [
-    "User Interface",
-    "Feature Request",
-    "Site Performance",
-    "Site Operationality",
-    "Thank You"
-  ];
-  res.renderState("dashboard/bug", params);
-});
-
-router.post(
-  "/bug",
-  [
-    check("feedbacklist")
-      .exists()
-      .withMessage("No Category is specified")
-      .not()
-      .equals(". . .") // default value in the category selector
-      .withMessage("No Category is specified"),
-    check("feedback")
-      .exists()
-      .withMessage("Feedback is left empty")
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage("Feedback is left empty")
-  ],
-  function(req, res, next) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.renderState("custom_errors", {
-        redirect: "/dashboard",
-        timeout: 2,
-        supertitle: "Invalid Details",
-        message: "Bug report Failed",
-        details: errors.array().map(e => e.msg)
-      });
-    }
-
-    let dataStore = {
-      category: req.sanitize(req.body.feedbacklist),
-      report: req.sanitize(req.body.feedback),
-      useragent: req.sanitize(req.headers["user-agent"]),
-      student: req.user.email
-    };
-    bugsModel.create(dataStore, function(err, response) {
-      if (err) {
-        res.renderState("custom_errors", {
-          redirect: "/dashboard",
-          timeout: 2,
-          supertitle: "Failed submitting feedback.",
-          message: "Failed",
-          details: err
-        });
-      }
-      res.renderState("custom_errors", {
-        redirect: "/dashboard",
-        timeout: 2,
-        supertitle: "Submitted Report.",
-        message: "Success",
-        details: "Report has been submitted"
-      });
-    });
-  }
-);
-
-router.get("/bug/policy", function(req, res, next) {
-  res.renderState("dashboard/bug_policy");
 });
 
 router.get("/profile", function(req, res, next) {
