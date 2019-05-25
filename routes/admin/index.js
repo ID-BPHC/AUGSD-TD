@@ -125,7 +125,7 @@ router.get(
             description: "Sets the Super Admin during first run.",
             value: [req.user.emails[0].value]
           });
-          let CheckAdmin = function() {
+          let CheckAdmin = function() { 
             req.session.destroy(function() {
               res.redirect("/admin/login");
             });
