@@ -56,7 +56,7 @@ mongoose.connect(
 var admin = require("./routes/admin");
 var dashboard = require("./routes/dashboard");
 var index = require("./routes");
-var cgTranscripts = require("./routes/cgTranscripts");
+var api = require("./routes/api/index");
 
 // A termination function on any kind of error that occours after login
 app.use(function(req, res, next) {
@@ -90,8 +90,7 @@ app.use(function(req, res, next) {
 app.use("/admin", admin);
 app.use("/dashboard", dashboard);
 app.use("/", index);
-app.use("/cg-transcripts", cgTranscripts);
-
+app.use("/api", api);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error("Not Found");
