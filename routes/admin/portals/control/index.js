@@ -12,6 +12,7 @@ let ttExceptions = require("./ttExceptions");
 let projectGuidelines = require("./projectAllotmentGuidelines.js");
 let projAllotmentForbiddenBatches = require("./projAllotmentForbiddenBatches.js");
 let blockAllRooms = require("./blockAllRooms.js");
+let fdThesis = require("./fd-thesis.js");
 var roomMap = require("./roomMap.js");
 
 router.use("/holidays", holiday);
@@ -26,6 +27,7 @@ router.use(
 );
 router.use("/block-all-rooms", blockAllRooms);
 router.use("/room-map", roomMap);
+router.use("/fd-thesis", fdThesis);
 
 router.get("/", function(req, res, next) {
   settingsModel.find(
