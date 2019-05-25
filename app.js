@@ -90,7 +90,7 @@ app.use(function(req, res, next) {
 app.use("/admin", admin);
 app.use("/dashboard", dashboard);
 app.use("/", index);
-app.use("/cg-transcripts",cgTranscripts);
+app.use("/cg-transcripts", cgTranscripts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
