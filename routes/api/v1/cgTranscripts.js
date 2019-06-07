@@ -77,7 +77,7 @@ router.post("/", authenticate, function(req, res, next) {
 });
 
 router.get("/", authenticate, function(req, res, next) {
-  if (!req.body.email) {
+  if (!req.query.email) {
     cgTranscriptsModel.find(function(err, cgtranscript) {
       if (err) {
         res.status(500).json({
@@ -91,7 +91,7 @@ router.get("/", authenticate, function(req, res, next) {
   } else {
     cgTranscriptsModel.find(
       {
-        email: req.body.email
+        email: req.query.email
       },
       function(err, cgtranscript) {
         if (err) {
