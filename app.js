@@ -15,7 +15,7 @@ var app = express();
 app.set("views", path.join(__dirname, "views", config.siteMode));
 app.set("view engine", "jade");
 app.set("trust proxy", true);
-app.use(cors); // Allow CORS requests
+
 //Favicon
 app.use(
   favicon(
@@ -58,7 +58,11 @@ var admin = require("./routes/admin");
 var dashboard = require("./routes/dashboard");
 var index = require("./routes");
 var api = require("./routes/api/index");
-
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // A termination function on any kind of error that occours after login
 app.use(function (req, res, next) {
   res.terminate = function (err) {
