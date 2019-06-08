@@ -9,8 +9,9 @@ var fs = require("fs");
 let appRoot = require("app-root-path");
 var errorFields = [];
 var cgTranscriptsModel = require("../../../schemas/cgTranscripts");
+var cgTranscriptUsersModel = require("../../../schemas/cgTransctipt-users.js");
 
-let authenticate = function(req, res, next) {
+let authenticate = function (req, res, next) {
   if (true) {
     return next();
   } else {
@@ -22,7 +23,7 @@ let authenticate = function(req, res, next) {
   }
 };
 
-let checkErrors = function(req, res, next) {
+let checkErrors = function (req, res, next) {
   if (errorFields.length > 0) {
     res.status(400).json({
       error: true,
@@ -33,16 +34,16 @@ let checkErrors = function(req, res, next) {
   return false;
 };
 
-router.all("/", function(req, res, next) {
+router.all("/", function (req, res, next) {
   errorFields = []; // The error fields must be reset for every query
   next();
 });
 
-router.get("/test", authenticate, function(req, res) {
+router.get("/test", authenticate, function (req, res) {
   res.json({ message: "API is online." });
 });
 
-router.post("/", authenticate, function(req, res, next) {
+router.post("/", authenticate, function (req, res, next) {
   if (!req.body.bitsId) {
     errorFields.push("bitsId");
   }
@@ -61,12 +62,12 @@ router.post("/", authenticate, function(req, res, next) {
       status: "A",
       email: req.body.email
     });
-    cgtranscript.save(function(err) {
+    cgtranscript.save(function (err) {
       if (err) {
         res.json({
           error: true,
           message: `Could not save to database because of this error : ${error}`
-        });gi
+        }); gi
       } else {
         res.status(201).json({
           message: "Successfully Saved Request"
@@ -76,9 +77,9 @@ router.post("/", authenticate, function(req, res, next) {
   }
 });
 
-router.get("/", authenticate, function(req, res, next) {
+router.get("/", authenticate, function (req, res, next) {
   if (!req.query.email) {
-    cgTranscriptsModel.find(function(err, cgtranscript) {
+    cgTranscriptsModel.find(function (err, cgtranscript) {
       if (err) {
         res.status(500).json({
           error: true,
@@ -93,7 +94,7 @@ router.get("/", authenticate, function(req, res, next) {
       {
         email: req.query.email
       },
-      function(err, cgtranscript) {
+      function (err, cgtranscript) {
         if (err) {
           res.status(500).json({
             error: true,
@@ -107,4 +108,22 @@ router.get("/", authenticate, function(req, res, next) {
   }
 });
 
+router.post("/users", authenticate, function (req, res) {
+  cgTranscriptUsersModel.save({
+    email: "abc@default.com"
+  }, function (err, cgTranscriptUser) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(cgTranscriptUser);
+    }
+  })
+});
+
+router.get("/users", authenticate, function (req, res) {
+
+  if (req.query.emaail) {
+
+  }
+});
 module.exports = router;
