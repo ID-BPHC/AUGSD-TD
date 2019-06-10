@@ -6,6 +6,7 @@ var cgTranscriptUsersSchema = new Schema({
     bitsId: String,
     address: String,
     mcode: Number,
+    name: String,
 });
 
 var model = mongoose.model("cgTranscriptUser", cgTranscriptUsersSchema);
