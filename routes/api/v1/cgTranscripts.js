@@ -109,41 +109,78 @@ router.get("/", authenticate, function (req, res, next) {
 });
 
 router.post("/users", authenticate, function (req, res) {
-  errorFields = [];
-  if (!req.body.email) {
-    errorFields.push("email")
-  };
-  if (!req.body.name) {
-    errorFields.push("name")
-  };
-  if (!req.body.bitsId) {
-    errorFields.push("bitsId")
-  };
-  if (!req.body.mcode) {
-    errorFields.push("mcode")
-  };
-  if (!req.body.address) {
-    errorFields.push("address")
-  };
-  if (errorFields.length > 0) {
-    res.status(500).json({
-      error: `Required fields : ${errorFields}`,
-    })
-  } else {
-    var user = new cgTranscriptUsersModel();
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.address = req.body.address;
-    user.mcode = req.body.mcode;
-    user.bits = req.body.bitsId;
-    user.save(function (err, cgTranscriptUser) {
+
+  if (req.body.email) {
+    cgTranscriptUsersModel.findOne({
+      email: req.body.email
+    }, function (err, user) {
       if (err) {
-        res.json(err);
+        res.status(500).json({
+          error: err
+        })
       } else {
-        res.json(cgTranscriptUser);
+        if (user) {
+          if (req.body.name) {
+            user.name = req.body.name
+          } if (req.body.bitsId) {
+            user.bitsId = req.body.bitsId
+          } if (req.body.address) {
+            user.address = req.body.address
+          } if (req.body.mcode) {
+            user.mcode = req.body.mcode
+          }
+          user.save(function (err, user) {
+            if (err) {
+              res.status(500).json({
+                error: err
+              })
+            } else {
+              res.json(user)
+            }
+          })
+        } else {
+
+          errorFields = [];
+          if (!req.body.email) {
+            errorFields.push("email")
+          };
+          if (!req.body.name) {
+            errorFields.push("name")
+          };
+          if (!req.body.bitsId) {
+            errorFields.push("bitsId")
+          };
+          if (!req.body.mcode) {
+            errorFields.push("mcode")
+          };
+          if (!req.body.address) {
+            errorFields.push("address")
+          };
+          if (errorFields.length > 0) {
+            res.status(500).json({
+              error: `Required fields : ${errorFields}`,
+            })
+          } else {
+            var user = new cgTranscriptUsersModel();
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.address = req.body.address;
+            user.mcode = req.body.mcode;
+            user.bits = req.body.bitsId;
+            user.save(function (err, cgTranscriptUser) {
+              if (err) {
+                res.json(err);
+              } else {
+                res.json(cgTranscriptUser);
+              }
+            })
+          }
+        }
       }
     })
   }
+
+
 });
 
 
