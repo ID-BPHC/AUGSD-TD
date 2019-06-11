@@ -7,6 +7,10 @@ var cgTranscriptSchema = new Schema({
   applicationType: String,
   status: String,
   email: String,
+  info:{
+    type:String,
+    default:"No information provided."
+  },
   applicationType: String,
   active: {
     type: Boolean,

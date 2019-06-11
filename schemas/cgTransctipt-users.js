@@ -7,6 +7,11 @@ var cgTranscriptUsersSchema = new Schema({
     address: String,
     mcode: Number,
     name: String,
+    mob: String,
+    sex: {
+        type: String,
+        enum: ["M", "F", "O"]
+    }
 });
 
 var model = mongoose.model("cgTranscriptUser", cgTranscriptUsersSchema);

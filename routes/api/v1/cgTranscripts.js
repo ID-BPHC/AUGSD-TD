@@ -128,6 +128,10 @@ router.post("/users", authenticate, function (req, res) {
             user.address = req.body.address
           } if (req.body.mcode) {
             user.mcode = req.body.mcode
+          } if (req.body.sex) {
+            user.sex = req.body.sex
+          } if (req.body.mob) {
+            user.mob = req.body.mob
           }
           user.save(function (err, user) {
             if (err) {
@@ -166,6 +170,8 @@ router.post("/users", authenticate, function (req, res) {
             user.email = req.body.email;
             user.address = req.body.address;
             user.mcode = req.body.mcode;
+            user.mob = req.body.mob;
+            user.sex = req.body.sex;
             user.bits = req.body.bitsId;
             user.save(function (err, cgTranscriptUser) {
               if (err) {

@@ -1,5 +1,6 @@
 extends ../../../master-dashboard
 
+
 block content
     style.
         td {
@@ -41,6 +42,7 @@ block content
                                 th Applicant ID
                                 th Application Type
                                 th Status
+                                th Info
                                 th Options
                         tbody
                             tr
@@ -49,15 +51,18 @@ block content
                                 td 2018A7PS0267H
                                 td CG Card 1-1
                                 td Dispatched
+                                td No information provided
                                 td 
-                                    button.mdl-button.mdl-button--colored.mdl-button--raised Edit
-                                    button.mdl-button.mdl-button--colored.mdl-button--raised Get Student Details
+                                    button.mdl-button.mdl-button--colored.mdl-button--raised.edit-application(data-id="1234567890") Edit
+                                    &nbsp; 
+                                    button.mdl-button.mdl-button--colored.mdl-button--raised.get-student-details(data-bitsId="2018A7PS0267H") Get Student Details
                             tr    
                                 td 1
                                 td 27 December 2019
                                 td 2018A7PS0267H
                                 td CG Card 1-1
                                 td Dispatched
+                                td No information provided
                                 td 
                                     button Edit
                                     button Get Student Details
@@ -67,6 +72,11 @@ block content
                                 td 2018A7PS0267H
                                 td CG Card 1-1
                                 td Dispatched
+                                td No information provided
                                 td 
                                     button Edit
-                                    button Get Student Details                                    
+                                    button Get Student Details         
+
+block additionalScripts
+    script(src="/scripts/lol.js")
+                           
