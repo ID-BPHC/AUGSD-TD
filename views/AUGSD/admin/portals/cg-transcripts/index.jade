@@ -1,0 +1,72 @@
+extends ../../../master-dashboard
+
+block content
+    style.
+        td {
+        cursor: pointer;
+        }
+    style.
+        .fullwidth, .fullwidth thead tr{
+            width:100%;
+        }
+    div.mdl-cell.mdl-cell--12-col
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+            .android-customized-section
+                .android-customized-section-text
+                    h2 CG Transcripts
+                    p.center Admins can manage status of CG Transcript applications here.
+                    hr
+                    h4 List of submitted applications.
+                    .cg-options
+                        h5 Options
+                        |Show only Active
+                        input(type="checkbox" false).activeOnly
+                        &nbsp; &nbsp;
+                        |Sort applications by:
+                        select.sortCGTranscripts
+                            option Serial Number
+                            option Date of Creation
+                            option Applicant ID
+                            option Application Type
+                            option Status
+                        &nbsp; &nbsp;                        
+                        button.mdl-button.mdl-button--raised.mdl-button---red Apply Filters
+
+                    br
+                    table.mdl-data-table.fullwidth
+                        thead
+                            tr
+                                th Sr No.
+                                th Date of Creation
+                                th Applicant ID
+                                th Application Type
+                                th Status
+                                th Options
+                        tbody
+                            tr
+                                td 1
+                                td 27 December 2019
+                                td 2018A7PS0267H
+                                td CG Card 1-1
+                                td Dispatched
+                                td 
+                                    button.mdl-button.mdl-button--colored.mdl-button--raised Edit
+                                    button.mdl-button.mdl-button--colored.mdl-button--raised Get Student Details
+                            tr    
+                                td 1
+                                td 27 December 2019
+                                td 2018A7PS0267H
+                                td CG Card 1-1
+                                td Dispatched
+                                td 
+                                    button Edit
+                                    button Get Student Details
+                            tr    
+                                td 1
+                                td 27 December 2019
+                                td 2018A7PS0267H
+                                td CG Card 1-1
+                                td Dispatched
+                                td 
+                                    button Edit
+                                    button Get Student Details                                    

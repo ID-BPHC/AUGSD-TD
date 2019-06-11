@@ -109,7 +109,7 @@ router.get("/", authenticate, function (req, res, next) {
 });
 
 router.post("/users", authenticate, function (req, res) {
-
+  console.log(req.body.email)
   if (req.body.email) {
     cgTranscriptUsersModel.findOne({
       email: req.body.email

@@ -7,7 +7,11 @@ var cgTranscriptSchema = new Schema({
   applicationType: String,
   status: String,
   email: String,
-  applicationType: String
+  applicationType: String,
+  active: {
+    type: Boolean,
+    default: true,
+  }
 });
 
 var model = mongoose.model("cgtranscripts", cgTranscriptSchema);
