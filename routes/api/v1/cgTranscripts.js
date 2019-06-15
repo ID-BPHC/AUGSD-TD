@@ -78,7 +78,23 @@ router.post("/", authenticate, function (req, res, next) {
 });
 
 router.get("/", authenticate, function (req, res, next) {
-  if (!req.query.email) {
+  if (req.query.id) {
+    cgTranscriptsModel.findById(req.query.id, function (err, cgtranscript) {
+      if (err) {
+        res.status(500).json({
+          error: err
+        });
+      } else if (!cgtranscript) {
+        res.status(500).json({
+          error: "Application not found"
+        });
+
+      } else {
+        res.json(cgtranscript);
+      }
+    })
+    return;
+  } else if (!req.query.email) {
     cgTranscriptsModel.find(function (err, cgtranscript) {
       if (err) {
         res.status(500).json({

@@ -6,6 +6,22 @@ block content
         td {
         cursor: pointer;
         }
+        .wrapper{
+            display:none;
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0px;
+            left:0px;
+            z-index:99000;
+            background:rgba(255,255,255,0.8);
+        }
+        .mdl-dialog{
+            display:none;
+            z-index:100000;
+            width:600px !important;
+            max-width:80% !important;
+        }
     style.
         .fullwidth, .fullwidth thead tr{
             width:100%;
@@ -53,7 +69,7 @@ block content
                                 td Dispatched
                                 td No information provided
                                 td 
-                                    button.mdl-button.mdl-button--colored.mdl-button--raised.edit-application(data-id="1234567890") Edit
+                                    button.mdl-button.mdl-button--colored.mdl-button--raised.edit-application(data-id="5cf6b0e45ec7ee5caad36d57") Edit
                                     &nbsp; 
                                     button.mdl-button.mdl-button--colored.mdl-button--raised.get-student-details(data-bitsId="2018A7PS0267H") Get Student Details
                             tr    
@@ -76,7 +92,10 @@ block content
                                 td 
                                     button Edit
                                     button Get Student Details         
-
-block additionalScripts
-    script(src="/scripts/lol.js")
-                           
+                               
+    .wrapper
+    dialog.mdl-dialog
+        h4.mdl-dialog__title Edit Application Details
+        .mdl-dialog__content
+            p.center
+            | Loading
