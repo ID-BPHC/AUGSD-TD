@@ -11,7 +11,7 @@ var cgTranscriptSchema = new Schema({
     type:String,
     default:"No information provided."
   },
-  applicationType: String,
+  applicationType: [String],
   active: {
     type: Boolean,
     default: true,

@@ -53,14 +53,17 @@ router.post("/", authenticate, function (req, res, next) {
   if (!req.body.applicationType) {
     errorFields.push("applicationType");
   }
+  var applicationType = JSON.parse(req.body.applicationType);
+  var info = (req.body.info) ? req.body.info : "No information provided.";
   if (!checkErrors(req, res, next)) {
     var cgtranscript = new cgTranscriptsModel({
       bitsId: req.body.bitsId.toUpperCase(),
       date: Date.now(),
       email: req.body.email,
-      applicationType: req.body.applicationType.toUpperCase(),
+      applicationType: applicationType,
       status: "A",
-      email: req.body.email
+      email: req.body.email,
+      info: info,
     });
     cgtranscript.save(function (err) {
       if (err) {
