@@ -9,8 +9,8 @@ var fs = require("fs");
 let appRoot = require("app-root-path");
 var errorFields = [];
 var cgTranscriptsModel = require("../../../schemas/cgTranscripts");
-var cgTranscriptUsersModel = require("../../../schemas/cgTransctipt-users.js");
-
+var cgTranscriptUsersModel = require("../../../schemas/cgTransctipt-users");
+var applicationTypesModel = require("../../../schemas/applicationTypes")
 let authenticate = function (req, res, next) {
   if (true) {
     return next();
@@ -126,6 +126,20 @@ router.get("/", authenticate, function (req, res, next) {
     );
   }
 });
+
+
+router.get("/application-types", function (req, res) {
+  applicationTypesModel.find(function (err, applicationTypes) {
+    if (err) {
+      res.status(500).json({
+        error: err
+      });
+    } else {
+      res.json(applicationTypes);
+    }
+  })
+})
+
 
 router.post("/users", authenticate, function (req, res) {
   console.log(req.body.email)
