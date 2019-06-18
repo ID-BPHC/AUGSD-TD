@@ -1,17 +1,20 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-
 var cgTranscriptSchema = new Schema({
   bitsId: String,
-  date: Date,
-  applicationType: String,
+  date: {
+    type: Date,
+    default: Date.now()
+  },
   status: String,
   email: String,
-  info:{
-    type:String,
-    default:"No information provided."
+  info: {
+    type: String,
+    default: "No information provided."
   },
-  applicationType: [String],
+  applicationType: {
+    type: Array,
+  },
   active: {
     type: Boolean,
     default: true,
