@@ -15,10 +15,34 @@ router.get("/", function (req, res, next) {
       });
 
     } else {
-      res.renderState("admin/portals/cg-transcripts", { cgTranscripts: cgTranscripts });
+      res.renderState("admin/portals/cg-transcripts", { cgTranscripts: cgTranscripts, message: req.query.message });
     }
   })
 });
+
+router.post("/modify-status", function (req, res) {
+  cgTranscriptsModel.findById(req.body.applicationId, function (err, transcript) {
+    if (err) {
+      res.json({
+        message: "Error, failed to save data",
+        error: err
+      })
+    } else {
+      transcript.status = req.body.status;
+      transcript.info = req.body.info;
+      transcript.save(function (err, transcript) {
+        if (err) {
+          res.json({
+            message: "Error, failed to save data",
+            error: err
+          })
+        } else {
+          res.redirect("../cg-transcripts?message=Updated Document Successfully");
+        }
+      })
+    }
+  })
+})
 
 
 module.exports = router;

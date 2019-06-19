@@ -80,6 +80,12 @@ router.post("/", authenticate, function (req, res, next) {
   }
 });
 
+
+
+router.get("/status-types", function (req, res, next) {
+  res.json(["Submitted", "Processing", "Payment Pending", "Payment Failed", "Cancelled", "Rejected", "Shipped", "Completed", "Other"]);
+})
+
 router.get("/", authenticate, function (req, res, next) {
   if (req.query.id) {
     cgTranscriptsModel.findById(req.query.id, function (err, cgtranscript) {

@@ -5,47 +5,71 @@
             $(".modal-title").html(`${$(this).data("title")}`)
             $(".modal-body").html(`<p class="mdl-typography--text-center">Loading</p>`)
             $(".wrapper").css("display", "block");
-            var baseUrl = window.location;
+            var baseUrl = window.location.href;
+            if (baseUrl[baseUrl.length - 1] == "/") {
+                var endpoint = baseUrl + "modify-status";
+            } else {
+                var endpoint = baseUrl + "/modify-status";
+
+            }
             var applicationId = $(this).data("id");
             $.ajax({
-                url: "../../api/v1/cg-transcripts",
-                data: {
-                    id: applicationId
-                },
-                success: function (data) {
-                    console.log(data)
-                    if (data.error) {
-                        $(".modal-body").html(`<p class="mdl-typography--text-center">An error occurred</p>`)
-                        console.log(data.error)
+                url: "../../api/v1/cg-transcripts/status-types",
+                success: function (statusTypes) {
 
-                    } else {
-                        $(".modal-body").html(
-                            `<p>
-<b>Email : </b> ${data.email}
-</p>
-<p>
-<b>BITS Id : </b> ${data.bitsId}
-</p>
-<p>
-<b>Type : </b> ${data.applicationType}
-</p>
-<p>
-<b>Status : <input class="mdl-textfield__input" type="text" id="application-status-edit" value="${data.status}">
-</b>
-</p>
-<p>
-<b>Info : <input class="mdl-textfield__input" type="text" id="application-info-edit" value="${data.info}">
-</b>
-</p>
-<button class="mdl-button mdl-button--colored mdl-button--raised save-edit-application">Save</button>`
-                        );
-                        console.log(data.email)
-                    }
+                    $.ajax({
+                        url: "../../api/v1/cg-transcripts",
+                        data: {
+                            id: applicationId
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            if (data.error) {
+                                $(".modal-body").html(`<p class="mdl-typography--text-center">An error occurred</p>`)
+                                console.log(data.error)
+
+                            } else {
+                                var statusText = `<select name="status">`;
+                                for (element of statusTypes) {
+                                    statusText += `<option ${(element == data.status) ? "selected" : ""}>${element}</option>`
+                                }
+                                statusText += `</select>`
+                                $(".modal-body").html(
+
+                                    `<form action="${window.location.origin}/admin/cg-transcripts/modify-status" method="POST">
+
+                                    <input type="hidden" name="applicationId" value="${data._id}">
+                                    <p>
+        <b>Email : </b> ${data.email}
+        </p>
+        <p>
+        <b>BITS Id : </b> ${data.bitsId}
+        </p>
+        <p>
+        <b>Status : ${statusText}
+        </b>
+        </p>
+        <p>
+        <b>Info : <textarea class="mdl-textfield__input" type="text" id="application-info" name="info">${data.info}</textarea>
+        </b>
+        </p>
+        <button class="mdl-button mdl-button--colored mdl-button--raised save-edit-application">Save</button>
+        </form>
+        `
+                                );
+                                console.log(data.email)
+                            }
+                        },
+                        error: function (xhr) {
+                            alert(`Error : ${JSON.stringify(xhr)}`);
+                        }
+                    })
                 },
                 error: function (xhr) {
-                    alert(`Error : ${JSON.stringify(xhr)}`);
+                    alert("Error: Could not fetch data from server. \n \n Details : " + JSON.stringify(xhr));
                 }
             })
+
 
         })
 

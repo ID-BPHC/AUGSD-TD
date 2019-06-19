@@ -18,9 +18,19 @@ block content
         }
         .mdl-dialog{
             display:none;
-            z-index:100000;
+            z-index:10000000;
             width:600px !important;
             max-width:80% !important;
+        }
+        .message{
+            background:#e9e96d;
+            padding:30px;
+            width:600px;
+            border-radius:5px;
+            margin:0 auto;
+            max-width:90%;
+            color:black;
+            text-align:center;
         }
     style.
         .fullwidth, .fullwidth thead tr{
@@ -32,6 +42,11 @@ block content
                 .android-customized-section-text
                     h2 CG Transcripts
                     p.center Admins can manage status of CG Transcript applications here.
+                    -if(message)
+                        .message
+                            h4 Message
+                            hr(style="border-color:grey")
+                            |#{message}
                     hr
                     .cg-options
                         h5 Options
