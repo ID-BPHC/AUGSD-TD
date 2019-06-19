@@ -61,7 +61,7 @@ router.post("/", authenticate, function (req, res, next) {
       date: Date.now(),
       email: req.body.email,
       applicationType: applicationType,
-      status: "A",
+      status: "Submitted",
       email: req.body.email,
       info: info,
     });
@@ -224,8 +224,19 @@ router.post("/users", authenticate, function (req, res) {
 
 
 router.get("/users", authenticate, function (req, res) {
-
-  if (req.query.email) {
+  if (req.query.bitsId) {
+    cgTranscriptUsersModel.findOne({
+      bitsId: req.query.bitsId
+    }, function (err, user) {
+      if (err) {
+        res.status(500).json({
+          error: err
+        })
+      } else {
+        res.json(user)
+      }
+    })
+  } else if (req.query.email) {
     cgTranscriptUsersModel.findOne({
       email: req.query.email
     }, function (err, user) {

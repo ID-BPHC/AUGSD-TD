@@ -33,20 +33,16 @@ block content
                     h2 CG Transcripts
                     p.center Admins can manage status of CG Transcript applications here.
                     hr
-                    h4 List of submitted applications.
                     .cg-options
                         h5 Options
-                        |Show only Active
+                        |Hide completed
                         input(type="checkbox" false).activeOnly
-                        &nbsp; &nbsp;
+                        |&nbsp; &nbsp;
                         |Sort applications by:
                         select.sortCGTranscripts
-                            option Serial Number
                             option Date of Creation
-                            option Applicant ID
-                            option Application Type
                             option Status
-                        &nbsp; &nbsp;                        
+                        |&nbsp; &nbsp;                        
                         button.mdl-button.mdl-button--raised.mdl-button---red Apply Filters
 
                     br
@@ -61,41 +57,32 @@ block content
                                 th Info
                                 th Options
                         tbody
-                            tr
-                                td 1
-                                td 27 December 2019
-                                td 2018A7PS0267H
-                                td CG Card 1-1
-                                td Dispatched
-                                td No information provided
-                                td 
-                                    button.mdl-button.mdl-button--colored.mdl-button--raised.edit-application(data-id="5cf6b0e45ec7ee5caad36d57") Edit
-                                    &nbsp; 
-                                    button.mdl-button.mdl-button--colored.mdl-button--raised.get-student-details(data-bitsId="2018A7PS0267H") Get Student Details
-                            tr    
-                                td 1
-                                td 27 December 2019
-                                td 2018A7PS0267H
-                                td CG Card 1-1
-                                td Dispatched
-                                td No information provided
-                                td 
-                                    button Edit
-                                    button Get Student Details
-                            tr    
-                                td 1
-                                td 27 December 2019
-                                td 2018A7PS0267H
-                                td CG Card 1-1
-                                td Dispatched
-                                td No information provided
-                                td 
-                                    button Edit
-                                    button Get Student Details         
-                               
+                            -for(sr in cgTranscripts)
+                                - console.log(sr)
+                                tr
+                                    td=parseInt(sr)+1
+                                    td=new Date(cgTranscripts[sr].date).toLocaleString()
+                                    td=cgTranscripts[sr].bitsId
+                                    td
+                                        -for(element of cgTranscripts[sr].applicationType)
+                                            div
+                                                span(style="background:whitesmoke;color:brown") #{element.name}
+                                                span  : #{element.quantity} nos.
+                                    td=cgTranscripts[sr].status
+                                    td=cgTranscripts[sr].info
+                                    td
+                                        button.mdl-button.mdl-button--raised.mdl-button---red.view-profile(data-bitsid=cgTranscripts[sr].bitsId data-title="Applicant Profile") View  Profile
+                                        | &nbsp; 
+                                        button.mdl-button.mdl-button--raised.mdl-button--primary.modify-status(data-id=cgTranscripts[sr].id data-title="Modify Application Status") Modify Status
+
+
     .wrapper
     dialog.mdl-dialog
-        h4.mdl-dialog__title Edit Application Details
+        h4.mdl-dialog__title.modal-title Dialog Box
         .mdl-dialog__content
-            p.center
-            | Loading
+            .modal-body
+                | Content should load here. If it does not, reload page.
+        .buttons
+            hr
+            button.mdl-button.mdl-button--raised.close-modal Close Dialog
+

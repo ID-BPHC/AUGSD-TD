@@ -1,8 +1,9 @@
 {
     $(document).ready(function () {
-        $(document).on("click", ".edit-application", function () {
+        $(document).on("click", ".modify-status", function () {
             $(".mdl-dialog").css("display", "block");
-            $(".mdl-dialog__content").html(`<p class="mdl-typography--text-center">Loading</p>`)
+            $(".modal-title").html(`${$(this).data("title")}`)
+            $(".modal-body").html(`<p class="mdl-typography--text-center">Loading</p>`)
             $(".wrapper").css("display", "block");
             var baseUrl = window.location;
             var applicationId = $(this).data("id");
@@ -14,12 +15,12 @@
                 success: function (data) {
                     console.log(data)
                     if (data.error) {
-                        $(".mdl-dialog__content").html(`<p class="mdl-typography--text-center">An error occurred</p>`)
+                        $(".modal-body").html(`<p class="mdl-typography--text-center">An error occurred</p>`)
                         console.log(data.error)
 
                     } else {
-                        $(".mdl-dialog__content").html(
-`<p>
+                        $(".modal-body").html(
+                            `<p>
 <b>Email : </b> ${data.email}
 </p>
 <p>
@@ -47,12 +48,76 @@
             })
 
         })
+
+
+
+
+        $(document).on("click", ".view-profile", function () {
+            $(".mdl-dialog").css("display", "block");
+            $(".modal-title").html(`${$(this).data("title")}`)
+            $(".modal-body").html(`<p class="mdl-typography--text-center">Loading</p>`)
+            $(".wrapper").css("display", "block");
+            var baseUrl = window.location;
+            var bitsId = $(this).data("bitsid");
+            console.log(bitsId)
+            $.ajax({
+                url: "../../api/v1/cg-transcripts/users",
+                data: {
+                    bitsId: bitsId
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data.error) {
+                        $(".modal-body").html(`<p class="mdl-typography--text-center">An error occurred</p>`)
+                        console.log(data.error)
+
+                    } else {
+                        $(".modal-body").html(
+                            `
+                            <div>
+                            <b>Name:</b> : ${data.name}
+                            </div>
+                            <div>
+                            <b>Email Address:</b> : ${data.email}
+                            </div>
+                            <div>
+                            <b>BITS Id:</b> : ${data.bitsId}
+                            </div>
+                            <div>
+                            <b>Sex:</b> : ${data.sex}
+                            </div>
+                            <div>
+                            <b>Mobile No.:</b> : +${data.mcode}-${data.mob}
+                            </div>
+
+                            `
+                        );
+                    }
+                },
+                error: function (xhr) {
+                    alert(`Error : ${JSON.stringify(xhr)}`);
+                }
+            })
+
+        })
+
+        // Handle closing dialog boxes
+
         $(document).on("click", ".wrapper", function (e) {
             $(".mdl-dialog").css("display", "none");
             $(".wrapper").css("display", "none");
 
 
         })
+
+        $(".close-modal").on("click", function () {
+            $(".mdl-dialog").css("display", "none");
+            $(".wrapper").css("display", "none");
+
+
+        })
     })
+
+
 
 }
