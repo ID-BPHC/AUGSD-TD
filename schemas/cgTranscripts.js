@@ -13,11 +13,11 @@ var cgTranscriptSchema = new Schema({
     default: "No information provided."
   },
   applicationType: {
-    type: Array,
+    type: Array // ApplicationType can be one of several types of appliations that the end user can request, defined in the applicationTypes.js file.
   },
   active: {
     type: Boolean,
-    default: true,
+    default: true
   }
 });
 

@@ -49,16 +49,18 @@ block content
                             |#{message}
                     hr
                     .cg-options
-                        h5 Options
-                        |Hide completed
-                        input(type="checkbox" false).activeOnly
-                        |&nbsp; &nbsp;
-                        |Sort applications by:
-                        select.sortCGTranscripts
-                            option Date of Creation
-                            option Status
-                        |&nbsp; &nbsp;                        
-                        button.mdl-button.mdl-button--raised.mdl-button---red Apply Filters
+                        form(method="GET")
+                            h5 Options
+                            |Hide completed
+                            input(type="checkbox" name="hideCompleted" checked=(hideCompleted=="on")?"true":null).activeOnly
+                            |&nbsp; &nbsp;
+                            |Sort applications by:
+                            select.sortCGTranscripts(name="sort")
+                                option(value="old" selected=((sort=="old")?"true":null)) Oldest First
+                                option(value="new" selected=((sort=="new")?"true":null)) Newest First
+                                option(value="status" selected=((sort=="status")?"true":null)) Status
+                            |&nbsp; &nbsp;                        
+                            button.mdl-button.mdl-button--raised.mdl-button---red(type=submit) Apply Filters
 
                     br
                     table.mdl-data-table.fullwidth
@@ -73,7 +75,6 @@ block content
                                 th Options
                         tbody
                             -for(sr in cgTranscripts)
-                                - console.log(sr)
                                 tr
                                     td=parseInt(sr)+1
                                     td=new Date(cgTranscripts[sr].date).toLocaleString()

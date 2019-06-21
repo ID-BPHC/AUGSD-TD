@@ -21,7 +21,8 @@ module.exports = {
   googleAdminCallback: siteRoot + "/admin/auth/google/callback",
 
   //Mongoose
-  mongooseConnection: "mongodb+srv://root:divyanshu@hereisdx-khs4b.mongodb.net/ID-dev?retryWrites=true&w=majority",
+  mongooseConnection:
+    "mongodb+srv://root:divyanshu@hereisdx-khs4b.mongodb.net/ID-dev?retryWrites=true&w=majority",
 
   //Nodemailer
   mailUser: "YOUR_EMAIL",
