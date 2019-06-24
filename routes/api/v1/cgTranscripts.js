@@ -6,6 +6,7 @@ var errorFields = [];
 var cgTranscriptsModel = fq("schemas/cgTranscripts");
 var cgTranscriptUsersModel = fq("schemas/cgTransctipt-users");
 var applicationTypesModel = fq("schemas/applicationTypes");
+var paytm = require("./paytm-callback/paytm-utility")
 var authenticate = function (req, res, next) {
   if (true) {
     return next();
@@ -33,6 +34,8 @@ router.all("/", function (req, res, next) {
   errorFields = []; // The error fields must be reset for every query
   next();
 });
+
+router.use("/paytm", paytm)
 
 router.get("/test", authenticate, function (req, res) {
   res.json({ message: "API is online." });

@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var fq = require("fuzzquire");
 var cgTranscriptsModel = fq("schemas/cgTranscripts");
 
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   var filters = {};
   var sort = {};
   console.log(req.query.hideCompleted);
@@ -27,7 +27,7 @@ router.get("/", function(req, res, next) {
   cgTranscriptsModel
     .find(filters)
     .sort(sort)
-    .exec(function(err, cgTranscripts) {
+    .exec(function (err, cgTranscripts) {
       if (err) {
         res.renderState("/error", {
           title: "Cant connect to database",
@@ -50,8 +50,9 @@ router.get("/", function(req, res, next) {
     });
 });
 
-router.post("/modify-status", function(req, res) {
-  cgTranscriptsModel.findById(req.body.applicationId, function(
+
+router.post("/modify-status", function (req, res) {
+  cgTranscriptsModel.findById(req.body.applicationId, function (
     err,
     transcript
   ) {
@@ -63,7 +64,7 @@ router.post("/modify-status", function(req, res) {
     } else {
       transcript.status = req.body.status;
       transcript.info = req.body.info;
-      transcript.save(function(err, transcript) {
+      transcript.save(function (err, transcript) {
         if (err) {
           res.json({
             message: "Error, failed to save data",
