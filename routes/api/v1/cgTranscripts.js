@@ -6,7 +6,7 @@ var errorFields = [];
 var cgTranscriptsModel = fq("schemas/cgTranscripts");
 var cgTranscriptUsersModel = fq("schemas/cgTransctipt-users");
 var applicationTypesModel = fq("schemas/applicationTypes");
-var authenticate = function(req, res, next) {
+var authenticate = function (req, res, next) {
   if (true) {
     return next();
   } else {
@@ -18,7 +18,7 @@ var authenticate = function(req, res, next) {
   }
 };
 
-var checkErrors = function(req, res, next) {
+var checkErrors = function (req, res, next) {
   if (errorFields.length > 0) {
     res.status(400).json({
       error: errorFields,
@@ -29,16 +29,16 @@ var checkErrors = function(req, res, next) {
   return false;
 };
 
-router.all("/", function(req, res, next) {
+router.all("/", function (req, res, next) {
   errorFields = []; // The error fields must be reset for every query
   next();
 });
 
-router.get("/test", authenticate, function(req, res) {
+router.get("/test", authenticate, function (req, res) {
   res.json({ message: "API is online." });
 });
 
-router.post("/", authenticate, function(req, res, next) {
+router.post("/", authenticate, function (req, res, next) {
   if (!req.body.bitsId) {
     errorFields.push("bitsId");
   }
@@ -60,7 +60,7 @@ router.post("/", authenticate, function(req, res, next) {
       email: req.body.email,
       info: info
     });
-    cgtranscript.save(function(err) {
+    cgtranscript.save(function (err) {
       if (err) {
         res.json({
           error: err,
@@ -75,9 +75,9 @@ router.post("/", authenticate, function(req, res, next) {
   }
 });
 
-router.get("/", authenticate, function(req, res, next) {
+router.get("/", authenticate, function (req, res, next) {
   if (req.query.id) {
-    cgTranscriptsModel.findById(req.query.id, function(err, cgtranscript) {
+    cgTranscriptsModel.findById(req.query.id, function (err, cgtranscript) {
       if (err) {
         res.status(500).json({
           error: err
@@ -92,7 +92,7 @@ router.get("/", authenticate, function(req, res, next) {
     });
     return;
   } else if (!req.query.email) {
-    cgTranscriptsModel.find(function(err, cgtranscript) {
+    cgTranscriptsModel.find(function (err, cgtranscript) {
       if (err) {
         res.json({
           error: err
@@ -106,7 +106,7 @@ router.get("/", authenticate, function(req, res, next) {
       {
         email: req.query.email
       },
-      function(err, cgtranscript) {
+      function (err, cgtranscript) {
         if (err) {
           res.status(500).json({
             error: true,
@@ -120,8 +120,8 @@ router.get("/", authenticate, function(req, res, next) {
   }
 });
 
-router.get("/application-types", function(req, res) {
-  applicationTypesModel.find(function(err, applicationTypes) {
+router.get("/application-types", function (req, res) {
+  applicationTypesModel.find(function (err, applicationTypes) {
     if (err) {
       res.status(500).json({
         error: err
@@ -132,14 +132,22 @@ router.get("/application-types", function(req, res) {
   });
 });
 
-router.post("/users", authenticate, function(req, res) {
+
+router.get("/status-types", function (req, res) {
+  res.json([
+    "Submitted", "Processing", "Cancelled", "Rejected", "Payment Pending", "Payment Completed", "Shipped", "Completed", "Other"
+  ]);
+})
+
+
+router.post("/users", authenticate, function (req, res) {
   console.log(req.body.email);
   if (req.body.email) {
     cgTranscriptUsersModel.findOne(
       {
         email: req.body.email
       },
-      function(err, user) {
+      function (err, user) {
         if (err) {
           res.status(500).json({
             error: err
@@ -164,7 +172,7 @@ router.post("/users", authenticate, function(req, res) {
             if (req.body.mob) {
               user.mob = req.body.mob;
             }
-            user.save(function(err, user) {
+            user.save(function (err, user) {
               if (err) {
                 res.status(500).json({
                   error: err
@@ -203,7 +211,7 @@ router.post("/users", authenticate, function(req, res) {
               user.mob = req.body.mob;
               user.sex = req.body.sex;
               user.bits = req.body.bitsId;
-              user.save(function(err, cgTranscriptUser) {
+              user.save(function (err, cgTranscriptUser) {
                 if (err) {
                   res.json(err);
                 } else {
@@ -218,13 +226,13 @@ router.post("/users", authenticate, function(req, res) {
   }
 });
 
-router.get("/users", authenticate, function(req, res) {
+router.get("/users", authenticate, function (req, res) {
   if (req.query.bitsId) {
     cgTranscriptUsersModel.findOne(
       {
         bitsId: req.query.bitsId
       },
-      function(err, user) {
+      function (err, user) {
         if (err) {
           res.status(500).json({
             error: err
@@ -239,7 +247,7 @@ router.get("/users", authenticate, function(req, res) {
       {
         email: req.query.email
       },
-      function(err, user) {
+      function (err, user) {
         if (err) {
           res.status(500).json({
             error: err
@@ -250,7 +258,7 @@ router.get("/users", authenticate, function(req, res) {
       }
     );
   } else {
-    cgTranscriptUsersModel.find(function(err, user) {
+    cgTranscriptUsersModel.find(function (err, user) {
       if (err) {
         res.status(500).json({
           error: err
