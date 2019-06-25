@@ -18,7 +18,8 @@ var cgTranscriptSchema = new Schema({
   active: {
     type: Boolean,
     default: true
-  }
+  },
+  paytmInfo: Array // Information required by the paytm checksum utility
 });
 
 var model = mongoose.model("cgtranscripts", cgTranscriptSchema);

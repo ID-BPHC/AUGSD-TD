@@ -1,4 +1,5 @@
 var siteRoot = "http://localhost:3000";
+// var siteRoot = "https://augsd-cg-transcripts.herokuapp.com"  // for herkou
 
 module.exports = {
   //Misc
