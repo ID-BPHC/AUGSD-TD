@@ -13,7 +13,7 @@ var config = require('../config');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(config.port);
+var port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
 
 /**

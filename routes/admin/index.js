@@ -229,6 +229,7 @@ router.get("/switch-back", function(req, res, next) {
 });
 
 router.get("/", function(req, res, next) {
+  console.log(req.session)
   res.renderState("admin/index");
 });
 
