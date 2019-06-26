@@ -7,6 +7,8 @@ var cgTranscriptsModel = fq("schemas/cgTranscripts");
 var cgTranscriptUsersModel = fq("schemas/cgTransctipt-users");
 var applicationTypesModel = fq("schemas/applicationTypes");
 var paytm = require("./paytm-callback/paytm-utility")
+var paytm_config = fq('paytm/paytm_config').paytm_config;
+var paytm_checksum = fq('paytm/checksum');
 var authenticate = function (req, res, next) {
   if (true) {
     return next();
@@ -51,6 +53,9 @@ router.post("/", authenticate, function (req, res, next) {
   if (!req.body.applicationType) {
     errorFields.push("applicationType");
   }
+  if (!req.body.mob) {
+    errorFields.push("mob")
+  }
   var applicationType = JSON.parse(req.body.applicationType);
   var info = req.body.info ? req.body.info : "No information provided.";
   if (!checkErrors(req, res, next)) {
@@ -63,16 +68,55 @@ router.post("/", authenticate, function (req, res, next) {
       email: req.body.email,
       info: info
     });
-    cgtranscript.save(function (err) {
+    cgtranscript.save(function (err, transcript) {
       if (err) {
         res.json({
           error: err,
           message: `Could not save to database because of this error : ${err}`
         });
       } else {
-        res.status(201).json({
-          message: "Successfully Saved Request"
-        });
+        var paramarray = {}
+        var cost = 0;
+        for (element of transcript.applicationType) {
+          cost += element.cost
+          console.log(cost)
+        }
+        paramarray["MID"] = paytm_config.MID;
+        paramarray["ORDER_ID"] = transcript._id.toString()
+        paramarray["CUST_ID"] = transcript.bitsId;
+        paramarray["INDUSTRY_TYPE_ID"] = paytm_config["INDUSTRY_TYPE_ID"];
+        paramarray["CHANNEL_ID"] = paytm_config["CHANNEL_ID"];
+        paramarray['TXN_AMOUNT'] = cost.toString(); // transaction amount
+        paramarray['WEBSITE'] = paytm_config["WEBSITE"]; //Provided by Paytm
+        paramarray['CALLBACK_URL'] = paytm_config["CALLBACK_URL"] + paramarray["ORDER_ID"];//Provided by Paytm
+        paramarray['EMAIL'] = transcript.email; // customer email id
+        paramarray['MOBILE_NO'] = req.body.mob.toString(); // customer 10 digit mobile no.
+        console.log(paramarray)
+        paytm_checksum.genchecksum(paramarray, paytm_config.MERCHANT_KEY, function (err, checksum) {
+          if (err) {
+            res.status(500).json({
+              error: err
+            })
+          } else {
+            paramarray["CHECKSUMHASH"] = checksum;
+            transcript.paytminfo = paramarray;
+            transcript.save(function (err, transcript) {
+              if (err) {
+                res.json({
+                  error: err
+                })
+              } else {
+                res.json({
+                  orderDetails: transcript.paytminfo,
+                  application: transcript
+                })
+              }
+            })
+          }
+        })
+
+
+
       }
     });
   }

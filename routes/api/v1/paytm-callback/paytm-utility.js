@@ -39,59 +39,14 @@ PAYTM provided PHP code, here for reference.
 // paramarray['CALLBACK_URL'] = 'https://pguat.paytm.com/paytmchecksum/paytmCallback.jsp';//Provided by Paytm
 // paramarray['EMAIL'] = 'abc@gmail.com'; // customer email id
 // paramarray['MOBILE_NO'] = '9999999999'; // customer 10 digit mobile no.
+// router.post("/order", function (req, res) {
+// 	// Required params : id, mob
 
+// 	res.json({
+// 		message:"Endpoint does not exist."
+// 	})
 
-router.post("/order", function (req, res) {
-	// Required params : id, mob
-
-	var paramarray = {}
-	cgTranscriptsModel.findById(req.body.id, function (err, transcript) {
-		if (err || !transcript) {
-			res.status(500).json({
-				error: (err) ? err : "ID not fount"
-			})
-		} else {
-			var cost = 0;
-			for (element of transcript.applicationType) {
-				cost += element.cost
-			}
-			paramarray["MID"] = paytm_config.MID;
-			paramarray["ORDER_ID"] = Date.now().toString() + req.body.id;
-			paramarray["CUST_ID"] = transcript._id.toString();
-			paramarray["INDUSTRY_TYPE_ID"] = paytm_config["INDUSTRY_TYPE_ID"];
-			paramarray["CHANNEL_ID"] = paytm_config["CHANNEL_ID"];
-			paramarray['TXN_AMOUNT'] = cost.toString(); // transaction amount
-			paramarray['WEBSITE'] = paytm_config["WEBSITE"]; //Provided by Paytm
-			paramarray['CALLBACK_URL'] = paytm_config["CALLBACK_URL"];//Provided by Paytm
-			paramarray['EMAIL'] = transcript.email; // customer email id
-			paramarray['MOBILE_NO'] = req.body.mob.toString(); // customer 10 digit mobile no.
-			console.log(paramarray)
-			paytm_checksum.genchecksum(paramarray, paytm_config.MERCHANT_KEY, function (err, checksum) {
-				if (err) {
-					res.status(500).json({
-						error: err
-					})
-				} else {
-					transcript.paytminfo = paramarray;
-					transcript.save(function (err, transcript) {
-						if (err) {
-							res.json({
-								error: err
-							})
-						} else {
-							res.json({
-								orderDetails: transcript.paytminfo,
-								checksum: checksum
-							})
-						}
-					})
-				}
-			})
-
-		}
-	})
-
-})
+// })
 
 router.post("/verify_checksum", function (req, res) {
 
