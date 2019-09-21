@@ -1,12 +1,6 @@
 [{
     "active": true,
     "admin": false,
-    "displayName": "24x7 Feedbacks",
-    "icon": "feedback",
-    "name": "feedbacks-24x7"
-}, {
-    "active": true,
-    "admin": false,
     "displayName": "Room Booking",
     "icon": "class",
     "name": "room-booking-student"

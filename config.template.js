@@ -4,7 +4,7 @@ module.exports = {
   //Misc
   siteRoot: siteRoot,
   fileStorage: "",
-  siteMode: "TD", // TD or AUGSD
+  siteMode: "TD", // TD
   port: "3000",
   inductionBatchPrefixes: ["20"],
 
