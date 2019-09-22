@@ -21,9 +21,4 @@ router.get("/type", function(req, res, next) {
   res.render("type");
 });
 
-router.get("/fd-thesis", function(req, res) {
-  fs.readdir(appRoot.path + "/public/AUGSD/fd-thesis", function(err, files) {
-    res.render("fd-thesis", { forms: files });
-  });
-});
 module.exports = router;
