@@ -36,7 +36,7 @@ for line in f.readlines():
 		faculty['department'] = data[departmentIndex]
 		faculty['departmentCode'] = data[departmentCodeIndex]
 		faculty['maxProjects'] = int(data[maxProjectsIndex])
-		faculty['portals'] = ['feedbacks-prof', 'room-booking-faculty', 'project-allotment-prof-create', 'project-applications']
+		faculty['portals'] = ['feedbacks-prof', 'project-allotment-prof-create', 'project-applications']
 		faculty['home'] = '/'
 		faculty['superUser'] = False
 
