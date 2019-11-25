@@ -1,14 +1,18 @@
-var express = require("express");
-var path = require("path");
-var favicon = require("serve-favicon");
-var config = require("./config");
-var morgan = require("morgan");
-var cookieParser = require("cookie-parser");
-var expressSanitizer = require("express-sanitizer");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-var bugsModel = require("./schemas/bugs");
-var app = express();
+let express = require("express");
+let path = require("path");
+let favicon = require("serve-favicon");
+let config = require("./config");
+let morgan = require("morgan");
+let cookieParser = require("cookie-parser");
+let expressSanitizer = require("express-sanitizer");
+let bodyParser = require("body-parser");
+let mongoose = require("mongoose");
+let bugsModel = require("./schemas/bugs");
+let app = express();
+
+let admin = require("./routes/admin");
+let dashboard = require("./routes/dashboard");
+let index = require("./routes");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views", config.siteMode));
@@ -53,10 +57,6 @@ mongoose.connect(
   {}
 );
 
-var admin = require("./routes/admin");
-var dashboard = require("./routes/dashboard");
-var index = require("./routes");
-
 // A termination function on any kind of error that occours after login
 app.use(function(req, res, next) {
   res.terminate = function(err) {
@@ -92,7 +92,7 @@ app.use("/", index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error("Not Found");
+  let err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
