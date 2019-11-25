@@ -1,0 +1,19 @@
+table.table.table-striped
+  thead
+    tr
+      th(scope='col') Portal
+      th
+
+  tbody
+    each portal in portals
+      if dashboard.type == "Administrator"
+        if user.portals.indexOf(portal.name) >= 0 || user.superUser
+          tr
+            td #{portal.displayName}
+            td
+              a.btn.btn-success(href=rootURL + '/' + portal.name) Open
+      else
+        tr
+          td #{portal.displayName}
+          td
+            a.btn.btn-success(href=rootURL + '/' + portal.name) Open
