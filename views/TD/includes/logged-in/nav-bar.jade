@@ -1,0 +1,30 @@
+nav.navbar.navbar-expand-sm.bg-primary.navbar-dark
+
+	//- Left Side
+	a.navbar-brand(href='#') Timetable & Examination - #{dashboard.type}
+	ul.navbar-nav
+		li.nav-item.active
+			a.nav-link(href='#{rootURL}') Home
+		li.nav-item.dropdown.active
+			a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown')
+				| Portals
+			.dropdown-menu
+				if dashboard.type == "Administrator"
+					each portal in portals
+						if user.portals.indexOf(portal.name) >= 0 || user.superUser
+							a.dropdown-item(href=rootURL + '/' + portal.name,id=portal.name) #{portal.displayName}
+				else
+					each portal in portals
+						a.dropdown-item(href=rootURL + '/' + portal.name,id=portal.name) #{portal.displayName}
+
+	//- Right Side
+	.ml-auto.mr-1
+		ul.navbar-nav.navbar-right
+			li.nav-item.dropdown.active
+				a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown')
+					img.rounded-circle(src=profileImage, alt='', width='30', height='30', style='margin-right: 10px;')
+					| #{user.name}
+				.dropdown-menu
+					if switched
+						a.dropdown-item(href=rootURL + '/switch-back') Switch Back
+					a.dropdown-item(href=rootURL + '/logout') Logout

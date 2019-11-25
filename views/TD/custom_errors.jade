@@ -9,6 +9,6 @@ html(lang='en')
 					h4.font-weight-light #{message}
 					br
 					p #{details}
-		include ./includes/home/after-body
-		if(redirect)
-			meta(http-equiv="refresh" content="#{timeout}; url=#{redirect}")
+	include ./includes/home/after-body
+	if(redirect)
+		meta(http-equiv="refresh" content="#{timeout}; url=#{redirect}")

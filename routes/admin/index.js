@@ -12,8 +12,6 @@ let settingsModel = require("../../schemas/settings");
 let auth = require("../../middleware/auth");
 let config = require("../../config");
 
-let profile = require("./profile");
-
 let originalPath = "/admin";
 
 /* Configure middleware for portal permissions */
@@ -220,8 +218,6 @@ router.use(function(req, res, next) {
   };
   next();
 });
-
-router.use("/profile", profile);
 
 router.get("/switch-back", function(req, res, next) {
   req.session.switched = false;

@@ -11,6 +11,6 @@ html(lang='en')
 						for error in errors
 							li #{error.msg}
 
-		include ./includes/home/after-body
-		if(redirect)
-			meta(http-equiv="refresh" content="#{timeout}; url=#{redirect}")
+	include ./includes/home/after-body
+	if(redirect)
+		meta(http-equiv="refresh" content="#{timeout}; url=#{redirect}")
