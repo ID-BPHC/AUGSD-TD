@@ -1,123 +1,28 @@
 doctype html
 html(lang='en')
-	head
-		// Meta
-		title Choose Role
-		meta(content='Timetable Division', name='title')
-		meta(content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.", name='description')
-		meta(content='initial-scale=1, minimum-scale=1, width=device-width', name='viewport')
-		meta(content='IE=11;IE=Edge', http-equiv='X-UA-Compatible')
-		meta(name='thumbnail', content='/images/logo/tdlogo-01.png')
-		meta(itemprop='name', content='Timetable Division')
-		meta(itemprop='description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(itemprop='image', content='/images/logo/tdlogo-01.png')
-		meta(name='twitter:card', content='summary_large_image')
-		meta(name='twitter:site', content='@bitshyd')
-		meta(name='twitter:title', content='Timetable Division')
-		meta(name='twitter:description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(name='twitter:image', content='/images/logo/tdlogo-01.png')
-		meta(name='twitter:url', content='http://id.bits-hyderabad.ac.in')
-		meta(property='og:type', content='website')
-		meta(property='og:title', content='Timetable Division')
-		meta(property='og:description', content="Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.")
-		meta(property='og:url', content='http://id.bits-hyderabad.ac.in')
-		meta(property='og:image', content='/images/logo/tdlogo-01.png')
-		meta(property='og:site_name', content='Timetable Division')
-		meta(property='og:locale', content='en_IN')
-		script(type='application/ld+json').
-			{
-			"@context": "http://schema.org",
-			"@type": "Website",
-			"url": "http://id.bits-hyderabad.ac.in",
-			"publisher": {
-			"@type": "Organization",
-			"name": "Timetable Division",
-			"logo": {
-			"@type": "ImageObject",
-			"url": "/images/logo/tdlogo-01.png",
-			"height": 103,
-			"width": 100
-			},
-			"parentOrganization": "BITS Pilani Hyderabad Campus"
-			},
-			"name": "Timetable Division",
-			"description": "Timetable Division is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.",
-			"sameAs": [
-			"https://www.facebook.com/bitshyderabad/",
-			"https://twitter.com/bitshyd]
-			}
-		link(rel='shortcut icon', href='/images/favicon.png')
-		// Page styles
-		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en')
-		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
-		link(rel='stylesheet', href='https://code.getmdl.io/1.3.0/material.min.css')
-		link(rel='stylesheet', href='/stylesheets/indexstyle.css')
-		script(defer='', src='https://code.getmdl.io/1.3.0/material.min.js')
-		meta(name='viewport', content='width=device-width, initial-scale=1.0')
-		style.
-			.custom-title {
-				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-				line-height: 1;
-				color: #767777;
-				font-weight: 500;
-				margin: unset;
-			}
-			.custom-title2 {
-				font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-				line-height: 1;
-				color: #767777;
-				font-weight: 500;
-				margin: 10px -20px;
-			}
-			.profile{
-				width: 64px;
-				height: 64px;
-				border-radius: 50%;
-				display: block;
-				padding-top: 24px;
-				margin: 0 auto;
-			}
-			.profile-select:hover{
-				background-color: rgba(243,243,243,1);
-				cursor: pointer;
-			}
-			.signin{
-				font-weight: 400!important;
-				font-family: "Roboto","Helvetica","Arial",sans-serif;
-				font-size: 16px;
-				opacity: .68;
-				font-weight: 400;
-				line-height: 40px;
-			}
-			.signin-image{
-				width: 48px;
-				height: 48px;
-				display: block;
-				padding-top: 8px;
-				padding-left: 12px;
-				margin: 0 auto;
-			}
-			.custom{
-				opacity: .68;
-			}
-
+	include ./includes/home/html-head
 	body
-		.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-			.android-customized-section
-				.android-customized-section-text
-					.mdl-typography--font-light.mdl-typography--display-1-color-contrast Choose your role
-					p.mdl-typography--font-light
-						.mdl-grid
-							.mdl-layout-spacer
-							.mdl-cell.mdl-cell--6-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('/admin')")
-								img.profile(src='/images/login/professor.png')
-								h4.custom Professor / Division
-							.mdl-cell.mdl-cell--6-col.mdl-card.mdl-shadow--2dp.profile-select(onclick="window.location.replace('/dashboard')")
-								img.profile(src='/images/login/student.png')
-								h4.custom Student
-							.mdl-layout-spacer
-						.mdl-grid
-							.mdl-layout-spacer
-							p.signin Login Provided by
-							img.signin-image.center-align(src='/images/login/login.png')
-							.mdl-layout-spacer
+		include ./includes/home/nav-bar
+		.container
+			.card.border-0.shadow.my-5
+				.card-body.p-5					
+					h1.font-weight-light Chose a Role
+					br
+					.container-fluid
+						.row
+							.col-lg-6(align="center")
+								.card(style="width: 250px")
+									img(src="/images/login/professor.png")
+									h5.card-header Administration
+									.card-body
+										p.card-text Administrators, Faculty Members & Divisions
+										a.btn.btn-primary(href='/admin') Login
+							.col-lg-6(align="center")
+								.card(style="width: 250px")
+									img(src="/images/login/student.png")
+									h5.card-header Student
+									.card-body
+										p.card-text Room Booking Service for Students
+										a.btn.btn-primary(href='/dashboard') Login
+
+	include ./includes/home/after-body
