@@ -1,0 +1,16 @@
+nav.navbar.navbar-expand-sm.bg-light.navbar-light
+  a.navbar-brand(href='#') Timetable & Examination
+  ul.navbar-nav
+    li.nav-item.active
+      a.nav-link(href='#') Home
+    li.nav-item.dropdown
+      a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
+        | Services
+      .dropdown-menu
+        a.dropdown-item(href='/moodle') CMS
+        a.dropdown-item(href='http://172.16.3.20/ilc') Impartus - On Campus
+        a.dropdown-item(href='http://a.impartus.com/login/') Impartus - Off Campus
+        a.dropdown-item(href='http://bio.bits-hyderabad.ac.in/Bitsclassroom/login.aspx') Biometric Attendance
+        a.dropdown-item(href='/type') Dashboard
+    li.nav-item
+      a.nav-link(href='/contact') Contact Us

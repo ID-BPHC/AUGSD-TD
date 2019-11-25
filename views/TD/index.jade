@@ -1,30 +1,8 @@
 doctype html
 html(lang='en')
-  head
-    // Required meta tags for Bootstrap
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    // Bootstrap CSS
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
-    title Timetable & Examination
-    style.
+  include ./includes/home/html-head
   body
-    nav.navbar.navbar-expand-sm.bg-light.navbar-light
-      a.navbar-brand(href='#') Timetable & Examination
-      ul.navbar-nav
-        li.nav-item.active
-          a.nav-link(href='#') Home
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown')
-            | Services
-          .dropdown-menu
-            a.dropdown-item(href='/moodle') CMS
-            a.dropdown-item(href='http://172.16.3.20/ilc') Impartus - On Campus
-            a.dropdown-item(href='http://a.impartus.com/login/') Impartus - Off Campus
-            a.dropdown-item(href='http://bio.bits-hyderabad.ac.in/Bitsclassroom/login.aspx') Biometric Attendance
-            a.dropdown-item(href='/type') Dashboard
-        li.nav-item
-          a.nav-link(href='/contact') Contact Us
+    include ./includes/home/nav-bar
     .container
       .card.border-0.shadow.my-5
         .card-body.p-5
@@ -33,19 +11,4 @@ html(lang='en')
           br
           p
             | Timetable & Examination Office is a sub-division of BITS Pilani Hyderabad Campus. It oversees operations pertaining to Course Management System, Lecture Scheduling & Recording, Examination Scheduling & Biometric Attendance
-    // Optional JavaScript
-    // jQuery first, then Popper.js, then Bootstrap JS
-    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
-    style.
-      body {
-      background: url('/images/slide01.jpg') no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      background-size: cover;
-      -o-background-size: cover;
-      }
-      .card {
-      background-color: rgba(255,255,255,0.9);
-      }
+    include ./includes/home/after-body
