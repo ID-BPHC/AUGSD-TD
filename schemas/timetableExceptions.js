@@ -5,7 +5,7 @@ let ttExceptionsSchema = new Schema({
   day: Number,
   month: Number,
   year: Number,
-  exception: Number
+  weekDay: Number
 });
 
 let model = mongoose.model("timetableExceptions", ttExceptionsSchema);
