@@ -1,42 +1,34 @@
-extends ../../../master-dashboard
+doctype html
+html(lang='en')
+	include ../../../includes/logged-in/html-head
+	body
+		include ../../../includes/logged-in/nav-bar
+		.container
+			.card.border-0.shadow.my-5
+				.card-body.p-5
+					h1.font-weight-light Timetable & Examination Office
+					h4.font-weight-light BITS Pilani - Hyderabad Campus
+					br
+					div
+						h5(style='text-align:center') Settings
+						p(style='text-align:center') Configure Timetable Division Portal
+						div
+							ul
+								li 
+									a(href='./control/holidays') Manage Holidays (Room Booking)
+								li 
+									a(href='./control/tt-exceptions') Manage Timetable Exceptions (Room Booking)
+								li 
+									a(href='./control/room-map/step1') Room Map Management
+								li 
+									a(href='./control/block-all-rooms') Block All rooms (Room Booking)
+								li 
+									a(href='./control/portal-toggle') Portal Management
+								li 
+									a(href='./control/manage-admins') Manage admin accounts
+								li 
+									a(href='./control/switch-user') Switch User
+								li 
+									a(href='/moodle-manager') Update CMS Enrolments
 
-block content
-	style.
-		.mdl-button--file input {
-		cursor: pointer;
-		height: 100%;
-		right: 0;
-		opacity: 0;
-		position: absolute;
-		top: 0;
-		width: 300px;
-		z-index: 4;
-		}
-		.mdl-textfield--file .mdl-textfield__input {
-		box-sizing: border-box;
-		width: calc(100% - 32px);
-		}
-		.mdl-textfield--file .mdl-button--file {
-		right: 0;
-		}
-	div.mdl-cell.mdl-cell--12-col
-		h3(style='text-align:center') Settings
-		p(style='text-align:center') Configure Timetable Division Portal
-	div.mdl-cell.mdl-cell--12-col
-		ul
-			li 
-				a(href='./control/holidays') Manage Holidays (Room Booking)
-			li 
-				a(href='./control/tt-exceptions') Manage Timetable Exceptions (Room Booking)
-			li 
-				a(href='./control/room-map/step1') Room Map Management
-			li 
-				a(href='./control/block-all-rooms') Block All rooms (Room Booking)
-			li 
-				a(href='./control/portal-toggle') Portal Management
-			li 
-				a(href='./control/manage-admins') Manage admin accounts
-			li 
-				a(href='./control/switch-user') Switch User
-			li 
-				a(href='/moodle-manager') Update CMS Enrolments
+	include ../../../includes/logged-in/after-body
