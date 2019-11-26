@@ -1,17 +1,12 @@
-var express = require("express");
-var router = express.Router();
-var fq = require("fuzzquire");
-var holidaysModel = fq("schemas/holidays");
+let express = require("express");
+let router = express.Router();
+let Holiday = require("../../../../common/room-booking/classes/Holiday");
 
 const { check, validationResult } = require("express-validator/check");
 
-router.get("/delete/:id", function(req, res, next) {
-  holidaysModel.remove({ _id: req.sanitize(req.params.id) }, function(err) {
-    if (err) {
-      return res.terminate(err);
-    }
-    return res.redirect("/admin/control/holidays");
-  });
+router.get("/delete/:id", async (req, res, next) => {
+  await Holiday.deleteById(req.params.id);
+  return res.redirect("/admin/control/holidays");
 });
 
 router.post(
@@ -22,42 +17,25 @@ router.post(
       .withMessage("No Date")
       .not()
       .isEmpty()
-      .withMessage("No Date Specified"),
-    check("description")
-      .exists()
-      .withMessage("No Description")
-      .not()
-      .isEmpty()
-      .withMessage("No Description")
+      .withMessage("No Date Specified")
   ],
-  function(req, res, next) {
+  async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.renderState("form-errors", { errors: errors.mapped() });
     }
-
-    holidaysModel.create(
-      {
-        date: req.sanitize(req.body.date),
-        description: req.sanitize(req.body.description)
-      },
-      function(err, result) {
-        if (err) {
-          return res.terminate(err);
-        }
-        return res.redirect("/admin/control/holidays");
-      }
-    );
+    let splitted = req.body.date.split("-");
+    let year = parseInt(splitted[0]);
+    let month = parseInt(splitted[1]);
+    let day = parseInt(splitted[2]);
+    await Holiday.addHoliday(day, month, year, req.body.description);
+    return res.redirect("/admin/control/holidays");
   }
 );
 
-router.get("/", function(req, res, next) {
-  holidaysModel.find({}, function(err, holidays) {
-    if (err) {
-      return res.terminate(err);
-    }
-    res.renderState("admin/portals/control/holidays", { holidays: holidays });
-  });
+router.get("/", async (req, res, next) => {
+  let holidays = await Holiday.getHolidays();
+  return res.renderState("admin/portals/control/holidays", { holidays });
 });
 
 module.exports = router;
