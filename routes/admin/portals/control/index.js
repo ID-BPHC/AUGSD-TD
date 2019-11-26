@@ -1,5 +1,4 @@
 let express = require("express");
-let path = require("path");
 let router = express.Router();
 let fq = require("fuzzquire");
 let settingsModel = fq("schemas/settings");
@@ -8,7 +7,7 @@ let holiday = require("./holidays.js");
 let manageAdmins = require("./manageAdmins.js");
 let portalToggle = require("./portals.js");
 let switchUser = require("./switchUser.js");
-let ttExceptions = require("./ttExceptions");
+let timetableExceptions = require("./timetableExceptions");
 let projectGuidelines = require("./projectAllotmentGuidelines.js");
 let projAllotmentForbiddenBatches = require("./projAllotmentForbiddenBatches.js");
 let blockAllRooms = require("./blockAllRooms.js");
@@ -19,7 +18,7 @@ router.use("/holidays", holiday);
 router.use("/manage-admins", manageAdmins);
 router.use("/portal-toggle", portalToggle);
 router.use("/switch-user", switchUser);
-router.use("/tt-exceptions", ttExceptions);
+router.use("/timetable-exceptions", timetableExceptions);
 router.use("/project-allotment-guidelines", projectGuidelines);
 router.use(
   "/project-allotment-forbidden-batches",

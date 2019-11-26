@@ -8,6 +8,6 @@ let ttExceptionsSchema = new Schema({
   weekDay: Number
 });
 
-let model = mongoose.model("timetableExceptions", ttExceptionsSchema);
+let model = mongoose.model("timetable-exceptions", ttExceptionsSchema);
 
 module.exports = model;

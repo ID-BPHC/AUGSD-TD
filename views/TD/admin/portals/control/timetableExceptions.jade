@@ -10,30 +10,36 @@ html(lang='en')
 					h4.font-weight-light BITS Pilani - Hyderabad Campus
 					hr
 					br
-					h4 Room Booking - Holiday Management
+					h4 Room Booking - Timetable Exceptions
 					br
 					div
 						table.table.table-striped
 							thead
 								tr
 									th(scope='col') Date
-									th(scope='col') Description
+									th(scope='col') Week Day
 									th(scope='col')
 							tbody
-								each holiday in holidays
+								each exception in exceptions
 									tr
-										td #{holiday.date}
-										td #{holiday.description}
+										td #{exception.date}
+										td #{exception.weekDay}
 										td
-											a(href="./holidays/delete/" + holiday.id) Delete
+											a(href="./timetable-exceptions/delete/" + exception.id) Delete
 					hr
 					br
 					div
-						h5 Add Holiday
-						form(action="./holidays/add" method="POST")
+						h5 Add Exception
+						form(action="./timetable-exceptions/add" method="POST")
 							input(type="date" class="form-control" id="date" name="date" required)
 							br
-							input(type="text" class="form-control" id="description" name="description" placeholder="Description (Optional)")
+							select#weekDay.form-control(name="weekDay")
+								option(value="0") Monday
+								option(value="1") Tuesday
+								option(value="2") Wednesday
+								option(value="3") Thursday
+								option(value="4") Friday
+								option(value="5") Saturday
 							br
 							button(type="submit" class="btn btn-success") Add
 
