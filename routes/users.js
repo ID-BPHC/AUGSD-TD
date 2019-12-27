@@ -54,12 +54,6 @@ let users = {
       avatar: "/images/team/18.jpg",
       social: {}
     },
-    "Nishant Aggarwal": {
-      name: "Nishant Aggarwal",
-      title: "Software Developer",
-      avatar: "/images/team/19.jpg",
-      social: {}
-    },
     "Jui Ashutosh Pradhan": {
       name: "Jui Ashutosh Pradhan",
       title: "Software Developer",
