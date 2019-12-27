@@ -54,10 +54,22 @@ let users = {
       avatar: "/images/team/18.jpg",
       social: {}
     },
-    "Nishant Aggarwal": {
-      name: "Nishant Aggarwal",
+    "Jui Ashutosh Pradhan": {
+      name: "Jui Ashutosh Pradhan",
       title: "Software Developer",
-      avatar: "/images/team/19.jpg",
+      avatar: "/images/team/22.jpg",
+      social: {}
+    },
+    "Kriti Jethlia": {
+      name: "Kriti Jethlia",
+      title: "Software Developer",
+      avatar: "/images/team/23.jpg",
+      social: {}
+    },
+    "Hardik Parnami": {
+      name: "Hardik Parnami",
+      title: "Software Developer",
+      avatar: "/images/team/24.jpg",
       social: {}
     }
   },
