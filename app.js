@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, "public", config.siteMode)));
 
 mongoose.connect(
   config.mongooseConnection,
-  {}
+  { useNewUrlParser: true }
 );
 
 var admin = require("./routes/admin");
