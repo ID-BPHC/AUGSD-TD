@@ -1,0 +1,58 @@
+extends ../../../master-dashboard
+
+block content
+    style.
+        td {
+        cursor: pointer;
+        }
+    style.
+        .custom-title {
+            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1;
+            color: #767777;
+            font-weight: 500;
+            margin: unset;
+        }
+        .custom-title2 {
+            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1;
+            color: #767777;
+            font-weight: 500;
+            margin: 10px -20px;
+        }
+        .profile{
+            width: 64px;
+            height: 64px;
+            border-radius: 0%;
+            display: block;
+            padding-top: 24px;
+            margin: 0 auto;
+        }
+        .profile-select:hover{
+            background-color: rgba(243,243,243,1);
+            cursor: pointer;
+        }
+        .signin{
+            font-weight: 400!important;
+            font-family: "Roboto","Helvetica","Arial",sans-serif;
+            font-size: 16px;
+            opacity: .68;
+            font-weight: 400;
+            line-height: 40px;
+        }
+        .signin-image{
+            width: 48px;
+            height: 48px;
+            display: block;
+            padding-top: 8px;
+            padding-left: 12px;
+            margin: 0 auto;
+        }
+        .custom{
+            opacity: .68;
+        }		
+    div.mdl-cell.mdl-cell--12-col.center
+        h2 Upload Student Information(CSV)
+        form#fileUpload(name="files" method="POST" enctype="multipart/form-data")
+            input#userInputFile(type="file" name="studentData" accept=".csv")
+            button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type='submit')| Upload

@@ -215,7 +215,7 @@ router.use(function(req, res, next) {
         params.dashboard = {
           type: "Student"
         };
-
+        console.log(req.user);
         res.render(view, params);
       }
     );

@@ -142,6 +142,14 @@ var portals = [
     active: false,
     mode: "AUGSD",
     admin: true
+  },
+  {
+    displayName: "Analtyics",
+    name: "analytics",
+    icon: "show_chart",
+    active: false,
+    mode: "AUGSD",
+    admin: true,
   }
 ];
 
@@ -189,6 +197,16 @@ var superUsers = [
   {
     name: "ID Office",
     email: "id@hyderabad.bits-pilani.ac.in",
+    portals: [],
+    home: "",
+    superUser: true,
+    department: "Timetable Division",
+    departmentCode: "ID",
+    maxProjects: 2
+  },
+  {
+    name: "Balli",
+    email: "f20160165@hyderabad.bits-pilani.ac.in",
     portals: [],
     home: "",
     superUser: true,

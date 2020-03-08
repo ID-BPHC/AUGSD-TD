@@ -1,0 +1,107 @@
+extends ../../../master-dashboard
+
+block content
+	style.
+		td {
+		cursor: pointer;
+		}
+	style.
+		.custom-title {
+			font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+			line-height: 1;
+			color: #767777;
+			font-weight: 500;
+			margin: unset;
+		}
+		.custom-title2 {
+			font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+			line-height: 1;
+			color: #767777;
+			font-weight: 500;
+			margin: 10px -20px;
+		}
+		.profile{
+			width: 64px;
+			height: 64px;
+			border-radius: 0%;
+			display: block;
+			padding-top: 24px;
+			margin: 0 auto;
+		}
+		.profile-select:hover{
+			background-color: rgba(243,243,243,1);
+			cursor: pointer;
+		}
+		.custom{
+			opacity: .68;
+		}
+		.form label {
+			font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+			font-weight: 400;
+			color: #000000;
+			margin: 5px 10px 5px 0;
+		}
+		.form input {
+			margin: 5px 10px 5px 0;
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid #ddd;
+		}
+
+	div.mdl-cell.mdl-cell--12-col.end
+		if !isAdmin
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type='submit' name='redirectButton' onclick="window.location.href='analytics/upload'")| Upload Data
+	div.mdl-cell.mdl-cell--12-col.center
+		h2 Student Analytics
+		form(name="studentForm" method="POST" action="/admin/analytics" class="form")
+			label(for='studentForm') Student ID:
+			input#name.form-control(type='text' placeholder='2016XXXXXXXXH' name="studentForm")
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type='submit', name='studentForm')| Submit
+		center
+			div(id="studentInfo").table-responsive
+				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+					thead
+						tr			
+							th.mdl-data-table__cell--non-numeric Student Name
+							th.mdl-data-table__cell--non-numeric Student ID
+							th.mdl-data-table__cell--non-numeric BITSAT Score
+					tbody
+						if info != null
+							tr			
+								td.mdl-data-table__cell--non-numeric 
+									a #{info.name || null}
+								td.mdl-data-table__cell--non-numeric 
+									a #{info.idNo}
+								td.mdl-data-table__cell--non-numeric 
+									a #{info.bitsatScore}
+		center 
+			div(id="chart" style="width:600px;height:250px;padding-top:20px;margin-top:20px")
+			script.
+				let chart = document.getElementById('chart');
+				let x= [1, 2, 3, 4]
+				let y= [1, 2, 3, 4]
+				console.log("asldkfna;lksdf");
+				var inp = !{data};
+				console.log(inp);
+				if(inp.x.length != 0)
+				{
+					var layout = {
+						title: 'Semester-wise performance',
+						xaxis: {tickmode: "array", tickvals: inp.x, ticktext : inp.x_labels},
+					}
+					Plotly.newPlot( chart, [{
+					x: inp.x,
+					y: inp.y,
+					type: 'scatter' }],  layout);
+				} else {
+					var layout = {
+						title: 'Semester-wise performance',
+						xaxis: {tickmode: "array", tickvals: inp.x, ticktext : inp.x_labels},
+					}
+					Plotly.newPlot( chart, [{
+					x: x,
+					y: y,
+					type: 'scatter' }],  layout);
+				}
+					
+			
