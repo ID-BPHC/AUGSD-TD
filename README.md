@@ -14,6 +14,7 @@ This project is live at : https://td.bits-hyderabad.ac.in/ , https://augsd.bits-
 1. Navigate to the project directory
 1. Create a copy of `config.template.js` as `config.js`
 1. Add the required details in `config.js`
+1. Run `redis-server` | Ensure `redis-server` is running
 1. Run `npm install`
 1. Run `npm start`
 1. Navigate to `http://localhost:3000`
@@ -68,6 +69,7 @@ Portals are different for TD and AUGSD.
 4. `project-allotment-prof-create` - For professors to create projects
 5. `project-applications` - For professors to Approve / Reject project applications
 6. `project-list` - To Export the final CSV after the project allotment process is complete
+7. `analytics` - For Registration Advisors to track students progress over a period of semsters (includes functionality for AUGSD to populate databse through CSV files).
 
 ##### Student Portals
 1. `feedbacks-24x7` - For provding 24x7 feedback for courses
