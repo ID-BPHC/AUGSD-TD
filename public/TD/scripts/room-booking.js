@@ -143,6 +143,7 @@
           .getElementById("bookBtn")
           .addEventListener("click", function() {
             let checkboxes = document.getElementsByClassName("room-checkbox");
+            let accept = document.getElementById("damageagree");
             let rooms = [];
             let i = 0;
 
@@ -151,6 +152,7 @@
             }
 
             axios.post("./submit", { rooms }).then(function(res) {
+              if(accept.checked){
               if (res.data.booked == 1) {
                 materialAlert(
                   "Success",
@@ -179,6 +181,15 @@
                   function(result) {}
                 );
               }
+            }
+            else
+            {
+              materialAlert(
+                    "Error",
+                    "Please agree to the Terms and Conditions",
+                    function(result) {}
+                  );
+            }
             });
           });
       })

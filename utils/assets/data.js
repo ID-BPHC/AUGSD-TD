@@ -195,6 +195,26 @@ var superUsers = [
     department: "Timetable Division",
     departmentCode: "ID",
     maxProjects: 2
+  },
+  {
+    name: "Kriti Jethlia",
+    email: "f20180223@hyderabad.bits-pilani.ac.in",
+    portals: [],
+    home: "",
+    superUser: true,
+    department: "Timetable Division",
+    departmentCode: "ID",
+    maxProjects: 2
+  },
+  {
+    name: "Hardik Parnami",
+    email: "f20180062@hyderabad.bits-pilani.ac.in",
+    portals: [],
+    home: "",
+    superUser: true,
+    department: "Timetable Division",
+    departmentCode: "ID",
+    maxProjects: 2
   }
 ];
 
