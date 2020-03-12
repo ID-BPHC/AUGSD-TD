@@ -78,11 +78,7 @@ block content
 			div(id="chart" style="width:600px;height:250px;padding-top:20px;margin-top:20px")
 			script.
 				let chart = document.getElementById('chart');
-				let x= [1, 2, 3, 4]
-				let y= [1, 2, 3, 4]
-				console.log("asldkfna;lksdf");
 				var inp = !{data};
-				console.log(inp);
 				if(inp.x.length != 0)
 				{
 					var layout = {
@@ -94,14 +90,6 @@ block content
 					y: inp.y,
 					type: 'scatter' }],  layout);
 				} else {
-					var layout = {
-						title: 'Semester-wise performance',
-						xaxis: {tickmode: "array", tickvals: inp.x, ticktext : inp.x_labels},
-					}
-					Plotly.newPlot( chart, [{
-					x: x,
-					y: y,
-					type: 'scatter' }],  layout);
 				}
 					
 			

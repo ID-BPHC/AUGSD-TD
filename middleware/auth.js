@@ -33,9 +33,6 @@ userPassport.use(
       passReqToCallback: true
     },
     function(request, accessToken, refreshToken, profile, done) {
-      console.log("Hello");
-      console.log(accessToken)
-      console.log(refreshToken)
       return done(null, profile);
     }
   )
