@@ -72,6 +72,10 @@ router.post("/upload", function (req, res) {
         var bitsatScore = row['BITSAT Score'];
         var semesters = [];
         var cgs = [];
+        Object.keys(row).forEach(function (key) {
+          if(key == 'Remarks') {return;}
+          cgKey += 1;
+        });
         Object.keys(row).slice(cgKey).forEach(function (key) {
           semesters.push(key.toString());
           cgs.push(row[key]);
