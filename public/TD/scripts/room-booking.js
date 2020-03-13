@@ -143,7 +143,7 @@
           .getElementById("bookBtn")
           .addEventListener("click", function() {
             let checkboxes = document.getElementsByClassName("room-checkbox");
-            let accept = document.getElementById("damageagree");
+            let accept = document.getElementById("damage-agree");
             let rooms = [];
             let i = 0;
 
