@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var studentHistorySchema = new Schema({
+var studentAcademicsSchema = new Schema({
     erpId: {
         type: String,
     },
@@ -12,9 +12,10 @@ var studentHistorySchema = new Schema({
     discipline: String,
     bitsatScore: Number,
     semesters: [String],
-    cgs: [Number]
+    cgs: [Number],
+    raEmail: String
 }, {strict: false});
 
-var model = mongoose.model("student-history", studentHistorySchema);
+var model = mongoose.model("student-academics", studentAcademicsSchema);
 
 module.exports = model;

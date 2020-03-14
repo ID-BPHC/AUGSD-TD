@@ -47,49 +47,97 @@ block content
 			background-color: #fff;
 			border: 1px solid #ddd;
 		}
-
-	div.mdl-cell.mdl-cell--12-col.end
-		if !isAdmin
-			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type='submit' name='redirectButton' onclick="window.location.href='analytics/upload'")| Upload Data
+	div.mdl-cell.mdl-cell--12-col
+		if isAdmin != []
+			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='' data-upgraded=',MaterialButton,MaterialRipple' type='submit' name='redirectButton' onclick="window.location.href='analytics/upload'")| Upload Data
 	div.mdl-cell.mdl-cell--12-col.center
 		h2 Student Analytics
-		form(name="studentForm" method="POST" action="/admin/analytics" class="form")
-			label(for='studentForm') Student ID:
-			input#name.form-control(type='text' placeholder='2016XXXXXXXXH' name="studentForm")
-			button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised.center(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type='submit', name='studentForm')| Submit
 		center
 			div(id="studentInfo").table-responsive
-				table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+				table(id="studentTable").mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
 					thead
-						tr			
-							th.mdl-data-table__cell--non-numeric Student Name
+						tr
+							th.mdl-data-table__cell--non-numeric Name
 							th.mdl-data-table__cell--non-numeric Student ID
+							th.mdl-data-table__cell--non-numeric ERP ID
 							th.mdl-data-table__cell--non-numeric BITSAT Score
+							th.mdl-data-table__cell--non-numeric CGPA
 					tbody
-						if info != null
-							tr			
-								td.mdl-data-table__cell--non-numeric 
-									a #{info.name || null}
-								td.mdl-data-table__cell--non-numeric 
-									a #{info.idNo}
-								td.mdl-data-table__cell--non-numeric 
-									a #{info.bitsatScore}
+						each student,i in studentData
+							tr
+								td.mdl-data-table__cell--non-numeric #{student.idNo}
+								td.mdl-data-table__cell--non-numeric #{student.studentName}
+								td.mdl-data-table__cell--non-numeric #{student.erpId}
+								td.mdl-data-table__cell--non-numeric #{student.bitsatScore}
+								td.mdl-data-table__cell--non-numeric #{student.cgs[student.cgs.length-1]}
+							tr(id="chartRow"+i, style="visibility:collapse;")
+								td(colspan="5").mdl-data-table__cell--non-numeric
+									div(id="chart"+i, style="width:600px;height:250px;display=none;")
 		center 
-			div(id="chart" style="width:600px;height:250px;padding-top:20px;margin-top:20px")
-			script.
-				let chart = document.getElementById('chart');
-				var inp = !{data};
-				if(inp.x.length != 0)
-				{
-					var layout = {
-						title: 'Semester-wise performance',
-						xaxis: {tickmode: "array", tickvals: inp.x, ticktext : inp.x_labels},
+			div(id="chart" style="width:600px;height:300px;")
+		script.
+			var data = [!{studentData}];
+			for(let i=0; i<data.length; i++) {
+				var tickvals = Array.from({length: data[i].cgs.length }, (v, k) => k + 1);
+				console.log(data[i].semesters);
+				var cgs = data[i].cgs;
+				var semesters = data[i].semesters;
+				var spliceidx = []
+				var colours = [];
+				for (let i = 0; i < cgs.length; i++) {
+					if(cgs[i] == null) {
+						cgs.splice(i, 1);
+						semesters.splice(i, 1);
+						i--;
+					} else {
+						if(cgs[i] <= 4.5) colours.push('rgb(255, 0, 0)');
+						else if(cgs[i] <= 6.0) colours.push('rgb(0, 0, 255)');
+						else colours.push('rgb(0, 255, 0)');
 					}
-					Plotly.newPlot( chart, [{
-					x: inp.x,
-					y: inp.y,
-					type: 'scatter' }],  layout);
-				} else {
 				}
-					
-			
+				var layout = {
+					title: 'Semester-wise performance',
+					xaxis: {tickmode: "array", tickvals: tickvals, ticktext : semesters,title: "Semesters -->"},
+					yaxis: {title: "CGPA"}
+				}
+				let chart_i = document.getElementById('chart'+i);
+				chart_i.style.display = "none";
+				Plotly.newPlot(chart_i, [{
+				x: tickvals,
+				y: cgs,
+				mode: 'lines+markers',
+				type: 'scatter',
+				marker: {
+					size: 10,
+					color: colours
+				}}],  layout);
+			}
+			function addRowHandlers() {
+				var table = document.getElementById("studentTable");
+				var rows = table.getElementsByTagName("tr");
+				for (let i = 1; i < rows.length; i += 2) {
+					var currentRow = table.rows[i];
+					var createClickHandler = 
+						function(row) 
+						{
+							return function() { 
+								var cell = row.getElementsByTagName("td")[0];
+								var id = cell.innerHTML;
+								var chartId = (i-1)/2;
+								console.log("chartId:" + chartId);
+								var chart = document.getElementById("chart"+chartId);
+								var chartRow = document.getElementById("chartRow"+chartId);
+								if (chart.style.display === "none") {
+									chart.style.display = "block";
+									chartRow.style.visibility = "visible";
+								} else {
+									chart.style.display = "none";
+									chartRow.style.visibility = "collapse";
+								}	
+							};
+						};
+
+					currentRow.onclick = createClickHandler(currentRow);
+				}
+			}
+			window.onload = addRowHandlers();

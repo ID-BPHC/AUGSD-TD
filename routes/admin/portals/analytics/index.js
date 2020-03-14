@@ -16,11 +16,17 @@ router.use(fileUpload());
 
 router.get("/", function (req, res, next) {
   var adminsModel = fq("schemas/admins");
-  var isAdmin = 0;
+  var isAdmin = [];
   const adminQuery = adminsModel.findOne({email: req.user.email});
-  if(adminQuery) isAdmin = 1;
-  const data = {x: [], y: [], isAdmin: []};
-  res.renderState("admin/portals/analytics", { data: data });
+  if(adminQuery) isAdmin = [1];
+  //const studentData = studentAcademics.find({raEmail: req.user.email}, {bitsatScore:1, idNo:1, studentName:1, erpId:1, cgs:1, _id:0}).toArray;
+  const studentData = studentAcademics.find({raEmail: req.user.email}, {bitsatScore:1, semesters: 1, idNo:1, studentName:1, erpId:1, cgs:1, _id:0}).then(studentData => {
+    const data = {x: [], y: [], isAdmin: isAdmin};
+    var params = {}
+    params.studentData = studentData;
+    params.data = data;
+    res.renderState("admin/portals/analytics", params);
+  });
 });
 router.post("/", function (req, res, next) {
   const studentId = req.body.studentForm[0];
@@ -63,25 +69,24 @@ router.post("/upload", function (req, res) {
     .pipe(csv())
     .on('data', (data) => results.push(data))
     .on('end', () => {
-      var cgKey = 0, i = 0;
+      var sampleData = results[0];
+      var cgKey = Object.keys(sampleData).indexOf("RA") + 1;
       for (row of results) {
         var erpID = row['Emp ID'];
         var studentID = row['ID No.'];
         var studentName = row['Student Name'];
         var discipline = row.Discipline;
         var bitsatScore = row['BITSAT Score'];
+        var raEmail = row['RA'];
         var semesters = [];
         var cgs = [];
-        Object.keys(row).forEach(function (key) {
-          if(key == 'Remarks') {return;}
-          cgKey += 1;
-        });
+        
         Object.keys(row).slice(cgKey).forEach(function (key) {
           semesters.push(key.toString());
           cgs.push(row[key]);
         });
         studentAcademics.create(
-          { erpId: erpID, idNo: studentID, studentName: studentName, discipline: discipline, bitsatScore: bitsatScore, semesters: semesters, cgs: cgs },
+          {erpId: erpID, idNo: studentID, studentName: studentName, discipline: discipline, bitsatScore: bitsatScore, raEmail: raEmail, semesters: semesters, cgs: cgs},
           function (err, studentAcademicInstance) {
             if (err) {
               console.log("Error creating model " + err);
