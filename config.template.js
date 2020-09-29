@@ -29,5 +29,7 @@ module.exports = {
   mailSecure: true,
 
   authSecretStudent: "STUDENT",
-  authSecretAdmin: "ADMIN"
+  authSecretAdmin: "ADMIN",
+
+  sendFeedbackMailToProf: false, // true or false
 };
