@@ -66,20 +66,22 @@ router.post("/step-4", function(req, res, next) {
             details: err
           });
         }
-        mailer.send({
-          email: instructoremail,
-          subject: "Feedback 24x7",
-          body:
-            "Dear " +
-            instructorname +
-            "<p>AUGSD has received the following qualitative feedback from your students for your course " +
-            courseID +
-            " and section " +
-            courseSection +
-            " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, AUGSD would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b>" +
-            feedback +
-            "</b></p>"
-        });
+        if(false){
+          mailer.send({
+            email: instructoremail,
+            subject: "Feedback 24x7",
+            body:
+              "Dear " +
+              instructorname +
+              "<p>AUGSD has received the following qualitative feedback from your students for your course " +
+              courseID +
+              " and section " +
+              courseSection +
+              " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, AUGSD would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b>" +
+              feedback +
+              "</b></p>"
+          });
+        }
         res.renderState("custom_errors", {
           redirect: "/dashboard",
           timeout: 2,
