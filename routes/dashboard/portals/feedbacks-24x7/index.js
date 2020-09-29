@@ -6,7 +6,7 @@ let router = express.Router();
 let feedbacksModel = fq("schemas/feedbacks");
 let feedbacks = require("./../feedbacks");
 
-["/", "/step-1"].forEach(step => {
+["/", "/step-1"].forEach((step) => {
   router.get(step, feedbacks);
 });
 
@@ -21,7 +21,7 @@ let errorHandler = function(req, res, message) {
     supertitle: ".",
     callback: "/",
     message: "Validation Error",
-    details: message
+    details: message,
   });
 };
 
@@ -54,19 +54,20 @@ router.post("/step-4", function(req, res, next) {
         instructor: instructoremail, // Instructor's email
         type: "24x7", // 24x7 or midsem
         responses: feedback,
-        createdOn: Date.now()
+        createdOn: Date.now(),
       };
       feedbacksModel.create(dataStore, function(err, response) {
+        let sendMail = false;
         if (err) {
           res.renderState("custom_errors", {
             redirect: "/dashboard",
             timeout: 5,
             supertitle: "Couldn't submit feedback",
             message: "Failure",
-            details: err
+            details: err,
           });
         }
-        if(false){
+        if (sendMail) {
           mailer.send({
             email: instructoremail,
             subject: "Feedback 24x7",
@@ -79,7 +80,7 @@ router.post("/step-4", function(req, res, next) {
               courseSection +
               " through 24 X 7 online portal. You may reflect upon the same and do the needful to enhance the overall environment of teaching and learning in your course. Kindly understand that the feedback is the perception of your student and sometimes may not be well written as they are students. You are requested to ignore those feedbacks which you think don't have any relevance. At the same time, AUGSD would still want to share all the feedback we receive through various means so that you can better understand your students.</p><p><b>" +
               feedback +
-              "</b></p>"
+              "</b></p>",
           });
         }
         res.renderState("custom_errors", {
@@ -87,7 +88,7 @@ router.post("/step-4", function(req, res, next) {
           timeout: 2,
           supertitle: "Submitted Feedback.",
           message: "Success",
-          details: "Your feedback was recorded. Thank you :). Redirecting"
+          details: "Your feedback was recorded. Thank you :). Redirecting",
         });
       });
     }
