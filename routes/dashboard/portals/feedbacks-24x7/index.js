@@ -6,6 +6,8 @@ let router = express.Router();
 let feedbacksModel = fq("schemas/feedbacks");
 let feedbacks = require("./../feedbacks");
 
+let config = require("../../../../config");
+
 ["/", "/step-1"].forEach((step) => {
   router.get(step, feedbacks);
 });
@@ -57,7 +59,6 @@ router.post("/step-4", function(req, res, next) {
         createdOn: Date.now(),
       };
       feedbacksModel.create(dataStore, function(err, response) {
-        let sendMail = false;
         if (err) {
           res.renderState("custom_errors", {
             redirect: "/dashboard",
@@ -67,7 +68,7 @@ router.post("/step-4", function(req, res, next) {
             details: err,
           });
         }
-        if (sendMail) {
+        if (config.sendFeedbackMailToProf) {
           mailer.send({
             email: instructoremail,
             subject: "Feedback 24x7",
