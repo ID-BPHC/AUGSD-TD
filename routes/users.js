@@ -20,20 +20,20 @@ let users = {
     },
     "Mr. Anil Zedia": {
       name: "Mr. Anil Zedia",
-      title: "Staff",
+      title: "Programmer",
       avatar: "/images/team/13.jpg",
       social: {}
     },
     "Mrs. N Srilakshmi": {
       name: "Mrs. N Srilakshmi",
-      title: "Staff",
+      title: "Office Assistant",
       avatar: "/images/team/14.jpg",
       social: {}
     },
-    "Nischay Ram Mamidi": {
-      name: "Nischay Ram Mamidi",
-      title: "System Administrator & Software Developer",
-      avatar: "/images/team/15.jpg",
+    "Mr Manoj Kumar Dash": {
+      name: "Mr Manoj Kumar Dash",
+      title: "Office Assistant",
+      avatar: "/images/team/25.jpg",
       social: {}
     },
     "Sohail Rajdev": {
@@ -44,7 +44,7 @@ let users = {
     },
     "Kailash Bhalaki": {
       name: "Kailash Bhalaki",
-      title: "Software Developer",
+      title: "System Administrator & Software Developer",
       avatar: "/images/team/18.jpg",
       social: {}
     },
