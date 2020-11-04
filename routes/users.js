@@ -1,21 +1,15 @@
 let users = {
   TD: {
-    "Prof. PK Sahoo": {
-      name: "Prof. PK Sahoo",
+    "Prof. Sashideep Gutti": {
+      name: "Dr. Sashideep Gutti",
       title: "Faculty in-charge, Timetable Division",
-      avatar: "/images/team/2.jpg",
+      avatar: "/images/team/20.jpg",
       social: {}
     },
     "Prof. K Venkata Ratnam": {
       name: "Dr. K Venkata Ratnam",
       title: "Timetable Nucleus Member",
       avatar: "/images/team/17.jpg",
-      social: {}
-    },
-    "Prof. Sashideep Gutti": {
-      name: "Dr. Sashideep Gutti",
-      title: "Timetable Nucleus Member",
-      avatar: "/images/team/20.jpg",
       social: {}
     },
     "Prof. Runa Kumari ": {
