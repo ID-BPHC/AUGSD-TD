@@ -33,7 +33,7 @@ let users = {
     "Mr Manoj Kumar Dash": {
       name: "Mr Manoj Kumar Dash",
       title: "Office Assistant",
-      avatar: "/images/team/25.jpg",
+      avatar: "/images/team/25.jpeg",
       social: {}
     },
     "Sohail Rajdev": {
