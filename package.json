@@ -47,7 +47,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "eslint-plugin-prettier": "^2.6.2",
-    "grunt": "^1.0.3",
+    "grunt": "^1.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^21.0.0",
     "grunt-prettier": "^0.6.1",
