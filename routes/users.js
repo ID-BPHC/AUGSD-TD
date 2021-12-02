@@ -68,7 +68,7 @@ let users = {
     }
   },
   AUGSD: {
-"Prof. Sridhar Raju": {
+    "Prof. Sridhar Raju": {
       name: "Prof. Sridhar Raju",
       title: "Associate Dean",
       avatar: "/images/team/1.jpg",
@@ -116,7 +116,7 @@ let users = {
       avatar: "/images/team/8.jpg",
       social: {}
     }
-}
+  }
 };
 
 module.exports = users;
