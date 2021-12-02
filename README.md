@@ -14,7 +14,7 @@ This project is live at : https://td.bits-hyderabad.ac.in/ , https://augsd.bits-
 1. Navigate to the project directory
 1. Create a copy of `config.template.js` as `config.js`
 1. Add the required details in `config.js`
-1. Run `npm install`
+1. Run `yarn install`
 1. Run `npm start`
 1. Navigate to `http://localhost:3000`
 
