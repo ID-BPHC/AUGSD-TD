@@ -31,5 +31,5 @@ module.exports = {
   authSecretStudent: "STUDENT",
   authSecretAdmin: "ADMIN",
 
-  sendFeedbackMailToProf: false, // true or false
+  sendFeedbackMailToProf: false // true or false
 };
