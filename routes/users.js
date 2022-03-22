@@ -1,21 +1,15 @@
 let users = {
   TD: {
-    "Prof. Sashideep Gutti": {
-      name: "Dr. Sashideep Gutti",
+    "Prof. Runa Kumari ": {
+      name: "Dr. Runa Kumari",
       title: "Faculty in-charge, Timetable Division",
-      avatar: "/images/team/20.jpg",
+      avatar: "/images/team/21.png",
       social: {}
     },
     "Prof. K Venkata Ratnam": {
       name: "Dr. K Venkata Ratnam",
       title: "Timetable Nucleus Member",
       avatar: "/images/team/17.jpg",
-      social: {}
-    },
-    "Prof. Runa Kumari ": {
-      name: "Dr. Runa Kumari",
-      title: "Timetable Nucleus Member",
-      avatar: "/images/team/21.png",
       social: {}
     },
     "Mr. Anil Zedia": {
@@ -48,16 +42,22 @@ let users = {
       avatar: "/images/team/18.jpg",
       social: {}
     },
-    "Jui Ashutosh Pradhan": {
-      name: "Jui Ashutosh Pradhan",
+    "Harshavardhan Madineni": {
+      name: "Harshavardhan Madineni",
       title: "Software Developer",
-      avatar: "/images/team/22.jpg",
+      avatar: "/images/team/Harsha.jpg",
       social: {}
     },
-    "Kriti Jethlia": {
-      name: "Kriti Jethlia",
+    "Ashish AVS": {
+      name: "Ashish AVS",
       title: "Software Developer",
-      avatar: "/images/team/23.jpg",
+      avatar: "/images/team/Ashish.jpeg",
+      social: {}
+    },
+    "Mr Sunil Kumar": {
+      name: "Mr Sunil Kumar",
+      title: "Office Assistant",
+      avatar: "/images/team/26.jpeg",
       social: {}
     },
     "Hardik Parnami": {
@@ -65,7 +65,8 @@ let users = {
       title: "Software Developer",
       avatar: "/images/team/24.jpg",
       social: {}
-    }
+    },
+   
   },
   AUGSD: {
     "Prof. Sridhar Raju": {
