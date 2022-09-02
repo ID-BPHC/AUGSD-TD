@@ -1,72 +1,70 @@
 let users = {
-  TD: {
-    "Prof. Runa Kumari ": {
-      name: "Dr. Runa Kumari",
-      title: "Faculty in-charge, Timetable Division",
-      avatar: "/images/team/21.png",
-      social: {}
+  TD:  {
+    students:{
+      "Harshavardhan Madineni": {
+        name: "Harshavardhan Madineni",
+        title: "Software Developer",
+        avatar: "/images/team/Harsha.jpg",
+        social: {}
+      },
+      "Ashish AVS": {
+        name: "Ashish AVS",
+        title: "Software Developer",
+        avatar: "/images/team/Ashish.jpeg",
+        social: {}
+      },
+      "Hardik Parnami": {
+        name: "Hardik Parnami",
+        title: "Software Developer",
+        avatar: "/images/team/24.jpg",
+        social: {}
+      },
+     
     },
-    "Prof. K Venkata Ratnam": {
-      name: "Dr. K Venkata Ratnam",
-      title: "Timetable Nucleus Member",
-      avatar: "/images/team/17.jpg",
-      social: {}
+    staff:{
+      "Prof. Runa Kumari ": {
+        name: "Dr. Runa Kumari",
+        title: "Faculty in-charge, Timetable Division",
+        avatar: "/images/team/21.png",
+        social: {}
+      },
+      "Prof. K Venkata Ratnam": {
+        name: "Dr. K Venkata Ratnam",
+        title: "Timetable Nucleus Member",
+        avatar: "/images/team/17.jpg",
+        social: {}
+      },
+      "Dr. Dipanjan Chakraborty": {
+        name: "Dr. Dipanjan Chakraborty",
+        title: "Software Head",
+        avatar: "/images/team/Dr. Dipanjan Chakraborty .jpeg",
+        social: {}
+      },
+      "Mr. Anil Zedia": {
+        name: "Mr. Anil Zedia",
+        title: "Programmer",
+        avatar: "/images/team/13.jpg",
+        social: {}
+      },
+      "Mrs. N Srilakshmi": {
+        name: "Mrs. N Srilakshmi",
+        title: "Office Assistant",
+        avatar: "/images/team/14.jpg",
+        social: {}
+      },
+      "Mr Sunil Kumar": {
+        name: "Mr Sunil Kumar",
+        title: "Office Assistant",
+        avatar: "/images/team/26.jpeg",
+        social: {}
+      },
+      "Sohail Rajdev": {
+        name: "Sohail Rajdev",
+        title: "System Administrator & Software Developer",
+        avatar: "/images/team/16.jpg",
+        social: {}
+      },
     },
-    "Mr. Anil Zedia": {
-      name: "Mr. Anil Zedia",
-      title: "Programmer",
-      avatar: "/images/team/13.jpg",
-      social: {}
-    },
-    "Mrs. N Srilakshmi": {
-      name: "Mrs. N Srilakshmi",
-      title: "Office Assistant",
-      avatar: "/images/team/14.jpg",
-      social: {}
-    },
-    "Mr Manoj Kumar Dash": {
-      name: "Mr Manoj Kumar Dash",
-      title: "Office Assistant",
-      avatar: "/images/team/25.jpeg",
-      social: {}
-    },
-    "Sohail Rajdev": {
-      name: "Sohail Rajdev",
-      title: "System Administrator & Software Developer",
-      avatar: "/images/team/16.jpg",
-      social: {}
-    },
-    "Kailash Bhalaki": {
-      name: "Kailash Bhalaki",
-      title: "System Administrator & Software Developer",
-      avatar: "/images/team/18.jpg",
-      social: {}
-    },
-    "Harshavardhan Madineni": {
-      name: "Harshavardhan Madineni",
-      title: "Software Developer",
-      avatar: "/images/team/Harsha.jpg",
-      social: {}
-    },
-    "Ashish AVS": {
-      name: "Ashish AVS",
-      title: "Software Developer",
-      avatar: "/images/team/Ashish.jpeg",
-      social: {}
-    },
-    "Mr Sunil Kumar": {
-      name: "Mr Sunil Kumar",
-      title: "Office Assistant",
-      avatar: "/images/team/26.jpeg",
-      social: {}
-    },
-    "Hardik Parnami": {
-      name: "Hardik Parnami",
-      title: "Software Developer",
-      avatar: "/images/team/24.jpg",
-      social: {}
-    },
-   
   },
   AUGSD: {
     "Prof. Sridhar Raju": {
