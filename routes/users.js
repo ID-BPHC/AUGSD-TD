@@ -1,5 +1,5 @@
 let users = {
-  TD:  {
+  TD: {
     students:{
       "Harshavardhan Madineni": {
         name: "Harshavardhan Madineni",
@@ -13,13 +13,42 @@ let users = {
         avatar: "/images/team/Ashish.jpeg",
         social: {}
       },
-      "Hardik Parnami": {
-        name: "Hardik Parnami",
-        title: "Software Developer",
-        avatar: "/images/team/24.jpg",
-        social: {}
-      },
-     
+     "Pavas Garg":{
+       name:"Pavas Garg",
+       title: "Software Developer",
+       avatar:"/images/team/Pavas.jpeg",
+       social:{}
+     },
+     "Soumitra Shewale":{
+       name:"Soumitra Shewale",
+       title: "Software Developer",
+       avatar:"/images/team/soumitra.jpg",
+       social:{}
+     },
+     "Swetha Krishna Sriram":{
+      name:"Swetha Krishna Sriram",
+      title: "Software Developer",
+      avatar:"/images/team/swetha.jpg",
+      social:{}
+    },
+     "Sharan K":{
+       name:"Sharan K",
+       title: "Software Developer",
+       avatar:"/images/team/Sharan.jpg",
+       social:{}
+     },
+     "Aditya Dinesh":{
+       name:"Aditya Dinesh",
+       title: "Software Developer",
+       avatar:"/images/team/Aditya.jpg",
+       social:{}
+     },
+     "Shoban Dash":{
+       name:"Shoban Dash",
+       title: "Software Developer",
+       avatar:"/images/team/Shoban.jpg",
+       social:{}
+     }
     },
     staff:{
       "Prof. Runa Kumari ": {
