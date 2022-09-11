@@ -1,56 +1,61 @@
 let users = {
   TD: {
-    students:{
-      "Harshavardhan Madineni": {
-        name: "Harshavardhan Madineni",
-        title: "Software Developer",
-        avatar: "/images/team/Harsha.jpg",
-        social: {}
+    students: {
+      coordinator: {
+        "Harshavardhan Madineni": {
+          name: "Harshavardhan Madineni",
+          title: "Coordinator",
+          avatar: "/images/team/Harsha.jpg",
+          social: {}
+        },
+        "Ashish AVS": {
+          name: "Ashish AVS",
+          title: "Coordinator",
+          avatar: "/images/team/Ashish.jpeg",
+          social: {}
+        }
       },
-      "Ashish AVS": {
-        name: "Ashish AVS",
-        title: "Software Developer",
-        avatar: "/images/team/Ashish.jpeg",
-        social: {}
-      },
-     "Pavas Garg":{
-       name:"Pavas Garg",
-       title: "Software Developer",
-       avatar:"/images/team/Pavas.jpeg",
-       social:{}
-     },
-     "Soumitra Shewale":{
-       name:"Soumitra Shewale",
-       title: "Software Developer",
-       avatar:"/images/team/soumitra.jpg",
-       social:{}
-     },
-     "Swetha Krishna Sriram":{
-      name:"Swetha Krishna Sriram",
-      title: "Software Developer",
-      avatar:"/images/team/swetha.jpg",
-      social:{}
+      members: {
+        "Pavas Garg": {
+          name: "Pavas Garg",
+          title: "Member",
+          avatar: "/images/team/Pavas.jpeg",
+          social: {}
+        },
+        "Soumitra Shewale": {
+          name: "Soumitra Shewale",
+          title: "Member",
+          avatar: "/images/team/soumitra.jpg",
+          social: {}
+        },
+        "Swetha Krishna Sriram": {
+          name: "Swetha Krishna Sriram",
+          title: "Member",
+          avatar: "/images/team/swetha.jpg",
+          social: {}
+        },
+        "Sharan K": {
+          name: "Sharan K",
+          title: "Member",
+          avatar: "/images/team/Sharan.jpg",
+          social: {}
+        },
+        "Aditya Dinesh": {
+          name: "Aditya Dinesh",
+          title: "Member",
+          avatar: "/images/team/Aditya.jpg",
+          social: {}
+        },
+        "Shoban Dash": {
+          name: "Shoban Dash",
+          title: "Member",
+          avatar: "/images/team/Shoban.jpg",
+          social:{}
+
+        }
+      }
     },
-     "Sharan K":{
-       name:"Sharan K",
-       title: "Software Developer",
-       avatar:"/images/team/Sharan.jpg",
-       social:{}
-     },
-     "Aditya Dinesh":{
-       name:"Aditya Dinesh",
-       title: "Software Developer",
-       avatar:"/images/team/Aditya.jpg",
-       social:{}
-     },
-     "Shoban Dash":{
-       name:"Shoban Dash",
-       title: "Software Developer",
-       avatar:"/images/team/Shoban.jpg",
-       social:{}
-     }
-    },
-    staff:{
+    staff: {
       "Prof. Runa Kumari ": {
         name: "Dr. Runa Kumari",
         title: "Faculty in-charge, Timetable Division",
