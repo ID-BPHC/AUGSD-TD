@@ -73,7 +73,7 @@
           .toString()
       );
       for (i = 1; i <= nowHour; i++) {
-        hours[i - 1].style.visibility = "hidden";
+        // hours[i - 1].style.visibility = "hidden";
       }
     }
 
@@ -89,7 +89,7 @@
     var startHour = parseInt(startTimePicker.time.get("hour").toString());
     var i = 1;
     for (i = 1; i <= startHour - 1; i++) {
-      hours[i - 1].style.visibility = "hidden";
+      // hours[i - 1].style.visibility = "hidden";
     }
   });
 
