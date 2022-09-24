@@ -25,7 +25,7 @@
     "jade": "~1.11.0",
     "json2csv": "^4.3.5",
     "material-components-web": "^0.32.0",
-    "moment": "^2.20.0",
+    "moment": "^2.29.4",
     "moment-range": "^4.0.1",
     "mongoose": "^5.4.16",
     "morgan": "^1.9.1",
