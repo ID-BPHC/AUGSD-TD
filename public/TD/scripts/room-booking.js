@@ -6,13 +6,11 @@
   });
 
   var startTimePicker = new mdDateTimePicker.default({
-    type: "time",
-    mode: true
+    type: "time"
   });
 
   var endTimePicker = new mdDateTimePicker.default({
-    type: "time",
-    mode: true
+    type: "time"
   });
 
   document.getElementById("date").addEventListener("focus", function() {
