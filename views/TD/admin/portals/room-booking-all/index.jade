@@ -25,8 +25,8 @@ block content
                 for number in booking.number
                   tr
                     td.mdl-data-table__cell--non-numeric #{number}
-                    td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 21)}
-                    td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 21)}
+                    td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 15)} #{parseInt(booking.start.toString().substring(16, 19)) > 12 ? (parseInt(booking.start.toString().substring(16, 19)) - 12).toString() +  ":" + (booking.start.toString().substring(19, 21))  +  "PM" : (parseInt(booking.start.toString().substring(16, 19))).toString() + ":" + (booking.start.toString().substring(19, 21)) + "AM"}
+                    td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 15)} #{parseInt(booking.end.toString().substring(16, 19)) > 12 ? (parseInt(booking.end.toString().substring(16, 19)) - 12).toString() +  ":" + (booking.end.toString().substring(19, 21))  +  "PM" : (parseInt(booking.end.toString().substring(16, 19))).toString() + ":" + (booking.end.toString().substring(19, 21)) + "AM"}
                     td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
                     td.mdl-data-table__cell--non-numeric #{booking.phone}
                     td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
