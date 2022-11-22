@@ -13,6 +13,12 @@ let users = {
           title: "Coordinator",
           avatar: "/images/team/Ashish.jpeg",
           social: {}
+        },
+        "Sohail Rajdev": {
+          name: "Sohail Rajdev",
+          title: "System Administrator & Software Developer",
+          avatar: "/images/team/16.jpg",
+          social: {}
         }
       },
       members: {
@@ -51,7 +57,6 @@ let users = {
           title: "Member",
           avatar: "/images/team/Shoban.jpg",
           social:{}
-
         }
       }
     },
@@ -74,6 +79,12 @@ let users = {
         avatar: "/images/team/Dr. Dipanjan Chakraborty .jpeg",
         social: {}
       },
+      "Dr. Supradeepan": {
+        name: "Dr. Supradeepan",
+        title: "Software Nucleus Member",
+        avatar: "/images/team/DrSupradeepan.jpeg",
+        social: {}
+      },
       "Mr. Anil Zedia": {
         name: "Mr. Anil Zedia",
         title: "Programmer",
@@ -91,13 +102,7 @@ let users = {
         title: "Office Assistant",
         avatar: "/images/team/26.jpeg",
         social: {}
-      },
-      "Sohail Rajdev": {
-        name: "Sohail Rajdev",
-        title: "System Administrator & Software Developer",
-        avatar: "/images/team/16.jpg",
-        social: {}
-      },
+      }
     },
   },
   AUGSD: {
