@@ -10,7 +10,11 @@ block content
               margin:       8,
               filename:     'Room Booking.pdf',
               jsPDF:        { unit: 'pt', orientation: 'portrait' },
-              pagebreak: { mode: 'avoid-all' }
+              pagebreak: { mode: 'avoid-all' },
+              html2canvas: {
+                dpi: 192,
+                scale:4
+              },
             };
             const data = html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdfObj) {
               const data = pdfObj.output('bloburi', "Room Booking.pdf")
