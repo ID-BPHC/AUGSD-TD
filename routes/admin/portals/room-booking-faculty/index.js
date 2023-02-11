@@ -4,6 +4,9 @@ let fq = require("fuzzquire");
 let roomBookingFaculty = fq("common/room-booking");
 let nocache = require("nocache");
 let Booking = fq("common/BookingClass");
+let Moment = require("moment");
+let MomentRange = require("moment-range");
+let moment = MomentRange.extendMoment(Moment);
 
 const { check, validationResult } = require("express-validator/check");
 
@@ -60,13 +63,29 @@ router.post(
       .withMessage("No Start Time Specified")
       .not()
       .isEmpty()
-      .withMessage("No Start Time Specified"),
+      .withMessage("No Start Time Specified")
+      .custom((value) => {
+        const startTime = moment(value, "HH:mm");
+        if (startTime.isSameOrBefore(moment("06:00", "HH:mm")) && startTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+          return false;
+        }
+        return true;
+      })
+      .withMessage("Start time must not be between 12:00 AM and 6:00 AM"),
     check("time-end")
       .exists()
       .withMessage("No End Time Specified")
       .not()
       .isEmpty()
-      .withMessage("No End Time Specified"),
+      .withMessage("No End Time Specified")
+      .custom((value) => {
+        const endTime = moment(value, "HH:mm");
+        if (endTime.isSameOrBefore(moment("06:00", "HH:mm")) && endTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+          return false;
+        }
+        return true;
+      })
+      .withMessage("End time must not be between 12:00 AM and 6:00 AM"),
     check("date")
       .exists()
       .withMessage("No Date Specified")
