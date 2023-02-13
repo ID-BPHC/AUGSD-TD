@@ -96,6 +96,14 @@ var portals = [
     admin: true
   },
   {
+    displayName: "View Previous Room Bookings",
+    name: "previous-room-booking",
+    icon: "class",
+    active: false,
+    mode: "TD",
+    admin: true
+  },
+  {
     displayName: "Inductions",
     name: "inductions",
     icon: "work",
