@@ -1,0 +1,58 @@
+extends ../../../master-dashboard
+
+block content
+  script(src="/scripts/print.min.js")
+  script(src="/scripts/html2pdf.bundle.min.js")
+  script(type='text/javascript').
+          function printPDF(date) {
+            var element = document.getElementById(date);
+            var opt = {
+              margin:       8,
+              filename:     'Room Booking.pdf',
+              jsPDF:        { unit: 'pt', orientation: 'portrait' },
+              pagebreak: { mode: 'avoid-all' },
+              html2canvas: {
+                dpi: 192,
+                scale:4
+              },
+            };
+            const data = html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdfObj) {
+              const data = pdfObj.output('bloburi', "Room Booking.pdf")
+              console.log(data)
+              printJS(data)
+          });
+          }
+  div.mdl-cell.mdl-cell--12-col.center
+    h2 Previous Room Bookings
+
+  div.mdl-cell.mdl-cell--12-col
+    center
+      for day in bookings
+        - let date = day[0].start.getDate().toString() + day[0].start.getMonth().toString() + day[0].start.getFullYear().toString()
+        i.material-icons(onclick="(printPDF(#{date}))") print 
+        div.table-responsive(id="#{date}")
+          table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+            thead
+              tr
+                th.mdl-data-table__cell--non-numeric Room
+                th.mdl-data-table__cell--non-numeric From
+                th.mdl-data-table__cell--non-numeric To
+                th.mdl-data-table__cell--non-numeric Booked By
+                th.mdl-data-table__cell--non-numeric Phone
+                th.mdl-data-table__cell--non-numeric Audio/Visual   
+            tbody						
+              for booking in day
+                for number in booking.number
+                  tr
+                    td.mdl-data-table__cell--non-numeric #{number}
+                    td.mdl-data-table__cell--non-numeric #{booking.start.toString().substring(0, 15)} #{parseInt(booking.start.toString().substring(16, 19)) > 12 ? (parseInt(booking.start.toString().substring(16, 19)) - 12).toString() +  ":" + (booking.start.toString().substring(19, 21))  +  "PM" : (parseInt(booking.start.toString().substring(16, 19))).toString() + ":" + (booking.start.toString().substring(19, 21)) + "AM"}
+                    td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 15)} #{parseInt(booking.end.toString().substring(16, 19)) > 12 ? (parseInt(booking.end.toString().substring(16, 19)) - 12).toString() +  ":" + (booking.end.toString().substring(19, 21))  +  "PM" : (parseInt(booking.end.toString().substring(16, 19))).toString() + ":" + (booking.end.toString().substring(19, 21)) + "AM"}
+                    td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
+                    td.mdl-data-table__cell--non-numeric #{booking.phone}
+                    td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
+          hr
+          br
+    script.
+      window.setInterval(function(){
+        window.location.reload();
+      }, 300000);
