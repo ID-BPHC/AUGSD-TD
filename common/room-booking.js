@@ -261,7 +261,7 @@ let makeBooking = function(booking, rooms, callback) {
                 }
                 if (booking.isFaculty) {
                   mailer.send({
-                    email: `${booking.email}, timetable@hyderabad.bits-pilani.ac.in`,
+                    email: booking.email,
                     subject: "Room Booking",
                     body:
                       "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
@@ -274,7 +274,7 @@ let makeBooking = function(booking, rooms, callback) {
                   });
                 } else {
                   mailer.send({
-                    email: `${booking.email}, timetable@hyderabad.bits-pilani.ac.in`,
+                    email: booking.email,
                     subject: "Room Booking",
                     body:
                       "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +

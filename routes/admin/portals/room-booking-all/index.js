@@ -7,7 +7,7 @@ let mapByDays = require("../common").mapByDays;
 
 router.get("/", function(req, res, next) {
   bookingsModel.find(
-    { end: { $gt: moment().subtract(1, 'months') }, approval: "A", blockAll: false },
+    { end: { $gt: moment() }, approval: "A", blockAll: false },
     null,
     { sort: { start: 1 } },
     function(err, bookings) {
