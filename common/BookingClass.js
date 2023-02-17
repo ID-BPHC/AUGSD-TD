@@ -8,6 +8,7 @@ class Booking {
     dateString,
     startString,
     endString,
+    dates,
     purpose,
     av,
     phone,
@@ -17,6 +18,7 @@ class Booking {
     this.dateString = dateString;
     this.startString = startString;
     this.endString = endString;
+    this.dates = dates,
     this.purpose = purpose;
     this.av = av;
     this.phone = phone;
