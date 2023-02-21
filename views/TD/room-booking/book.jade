@@ -20,8 +20,13 @@ block content
 			form.mdc-form-field#form
 				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 					input#date.mdl-textfield__input(type='text', name='date', readonly='true')
-					label.mdl-textfield__label(for='date') Date
+					label.mdl-textfield__label(for='date') Start Date
 				button.mdl-button.mdl-js-button.mdl-button--icon#dateBtn(type="button")
+					i.material-icons calendar_today
+				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+					input#date-end.mdl-textfield__input(type='text', name='date-end', readonly='true')
+					label.mdl-textfield__label(for='date-end') End Date (Optional)
+				button.mdl-button.mdl-js-button.mdl-button--icon#dateBtnEnd(type="button")
 					i.material-icons calendar_today
 				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 					input#time-start.mdl-textfield__input(type='text', name='time-start', readonly='true')
@@ -64,4 +69,4 @@ block content
 	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
 	script(type='text/javascript' src='/scripts/material-alerts.js')
-	script(type='text/javascript' src='/scripts/room-booking.js')		
+	script(type='text/javascript' src='/scripts/room-booking.js')  

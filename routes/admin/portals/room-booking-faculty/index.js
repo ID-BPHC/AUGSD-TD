@@ -119,11 +119,18 @@ router.post(
       });
     }
 
+    if (req.body.dates.length == 0) {
+      return res.renderState("room-booking/errors", {
+        message: "End Date was chosen before Start Date"
+      });
+    }
+
     let booking = new Booking(
       req.sanitize(req.user.email),
       req.sanitize(req.body.date),
       req.sanitize(req.body["time-start"]),
       req.sanitize(req.body["time-end"]),
+      req.body.dates,
       (req.session.purpose = req.sanitize(req.body.purpose)),
       (req.session.av = req.sanitize(req.body.av) == "Yes" ? true : false),
       req.sanitize(req.body.phone),
@@ -169,16 +176,45 @@ router.post(
   }
 );
 
-router.post("/submit", function(req, res, next) {
-  roomBookingFaculty.makeBooking(req.session.booking, req.body.rooms, function(
-    err,
-    result
-  ) {
-    if (err) {
-      return res.terminate("Error");
+router.post("/submit", function (req, res, next) {
+  const dates = req.session.booking.dates;
+  let results = [];
+
+  let weekDayHash = {
+    Mon: 0,
+    Tue: 1,
+    Wed: 2,
+    Thu: 3,
+    Fri: 4,
+    Sat: 5,
+    Sun: 6
+  };
+
+  let handleResult = (value, result) => {
+    results.push(result);
+    if (results.length === dates.length) {
+      let bookedFlag = false;
+      for (const result of results) {
+        if (result.partialBooking || result.noWorkingHours || result.allBlocked) {
+          bookedFlag = true;
+          return res.json(result);
+        }
+      }
+      if (!bookedFlag) {
+        return res.json({ booked: 1 });
+      }
     }
-    return res.json(result);
-  });
+  };
+
+  for (const date of dates) {
+    let booking = Object.assign({}, req.session.booking);
+    booking.weekDay = (parseInt(weekDayHash[date.substring(0, 3)]));
+    booking.dateString = date;
+    booking.startTimeObj = moment(booking.dateString + " " + booking.startString, 'ddd DD MMM YYYY HH:mm').toISOString();
+    booking.endTimeObj = moment(booking.dateString + " " + booking.endString, 'ddd DD MMM YYYY HH:mm').toISOString();
+
+    roomBookingFaculty.makeBooking(booking, req.body.rooms, handleResult);
+  }
 });
 
 module.exports = router;
