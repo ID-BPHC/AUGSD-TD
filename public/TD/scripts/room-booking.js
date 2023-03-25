@@ -214,6 +214,9 @@
 
         listItems.forEach(function (item) {
           document.querySelector("#room-list-form ul.mdl-list").appendChild(item);
+          document.getElementById("room-" + item.id).addEventListener('click', (e) => {
+            e.stopPropagation()
+          });
           item.addEventListener('click', () => {
             let state = document.getElementById("room-" + item.id).checked;
             document.getElementById("room-" + item.id).checked = !state;
@@ -231,36 +234,45 @@
               if (checkboxes[i].checked) rooms.push(checkboxes[i].name);
             }
 
-            axios.post("./submit", { rooms }).then(function (res) {
-              if (res.data.booked == 1) {
-                materialAlert(
-                  "Success",
-                  "Your booking request has been placed. Please check your email for further details.",
-                  function (result) {
-                    window.location.replace("./view");
-                  }
-                );
-              } else if (res.data.partialBooking == 1) {
-                materialAlert(
-                  "Error",
-                  "The following rooms were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
-                  res.data.notAvailable.toString(),
-                  function (result) { }
-                );
-              } else if (res.data.noWorkingHours == 1) {
-                materialAlert(
-                  "Error",
-                  "There are no working office-hours to process your booking.",
-                  function (result) { }
-                );
-              } else if (res.data.allBlocked == 1) {
-                materialAlert(
-                  "Error",
-                  "All rooms for the selected date/time are blocked.",
-                  function (result) { }
-                );
-              }
-            });
+            if(rooms.length) {
+              axios.post("./submit", { rooms }).then(function (res) {
+                if (res.data.booked == 1) {
+                  materialAlert(
+                    "Success",
+                    "Your booking request has been placed. Please check your email for further details.",
+                    function (result) {
+                      window.location.replace("./view");
+                    }
+                  );
+                } else if (res.data.partialBooking == 1) {
+                  materialAlert(
+                    "Error",
+                    "The following rooms were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
+                    res.data.notAvailable.toString(),
+                    function (result) { }
+                  );
+                } else if (res.data.noWorkingHours == 1) {
+                  materialAlert(
+                    "Error",
+                    "There are no working office-hours to process your booking.",
+                    function (result) { }
+                  );
+                } else if (res.data.allBlocked == 1) {
+                  materialAlert(
+                    "Error",
+                    "All rooms for the selected date/time are blocked.",
+                    function (result) { }
+                  );
+                }
+              });
+            } else {
+              materialAlert(
+                "Error",
+                "Please select a room before booking.",
+                function (result) { }
+              );
+            }
+
           });
       }
 
