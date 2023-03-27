@@ -7,6 +7,7 @@ let Booking = fq("common/BookingClass");
 let Moment = require("moment");
 let MomentRange = require("moment-range");
 let moment = MomentRange.extendMoment(Moment);
+let holidaysModel = fq("schemas/holidays");
 
 const { check, validationResult } = require("express-validator/check");
 
@@ -176,7 +177,7 @@ router.post(
   }
 );
 
-router.post("/submit", function (req, res, next) {
+router.post("/submit", async function (req, res, next) {
   const dates = req.session.booking.dates;
   let results = [];
 
@@ -206,13 +207,20 @@ router.post("/submit", function (req, res, next) {
     }
   };
 
+  let isHoliday = async function (date) {
+    if (date.day() === 0) return true;
+    let results = await holidaysModel.find({ date: date.format("ddd DD MMM YYYY") });
+    if (results.length > 0) return true;
+    else return false;
+  };
+
   for (const date of dates) {
     let booking = Object.assign({}, req.session.booking);
     booking.weekDay = (parseInt(weekDayHash[date.substring(0, 3)]));
     booking.dateString = date;
     booking.startTimeObj = moment(booking.dateString + " " + booking.startString, 'ddd DD MMM YYYY HH:mm').toISOString();
     booking.endTimeObj = moment(booking.dateString + " " + booking.endString, 'ddd DD MMM YYYY HH:mm').toISOString();
-
+    booking.holiday = await isHoliday(new moment(booking.startTimeObj));
     roomBookingFaculty.makeBooking(booking, req.body.rooms, handleResult);
   }
 });
