@@ -90,7 +90,7 @@ let checkIfAllBlocked = function(startTime, endTime, cb) {
 };
 
 let checkAvailability = function(room, booking, cb) {
-  if (booking.startHour <= 9) {
+  if (!booking.holiday && booking.startHour <= 9) {
     for (i = booking.startHour; i <= booking.endHour; i++) {
       if (
         i >= 0 &&
