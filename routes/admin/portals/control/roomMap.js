@@ -53,7 +53,7 @@ router.post(
         } else {
           let weekDayHash = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
           let numberHash = [];
-          for (let i = 1; i <= 10; i++) {
+          for (let i = 1; i <= 12; i++) {
             numberHash.push(i);
           }
           return res.renderState("admin/portals/control/roomMap/step2", {
@@ -80,8 +80,8 @@ router.post("/:room/changeClass", function(req, res, next) {
   function changeReqObjToArray(obj) {
     let arr = [[], [], [], [], [], [], []]; //7 arrays representing each day.
     for (let day = 0; day < 7; day++) {
-      for (let hour = 0; hour < 10; hour++) {
-        arr[day][hour] = req.body[day + "" + hour];
+      for (let hour = 0; hour < 12; hour++) {
+        arr[day][hour] = req.body[day + "" + hour] || "";
       }
     }
     return arr;
@@ -132,7 +132,7 @@ router.post("/:room/changeClass", function(req, res, next) {
   let p;
   async function bookings() {
     for (let day = 0; day < 7; day++) {
-      for (let hour = 0; hour < 10; hour++) {
+      for (let hour = 0; hour < 12; hour++) {
         if (newSubs[day][hour]) {
           p = await checkRoomBookings(presentRoom, day + 1, hour + 1);
         }
