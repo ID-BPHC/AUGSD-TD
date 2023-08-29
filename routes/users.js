@@ -28,34 +28,16 @@ let users = {
           avatar: "/images/team/Pavas.jpeg",
           social: {}
         },
-        "Soumitra Shewale": {
-          name: "Soumitra Shewale",
-          title: "Member",
-          avatar: "/images/team/soumitra.jpg",
-          social: {}
-        },
-        "Swetha Krishna Sriram": {
-          name: "Swetha Krishna Sriram",
-          title: "Member",
-          avatar: "/images/team/swetha.jpg",
-          social: {}
-        },
         "Sharan K": {
           name: "Sharan K",
           title: "Member",
           avatar: "/images/team/Sharan.jpg",
           social: {}
         },
-        "Aditya Dinesh": {
-          name: "Aditya Dinesh",
+        "Shobhan Dash": {
+          name: "Shobhan Dash",
           title: "Member",
-          avatar: "/images/team/Aditya.jpg",
-          social: {}
-        },
-        "Shoban Dash": {
-          name: "Shoban Dash",
-          title: "Member",
-          avatar: "/images/team/Shoban.jpg",
+          avatar: "/images/team/Shobhan.jpg",
           social:{}
         }
       }
