@@ -24,6 +24,13 @@ block content
           }
   div.mdl-cell.mdl-cell--12-col.center
     h2 Room Bookings
+    div.mdl-cell.mdl-cell--12-col.center(style="display: flex; justify-content: center; align-items: flex-start;")
+      div(style="width: 20%; display: flex; flex-direction: row; align-items: center; background-color: rgb(230, 230, 230); border-radius: 20px;")
+        div.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.mdl-textfield--full-width(style="border-radius: 10px; padding: 10px 5px; display: flex; align-items: center; margin: 5px 5px")
+          input.mdl-textfield__input(type="text" id="search" style="font-size: 20px; margin-left: 20px; padding: 10px; border: none; background: none; font-family: 'Serif', monospace; font-weight: bold;")
+          label.mdl-textfield__label(for="search" style="font-size: 15px; margin-left: 20px;") Search
+        div.mdl-button.mdl-js-button.mdl-button--icon(for="search" style="margin: 10px;")
+          i.material-icons(style="font-size: 30px; margin-right: 10px;") search
 
   div.mdl-cell.mdl-cell--12-col
     center
@@ -53,6 +60,39 @@ block content
           hr
           br
     script.
-      window.setInterval(function(){
-        window.location.reload();
+      const bookings = !{JSON.stringify(bookings)};
+
+      function filterTableRows(searchTerm) {
+        const tableRows = document.querySelectorAll('tbody tr');
+        const tableHead = document.querySelector('thead');
+        const tableBody = document.querySelector('tbody');
+        let anyVisibleRows = false;
+
+        tableRows.forEach(row => {
+          const rowData = row.textContent.toLowerCase();
+          if (rowData.includes(searchTerm.toLowerCase())) {
+            row.style.display = 'table-row';
+            anyVisibleRows = true;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        if (anyVisibleRows) {
+          tableHead.style.display = 'table-header-group';
+          tableBody.style.display = 'table-row-group';
+        } else {
+          tableHead.style.display = 'none';
+          tableBody.style.display = 'none';
+        }
+      }
+
+      const searchInput = document.getElementById('search');
+      searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value;
+        filterTableRows(searchTerm);
+      });
+
+      setInterval(function(){
+        location.reload();
       }, 300000);
