@@ -1,26 +1,89 @@
 extends ../../../master-dashboard
 
 block content
-	div.mdl-cell.mdl-cell--12-col
-			h2 Switch User
-		div.mdl-cell.mdl-cell--12-col.center
+  style.
+    /* Add your custom styles here */
+    .custom-select-container {
+      position: relative;
+      width: 50%;
+      margin: 0 auto; /* Center the container */
+    }
+    .custom-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 2; /* Adjust z-index */
+    }
+    .custom-options {
+      display: none;
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      z-index: 1; /* Adjust z-index */
+    }
+    .custom-option {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .custom-option:hover {
+      background-color: #f5f5f5;
+    }
 
-			style.
-				.getmdl-select {
-				    width: 70% !important;
-				}
+  div.mdl-cell.mdl-cell--12-col
+    h2 Switch User
+  div.mdl-cell.mdl-cell--12-col.center
+    h4 Select User
+    form(action="#{rootURL}/#{reqPortal}/switch-user/switch", method="post", name="form1" id="form1").mdc-form-field
+      .custom-select-container
+        input#user-search.custom-select(type='text', placeholder='Search', autocomplete='off')
+        div.custom-options
+          each user in users
+            div.custom-option(data-value=user.email)= user.email + ' | ' + user.name
+      input#users(type='hidden', name='users')
+      br
+      br
+      button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple', type="submit", form="form1")
+        | Continue
 
-			h4 Select User
-			form(action="#{rootURL}/#{reqPortal}/switch-user/switch", method="post", name="form1" id="form1").mdc-form-field
-				.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
-					input#users.mdl-textfield__input(type='text', value='. . .', readonly='', tabindex='-1', name='users')
-					label(for='users')
-						i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
-					label.mdl-textfield__label(for='users') Select User
-					ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='users')
-						each user in users
-							li.mdl-menu__item #{user.email} | #{user.name} 
-				br
-				br
-				button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--colored.mdl-button--raised(data-stepper-next='', data-upgraded=',MaterialButton,MaterialRipple',type="submit",form="form1")
-							| Continue
+  script.
+    // JavaScript for custom select dropdown
+    const searchInput = document.getElementById('user-search');
+    const optionsContainer = document.querySelector('.custom-options');
+    const options = document.querySelectorAll('.custom-option');
+
+    searchInput.addEventListener('input', function() {
+      const searchValue = this.value.toLowerCase();
+
+      options.forEach(option => {
+        const text = option.textContent.toLowerCase();
+        if (text.includes(searchValue)) {
+          option.style.display = 'block';
+        } else {
+          option.style.display = 'none';
+        }
+      });
+    });
+
+    optionsContainer.addEventListener('click', function(e) {
+      if (e.target.classList.contains('custom-option')) {
+        const selectedValue = e.target.getAttribute('data-value');
+        document.getElementById('users').value = selectedValue;
+        searchInput.value = e.target.textContent.trim();
+        optionsContainer.style.display = 'none';
+      }
+    });
+
+    searchInput.addEventListener('focus', function() {
+      optionsContainer.style.display = 'block';
+    });
+
+    searchInput.addEventListener('blur', function() {
+      setTimeout(() => {
+        optionsContainer.style.display = 'none';
+      }, 200);
+    });
