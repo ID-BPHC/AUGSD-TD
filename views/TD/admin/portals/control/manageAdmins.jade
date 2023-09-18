@@ -1,46 +1,122 @@
 extends ../../../master-dashboard
 
 block content
-	div.mdl-cell.mdl-cell--12-col.center
-		h2 Admin Management
-	div.mdl-cell.mdl-cell--12-col
-		div.mdl-cell.mdl-cell--12-col
-			center
-				h4 Add Admin
-					form(action="#{rootURL}/#{reqPortal}/manage-admins/add", method="post", name="addForm" id="addForm")
-						input#name(name="name" placeholder="Name" required="true")
-						br
-						input#email(name="email" placeholder="Email" required="true")
-						br
-						select#department(name="department" placeholder="Department")
-							ption(value="Division") Division
-							option(value="ME|Mechanical Engineering") Mechanical
-							option(value="CS|Computer Science") Computer Science
-							option(value="ECON|Economics and Finance") Economics
-							option(value="HSS|Humanities and Social Sciences") Humanities
-							option(value="PHA|Pharmacy") Pharmacy
-							option(value="MATH|Mathematics") Mathematics
-							option(value="CE|Civil Engineering") Civil
-							option(value="CHE|Chemical Engineering") Chemical
-							option(value="BIO|Biological Sciences") Biology
-							option(value="EEE|EEE") Electronics &amp; Electrical
-							option(value="CHEM|Chemistry") Chemistry
-							option(value="PHY|Physics") Physics
-						br
-						input#maxProjects(type="number" name="maxProjects" placeholder="Max Projects" required="true")
-						h5 Portals
-						div.mdl-grid
-							each portal in adminPortals
-								div.mdl-cell.mdl-cell--3-col
-									input(type="checkbox" name="portals" value="#{portal.name}")
-									font(size="3") #{portal.name} | #{portal.displayName}
-						button(type="submit") Add
-		hr
-		div.mdl-cell.mdl-cell--12-col
-			center
-				h4 Delete Admin
-					form(action="#{rootURL}/#{reqPortal}/manage-admins/delete", method="post", name="deleteForm" id="deleteForm")
-						select#admin(name="admin")
-							for admin in admins
-								option(value="#{admin.email}") #{admin.name} | #{admin.email}
-						button(type="submit") Delete
+  style.
+    /* Add your custom styles here */
+    .custom-select-container {
+      position: relative;
+      width: 50%;
+      margin: 0 auto; /* Center the container */
+    }
+    .custom-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 2; /* Adjust z-index */
+    }
+    .custom-options {
+      display: none;
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      z-index: 1; /* Adjust z-index */
+    }
+    .custom-option {
+      padding: 10px;
+      cursor: pointer;
+      font-size: 14px; /* Adjust the font size */
+    }
+    .custom-option:hover {
+      background-color: #f5f5f5;
+    }
+
+  div.mdl-cell.mdl-cell--12-col.center
+    h2 Admin Management
+  div.mdl-cell.mdl-cell--12-col
+    div.mdl-cell.mdl-cell--12-col
+      center
+        h4 Add Admin
+          form(action="#{rootURL}/#{reqPortal}/manage-admins/add", method="post", name="addForm" id="addForm")
+            input#name(name="name" placeholder="Name" required="true")
+            br
+            input#email(name="email" placeholder="Email" required="true")
+            br
+            select#department(name="department" placeholder="Department")
+              option(value="Division") Division
+              option(value="ME|Mechanical Engineering") Mechanical
+              option(value="CS|Computer Science") Computer Science
+              option(value="ECON|Economics and Finance") Economics
+              option(value="HSS|Humanities and Social Sciences") Humanities
+              option(value="PHA|Pharmacy") Pharmacy
+              option(value="MATH|Mathematics") Mathematics
+              option(value="CE|Civil Engineering") Civil
+              option(value="CHE|Chemical Engineering") Chemical
+              option(value="BIO|Biological Sciences") Biology
+              option(value="EEE|EEE") Electronics &amp; Electrical
+              option(value="CHEM|Chemistry") Chemistry
+              option(value="PHY|Physics") Physics
+            br
+            input#maxProjects(type="number" name="maxProjects" placeholder="Max Projects" required="true")
+            h5 Portals
+            div.mdl-grid
+              each portal in adminPortals
+                div.mdl-cell.mdl-cell--3-col
+                  input(type="checkbox" name="portals" value="#{portal.name}")
+                  font(size="3") #{portal.name} | #{portal.displayName}
+            button(type="submit") Add
+    hr
+    div.mdl-cell.mdl-cell--12-col
+      center
+        h4 Delete Admin
+          form(action="#{rootURL}/#{reqPortal}/manage-admins/delete", method="post", name="deleteForm" id="deleteForm")
+            .custom-select-container
+              input#admin-search.custom-select(type='text', placeholder='Search', autocomplete='off')
+              div.custom-options
+                each admin in admins
+                  div.custom-option(data-value=admin.email)= admin.name + ' | ' + admin.email
+            input#admin(type='hidden', name='admin')
+            br
+            button(type="submit") Delete
+
+  script.
+    // JavaScript for custom select dropdown
+    const searchInput = document.getElementById('admin-search');
+    const optionsContainer = document.querySelector('.custom-options');
+    const options = document.querySelectorAll('.custom-option');
+
+    searchInput.addEventListener('input', function() {
+      const searchValue = this.value.toLowerCase();
+
+      options.forEach(option => {
+        const text = option.textContent.toLowerCase();
+        if (text.includes(searchValue)) {
+          option.style.display = 'block';
+        } else {
+          option.style.display = 'none';
+        }
+      });
+    });
+
+    optionsContainer.addEventListener('click', function(e) {
+      if (e.target.classList.contains('custom-option')) {
+        const selectedValue = e.target.getAttribute('data-value');
+        document.getElementById('admin').value = selectedValue;
+        searchInput.value = e.target.textContent.trim();
+        optionsContainer.style.display = 'none';
+      }
+    });
+
+    searchInput.addEventListener('focus', function() {
+      optionsContainer.style.display = 'block';
+    });
+
+    searchInput.addEventListener('blur', function() {
+      setTimeout(() => {
+        optionsContainer.style.display = 'none';
+      }, 200);
+    });
