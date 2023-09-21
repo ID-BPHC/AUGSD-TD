@@ -1,3 +1,17 @@
+### TTD Induction Project Task: DELETE THIS SECTION BEFORE MERGING TO MAIN!
+As part of the induction task, you need to make a Room Map Upload portal in the admin dashboard for the TTD website using React, MongoDB and Express. Please refer to the following screenshots for more clarity:
+1. Add a option `Room Map Upload from PDF` here, which should route to `/admin/control/room-map-upload`
+
+![image](https://github.com/ID-BPHC/AUGSD-TD/assets/109419186/113705fa-68c6-45e5-81e5-f4ace122f74a)
+
+2. Have the following UI elements in this page: a page to and from text fields, a pdf upload button and a submit button. Additional Brownie Points: Add a custom multiple page selector ui element (sort of like the material ui calendar) which allows selection of multiple pages in a discontinuous order (1,7-10,12-15, etc). The js script should read the contents of those pages and update/populate the relevant sections in the backend.
+You may take inspiration for the backend structure from the `routes/admin/portals/control/roomMap.js` file which does the same, but needs the user to manually enter the data for each room. The frontend for this portal looks like this:
+
+![image](https://github.com/ID-BPHC/AUGSD-TD/assets/109419186/0c152009-6e97-42eb-a658-a20c0879f5b4)
+
+![image](https://github.com/ID-BPHC/AUGSD-TD/assets/109419186/0a31d466-c18e-4889-8d6f-216b112f3db7)
+
+----------------
 # Timetable Division | AUGS Division [![Build Status](https://api.travis-ci.com/ID-BPHC/AUGSD-TD.svg?branch=master)](https://travis-ci.com/ID-BPHC/AUGSD-TD)
 Timetable Division and AUGS Divsion are sub-divisions of BITS Pilani Hyderabad Campus. They together oversee operations pertaining to Academic Instructor Feedback, Content Management System, Student Coursework, Biometric Attendance and Teaching Assistantship and formalizing Student-Professor projects.
 
