@@ -1,5 +1,5 @@
 ### TTD Induction Project Task: DELETE THIS SECTION BEFORE MERGING TO MAIN!
-As part of the induction task, you need to make a Room Map Upload portal in the admin dashboard for the TTD website using React, MongoDB and Express. Please refer to the following screenshots for more clarity:
+As part of the induction task, you need to make a Room Map Upload portal in the admin dashboard for the TTD website using Jade (Pug), MongoDB and Express. Please refer to the following screenshots for more clarity:
 1. Add a option `Room Map Upload from PDF` here, which should route to `/admin/control/room-map-upload`
 
 ![image](https://github.com/ID-BPHC/AUGSD-TD/assets/109419186/113705fa-68c6-45e5-81e5-f4ace122f74a)
