@@ -22,24 +22,35 @@ let users = {
         }
       },
       members: {
-        "Pavas Garg": {
-          name: "Pavas Garg",
+        "Shobhan Dash": {
+          name: "Shobhan Dash",
           title: "Member",
-          avatar: "/images/team/Pavas.jpeg",
-          social: {}
+          avatar: "/images/team/Shobhan.jpg",
+          social:{}
         },
+
         "Sharan K": {
           name: "Sharan K",
           title: "Member",
           avatar: "/images/team/Sharan.jpg",
           social: {}
         },
-        "Shobhan Dash": {
-          name: "Shobhan Dash",
+
+        "Palaniappan R": {
+          name: "Palaniappan R",
           title: "Member",
-          avatar: "/images/team/Shobhan.jpg",
-          social:{}
-        }
+          avatar: "/images/team/Palaniappan.jpg",
+          social: {}
+        },
+
+        "Karthik Prakash": {
+          name: "Karthik Prakash",
+          title: "Member",
+          avatar: "/images/team/Karthik.jpg",
+          social: {}
+        },
+
+
       }
     },
     staff: {
