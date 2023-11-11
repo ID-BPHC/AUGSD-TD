@@ -8,9 +8,9 @@ block content
 
 	- const isSaturday = currentDay === 6;
 	- const isSunday = currentDay === 0;
-	//- open on weekdays 8am - 4pm, saturdays 8am to 12 noon. closed on sundays
-	- const portalClosed = (!isSaturday && !isSunday && (currentHour >= 16 || currentHour < 8)) || (isSaturday && (currentHour >= 12 || currentHour < 8)) || isSunday;
-
+	- const isMonday = currentDay === 1;
+	//- closed between saturday 12pm and monday 8am
+	- const portalClosed = isSunday || ((isSaturday && currentHour >= 12)) || ((isMonday && currentHour < 8));
 	- const portalClosedVar = portalClosed ? true : false;
 	- console.log(portalClosed);
 
@@ -20,11 +20,10 @@ block content
 	div.mdl-cell.mdl-cell--12-col.center
 		if portalClosedVar
 			h6 The Room Booking Portal is has been closed for the day.
-			h6 The portal is open for booking during the following hours:
-			h6	- Weekdays: 8:00 AM to 4:00 PM
-			h6	- Saturdays: 8:00 AM to 12:00 PM
+			h6 The portal is closed for booking during the following hours:
+			h6	- Saturday 12 Noon to Monday 8:00 AM
 			h6 It shall remain closed on Sundays and institute holidays.
-			i We kindly request you to schedule your room bookings in advance to avoid last-minute inconveniences.
+			i We request you to schedule your room bookings in advance to avoid last-minute inconveniences.
 
 		else
 			ul.mdl-list
