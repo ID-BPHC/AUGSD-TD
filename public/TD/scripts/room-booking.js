@@ -1,22 +1,38 @@
 (function() {
+
+  var currentDate = moment();
+  var currentHour = currentDate.hours();
+  var defaultDate = moment().add(1, "days");
+  // Check if the current time is more than 4 pm
+  if (currentHour >= 17) {
+    // If it is, set the default date to tomorrow
+    defaultDate = moment().add(1, "days");
+  } else {
+    // If it's before 4 pm, set the default date to today
+    defaultDate = moment();
+  }
+
   var datePicker = new mdDateTimePicker.default({
     type: "date",
-    past: moment(),
-    future: moment().add(6, "months")
+    defaultDate: defaultDate,
+    past: defaultDate, // Set the default date
+    future: moment().add(6, "months"),
   });
 
   var datePickerEnd = new mdDateTimePicker.default({
     type: "date",
-    past: moment(),
-    future: moment().add(6, "months")
+    defaultDate: defaultDate,
+    past: defaultDate, // Set the default date
+    future: moment().add(6, "months"),
   });
 
+
   var startTimePicker = new mdDateTimePicker.default({
-    type: "time"
+    type: "time",
   });
 
   var endTimePicker = new mdDateTimePicker.default({
-    type: "time"
+    type: "time",
   });
 
   document.getElementById("date").addEventListener("focus", function() {
@@ -115,6 +131,12 @@
     }
   });
 
+  datePicker.time = defaultDate;
+  datePicker.toggle();
+
+  datePickerEnd.time = defaultDate;
+  datePickerEnd.toggle();
+
   datePicker.trigger = document.getElementById("date");
   datePickerEnd.trigger = document.getElementById("date-end");
   startTimePicker.trigger = document.getElementById("time-start");
@@ -141,10 +163,12 @@
   });
 
   function enumerateDaysBetweenDates(startDate, endDate) {
-    let dates = []
+    let dates = [];
     while (moment(startDate) <= moment(endDate)) {
       dates.push(startDate);
-      startDate = moment(startDate).add(1, 'days').format("ddd DD MMM YYYY");
+      startDate = moment(startDate)
+        .add(1, "days")
+        .format("ddd DD MMM YYYY");
     }
     if (dates.length) {
       return dates;
@@ -153,132 +177,146 @@
     }
   }
 
-  document.getElementById("findBtn").addEventListener("click", async function() {
-    let startDate = document.getElementById("date").value;
-    let endDate = document.getElementById("date-end").value ? document.getElementById("date-end").value : document.getElementById("date").value;
-    const dates = enumerateDaysBetweenDates(startDate, endDate);
-    document.getElementById("resDiv").innerHTML =
-      "<br><div class='loadingSign'></div><br>";
-    try {
-      const responses = await Promise.all(
-        dates
-          .map(async (date) => (await axios
-            .post("./fetch-list/" + +new Date(), {
-              date: date,
-              dates: dates,
-              "time-start": document.getElementById("time-start").value,
-              "time-end": document.getElementById("time-end").value,
-              purpose: document.getElementById("purpose").value,
-              phone: document.getElementById("phone").value,
-              av: document.getElementById("av").value
-            })).data)
-      )
+  document
+    .getElementById("findBtn")
+    .addEventListener("click", async function() {
+      let startDate = document.getElementById("date").value;
+      let endDate = document.getElementById("date-end").value
+        ? document.getElementById("date-end").value
+        : document.getElementById("date").value;
+      const dates = enumerateDaysBetweenDates(startDate, endDate);
+      document.getElementById("resDiv").innerHTML =
+        "<br><div class='loadingSign'></div><br>";
+      try {
+        const responses = await Promise.all(
+          dates.map(
+            async (date) =>
+              (await axios.post("./fetch-list/" + +new Date(), {
+                date: date,
+                dates: dates,
+                "time-start": document.getElementById("time-start").value,
+                "time-end": document.getElementById("time-end").value,
+                purpose: document.getElementById("purpose").value,
+                phone: document.getElementById("phone").value,
+                av: document.getElementById("av").value,
+              })).data
+          )
+        );
 
-      if (responses.length) {
-        document.getElementById("resDiv").innerHTML = responses[0];
-        let startTime = document.getElementById("time-start").value;
-        let endTime = document.getElementById("time-end").value;
-        const dateTimeString = `${dates.join(', ')} : ${startTime} - ${endTime}`;
-        document.getElementById("resDiv").querySelector("b").textContent = dateTimeString;
-      }
-
-      let innerHTMLContainer = document.createElement("div");
-      responses.map((res) => {
-        innerHTMLContainer.innerHTML += res;
-      })
-
-      let maxFrequency = responses?.length;
-
-      var listItemsRepeat = Array.prototype.slice.call(
-        innerHTMLContainer.getElementsByClassName("room-list-item")
-      );
-
-      const frequency = {};
-      const listItems = [];
-
-      for (const element of listItemsRepeat) {
-        const id = element.getAttribute("id");
-        if (!frequency[id]) {
-          frequency[id] = 0;
+        if (responses.length) {
+          document.getElementById("resDiv").innerHTML = responses[0];
+          let startTime = document.getElementById("time-start").value;
+          let endTime = document.getElementById("time-end").value;
+          const dateTimeString = `${dates.join(
+            ", "
+          )} : ${startTime} - ${endTime}`;
+          document
+            .getElementById("resDiv")
+            .querySelector("b").textContent = dateTimeString;
         }
-        frequency[id] += 1;
-        if (frequency[id] === maxFrequency) {
-          listItems.push(element);
-        }
-      }
 
-      if (listItems.length == 0) {
-        document.getElementById("resDiv").innerHTML = `<br><p>The following error occoured while processing your request</p><p><b>All the rooms for the selected date-time have been blocked by the administrator. Please contact Timetable Office for further assistance.</b></p><br>`
-      } else {
-        document.querySelector("#room-list-form ul.mdl-list").innerHTML = "";
-
-        listItems.forEach(function (item) {
-          document.querySelector("#room-list-form ul.mdl-list").appendChild(item);
-          document.getElementById("room-" + item.id).addEventListener('click', (e) => {
-            e.stopPropagation()
-          });
-          item.addEventListener('click', () => {
-            let state = document.getElementById("room-" + item.id).checked;
-            document.getElementById("room-" + item.id).checked = !state;
-          })
+        let innerHTMLContainer = document.createElement("div");
+        responses.map((res) => {
+          innerHTMLContainer.innerHTML += res;
         });
 
-        document
-          .getElementById("bookBtn")
-          .addEventListener("click", function () {
-            let checkboxes = document.getElementsByClassName("room-checkbox");
-            let rooms = [];
-            let i = 0;
+        let maxFrequency = responses?.length;
 
-            for (i = 0; i < checkboxes.length; i++) {
-              if (checkboxes[i].checked) rooms.push(checkboxes[i].name);
-            }
+        var listItemsRepeat = Array.prototype.slice.call(
+          innerHTMLContainer.getElementsByClassName("room-list-item")
+        );
 
-            if(rooms.length) {
-              axios.post("./submit", { rooms }).then(function (res) {
-                if (res.data.booked == 1) {
-                  materialAlert(
-                    "Success",
-                    "Your booking request has been placed. Please check your email for further details.",
-                    function (result) {
-                      window.location.replace("./view");
-                    }
-                  );
-                } else if (res.data.partialBooking == 1) {
-                  materialAlert(
-                    "Error",
-                    "The following rooms were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
-                    res.data.notAvailable.toString(),
-                    function (result) { }
-                  );
-                } else if (res.data.noWorkingHours == 1) {
-                  materialAlert(
-                    "Error",
-                    "There are no working office-hours to process your booking.",
-                    function (result) { }
-                  );
-                } else if (res.data.allBlocked == 1) {
-                  materialAlert(
-                    "Error",
-                    "All rooms for the selected date/time are blocked.",
-                    function (result) { }
-                  );
-                }
+        const frequency = {};
+        const listItems = [];
+
+        for (const element of listItemsRepeat) {
+          const id = element.getAttribute("id");
+          if (!frequency[id]) {
+            frequency[id] = 0;
+          }
+          frequency[id] += 1;
+          if (frequency[id] === maxFrequency) {
+            listItems.push(element);
+          }
+        }
+
+        if (listItems.length == 0) {
+          document.getElementById(
+            "resDiv"
+          ).innerHTML = `<br><p>The following error occoured while processing your request</p><p><b>All the rooms for the selected date-time have been blocked by the administrator. Please contact Timetable Office for further assistance.</b></p><br>`;
+        } else {
+          document.querySelector("#room-list-form ul.mdl-list").innerHTML = "";
+
+          listItems.forEach(function(item) {
+            document
+              .querySelector("#room-list-form ul.mdl-list")
+              .appendChild(item);
+            document
+              .getElementById("room-" + item.id)
+              .addEventListener("click", (e) => {
+                e.stopPropagation();
               });
-            } else {
-              materialAlert(
-                "Error",
-                "Please select a room before booking.",
-                function (result) { }
-              );
-            }
-
+            item.addEventListener("click", () => {
+              let state = document.getElementById("room-" + item.id).checked;
+              document.getElementById("room-" + item.id).checked = !state;
+            });
           });
-      }
 
-    } catch (err) {
-      console.log(err)
-      document.getElementById("resDiv").innerHTML = err?.response?.data || err;
-    };
-  });
+          document
+            .getElementById("bookBtn")
+            .addEventListener("click", function() {
+              let checkboxes = document.getElementsByClassName("room-checkbox");
+              let rooms = [];
+              let i = 0;
+
+              for (i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) rooms.push(checkboxes[i].name);
+              }
+
+              if (rooms.length) {
+                axios.post("./submit", { rooms }).then(function(res) {
+                  if (res.data.booked == 1) {
+                    materialAlert(
+                      "Success",
+                      "Your booking request has been placed. Please check your email for further details.",
+                      function(result) {
+                        window.location.replace("./view");
+                      }
+                    );
+                  } else if (res.data.partialBooking == 1) {
+                    materialAlert(
+                      "Error",
+                      "The following rooms were booked by someone else while you were doing the booking. Please select some other rooms to continue or click the find button again to refresh this list. <br><br>" +
+                        res.data.notAvailable.toString(),
+                      function(result) {}
+                    );
+                  } else if (res.data.noWorkingHours == 1) {
+                    materialAlert(
+                      "Error",
+                      "There are no working office-hours to process your booking.",
+                      function(result) {}
+                    );
+                  } else if (res.data.allBlocked == 1) {
+                    materialAlert(
+                      "Error",
+                      "All rooms for the selected date/time are blocked.",
+                      function(result) {}
+                    );
+                  }
+                });
+              } else {
+                materialAlert(
+                  "Error",
+                  "Please select a room before booking.",
+                  function(result) {}
+                );
+              }
+            });
+        }
+      } catch (err) {
+        console.log(err);
+        document.getElementById("resDiv").innerHTML =
+          err?.response?.data || err;
+      }
+    });
 }.call(this));
