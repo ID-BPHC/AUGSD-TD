@@ -19,23 +19,30 @@ let users = {
           title: "System Administrator & Software Developer",
           avatar: "/images/team/16.jpg",
           social: {}
-        }
-      },
-      members: {
+        },
         "Shobhan Dash": {
           name: "Shobhan Dash",
-          title: "Member",
+          title: "Team Lead, Web-Dev",
           avatar: "/images/team/Shobhan.jpg",
           social:{}
         },
 
         "Sharan K": {
           name: "Sharan K",
-          title: "Member",
+          title: "Team Lead, Python",
           avatar: "/images/team/Sharan.jpg",
           social: {}
         },
 
+      },
+      members: {
+
+        "Divyateja Pasupuleti": {
+          name: "Divyateja Pasupuleti",
+          title: "Member",
+          avatar: "/images/team/Divyateja.jpg",
+          social: {}
+        },
         "Palaniappan R": {
           name: "Palaniappan R",
           title: "Member",
