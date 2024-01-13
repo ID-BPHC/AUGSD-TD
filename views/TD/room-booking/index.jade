@@ -1,53 +1,33 @@
 extends ../master-dashboard
 
 block content
-	- const currentTime = new Date();
-	- const currentDay = currentTime.getDay();
-	- const currentHour = currentTime.getHours();
-	- const currentMinutes = currentTime.getMinutes();
+  div.mdl-cell.mdl-cell--12-col
+    h2 Room Booking
 
-	- const isSaturday = currentDay === 6;
-	- const isSunday = currentDay === 0;
-	- const isMonday = currentDay === 1;
-	//- closed between saturday 12pm and monday 8am
-	- const portalClosed = isSunday || ((isSaturday && currentHour >= 12)) || ((isMonday && currentHour < 8));
-	- const portalClosedVar = portalClosed ? true : false;
-	- console.log(portalClosed);
+  div.mdl-cell.mdl-cell--12-col
+    ul.mdl-list
+      if dashboard.type == 'Student'
+        li.mdl-list__item
+          span.mdl-list__item-primary-content
+            i.material-icons.mdl-list__item-icon person
+            | Student booking the room is responsible for the room
 
-	div.mdl-cell.mdl-cell--12-col
-		h2 Room Booking Portal
+      li.mdl-list__item
+        span.mdl-list__item-primary-content
+          i.material-icons.mdl-list__item-icon event_seat
+          | The existing furniture inside the classroom should not be moved or removed. Permission from Faculty in-charge, TD is needed for the same
 
-	div.mdl-cell.mdl-cell--12-col.center
-		if portalClosedVar
-			h6 The Room Booking Portal is has been closed for the day.
-			h6 The portal is closed for booking during the following hours:
-			h6	- Saturday 12 Noon to Monday 8:00 AM
-			h6 It shall remain closed on Sundays and institute holidays.
-			i We request you to schedule your room bookings in advance to avoid last-minute inconveniences.
+      li.mdl-list__item
+        span.mdl-list__item-primary-content
+          i.material-icons.mdl-list__item-icon local_bar
+          | Food and beverages are not allowed inside the classroom
 
-		else
-			ul.mdl-list
-				if dashboard.type == 'Student'
-					li.mdl-list__item
-						span.mdl-list__item-primary-content
-							i.material-icons.mdl-list__item-icon person
-							| Student booking the room is responsible for the room and its contents. For club-related activities, prior permission from your FIC must be sent to TD via email
+  div.mdl-cell.mdl-cell--6-col.center
+    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")
+      i.material-icons add
+      | New Booking
 
-					li.mdl-list__item
-						span.mdl-list__item-primary-content
-							i.material-icons.mdl-list__item-icon event_seat
-							| The existing furniture inside the classroom should not be moved or removed. Permission from Faculty in-charge, TD is needed for the same
-
-					li.mdl-list__item
-						span.mdl-list__item-primary-content
-							i.material-icons.mdl-list__item-icon local_bar
-							| Food and beverages are not allowed inside the classroom
-
-			div.mdl-cell.mdl-cell--6-col.center
-				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")
-					i.material-icons add
-					| New Booking
-				&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-				button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
-					i.material-icons settings
-					| Manage Bookings
+  div.mdl-cell.mdl-cell--6-col.center
+    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
+      i.material-icons settings
+      | Manage Bookings

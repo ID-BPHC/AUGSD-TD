@@ -1,12 +1,16 @@
 (function() {
 
   var currentDate = moment();
+  var currentDay = moment.day();
   var currentHour = currentDate.hours();
+  var currentMinutes = currentDate.minutes();
   var defaultDate = moment().add(1, "days");
-  // Check if the current time is more than 4 pm
-  if (currentHour >= 17) {
+  // Check if the current time is more than 4:45pm
+  if ((currentHour > 17) || (currentHour === 17 && currentMinutes >= 45)) {
     // If it is, set the default date to tomorrow
     defaultDate = moment().add(1, "days");
+  } else if(currentDay === 6 && currentHour > 13){
+    defaultDate = moment().add(2, "days");
   } else {
     // If it's before 4 pm, set the default date to today
     defaultDate = moment();
