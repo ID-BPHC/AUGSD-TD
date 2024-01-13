@@ -1,18 +1,23 @@
 (function() {
 
   var currentDate = moment();
-  var currentDay = moment.day();
+  var currentDay = currentDate.day();
   var currentHour = currentDate.hours();
   var currentMinutes = currentDate.minutes();
   var defaultDate = moment().add(1, "days");
-  // Check if the current time is more than 4:45pm
-  if ((currentHour > 17) || (currentHour === 17 && currentMinutes >= 45)) {
+
+    // Check if the current time is more than 4:45 pm on weekdays
+  if ((currentDay !== 6 && currentDay !== 7) && (currentHour > 17 || (currentHour === 17 && currentMinutes >= 45))) {
     // If it is, set the default date to tomorrow
     defaultDate = moment().add(1, "days");
-  } else if(currentDay === 6 && currentHour > 13){
+  } else if (currentDay === 6 && currentHour > 13) {
+    // If it's Saturday after 12 pm, set the default date to the day after tomorrow
     defaultDate = moment().add(2, "days");
+  } else if (currentDay === 7) {
+    // If it's Sunday, set the default date to tomorrow
+    defaultDate = moment().add(1, "days");
   } else {
-    // If it's before 4 pm, set the default date to today
+    // If it's before 4:45 pm, set the default date to today
     defaultDate = moment();
   }
 
