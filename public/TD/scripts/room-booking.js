@@ -7,7 +7,7 @@
   var defaultDate = moment().add(1, "days");
 
     // Check if the current time is more than 4:45 pm on weekdays
-  if ((currentDay !== 6 && currentDay !== 7) && (currentHour > 17 || (currentHour === 17 && currentMinutes >= 45))) {
+  if ((currentDay !== 6 && currentDay !== 7) && (currentHour > 16 || (currentHour === 16 && currentMinutes >= 45))) {
     // If it is, set the default date to tomorrow
     defaultDate = moment().add(1, "days");
   } else if (currentDay === 6 && currentHour > 13) {
