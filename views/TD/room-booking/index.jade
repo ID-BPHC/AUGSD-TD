@@ -22,12 +22,19 @@ block content
           i.material-icons.mdl-list__item-icon local_bar
           | Food and beverages are not allowed inside the classroom
 
-  div.mdl-cell.mdl-cell--6-col.center
-    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")
-      i.material-icons add
-      | New Booking
+  div.mdl-cell.mdl-cell--12-col.mdl-grid
+    div.mdl-cell.mdl-cell--4-col.center
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")
+        i.material-icons add
+        | New Booking
 
-  div.mdl-cell.mdl-cell--6-col.center
-    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
-      i.material-icons settings
-      | Manage Bookings
+    if dashboard.type != 'Student'
+      div.mdl-cell.mdl-cell--4-col.center
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/reprography-book')")
+          i.material-icons add
+          | Reprography Room Booking
+
+    div.mdl-cell.mdl-cell--4-col.center
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
+        i.material-icons settings
+        | Manage Bookings
