@@ -16,7 +16,9 @@ block content
     div.formBG
       br
       h4 Reprography Room Booking
-      p Reprography rooms will be allotted for a maximum duration of 30 minutes per booking. If you need additional time, kindly consider making multiple bookings accordingly.
+      p(style = "font-weight: bold") You are requested to make bookings for a maximum duration of 30 minutes per booking. If you require additional time, please make multiple bookings.
+      p(style= "color: red; font-style: italic") Note: Reprography Rooms will be open from 9am to 5pm on weekdays and upto 1pm on Saturdays. They shall remain closed on Sundays and Institute Holidays. 
+      p(style= "color: red; font-style: italic") Same day bookings will be closed 30 minutes prior to the closing time.
       form.mdc-form-field#form
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
           input#date.mdl-textfield__input(type='text', name='date', readonly='true')
@@ -48,7 +50,7 @@ block content
           span.mdl-textfield__error Input is not a number!
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
           input#purpose.mdl-textfield__input(type='text', name='purpose')
-          label.mdl-textfield__label(for='purpose') Course ID
+          label.mdl-textfield__label(for='purpose') Course ID (Ex: CS F111)
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field.getmdl-select__fullwidth
           input#av.mdl-textfield__input(type='text', readonly='', tabindex='-1', name='av')
           label(for='av')

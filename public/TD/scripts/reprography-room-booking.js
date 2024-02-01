@@ -1,7 +1,24 @@
 (function() {
 
-  var defaultDate = moment();
+  var currentDate = moment();
+  var currentDay = currentDate.day();
+  var currentHour = currentDate.hours();
+  var currentMinutes = currentDate.minutes();
+  var defaultDate = moment().add(1, "days");
 
+    // Check if the current time is more than 4:30 pm on weekdays
+  if ((currentDay !== 6 && currentDay !== 7) && (currentHour > 16 || (currentHour === 16 && currentMinutes >= 30))) {
+    // If it is, set the default date to tomorrow
+    defaultDate = moment().add(1, "days");
+  } else if (currentDay === 6 && (currentHour > 12 || (currentHour === 12 && currentMinutes >= 30))) {
+    // If it's Saturday after 12:30 pm, set the default date to the day after tomorrow
+    defaultDate = moment().add(2, "days");
+  } else if (currentDay === 7) {
+    // If it's Sunday, set the default date to tomorrow
+    defaultDate = moment().add(1, "days");
+  } else {
+    defaultDate = moment();
+  }
 
   var datePicker = new mdDateTimePicker.default({
     type: "date",
