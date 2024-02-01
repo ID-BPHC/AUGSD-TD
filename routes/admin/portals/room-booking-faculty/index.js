@@ -48,6 +48,41 @@ router.get("/cancel/:id", function(req, res, next) {
   );
 });
 
+
+// Reprography Room Bookings
+
+router.get("/reprography-book", function(req, res, next) {
+  res.renderState("room-booking/reprography-book"); 
+});
+
+router.get("/reprography-book/view", function(req, res, next) {
+  roomBookingFaculty.view(req.sanitize(req.user.email), function(
+    err,
+    bookings
+  ) {
+    if (err) {
+      return res.terminate("Error");
+    }
+    res.renderState("room-booking/view", {
+      bookings: bookings
+    });
+  });
+});
+
+router.get("/reprography-book/cancel/:id", function(req, res, next) {
+  roomBookingFaculty.cancel(
+    req.sanitize(req.params.id),
+    req.sanitize(req.user.email),
+    function(err) {
+      if (err) {
+        return res.terminate("Error");
+      }
+      res.redirect("/admin/room-booking-faculty/reprography-book/view");
+    }
+  );
+});
+
+
 // POST Requests
 
 router.post(
