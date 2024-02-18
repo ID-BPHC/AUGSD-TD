@@ -67,7 +67,7 @@ router.post("/add", function(req, res, next) {
 });
 
 router.post("/delete", function(req, res, next) {
-  adminsModel.remove({ email: req.sanitize(req.body.admin) }, function(err) {
+  adminsModel.deleteOne({ email: req.sanitize(req.body.email) }, function(err) {
     if (err) {
       alert("Could not delete admin");
       return res.terminate("Could not delete admin")
