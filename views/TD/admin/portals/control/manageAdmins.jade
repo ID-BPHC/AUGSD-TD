@@ -36,7 +36,7 @@ block content
     }
 
   div.mdl-cell.mdl-cell--12-col.center
-    h2 Admin Management
+    h2 Admin Management System
   div.mdl-cell.mdl-cell--12-col
     div.mdl-cell.mdl-cell--12-col
       center
@@ -72,14 +72,19 @@ block content
     hr
     div.mdl-cell.mdl-cell--12-col
       center
-        h4 Delete Admin
-          form(action="#{rootURL}/#{reqPortal}/manage-admins/delete", method="post", name="deleteForm" id="deleteForm")
+        h4 Search For Name/Email
+          form(action="#{rootURL}/#{reqPortal}/manage-admins", method="get")
             .custom-select-container
               input#admin-search.custom-select(type='text', placeholder='Search', autocomplete='off')
               div.custom-options
                 each admin in admins
                   div.custom-option(data-value=admin.email)= admin.name + ' | ' + admin.email
             input#admin(type='hidden', name='admin')
+            br
+            button(type="submit") Done
+        h4 Delete Admin
+          form(action="#{rootURL}/#{reqPortal}/manage-admins/delete", method="post", name="addForm" id="addForm")
+            input#name(name="email" placeholder="Email" required="true")
             br
             button(type="submit") Delete
 
