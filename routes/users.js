@@ -2,16 +2,16 @@ let users = {
   TD: {
     students: {
       coordinator: {
-        "Harshavardhan Madineni": {
-          name: "Harshavardhan Madineni",
+        "Shobhan Dash": {
+          name: "Shobhan Dash",
           title: "Coordinator",
-          avatar: "/images/team/Harsha.jpg",
-          social: {}
+          avatar: "/images/team/Shobhan.jpg",
+          social:{}
         },
-        "Ashish AVS": {
-          name: "Ashish AVS",
+        "Sharan K": {
+          name: "Sharan K",
           title: "Coordinator",
-          avatar: "/images/team/Ashish.jpeg",
+          avatar: "/images/team/Sharan.jpg",
           social: {}
         },
         "Sohail Rajdev": {
@@ -20,17 +20,16 @@ let users = {
           avatar: "/images/team/16.jpg",
           social: {}
         },
-        "Shobhan Dash": {
-          name: "Shobhan Dash",
-          title: "Team Lead, Web-Dev",
-          avatar: "/images/team/Shobhan.jpg",
-          social:{}
+        "Ashish AVS": {
+          name: "Ashish AVS",
+          title: "Ex-Student Team",
+          avatar: "/images/team/Ashish.jpeg",
+          social: {}
         },
-
-        "Sharan K": {
-          name: "Sharan K",
-          title: "Team Lead, Python",
-          avatar: "/images/team/Sharan.jpg",
+        "Harshavardhan Madineni": {
+          name: "Harshavardhan Madineni",
+          title: "Ex-Student Team",
+          avatar: "/images/team/Harsha.jpg",
           social: {}
         },
 
