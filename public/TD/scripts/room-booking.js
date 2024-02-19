@@ -285,6 +285,55 @@ if ((currentDay !== 0 && currentDay !== 6) && (currentHour > 16 || (currentHour 
             });
           });
 
+          document.getElementById("room-list-filter-max-input").addEventListener("focusin", function() {
+            let ele = document.getElementById("room-list-filter-max-input");
+            ele.parentNode.classList.add("is-dirty");
+          })
+
+          document.getElementById("room-list-filter-max-input").addEventListener("focusout", function() {
+            let ele = document.getElementById("room-list-filter-max-input");
+            if (ele.value.trim() == "") ele.parentNode.classList.remove("is-dirty");
+          })
+
+          document.getElementById("room-list-filter-max-input").addEventListener("change", function () {
+            let ele = document.getElementById("room-list-filter-max-input");
+            if (ele.value.trim() != "") ele.parentNode.classList.add("is-dirty");
+            else ele.parentNode.classList.remove("is-dirty");
+          });
+
+          document.getElementById("room-list-filter-min-input").addEventListener("focusin", function() {
+            let ele = document.getElementById("room-list-filter-min-input");
+            ele.parentNode.classList.add("is-dirty");
+          })
+
+          document.getElementById("room-list-filter-min-input").addEventListener("focusout", function() {
+            let ele = document.getElementById("room-list-filter-min-input");
+            if (ele.value.trim() == "") ele.parentNode.classList.remove("is-dirty");
+          })
+
+          document.getElementById("room-list-filter-min-input").addEventListener("change", function () {
+            let ele = document.getElementById("room-list-filter-min-input");
+            if (ele.value.trim() != "") ele.parentNode.classList.add("is-dirty");
+            else ele.parentNode.classList.remove("is-dirty");
+          });
+
+          document.getElementById("filterBtn").addEventListener("click", function () {
+            let maxCapacity = parseInt(document.getElementById("room-list-filter-max-input").value.trim());
+            let minCapacity = parseInt(document.getElementById("room-list-filter-min-input").value.trim());
+            let items = Array.from(document.getElementsByClassName("room-list-item"));
+            items.forEach(function (item) {item.style.display = "flex";});
+            if (maxCapacity != NaN) {
+              items.forEach(function (item) {
+                if (parseInt(item.children[0].children[2].textContent.match(/Lecture Capacity: (\d+) -/)[1]) > maxCapacity) item.style.display = "none";
+              });
+            }
+            if (minCapacity != NaN) {
+              items.forEach(function (item) {
+                if (parseInt(item.children[0].children[2].textContent.match(/Lecture Capacity: (\d+) -/)[1]) < minCapacity) item.style.display = "none";
+              });
+            }
+          });
+
           document
             .getElementById("bookBtn")
             .addEventListener("click", function() {
