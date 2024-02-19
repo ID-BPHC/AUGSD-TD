@@ -7,6 +7,21 @@ div
 	br
 	br
 	button#bookBtn.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored Book
+	br
+	br
+	form.mdc-form-field#room-list-filter
+		.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+			input#room-list-filter-max-input.mdl-textfield__input(type='text', pattern='[0-9]*', name='room-list-filter-max-input')
+			label.mdl-textfield__label(for='room-list-filter-max-input') Max Capacity
+			span.mdl-textfield__error Input is not a number!
+		span &nbsp;&nbsp;&nbsp;&nbsp;
+		.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+			input#room-list-filter-min-input.mdl-textfield__input(type='text', pattern='[0-9]*', name='room-list-filter-min-input')
+			label.mdl-textfield__label(for='room-list-filter-min-input') Min Capacity
+			span.mdl-textfield__error Input is not a number!
+		br
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#filterBtn(type="button") Apply Filter
+		
 	form(id="room-list-form").mdc-form-field
 		ul.mdl-list
 			for room in rooms
