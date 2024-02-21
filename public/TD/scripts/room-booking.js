@@ -379,6 +379,48 @@
               }
             });
 
+          Array.from(document.getElementsByClassName("room-checkbox")).forEach(
+            function(item) {
+              item.addEventListener("click", function() {
+                let totalRooms = parseInt(
+                  document.getElementById("total-rooms").textContent
+                );
+                let totalLectureCapacity = parseInt(
+                  document.getElementById("total-lecture-capacity").textContent
+                );
+                let totalExamCapacity = parseInt(
+                  document.getElementById("total-exam-capacity").textContent
+                );
+
+                if (item.checked) {
+                  totalRooms++;
+                  totalLectureCapacity += parseInt(
+                    item.getAttribute("lecture-capacity")
+                  );
+                  totalExamCapacity += parseInt(
+                    item.getAttribute("exam-capacity")
+                  );
+                } else {
+                  totalRooms--;
+                  totalLectureCapacity -= parseInt(
+                    item.getAttribute("lecture-capacity")
+                  );
+                  totalExamCapacity -= parseInt(
+                    item.getAttribute("exam-capacity")
+                  );
+                }
+
+                document.getElementById("total-rooms").textContent = totalRooms;
+                document.getElementById(
+                  "total-lecture-capacity"
+                ).textContent = totalLectureCapacity;
+                document.getElementById(
+                  "total-exam-capacity"
+                ).textContent = totalExamCapacity;
+              });
+            }
+          );
+
           document
             .getElementById("bookBtn")
             .addEventListener("click", function() {

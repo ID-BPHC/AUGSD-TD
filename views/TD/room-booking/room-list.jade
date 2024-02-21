@@ -21,6 +21,16 @@ div
 			span.mdl-textfield__error Input is not a number!
 		br
 		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#filterBtn(type="button") Apply Filter
+		br
+		br
+		b Total Rooms: 
+		b(id="total-rooms") 0
+		br
+		b Total Lecture Capacity: 
+		b(id="total-lecture-capacity") 0
+		br
+		b Total Exam Capacity: 
+		b(id="total-exam-capacity") 0
 		
 	form(id="room-list-form").mdc-form-field
 		ul.mdl-list
@@ -34,7 +44,7 @@ div
 					span.mdl-list__item-secondary-content
 						span.mdl-list__item-secondary-action
 							label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
-								input.mdl-checkbox__input.room-checkbox(type='checkbox', name='#{room.number}', value='#{room.number}', id='room-#{room.number}')
+								input.mdl-checkbox__input.room-checkbox(type='checkbox', name='#{room.number}', value='#{room.number}', id='room-#{room.number}', lecture-capacity='#{room.lectureCapacity}', exam-capacity='#{room.examCapacity}')
 	if rooms.length == 0
 		| No Rooms Found
 	script.
