@@ -1,26 +1,28 @@
 (function() {
+  var currentDate = moment();
+  var currentDay = currentDate.day();
+  var currentHour = currentDate.hours();
+  var currentMinutes = currentDate.minutes();
+  var defaultDate;
 
-var currentDate = moment();
-var currentDay = currentDate.day();
-var currentHour = currentDate.hours();
-var currentMinutes = currentDate.minutes();
-var defaultDate;
-
-// Check if the current time is more than 4:30 pm on weekdays
-if ((currentDay !== 0 && currentDay !== 6) && (currentHour > 16 || (currentHour === 16 && currentMinutes >= 30))) {
-  // If it is, set the default date to tomorrow
-  defaultDate = moment().add(1, "days");
-} else if (currentDay === 6 && currentHour > 12) {
-  // If it's Saturday after 12 pm, set the default date to the next Monday
-  defaultDate = moment().add(2, "days");
-} else if (currentDay === 0) {
-  // If it's Sunday, set the default date to Monday
-  defaultDate = moment().add(1, "days");
-} else {
-  // If it's before 4:30 pm, set the default date to today
-  defaultDate = moment();
-}
-
+  // Check if the current time is more than 4:30 pm on weekdays
+  if (
+    currentDay !== 0 &&
+    currentDay !== 6 &&
+    (currentHour > 16 || (currentHour === 16 && currentMinutes >= 30))
+  ) {
+    // If it is, set the default date to tomorrow
+    defaultDate = moment().add(1, "days");
+  } else if (currentDay === 6 && currentHour > 12) {
+    // If it's Saturday after 12 pm, set the default date to the next Monday
+    defaultDate = moment().add(2, "days");
+  } else if (currentDay === 0) {
+    // If it's Sunday, set the default date to Monday
+    defaultDate = moment().add(1, "days");
+  } else {
+    // If it's before 4:30 pm, set the default date to today
+    defaultDate = moment();
+  }
 
   var datePicker = new mdDateTimePicker.default({
     type: "date",
@@ -35,7 +37,6 @@ if ((currentDay !== 0 && currentDay !== 6) && (currentHour > 16 || (currentHour 
     past: defaultDate, // Set the default date
     future: moment().add(6, "months"),
   });
-
 
   var startTimePicker = new mdDateTimePicker.default({
     type: "time",
@@ -285,54 +286,98 @@ if ((currentDay !== 0 && currentDay !== 6) && (currentHour > 16 || (currentHour 
             });
           });
 
-          document.getElementById("room-list-filter-max-input").addEventListener("focusin", function() {
-            let ele = document.getElementById("room-list-filter-max-input");
-            ele.parentNode.classList.add("is-dirty");
-          })
+          document
+            .getElementById("room-list-filter-max-input")
+            .addEventListener("focusin", function() {
+              let ele = document.getElementById("room-list-filter-max-input");
+              ele.parentNode.classList.add("is-dirty");
+            });
 
-          document.getElementById("room-list-filter-max-input").addEventListener("focusout", function() {
-            let ele = document.getElementById("room-list-filter-max-input");
-            if (ele.value.trim() == "") ele.parentNode.classList.remove("is-dirty");
-          })
+          document
+            .getElementById("room-list-filter-max-input")
+            .addEventListener("focusout", function() {
+              let ele = document.getElementById("room-list-filter-max-input");
+              if (ele.value.trim() == "")
+                ele.parentNode.classList.remove("is-dirty");
+            });
 
-          document.getElementById("room-list-filter-max-input").addEventListener("change", function () {
-            let ele = document.getElementById("room-list-filter-max-input");
-            if (ele.value.trim() != "") ele.parentNode.classList.add("is-dirty");
-            else ele.parentNode.classList.remove("is-dirty");
-          });
+          document
+            .getElementById("room-list-filter-max-input")
+            .addEventListener("change", function() {
+              let ele = document.getElementById("room-list-filter-max-input");
+              if (ele.value.trim() != "")
+                ele.parentNode.classList.add("is-dirty");
+              else ele.parentNode.classList.remove("is-dirty");
+            });
 
-          document.getElementById("room-list-filter-min-input").addEventListener("focusin", function() {
-            let ele = document.getElementById("room-list-filter-min-input");
-            ele.parentNode.classList.add("is-dirty");
-          })
+          document
+            .getElementById("room-list-filter-min-input")
+            .addEventListener("focusin", function() {
+              let ele = document.getElementById("room-list-filter-min-input");
+              ele.parentNode.classList.add("is-dirty");
+            });
 
-          document.getElementById("room-list-filter-min-input").addEventListener("focusout", function() {
-            let ele = document.getElementById("room-list-filter-min-input");
-            if (ele.value.trim() == "") ele.parentNode.classList.remove("is-dirty");
-          })
+          document
+            .getElementById("room-list-filter-min-input")
+            .addEventListener("focusout", function() {
+              let ele = document.getElementById("room-list-filter-min-input");
+              if (ele.value.trim() == "")
+                ele.parentNode.classList.remove("is-dirty");
+            });
 
-          document.getElementById("room-list-filter-min-input").addEventListener("change", function () {
-            let ele = document.getElementById("room-list-filter-min-input");
-            if (ele.value.trim() != "") ele.parentNode.classList.add("is-dirty");
-            else ele.parentNode.classList.remove("is-dirty");
-          });
+          document
+            .getElementById("room-list-filter-min-input")
+            .addEventListener("change", function() {
+              let ele = document.getElementById("room-list-filter-min-input");
+              if (ele.value.trim() != "")
+                ele.parentNode.classList.add("is-dirty");
+              else ele.parentNode.classList.remove("is-dirty");
+            });
 
-          document.getElementById("filterBtn").addEventListener("click", function () {
-            let maxCapacity = parseInt(document.getElementById("room-list-filter-max-input").value.trim());
-            let minCapacity = parseInt(document.getElementById("room-list-filter-min-input").value.trim());
-            let items = Array.from(document.getElementsByClassName("room-list-item"));
-            items.forEach(function (item) {item.style.display = "flex";});
-            if (maxCapacity != NaN) {
-              items.forEach(function (item) {
-                if (parseInt(item.children[0].children[2].textContent.match(/Lecture Capacity: (\d+) -/)[1]) > maxCapacity) item.style.display = "none";
+          document
+            .getElementById("filterBtn")
+            .addEventListener("click", function() {
+              let maxCapacity = parseInt(
+                document
+                  .getElementById("room-list-filter-max-input")
+                  .value.trim()
+              );
+              let minCapacity = parseInt(
+                document
+                  .getElementById("room-list-filter-min-input")
+                  .value.trim()
+              );
+              let items = Array.from(
+                document.getElementsByClassName("room-list-item")
+              );
+              items.forEach(function(item) {
+                item.style.display = "flex";
               });
-            }
-            if (minCapacity != NaN) {
-              items.forEach(function (item) {
-                if (parseInt(item.children[0].children[2].textContent.match(/Lecture Capacity: (\d+) -/)[1]) < minCapacity) item.style.display = "none";
-              });
-            }
-          });
+              if (maxCapacity != NaN) {
+                items.forEach(function(item) {
+                  if (
+                    parseInt(
+                      item.children[0].children[2].textContent.match(
+                        /Lecture Capacity: (\d+) -/
+                      )[1]
+                    ) > maxCapacity
+                  )
+                    item.style.display = "none";
+                });
+              }
+              if (minCapacity != NaN) {
+                items.forEach(function(item) {
+                  if (
+                    parseInt(
+                      item.children[0].children[2].textContent.match(
+                        /Lecture Capacity: (\d+) -/
+                      )[1]
+                    ) < minCapacity
+                  )
+                    item.style.display = "none";
+                });
+              }
+            });
 
           document
             .getElementById("bookBtn")
