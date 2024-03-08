@@ -22,6 +22,12 @@ block content
           i.material-icons.mdl-list__item-icon local_bar
           | Food and beverages are not allowed inside the classroom
 
+      if dashboard.type == 'Student'
+        li.mdl-list__item
+          span.mdl-list__item-primary-content
+            i.material-icons.mdl-list__item-icon warning
+            | Post opening a room booking request, students are required to send an email to their club/dept FIC seeking permission for the same (also cc timetable@hyderabad.bits-pilani.ac.in). Requests for reservations of rooms will not be fulfilled unless authorized by the relevant FIC.
+
   div.mdl-cell.mdl-cell--12-col.mdl-grid
     div.mdl-cell.mdl-cell--4-col.center
       button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")

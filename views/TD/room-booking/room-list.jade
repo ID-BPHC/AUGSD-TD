@@ -7,6 +7,31 @@ div
 	br
 	br
 	button#bookBtn.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored Book
+	br
+	br
+	form.mdc-form-field#room-list-filter
+		.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+			input#room-list-filter-max-input.mdl-textfield__input(type='text', pattern='[0-9]*', name='room-list-filter-max-input')
+			label.mdl-textfield__label(for='room-list-filter-max-input') Max Capacity
+			span.mdl-textfield__error Input is not a number!
+		span &nbsp;&nbsp;&nbsp;&nbsp;
+		.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+			input#room-list-filter-min-input.mdl-textfield__input(type='text', pattern='[0-9]*', name='room-list-filter-min-input')
+			label.mdl-textfield__label(for='room-list-filter-min-input') Min Capacity
+			span.mdl-textfield__error Input is not a number!
+		br
+		button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored#filterBtn(type="button") Apply Filter
+		br
+		br
+		b Total Rooms: 
+		b(id="total-rooms") 0
+		br
+		b Total Lecture Capacity: 
+		b(id="total-lecture-capacity") 0
+		br
+		b Total Exam Capacity: 
+		b(id="total-exam-capacity") 0
+		
 	form(id="room-list-form").mdc-form-field
 		ul.mdl-list
 			for room in rooms
@@ -19,7 +44,7 @@ div
 					span.mdl-list__item-secondary-content
 						span.mdl-list__item-secondary-action
 							label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='room-#{room.number}')
-								input.mdl-checkbox__input.room-checkbox(type='checkbox', name='#{room.number}', value='#{room.number}', id='room-#{room.number}')
+								input.mdl-checkbox__input.room-checkbox(type='checkbox', name='#{room.number}', value='#{room.number}', id='room-#{room.number}', lecture-capacity='#{room.lectureCapacity}', exam-capacity='#{room.examCapacity}')
 	if rooms.length == 0
 		| No Rooms Found
 	script.
