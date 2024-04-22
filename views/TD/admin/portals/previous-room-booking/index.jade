@@ -47,6 +47,7 @@ block content
                 th.mdl-data-table__cell--non-numeric To
                 th.mdl-data-table__cell--non-numeric Booked By
                 th.mdl-data-table__cell--non-numeric Phone
+                th.mdl-data-table__cell--non-numeric Purpose   
                 th.mdl-data-table__cell--non-numeric Audio/Visual   
             tbody						
               for booking in day
@@ -57,6 +58,7 @@ block content
                     td.mdl-data-table__cell--non-numeric #{booking.end.toString().substring(0, 15)} #{parseInt(booking.end.toString().substring(16, 19)) > 12 ? (parseInt(booking.end.toString().substring(16, 19)) - 12).toString() +  ":" + (booking.end.toString().substring(19, 21))  +  "PM" : (parseInt(booking.end.toString().substring(16, 19))).toString() + ":" + (booking.end.toString().substring(19, 21)) + "AM"}
                     td.mdl-data-table__cell--non-numeric #{booking.bookedBy.split('@')[0]}
                     td.mdl-data-table__cell--non-numeric #{booking.phone}
+                    td.mdl-data-table__cell--non-numeric #{booking.purpose}
                     td.mdl-data-table__cell--non-numeric #{booking.av ? "Yes" : "No"}
           hr
           br
