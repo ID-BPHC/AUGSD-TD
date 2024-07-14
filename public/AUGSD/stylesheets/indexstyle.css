@@ -154,7 +154,7 @@ a img {
     position: relative;
     height: 600px;
     width: auto;
-    background: url(/images/slide01.jpg) center 30% no-repeat;
+    background: url('/images/slide01.jpg') center 30% no-repeat;
     background-size: cover
 }
 

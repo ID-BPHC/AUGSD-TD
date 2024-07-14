@@ -99,3 +99,4 @@ Several housekeeping utilities can be found in `utils` directory
 2. [Nischay Ram Mamidi](https://github.com/Nischay-Pro)
 3. [Kailash Bhalaki](https://www.github.com/Kailash0311)
 4. [Nishant Aggarwal](https://www.github.com/nish-sapio)
+5. [Samandeep Singh](https://www.github.com/higherorbit)

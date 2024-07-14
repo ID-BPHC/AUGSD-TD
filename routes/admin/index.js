@@ -114,7 +114,9 @@ router.get(
         if (err) {
           return res.terminate(err);
         }
+        console.log(req.user);
         if (result.length == 0) {
+          console.log("Creating Super Admin");
           let CreateAdmin = adminsModel.create({
             email: req.user.emails[0].value,
             name: req.user.displayName,
@@ -140,6 +142,7 @@ router.get(
               if (err) {
                 return res.terminate(err);
               }
+              console.log(result);
               if (result.length == 0) {
                 req.session.destroy(function() {
                   res.render("custom_errors", {
@@ -151,12 +154,18 @@ router.get(
                   });
                 });
               } else {
+                console.log("e1");
                 req.session.profileImage = req.sanitize(
+
                   req.user._json.image.url
+
                 );
+                console.log("e2");
+
                 req.session.userType = "admin";
                 req.session.switched = false;
                 res.redirect(originalPath);
+                console.log("e3");
               }
             }
           );
