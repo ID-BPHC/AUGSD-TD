@@ -26,6 +26,16 @@ router.get("/fd-thesis", function(req, res) {
     res.render("fd-thesis", { forms: files });
   });
 });
+router.get("/academic-records", function(req, res) {
+  fs.readdir(appRoot.path + "/public/AUGSD/academic-records", function(err, files) {
+    res.render("academic-records", { forms: files });
+  });
+});
+router.get("/reg-grad", function(req, res) {
+  fs.readdir(appRoot.path + "/public/AUGSD/reg-grad", function(err, files) {
+    res.render("reg-grad", { forms: files });
+  });
+});
 router.get("/registration", function(req, res) {
   fs.readdir(appRoot.path + "/public/AUGSD/registration", function(err, files) {
     res.render("registration", { forms: files });

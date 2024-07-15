@@ -106,7 +106,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
   res.locals.development = req.app.get("env") === "development";
   res.locals.missing = false;
-  res.locals.title = "Oh noes";
+  res.locals.title = "Oh noes :/";
   res.locals.subtitle = "Our guys have been notified about this.";
   if (err.status == 404) {
     res.locals.missing = true;

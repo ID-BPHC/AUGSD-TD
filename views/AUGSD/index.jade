@@ -383,7 +383,6 @@ html(lang='en')
 			.logo-font{
 				color: #5C5B5B!important;
 			}
-
 	body
 		div.loader(id="loader")
 			.loader-overlay.hidden
@@ -394,7 +393,6 @@ html(lang='en')
 					g.loader-logoDonut
 						path(fill='#CC6060', d='M41.6,18.8c4.2,1.8,7.6,5.1,9.3,9.3L66.8,26c-3.1-11.1-11.9-19.9-23-23L41.6,18.8z')
 						path(fill='#CC6060', d='M50.9,41.8c-1.8,4.2-5.2,7.6-9.4,9.4L43.7,67C54.8,63.9,63.6,55.1,66.8,44L50.9,41.8z')
-						g
 							path(fill='#CC6060', d='M18.5,28.2c1.8-4.2,5.1-7.6,9.3-9.4L25.7,3C14.6,6.1,5.8,14.9,2.7,26L18.5,28.2z')
 							path(fill='#CC6060', d='M18.5,41.8L2.7,44c3.1,11.1,11.9,19.9,23.1,23l2.1-15.8C23.7,49.4,20.3,46.1,18.5,41.8z')
 						path(opacity='7.000000e-02', fill='#202021', d='M34.7,10.3C21.1,10.3,10,21.3,10,35s11.1,24.8,24.8,24.8c13.7,0,24.8-11.1,24.8-24.8\
@@ -409,16 +407,14 @@ html(lang='en')
 				.mdl-layout__header-row
 					span.android-title.mdl-layout-title
 						p.custom-title BITS Pilani Hyderabad Campus
-						// img(src='/images/logo/tdlogo-01.png')
 					// Add spacer, to align navigation to the right in desktop
 					.android-header-spacer.mdl-layout-spacer
 					// Navigation
 					.android-navigation-container
-						nav.android-navigation.mdl-navigation
-							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/registration') Registration
-							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/fd-thesis') FD Thesis
+						nav.android-navigation.mdl-navigation 
 							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/type') Dashboard
 							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/team') Team
+							a.mdl-navigation__link.mdl-typography--text-uppercase(href='/registration') registration
 					span.android-mobile-title.mdl-layout-title
 						p.custom-title2 BITS Pilani Hyderabad Campus
 			.android-drawer.mdl-layout__drawer
@@ -426,21 +422,27 @@ html(lang='en')
 						img.android-logo-image(src='images/logo/augsd-logo.png')
 				nav.mdl-navigation					
 					a.mdl-navigation__link(href='https://universe.bits-pilani.ac.in/Hyderabad/augsd')
-						//- img(src="/images/favicon.png" alt="Dashboard" height="32" width="32" style="padding-right:20px")
 						| About Us
-					a.mdl-navigation__link(href='https://universe.bits-pilani.ac.in/Hyderabad/index.aspx')
-						| Hyderabad Campus
-					a.mdl-navigation__link(href='https://universe.bits-pilani.ac.in/index.aspx')
-						| University Home
+					a.mdl-navigation__link(href='/reg-grad')
+						| Registration and Graduation Checking
+					a.mdl-navigation__link(href='https://cms.bits-hyderabad.ac.in/')
+						| CMS
+					a.mdl-navigation__link(href='http://bio.bits-hyderabad.ac.in/Bitsclassroom/login.aspx')
+						| Biometric Attendance
+					a.mdl-navigation__link(href='https://a.impartus.com/login/#/')
+						| Lecture Capturing
+					a.mdl-navigation__link(href='/academic-records')
+						| Academic Records
+					a.mdl-navigation__link(href='/fd-thesis')
+						| FD Thesis
 			.android-content.mdl-layout__content
 				a(name='top')
-				.android-be-together-section.mdl-typography--text-center
-					.logo-font.android-slogan
-						span#heading AUGS Division
-						div.sub-heading Academic Undergraduate Studies
-					//- .logo-font.android-sub-slogan
-					//- 	span(style="padding:5px;background-color:#333;color:#ccc;")
-					//- 		a(style="color:#ccc;text-decoration:none;" href="/team") #team
+					.android-be-together-section.mdl-typography--text-center
+						.logo-font.android-slogan
+							span#heading AUGS Division
+							div.sub-heading Academic Undergraduate Studies
+						
+						
 		div(id="outdated").hidden
 		script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-107202501-1')
 		script.

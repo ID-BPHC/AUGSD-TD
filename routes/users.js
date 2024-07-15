@@ -105,55 +105,75 @@ let users = {
     },
   },
   AUGSD: {
-    "Prof. Sridhar Raju": {
-      name: "Prof. Sridhar Raju",
-      title: "Associate Dean",
-      avatar: "/images/team/1.jpg",
-      social: {}
+    students:{
+      "Mr. Luv Ghilothia": {
+        name: "Mr. Luv Ghilothia",
+        title: "Software Developer TA",
+        avatar: "/images/team/luv.jpg",
+        social: {}
+      },
+      "Mr. Samandeep Singh": {
+        name: "Mr. Samandeep Singh",
+        title: "Software Developer TA",
+        avatar: "/images/team/Saman.jpg",
+        social:{
+          linkedin: "https://www.linkedin.com/in/samandeep-singh-saini/",
+          facebook: "https://www.facebook.com/saman.singh.336/"
+        }
+        // social: { "https://www.linkedin.com/in/samandeep-singh-saini/": "fa fa-linkedin", linkedin }
+      }
     },
-    "Prof. D Sriram": {
-      name: "Prof. D Sriram",
-      title: "In-charge, Feedback & Monitoring & ACB",
-      avatar: "/images/team/2.jpg",
-      social: {}
+    staff:{
+      "Prof. Sridhar Raju": {
+        name: "Prof. Sridhar Raju",
+        title: "Associate Dean",
+        avatar: "/images/team/1.jpg",
+        social: {}
+      },
+      "Prof. D Sriram": {
+        name: "Prof. D Sriram",
+        title: "In-charge, Feedback & Monitoring & ACB",
+        avatar: "/images/team/2.jpg",
+        social: {}
+      },
+      "Prof. K Srinivasa Raju": {
+        name: "Prof. K Srinivasa Raju",
+        title: "In-charge, Data Analytics",
+        avatar: "/images/team/3.jpg",
+        social: {}
+      },
+      "Prof. Sujith R": {
+        name: "Prof. Sujith R",
+        title: "Nucleus Member, Data Analytics",
+        avatar: "/images/team/4.jpg",
+        social: {}
+      },
+      "Mr. M Sai Kumar": {
+        name: "Mr. M Sai Kumar",
+        title: "Staff",
+        avatar: "/images/team/5.jpg",
+        social: {}
+      },
+      "Mr. R Srinivas": {
+        name: "Mr. R Srinivas",
+        title: "Staff",
+        avatar: "/images/team/6.jpg",
+        social: {}
+      },
+      "Mr. G Naresh": {
+        name: "Mr. G Naresh",
+        title: "Staff",
+        avatar: "/images/team/7.jpg",
+        social: {}
+      },
+      "Mrs. K Prasanna Lakshmi": {
+        name: "Mrs. K Prasanna Lakshmi",
+        title: "Staff",
+        avatar: "/images/team/8.jpg",
+        social: {}
+      },    
     },
-    "Prof. K Srinivasa Raju": {
-      name: "Prof. K Srinivasa Raju",
-      title: "In-charge, Data Analytics",
-      avatar: "/images/team/3.jpg",
-      social: {}
-    },
-    "Prof. Sujith R": {
-      name: "Prof. Sujith R",
-      title: "Nucleus Member, Data Analytics",
-      avatar: "/images/team/4.jpg",
-      social: {}
-    },
-    "Mr. M Sai Kumar": {
-      name: "Mr. M Sai Kumar",
-      title: "Staff",
-      avatar: "/images/team/5.jpg",
-      social: {}
-    },
-    "Mr. R Srinivas": {
-      name: "Mr. R Srinivas",
-      title: "Staff",
-      avatar: "/images/team/6.jpg",
-      social: {}
-    },
-    "Mr. G Naresh": {
-      name: "Mr. G Naresh",
-      title: "Staff",
-      avatar: "/images/team/7.jpg",
-      social: {}
-    },
-    "Mrs. K Prasanna Lakshmi": {
-      name: "Mrs. K Prasanna Lakshmi",
-      title: "Staff",
-      avatar: "/images/team/8.jpg",
-      social: {}
-    }
-  }
+  },
 };
 
 module.exports = users;
