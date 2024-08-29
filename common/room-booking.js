@@ -49,10 +49,10 @@ let getWorkingHours = function(date, cb) {
         if (holiday) checkNext(null, false);
         else if (
           currentHour.day() === 6 &&
-          (currentHour.hour() <= 8 || currentHour.hour() >= 12)
+          (currentHour.hour() <= 8 || currentHour.hour() >= 13)
         )
           checkNext(null, false);
-        else if (currentHour.hour() <= 8 || currentHour.hour() >= 16)
+        else if (currentHour.hour() <= 8 || currentHour.hour() >= 17)
           checkNext(null, false);
         else checkNext(null, true);
       });
