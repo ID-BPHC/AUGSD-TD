@@ -55,7 +55,12 @@ let users = {
           avatar: "/images/team/Karthik.jpg",
           social: {}
         },
-
+        "Achal Jhawar": {
+          name: "Achal Jhawar",
+          title: "Member",
+          avatar: "/images/team/Achal.jpg",
+          social: {}
+        },
 
       }
     },
