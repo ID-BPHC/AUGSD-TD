@@ -55,6 +55,7 @@ let users = {
           avatar: "/images/team/Karthik.jpg",
           social: {}
         },
+        
         "Achal Jhawar": {
           name: "Achal Jhawar",
           title: "Member",
@@ -62,6 +63,13 @@ let users = {
           social: {}
         },
 
+        "Harshit Agrawal": {
+          name: "Harshit Agrawal",
+          title: "Member",
+          avatar: "/images/team/Harshit.jpg",
+          social: {}
+        },
+        
       }
     },
     staff: {
