@@ -14,48 +14,8 @@ let users = {
           avatar: "/images/team/Sharan.jpg",
           social: {}
         },
-        "Sohail Rajdev": {
-          name: "Sohail Rajdev",
-          title: "System Administrator & Software Developer",
-          avatar: "/images/team/16.jpg",
-          social: {}
-        },
-        "Ashish AVS": {
-          name: "Ashish AVS",
-          title: "Ex-Student Team",
-          avatar: "/images/team/Ashish.jpeg",
-          social: {}
-        },
-        "Harshavardhan Madineni": {
-          name: "Harshavardhan Madineni",
-          title: "Ex-Student Team",
-          avatar: "/images/team/Harsha.jpg",
-          social: {}
-        },
-
       },
-      members: {
-
-        "Divyateja Pasupuleti": {
-          name: "Divyateja Pasupuleti",
-          title: "Member",
-          avatar: "/images/team/Divyateja.jpg",
-          social: {}
-        },
-        "Palaniappan R": {
-          name: "Palaniappan R",
-          title: "Member",
-          avatar: "/images/team/Palaniappan.jpg",
-          social: {}
-        },
-
-        "Karthik Prakash": {
-          name: "Karthik Prakash",
-          title: "Member",
-          avatar: "/images/team/Karthik.jpg",
-          social: {}
-        },
-        
+      members: {        
         "Achal Jhawar": {
           name: "Achal Jhawar",
           title: "Member",
