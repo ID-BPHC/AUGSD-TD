@@ -121,7 +121,18 @@ router.post(
         }
         return true;
       })
-      .withMessage("End time must not be between 12:00 AM and 6:00 AM"),
+      .withMessage("End time must not be between 12:00 AM and 6:00 AM")
+      .custom((value, { req }) => {
+        const startTime = moment(req.body["time-start"], "HH:mm");
+        const endTime = moment(value, "HH:mm");
+        const duration = moment.duration(endTime.diff(startTime));
+        const hours = duration.asHours();
+        if (hours > 2) {
+          return false;
+        }
+        return true;
+      })
+      .withMessage("Booking duration cannot exceed 2 hours"),
     check("date")
       .exists()
       .withMessage("No Date Specified")
@@ -179,9 +190,24 @@ router.post(
       });
     }
 
+    // Check if booking duration exceeds 2 hours
+    const duration = moment.duration(booking.endTimeObj.diff(booking.startTimeObj));
+    const hours = duration.asHours();
+    if (hours > 2) {
+      return res.renderState("room-booking/errors", {
+        message: "Booking duration cannot exceed 2 hours"
+      });
+    }
+
     roomBookingFaculty.getRooms(booking, function(err, rooms) {
       if (err) {
         return res.terminate("Error");
+      }
+
+      if (rooms.durationExceeded == 1) {
+        return res.renderState("room-booking/errors", {
+          message: rooms.message || "Booking duration cannot exceed 2 hours"
+        });
       }
 
       if (rooms.allBlocked == 1) {
@@ -231,7 +257,7 @@ router.post("/submit", async function (req, res, next) {
     if (results.length === dates.length) {
       let bookedFlag = false;
       for (const result of results) {
-        if (result.partialBooking || result.noWorkingHours || result.allBlocked) {
+        if (result.partialBooking || result.noWorkingHours || result.allBlocked || result.durationExceeded) {
           bookedFlag = true;
           return res.json(result);
         }

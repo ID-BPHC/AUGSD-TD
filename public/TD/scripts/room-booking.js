@@ -191,6 +191,23 @@
   document
     .getElementById("findBtn")
     .addEventListener("click", async function() {
+      // Validate duration before proceeding
+      let startTime = document.getElementById("time-start").value;
+      let endTime = document.getElementById("time-end").value;
+      
+      if (startTime && endTime) {
+        const start = moment(startTime, "HH:mm");
+        const end = moment(endTime, "HH:mm");
+        const duration = moment.duration(end.diff(start));
+        const hours = duration.asHours();
+        
+        if (hours > 2) {
+          document.getElementById("resDiv").innerHTML = 
+            "<br><p>The following error occurred while processing your request</p><p><b>Booking duration cannot exceed 2 hours</b></p><br>";
+          return;
+        }
+      }
+      
       let startDate = document.getElementById("date").value;
       let endDate = document.getElementById("date-end").value
         ? document.getElementById("date-end").value

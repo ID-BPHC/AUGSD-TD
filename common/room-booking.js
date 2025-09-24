@@ -193,6 +193,16 @@ let cancel = function(id, email, callback) {
 //  Gets available rooms
 
 let getRooms = function(booking, callback) {
+  // Check if booking duration exceeds 2 hours
+  const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+  const hours = duration.asHours();
+  if (hours > 2) {
+    return callback(false, { 
+      durationExceeded: 1,
+      message: "Booking duration cannot exceed 2 hours"
+    });
+  }
+
   getWeekDay(booking.dateString, function(weekDay) {
     getWorkingHours(booking.startTimeObj, function(workingHours) {
       if (workingHours.length === 0)
@@ -219,6 +229,16 @@ let getRooms = function(booking, callback) {
 // To make checks and do booking
 
 let makeBooking = function(booking, rooms, callback) {
+  // Check if booking duration exceeds 2 hours
+  const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+  const hours = duration.asHours();
+  if (hours > 2) {
+    return callback(false, { 
+      durationExceeded: 1,
+      message: "Booking duration cannot exceed 2 hours"
+    });
+  }
+
   getWorkingHours(booking.startTimeObj, function(workingHours) {
     if (workingHours.length === 0)
       return callback(false, { noWorkingHours: 1 });
