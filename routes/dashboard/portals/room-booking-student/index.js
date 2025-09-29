@@ -67,12 +67,14 @@ router.post(
       .withMessage("No Start Time Specified")
       .custom((value) => {
         const startTime = moment(value, "HH:mm");
-        if (startTime.isSameOrBefore(moment("06:00", "HH:mm")) && startTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+        // Check if time is between 9:30 PM and 6:00 AM
+        if ((startTime.isSameOrAfter(moment("21:30", "HH:mm")) && startTime.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (startTime.isSameOrAfter(moment("00:00", "HH:mm")) && startTime.isSameOrBefore(moment("06:00", "HH:mm")))) {
           return false;
         }
         return true;
       })
-      .withMessage("Start time must not be between 12:00 AM and 6:00 AM"),
+      .withMessage("Start time must not be between 9:30 PM and 6:00 AM"),
     check("time-end")
       .exists()
       .withMessage("No End Time Specified")
@@ -81,12 +83,14 @@ router.post(
       .withMessage("No End Time Specified")
       .custom((value) => {
         const endTime = moment(value, "HH:mm");
-        if (endTime.isSameOrBefore(moment("06:00", "HH:mm")) && endTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+        // Check if time is between 9:30 PM and 6:00 AM
+        if ((endTime.isSameOrAfter(moment("21:30", "HH:mm")) && endTime.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (endTime.isSameOrAfter(moment("00:00", "HH:mm")) && endTime.isSameOrBefore(moment("06:00", "HH:mm")))) {
           return false;
         }
         return true;
       })
-      .withMessage("End time must not be between 12:00 AM and 6:00 AM")
+      .withMessage("End time must not be between 9:30 PM and 6:00 AM")
       .custom((value, { req }) => {
         const startTime = moment(req.body["time-start"], "HH:mm");
         const endTime = moment(value, "HH:mm");
@@ -175,6 +179,12 @@ router.post(
         });
       }
 
+      if (rooms.dailyLimitExceeded == 1) {
+        return res.renderState("room-booking/errors", {
+          message: rooms.message || "Daily booking limit exceeded. Maximum allowed is 2 hours per day."
+        });
+      }
+
       if (rooms.allBlocked == 1) {
         return res.renderState("room-booking/errors", {
           message:
@@ -222,7 +232,7 @@ router.post("/submit", async function (req, res, next) {
     if (results.length === dates.length) {
       let bookedFlag = false;
       for (const result of results) {
-        if (result.partialBooking || result.noWorkingHours || result.allBlocked || result.durationExceeded) {
+        if (result.partialBooking || result.noWorkingHours || result.allBlocked || result.durationExceeded || result.dailyLimitExceeded) {
           bookedFlag = true;
           return res.json(result);
         }
