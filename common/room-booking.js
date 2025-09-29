@@ -32,6 +32,41 @@ let isHoliday = function(date, cb) {
   });
 };
 
+// Check if user has exceeded daily booking limit (2 hours per day)
+let checkDailyBookingLimit = function(email, bookingDate, newBookingDuration, cb) {
+  const startOfDay = moment(bookingDate).startOf('day');
+  const endOfDay = moment(bookingDate).endOf('day');
+  
+  bookingsModel.find({
+    bookedBy: email,
+    start: {
+      $gte: startOfDay.toDate(),
+      $lt: endOfDay.toDate()
+    },
+    approval: {
+      $ne: "R" // Exclude rejected bookings
+    }
+  }, function(err, existingBookings) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    
+    let totalDuration = 0;
+    existingBookings.forEach(function(booking) {
+      const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
+      totalDuration += duration.asHours();
+    });
+    
+    // Check if adding new booking would exceed 2-hour daily limit
+    if (totalDuration + newBookingDuration > 2) {
+      return cb(true, totalDuration); // Limit exceeded
+    } else {
+      return cb(false, totalDuration); // Within limit
+    }
+  });
+};
+
 let getWeekDay = function(date, cb) {
   ttExceptionsModel.findOne({ date: date }, function(err, result) {
     if (err) throw err;
@@ -49,10 +84,10 @@ let getWorkingHours = function(date, cb) {
         if (holiday) checkNext(null, false);
         else if (
           currentHour.day() === 6 &&
-          (currentHour.hour() <= 8 || currentHour.hour() >= 13)
+          (currentHour.hour() <= 8 || currentHour.hour() > 11 || (currentHour.hour() === 11 && currentHour.minute() >= 30))
         )
           checkNext(null, false);
-        else if (currentHour.hour() <= 8 || currentHour.hour() >= 17)
+        else if (currentHour.hour() <= 8 || currentHour.hour() > 16 || (currentHour.hour() === 16 && currentHour.minute() >= 30))
           checkNext(null, false);
         else checkNext(null, true);
       });
@@ -90,7 +125,9 @@ let checkIfAllBlocked = function(startTime, endTime, cb) {
 };
 
 let checkAvailability = function(room, booking, cb) {
-  if (!booking.holiday && booking.startHour <= 13) {
+  // Updated to reflect new working hours: weekdays until 4:30 PM (startHour 8), Saturday until 11:30 AM (startHour 3)
+  let maxWorkingHour = booking.weekDay === 6 ? 3 : 8; // Saturday: 11:30 AM, Weekdays: 4:30 PM
+  if (!booking.holiday && booking.startHour <= maxWorkingHour) {
     for (i = booking.startHour; i <= booking.endHour; i++) {
       if (
         i >= 0 &&
@@ -203,7 +240,16 @@ let getRooms = function(booking, callback) {
     });
   }
 
-  getWeekDay(booking.dateString, function(weekDay) {
+  // Check daily booking limit (2 hours per day per email)
+  checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+    if (limitExceeded) {
+      return callback(false, {
+        dailyLimitExceeded: 1,
+        message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+      });
+    }
+
+    getWeekDay(booking.dateString, function(weekDay) {
     getWorkingHours(booking.startTimeObj, function(workingHours) {
       if (workingHours.length === 0)
         return callback(false, { noWorkingHours: 1 });
@@ -223,6 +269,7 @@ let getRooms = function(booking, callback) {
         });
       });
     });
+    });
   });
 };
 
@@ -239,7 +286,16 @@ let makeBooking = function(booking, rooms, callback) {
     });
   }
 
-  getWorkingHours(booking.startTimeObj, function(workingHours) {
+  // Check daily booking limit (2 hours per day per email)
+  checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+    if (limitExceeded) {
+      return callback(false, {
+        dailyLimitExceeded: 1,
+        message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+      });
+    }
+
+    getWorkingHours(booking.startTimeObj, function(workingHours) {
     if (workingHours.length === 0)
       return callback(false, { noWorkingHours: 1 });
 
@@ -324,6 +380,41 @@ let makeBooking = function(booking, rooms, callback) {
         }
       );
     });
+    });
+  });
+};
+
+// Get daily booking usage for a user
+let getDailyBookingUsage = function(email, date, callback) {
+  const startOfDay = moment(date).startOf('day');
+  const endOfDay = moment(date).endOf('day');
+  
+  bookingsModel.find({
+    bookedBy: email,
+    start: {
+      $gte: startOfDay.toDate(),
+      $lt: endOfDay.toDate()
+    },
+    approval: {
+      $ne: "R" // Exclude rejected bookings
+    }
+  }, function(err, existingBookings) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    
+    let totalDuration = 0;
+    existingBookings.forEach(function(booking) {
+      const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
+      totalDuration += duration.asHours();
+    });
+    
+    callback(null, {
+      totalHours: totalDuration,
+      remainingHours: Math.max(0, 2 - totalDuration),
+      bookings: existingBookings
+    });
   });
 };
 
@@ -331,5 +422,6 @@ module.exports = {
   view: view,
   cancel: cancel,
   getRooms: getRooms,
-  makeBooking: makeBooking
+  makeBooking: makeBooking,
+  getDailyBookingUsage: getDailyBookingUsage
 };
