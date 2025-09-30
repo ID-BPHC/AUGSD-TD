@@ -34,6 +34,35 @@ block content
         .mdl-button{
             float:right;
         }
+        .room-switcher {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+    
+    // Room switcher section
+    div.mdl-grid
+        div.mdl-cell.mdl-cell--12-col
+            h2 Room Map Management - #{room}
+        div.mdl-cell.mdl-cell--12-col.room-switcher
+            h5 Switch to Another Room:
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label(style="width: 300px; margin-right: 20px;")
+                input#roomSearchStep2.mdl-textfield__input(type='text', placeholder='Search rooms...')
+                label.mdl-textfield__label(for='roomSearchStep2') Search Rooms
+            
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fix-height.mdc-form-field(style="width: 200px; margin-right: 20px;")
+                input#roomSwitcher.mdl-textfield__input(type='text', value='', readonly='', tabindex='-1')
+                label(for='roomSwitcher')
+                    i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+                label.mdl-textfield__label Select Room
+                ul#roomSwitcherList.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='roomSwitcher')
+                    each r in rooms
+                        li.mdl-menu__item(data-val='#{r}') #{r}
+            
+            button#switchRoomBtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--accent(type='button')
+                | Switch Room
+
     form(action="#{rootURL}/control/room-map/#{room}/changeClass", method="post", name="form1" id="form1").mdc-form-field
         div.mdl-cell.mdl-cell--12-col.center
             .mdl-grid.main
@@ -67,3 +96,78 @@ block content
             | Change Class
             span.mdl-button__ripple-container
                 span.mdl-ripple
+
+    script.
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('roomSearchStep2');
+            const roomSwitcherList = document.getElementById('roomSwitcherList');
+            const roomSwitcherInput = document.getElementById('roomSwitcher');
+            const switchRoomBtn = document.getElementById('switchRoomBtn');
+            let searchTimeout;
+            let allRooms = !{JSON.stringify(rooms)};
+
+            function filterRoomsStep2(searchTerm) {
+                // Clear existing room list
+                roomSwitcherList.innerHTML = '';
+                
+                // Filter rooms based on search term
+                const filteredRooms = allRooms.filter(room => 
+                    room.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                
+                // Add filtered rooms to the dropdown
+                filteredRooms.forEach(room => {
+                    const li = document.createElement('li');
+                    li.className = 'mdl-menu__item';
+                    li.setAttribute('data-val', room);
+                    li.textContent = room;
+                    roomSwitcherList.appendChild(li);
+                });
+                
+                // Reinitialize MDL menu if needed
+                if (window.componentHandler) {
+                    window.componentHandler.upgradeElement(roomSwitcherList);
+                }
+            }
+
+            function performSearchStep2() {
+                const searchTerm = searchInput.value.trim();
+                
+                if (searchTerm === '') {
+                    // Show all rooms if search is empty
+                    filterRoomsStep2('');
+                } else {
+                    // Filter rooms locally for instant results
+                    filterRoomsStep2(searchTerm);
+                }
+            }
+
+            // Add event listeners for search
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearchStep2, 300); // Debounce search
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearchStep2();
+                }
+            });
+
+            // Switch room functionality
+            switchRoomBtn.addEventListener('click', function() {
+                const selectedRoom = roomSwitcherInput.value.trim();
+                if (selectedRoom) {
+                    // Navigate to the new room's map
+                    const currentUrl = window.location.pathname;
+                    const baseUrl = currentUrl.replace('/step2', '');
+                    window.location.href = baseUrl + '/step2?room=' + encodeURIComponent(selectedRoom);
+                } else {
+                    alert('Please select a room first.');
+                }
+            });
+
+            // Initialize with all rooms
+            filterRoomsStep2('');
+        });

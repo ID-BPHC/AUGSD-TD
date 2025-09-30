@@ -206,6 +206,22 @@
             "<br><p>The following error occurred while processing your request</p><p><b>Booking duration cannot exceed 2 hours</b></p><br>";
           return;
         }
+        
+        // Check if start time is between 9:30 PM and 6:00 AM
+        if ((start.isSameOrAfter(moment("21:30", "HH:mm")) && start.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (start.isSameOrAfter(moment("00:00", "HH:mm")) && start.isSameOrBefore(moment("06:00", "HH:mm")))) {
+          document.getElementById("resDiv").innerHTML = 
+            "<br><p>The following error occurred while processing your request</p><p><b>Start time must not be between 9:30 PM and 6:00 AM</b></p><br>";
+          return;
+        }
+        
+        // Check if end time is between 9:30 PM and 6:00 AM
+        if ((end.isSameOrAfter(moment("21:30", "HH:mm")) && end.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (end.isSameOrAfter(moment("00:00", "HH:mm")) && end.isSameOrBefore(moment("06:00", "HH:mm")))) {
+          document.getElementById("resDiv").innerHTML = 
+            "<br><p>The following error occurred while processing your request</p><p><b>End time must not be between 9:30 PM and 6:00 AM</b></p><br>";
+          return;
+        }
       }
       
       let startDate = document.getElementById("date").value;
@@ -476,6 +492,12 @@
                     materialAlert(
                       "Error",
                       "All rooms for the selected date/time are blocked.",
+                      function(result) {}
+                    );
+                  } else if (res.data.dailyLimitExceeded == 1) {
+                    materialAlert(
+                      "Error",
+                      res.data.message || "Daily booking limit exceeded. You have reached the maximum of 2 hours per day.",
                       function(result) {}
                     );
                   }

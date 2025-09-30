@@ -11,18 +11,80 @@ router.get("/", function(req, res, next) {
   return res.redirect("/admin/control/room-map/step1");
 });
 router.get("/step1", function(req, res, next) {
+  const searchQuery = req.query.search || '';
   roomsModel.distinct("number", function(err, result) {
     if (err) console.log(err);
     else {
       rooms = result;
+      // Filter results based on search query
+      let filteredResult = result;
+      if (searchQuery) {
+        filteredResult = result.filter(room => 
+          room.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }
       return res.renderState("admin/portals/control/roomMap/step1", {
-        result: result
+        result: filteredResult,
+        allRooms: result,
+        searchQuery: searchQuery
       });
     }
   });
 });
+router.get("/search", function(req, res, next) {
+  const searchQuery = req.query.q || '';
+  roomsModel.distinct("number", function(err, result) {
+    if (err) {
+      return res.json({ error: "Database error" });
+    }
+    // Filter results based on search query
+    let filteredResult = result;
+    if (searchQuery) {
+      filteredResult = result.filter(room => 
+        room.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    res.json({ rooms: filteredResult });
+  });
+});
+
 router.get("/step2", function(req, res, next) {
-  res.redirect("/admin/control/room-map/step1");
+  const roomNumber = req.query.room;
+  if (!roomNumber) {
+    return res.redirect("/admin/control/room-map/step1");
+  }
+  
+  // Get all rooms for the dropdown
+  roomsModel.distinct("number", function(err, allRooms) {
+    if (err) {
+      console.log(err);
+      return res.redirect("/admin/control/room-map/step1");
+    }
+    
+    rooms = allRooms;
+    
+    // Find the specific room data
+    roomsModel.find({ number: roomNumber }, function(err, data) {
+      if (err || !data.length) {
+        console.log(err);
+        return res.redirect("/admin/control/room-map/step1");
+      }
+      
+      let weekDayHash = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      let numberHash = [];
+      for (let i = 1; i <= 12; i++) {
+        numberHash.push(i);
+      }
+      
+      return res.renderState("admin/portals/control/roomMap/step2", {
+        classes: data[0].fixedClasses,
+        room: data[0].number,
+        rooms: rooms,
+        weekDayHash: weekDayHash,
+        numberHash: numberHash
+      });
+    });
+  });
 });
 router.post(
   "/step2",
@@ -42,9 +104,13 @@ router.post(
         errors: errors.mapped()
       });
     }
+    
+    // Check if room is provided via query parameter (for room switching)
+    const roomNumber = req.query.room || req.sanitize(req.body.room);
+    
     roomsModel.find(
       {
-        number: req.sanitize(req.body.room)
+        number: roomNumber
       },
       function(err, data) {
         if (err) {
