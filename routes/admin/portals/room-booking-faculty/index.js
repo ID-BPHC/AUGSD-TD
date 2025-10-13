@@ -8,8 +8,20 @@ let Moment = require("moment");
 let MomentRange = require("moment-range");
 let moment = MomentRange.extendMoment(Moment);
 let holidaysModel = fq("schemas/holidays");
+let adminsModel = fq("schemas/admins");
 
 const { check, validationResult } = require("express-validator/check");
+
+// Helper function to check if user is a superUser
+let isSuperUser = function(email, callback) {
+  adminsModel.findOne({email: email, superUser: true}, function(err, admin) {
+    if (err) {
+      console.log(err);
+      return callback(false);
+    }
+    return callback(admin ? true : false);
+  });
+};
 
 // GET Requests
 
@@ -18,7 +30,12 @@ router.get("/", function(req, res, next) {
 });
 
 router.get("/book", function(req, res, next) {
-  res.renderState("room-booking/book");
+  // Check if user is a superUser and pass to template
+  isSuperUser(req.user.email, function(isSuper) {
+    res.renderState("room-booking/book", {
+      isSuperUser: isSuper
+    });
+  });
 });
 
 router.get("/view", function(req, res, next) {
@@ -127,14 +144,28 @@ router.post(
       })
       .withMessage("End time must not be between 9:30 PM and 6:00 AM")
       .custom((value, { req }) => {
-        const startTime = moment(req.body["time-start"], "HH:mm");
-        const endTime = moment(value, "HH:mm");
-        const duration = moment.duration(endTime.diff(startTime));
-        const hours = duration.asHours();
-        if (hours > 2) {
-          return false;
-        }
-        return true;
+        // Skip validation for superUsers
+        const userEmail = req.user ? req.user.email : null;
+        return new Promise((resolve) => {
+          if (userEmail) {
+            isSuperUser(userEmail, function(isSuper) {
+              if (isSuper) {
+                return resolve(true);
+              }
+              
+              const startTime = moment(req.body["time-start"], "HH:mm");
+              const endTime = moment(value, "HH:mm");
+              const duration = moment.duration(endTime.diff(startTime));
+              const hours = duration.asHours();
+              if (hours > 2) {
+                return resolve(false);
+              }
+              return resolve(true);
+            });
+          } else {
+            return resolve(false);
+          }
+        });
       })
       .withMessage("Booking duration cannot exceed 2 hours"),
     check("date")
@@ -194,16 +225,20 @@ router.post(
       });
     }
 
-    // Check if booking duration exceeds 2 hours
-    const duration = moment.duration(booking.endTimeObj.diff(booking.startTimeObj));
-    const hours = duration.asHours();
-    if (hours > 2) {
-      return res.renderState("room-booking/errors", {
-        message: "Booking duration cannot exceed 2 hours"
-      });
-    }
+    // Check if user is superUser first
+    isSuperUser(req.user.email, function(isSuper) {
+      if (!isSuper) {
+        // Check if booking duration exceeds 2 hours for regular users
+        const duration = moment.duration(booking.endTimeObj.diff(booking.startTimeObj));
+        const hours = duration.asHours();
+        if (hours > 2) {
+          return res.renderState("room-booking/errors", {
+            message: "Booking duration cannot exceed 2 hours"
+          });
+        }
+      }
 
-    roomBookingFaculty.getRooms(booking, function(err, rooms) {
+      roomBookingFaculty.getRooms(booking, function(err, rooms) {
       if (err) {
         return res.terminate("Error");
       }
@@ -245,6 +280,7 @@ router.post(
         end: booking.endString
       });
     });
+    }); // Close isSuperUser callback
   }
 );
 

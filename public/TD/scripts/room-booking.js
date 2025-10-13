@@ -191,11 +191,11 @@
   document
     .getElementById("findBtn")
     .addEventListener("click", async function() {
-      // Validate duration before proceeding
+      // Validate duration before proceeding (skip for superUsers)
       let startTime = document.getElementById("time-start").value;
       let endTime = document.getElementById("time-end").value;
       
-      if (startTime && endTime) {
+      if (startTime && endTime && !window.isSuperUser) {
         const start = moment(startTime, "HH:mm");
         const end = moment(endTime, "HH:mm");
         const duration = moment.duration(end.diff(start));
@@ -207,20 +207,23 @@
           return;
         }
         
-        // Check if start time is between 9:30 PM and 6:00 AM
-        if ((start.isSameOrAfter(moment("21:30", "HH:mm")) && start.isSameOrBefore(moment("23:59", "HH:mm"))) ||
-            (start.isSameOrAfter(moment("00:00", "HH:mm")) && start.isSameOrBefore(moment("06:00", "HH:mm")))) {
-          document.getElementById("resDiv").innerHTML = 
-            "<br><p>The following error occurred while processing your request</p><p><b>Start time must not be between 9:30 PM and 6:00 AM</b></p><br>";
-          return;
-        }
-        
-        // Check if end time is between 9:30 PM and 6:00 AM
-        if ((end.isSameOrAfter(moment("21:30", "HH:mm")) && end.isSameOrBefore(moment("23:59", "HH:mm"))) ||
-            (end.isSameOrAfter(moment("00:00", "HH:mm")) && end.isSameOrBefore(moment("06:00", "HH:mm")))) {
-          document.getElementById("resDiv").innerHTML = 
-            "<br><p>The following error occurred while processing your request</p><p><b>End time must not be between 9:30 PM and 6:00 AM</b></p><br>";
-          return;
+        // Skip time restrictions for superUsers
+        if (!window.isSuperUser) {
+          // Check if start time is between 9:30 PM and 6:00 AM
+          if ((start.isSameOrAfter(moment("21:30", "HH:mm")) && start.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+              (start.isSameOrAfter(moment("00:00", "HH:mm")) && start.isSameOrBefore(moment("06:00", "HH:mm")))) {
+            document.getElementById("resDiv").innerHTML = 
+              "<br><p>The following error occurred while processing your request</p><p><b>Start time must not be between 9:30 PM and 6:00 AM</b></p><br>";
+            return;
+          }
+          
+          // Check if end time is between 9:30 PM and 6:00 AM
+          if ((end.isSameOrAfter(moment("21:30", "HH:mm")) && end.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+              (end.isSameOrAfter(moment("00:00", "HH:mm")) && end.isSameOrBefore(moment("06:00", "HH:mm")))) {
+            document.getElementById("resDiv").innerHTML = 
+              "<br><p>The following error occurred while processing your request</p><p><b>End time must not be between 9:30 PM and 6:00 AM</b></p><br>";
+            return;
+          }
         }
       }
       

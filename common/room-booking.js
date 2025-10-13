@@ -4,11 +4,23 @@ let roomsModel = fq("schemas/rooms");
 let bookingsModel = fq("schemas/room-bookings");
 let holidaysModel = fq("schemas/holidays");
 let ttExceptionsModel = fq("schemas/ttExceptions");
+let adminsModel = fq("schemas/admins");
 let mailer = fq("utils/mailer");
 let async = require("async");
 let Moment = require("moment");
 let MomentRange = require("moment-range");
 let moment = MomentRange.extendMoment(Moment);
+
+// Helper function to check if user is a superUser
+let isSuperUser = function(email, callback) {
+  adminsModel.findOne({ email: email }, function(err, admin) {
+    if (err) {
+      console.log(err);
+      return callback(false);
+    }
+    return callback(admin && admin.superUser === true);
+  });
+};
 
 let weekDayHash = {
   Mon: 0,
@@ -34,36 +46,43 @@ let isHoliday = function(date, cb) {
 
 // Check if user has exceeded daily booking limit (2 hours per day)
 let checkDailyBookingLimit = function(email, bookingDate, newBookingDuration, cb) {
-  const startOfDay = moment(bookingDate).startOf('day');
-  const endOfDay = moment(bookingDate).endOf('day');
-  
-  bookingsModel.find({
-    bookedBy: email,
-    start: {
-      $gte: startOfDay.toDate(),
-      $lt: endOfDay.toDate()
-    },
-    approval: {
-      $ne: "R" // Exclude rejected bookings
-    }
-  }, function(err, existingBookings) {
-    if (err) {
-      console.log(err);
-      throw err;
+  // Skip all limits for superUsers
+  isSuperUser(email, function(isSuper) {
+    if (isSuper) {
+      return cb(false, 0); // No limit for superUsers
     }
     
-    let totalDuration = 0;
-    existingBookings.forEach(function(booking) {
-      const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
-      totalDuration += duration.asHours();
+    const startOfDay = moment(bookingDate).startOf('day');
+    const endOfDay = moment(bookingDate).endOf('day');
+    
+    bookingsModel.find({
+      bookedBy: email,
+      start: {
+        $gte: startOfDay.toDate(),
+        $lt: endOfDay.toDate()
+      },
+      approval: {
+        $ne: "R" // Exclude rejected bookings
+      }
+    }, function(err, existingBookings) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      
+      let totalDuration = 0;
+      existingBookings.forEach(function(booking) {
+        const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
+        totalDuration += duration.asHours();
+      });
+      
+      // Check if adding new booking would exceed 2-hour daily limit
+      if (totalDuration + newBookingDuration > 2) {
+        return cb(true, totalDuration); // Limit exceeded
+      } else {
+        return cb(false, totalDuration); // Within limit
+      }
     });
-    
-    // Check if adding new booking would exceed 2-hour daily limit
-    if (totalDuration + newBookingDuration > 2) {
-      return cb(true, totalDuration); // Limit exceeded
-    } else {
-      return cb(false, totalDuration); // Within limit
-    }
   });
 };
 
@@ -230,26 +249,69 @@ let cancel = function(id, email, callback) {
 //  Gets available rooms
 
 let getRooms = function(booking, callback) {
-  // Check if booking duration exceeds 2 hours
-  const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
-  const hours = duration.asHours();
-  if (hours > 2) {
-    return callback(false, { 
-      durationExceeded: 1,
-      message: "Booking duration cannot exceed 2 hours"
-    });
-  }
+  // Function to proceed with room availability checking
+  let proceedWithRoomCheck = function() {
+    getWeekDay(booking.dateString, function(weekDay) {
+      getWorkingHours(booking.startTimeObj, function(workingHours) {
+        if (workingHours.length === 0)
+          return callback(false, { noWorkingHours: 1 });
 
-  // Check daily booking limit (2 hours per day per email)
-  checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
-    if (limitExceeded) {
-      return callback(false, {
-        dailyLimitExceeded: 1,
-        message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+        checkIfAllBlocked(booking.startTimeObj, booking.endTimeObj, function(
+          allBlocked
+        ) {
+          if (allBlocked) return callback(false, { allBlocked: 1 });
+
+          isHoliday(booking.startTimeObj, function(holiday) {
+            if (holiday) weekDay = 6;
+            booking.holiday = holiday;
+            booking.weekDay = weekDay;
+            getRoomList(booking, function(rooms) {
+              callback(false, rooms);
+            });
+          });
+        });
+      });
+    });
+  };
+
+  // Skip all duration and daily limits for superUsers
+  isSuperUser(booking.email, function(isSuper) {
+    if (isSuper) {
+      // Skip all checks for superUsers, directly proceed to room availability
+      proceedWithRoomCheck();
+      return;
+    }
+    
+    // Check if booking duration exceeds 2 hours for regular users
+    const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+    const hours = duration.asHours();
+    if (hours > 2) {
+      return callback(false, { 
+        durationExceeded: 1,
+        message: "Booking duration cannot exceed 2 hours"
       });
     }
 
-    getWeekDay(booking.dateString, function(weekDay) {
+    // Check daily booking limit (2 hours per day per email)
+    checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+      if (limitExceeded) {
+        return callback(false, {
+          dailyLimitExceeded: 1,
+          message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+        });
+      }
+
+      // Proceed with room checking for regular users
+      proceedWithRoomCheck();
+    });
+  });
+};
+
+// To make checks and do booking
+
+let makeBooking = function(booking, rooms, callback) {
+  // Function to proceed with booking process
+  let proceedWithBooking = function() {
     getWorkingHours(booking.startTimeObj, function(workingHours) {
       if (workingHours.length === 0)
         return callback(false, { noWorkingHours: 1 });
@@ -259,127 +321,114 @@ let getRooms = function(booking, callback) {
       ) {
         if (allBlocked) return callback(false, { allBlocked: 1 });
 
-        isHoliday(booking.startTimeObj, function(holiday) {
-          if (holiday) weekDay = 6;
-          booking.holiday = holiday;
-          booking.weekDay = weekDay;
-          getRoomList(booking, function(rooms) {
-            callback(false, rooms);
-          });
-        });
+        async.filter(
+          rooms,
+          function(room, next) {
+            roomsModel.findOne({ number: room }, function(err, roomDB) {
+              if (err) {
+                console.log(err);
+                throw err;
+              }
+              checkAvailability(roomDB, booking, function(available) {
+                next(null, available);
+              });
+            });
+          },
+          function(err, filteredRooms) {
+            if (filteredRooms.length == rooms.length) {
+              bookingsModel.create(
+                {
+                  number: rooms,
+                  start: booking.startTimeObj,
+                  end: booking.endTimeObj,
+                  bookedBy: booking.email,
+                  av: booking.av,
+                  purpose: booking.purpose,
+                  phone: booking.phone,
+                  approval: booking.isFaculty ? "A" : "P"
+                },
+                function(err, result) {
+                  if (err) {
+                    console.log(err);
+                    throw err;
+                  }
+                  if (booking.isFaculty) {
+                    mailer.send({
+                      email: booking.email,
+                      subject: "Room Booking",
+                      body:
+                        "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
+                        filteredRooms.toString() +
+                        "</td></tr><tr><td><b>From</b></td><td>" +
+                        result.start.toString() +
+                        "</td></tr><tr><td><b>To</b></td><td>" +
+                        result.end.toString() +
+                        "</td></tr></table>"
+                    });
+                  } else {
+                    mailer.send({
+                      email: booking.email,
+                      subject: "Room Booking",
+                      body:
+                        "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
+                        filteredRooms.toString() +
+                        "</td></tr><tr><td><b>From</b></td><td>" +
+                        result.start.toString() +
+                        "</td></tr><tr><td><b>To</b></td><td>" +
+                        result.end.toString() +
+                        "</td></tr></table>"
+                    });
+                  }
+                  return callback(null, { booked: 1 });
+                }
+              );
+            } else {
+              async.filter(
+                rooms,
+                function(room, checkNext) {
+                  if (filteredRooms.indexOf(room) === -1) checkNext(null, true);
+                  else checkNext(null, false);
+                },
+                function(err, notAvailable) {
+                  return callback(false, { partialBooking: 1, notAvailable });
+                }
+              );
+            }
+          }
+        );
       });
     });
-    });
-  });
-};
+  };
 
-// To make checks and do booking
-
-let makeBooking = function(booking, rooms, callback) {
-  // Check if booking duration exceeds 2 hours
-  const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
-  const hours = duration.asHours();
-  if (hours > 2) {
-    return callback(false, { 
-      durationExceeded: 1,
-      message: "Booking duration cannot exceed 2 hours"
-    });
-  }
-
-  // Check daily booking limit (2 hours per day per email)
-  checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
-    if (limitExceeded) {
-      return callback(false, {
-        dailyLimitExceeded: 1,
-        message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+  // Skip all duration and daily limits for superUsers
+  isSuperUser(booking.email, function(isSuper) {
+    if (isSuper) {
+      // Skip all checks for superUsers, directly proceed to booking
+      proceedWithBooking();
+      return;
+    }
+    
+    // Check if booking duration exceeds 2 hours for regular users
+    const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+    const hours = duration.asHours();
+    if (hours > 2) {
+      return callback(false, { 
+        durationExceeded: 1,
+        message: "Booking duration cannot exceed 2 hours"
       });
     }
 
-    getWorkingHours(booking.startTimeObj, function(workingHours) {
-    if (workingHours.length === 0)
-      return callback(false, { noWorkingHours: 1 });
+    // Check daily booking limit (2 hours per day per email)
+    checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+      if (limitExceeded) {
+        return callback(false, {
+          dailyLimitExceeded: 1,
+          message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+        });
+      }
 
-    checkIfAllBlocked(booking.startTimeObj, booking.endTimeObj, function(
-      allBlocked
-    ) {
-      if (allBlocked) return callback(false, { allBlocked: 1 });
-
-      async.filter(
-        rooms,
-        function(room, next) {
-          roomsModel.findOne({ number: room }, function(err, roomDB) {
-            if (err) {
-              console.log(err);
-              throw err;
-            }
-            checkAvailability(roomDB, booking, function(available) {
-              next(null, available);
-            });
-          });
-        },
-        function(err, filteredRooms) {
-          if (filteredRooms.length == rooms.length) {
-            bookingsModel.create(
-              {
-                number: rooms,
-                start: booking.startTimeObj,
-                end: booking.endTimeObj,
-                bookedBy: booking.email,
-                av: booking.av,
-                purpose: booking.purpose,
-                phone: booking.phone,
-                approval: booking.isFaculty ? "A" : "P"
-              },
-              function(err, result) {
-                if (err) {
-                  console.log(err);
-                  throw err;
-                }
-                if (booking.isFaculty) {
-                  mailer.send({
-                    email: booking.email,
-                    subject: "Room Booking",
-                    body:
-                      "Your request for room booking has been confirmed.<br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
-                      filteredRooms.toString() +
-                      "</td></tr><tr><td><b>From</b></td><td>" +
-                      result.start.toString() +
-                      "</td></tr><tr><td><b>To</b></td><td>" +
-                      result.end.toString() +
-                      "</td></tr></table>"
-                  });
-                } else {
-                  mailer.send({
-                    email: booking.email,
-                    subject: "Room Booking",
-                    body:
-                      "Your request for room booking has been initiated. Please wait for approval. <br><br><table><tr><td><b>Room No. :</b>&nbsp;</td><td>" +
-                      filteredRooms.toString() +
-                      "</td></tr><tr><td><b>From</b></td><td>" +
-                      result.start.toString() +
-                      "</td></tr><tr><td><b>To</b></td><td>" +
-                      result.end.toString() +
-                      "</td></tr></table>"
-                  });
-                }
-                return callback(null, { booked: 1 });
-              }
-            );
-          } else {
-            async.filter(
-              rooms,
-              function(room, checkNext) {
-                if (filteredRooms.indexOf(room) === -1) checkNext(null, true);
-                else checkNext(null, false);
-              },
-              function(err, notAvailable) {
-                return callback(false, { partialBooking: 1, notAvailable });
-              }
-            );
-          }
-        }
-      );
-    });
+      // Proceed with booking for regular users
+      proceedWithBooking();
     });
   });
 };
