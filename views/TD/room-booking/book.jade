@@ -69,4 +69,7 @@ block content
 	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
 	script(type='text/javascript' src='/scripts/material-alerts.js')
+	script.
+		// Pass superUser status to client-side
+		window.isSuperUser = #{isSuperUser || false};
 	script(type='text/javascript' src='/scripts/room-booking.js')  
