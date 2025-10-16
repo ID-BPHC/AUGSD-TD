@@ -191,11 +191,11 @@
   document
     .getElementById("findBtn")
     .addEventListener("click", async function() {
-      // Validate duration before proceeding (skip for superUsers)
+      // Validate duration before proceeding (skip for superUsers and faculty)
       let startTime = document.getElementById("time-start").value;
       let endTime = document.getElementById("time-end").value;
       
-      if (startTime && endTime && !window.isSuperUser) {
+      if (startTime && endTime && !window.isSuperUser && !window.isFaculty) {
         const start = moment(startTime, "HH:mm");
         const end = moment(endTime, "HH:mm");
         const duration = moment.duration(end.diff(start));
@@ -207,8 +207,8 @@
           return;
         }
         
-        // Skip time restrictions for superUsers
-        if (!window.isSuperUser) {
+        // Skip time restrictions for superUsers and faculty
+        if (!window.isSuperUser && !window.isFaculty) {
           // Check if start time is between 9:30 PM and 6:00 AM
           if ((start.isSameOrAfter(moment("21:30", "HH:mm")) && start.isSameOrBefore(moment("23:59", "HH:mm"))) ||
               (start.isSameOrAfter(moment("00:00", "HH:mm")) && start.isSameOrBefore(moment("06:00", "HH:mm")))) {

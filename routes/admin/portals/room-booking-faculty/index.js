@@ -33,7 +33,8 @@ router.get("/book", function(req, res, next) {
   // Check if user is a superUser and pass to template
   isSuperUser(req.user.email, function(isSuper) {
     res.renderState("room-booking/book", {
-      isSuperUser: isSuper
+      isSuperUser: isSuper,
+      isFaculty: true
     });
   });
 });
@@ -142,32 +143,8 @@ router.post(
         }
         return true;
       })
-      .withMessage("End time must not be between 9:30 PM and 6:00 AM")
-      .custom((value, { req }) => {
-        // Skip validation for superUsers
-        const userEmail = req.user ? req.user.email : null;
-        return new Promise((resolve) => {
-          if (userEmail) {
-            isSuperUser(userEmail, function(isSuper) {
-              if (isSuper) {
-                return resolve(true);
-              }
-              
-              const startTime = moment(req.body["time-start"], "HH:mm");
-              const endTime = moment(value, "HH:mm");
-              const duration = moment.duration(endTime.diff(startTime));
-              const hours = duration.asHours();
-              if (hours > 2) {
-                return resolve(false);
-              }
-              return resolve(true);
-            });
-          } else {
-            return resolve(false);
-          }
-        });
-      })
-      .withMessage("Booking duration cannot exceed 2 hours"),
+      .withMessage("End time must not be between 9:30 PM and 6:00 AM"),
+    // Note: Duration validation removed for faculty - they can book for any length of time
     check("date")
       .exists()
       .withMessage("No Date Specified")
@@ -225,20 +202,8 @@ router.post(
       });
     }
 
-    // Check if user is superUser first
-    isSuperUser(req.user.email, function(isSuper) {
-      if (!isSuper) {
-        // Check if booking duration exceeds 2 hours for regular users
-        const duration = moment.duration(booking.endTimeObj.diff(booking.startTimeObj));
-        const hours = duration.asHours();
-        if (hours > 2) {
-          return res.renderState("room-booking/errors", {
-            message: "Booking duration cannot exceed 2 hours"
-          });
-        }
-      }
-
-      roomBookingFaculty.getRooms(booking, function(err, rooms) {
+    // Faculty can book for any duration - no time limits
+    roomBookingFaculty.getRooms(booking, function(err, rooms) {
       if (err) {
         return res.terminate("Error");
       }
@@ -280,7 +245,6 @@ router.post(
         end: booking.endString
       });
     });
-    }); // Close isSuperUser callback
   }
 );
 

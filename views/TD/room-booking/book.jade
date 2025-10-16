@@ -70,6 +70,7 @@ block content
 	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
 	script(type='text/javascript' src='/scripts/material-alerts.js')
 	script.
-		// Pass superUser status to client-side
+		// Pass superUser status and faculty status to client-side
 		window.isSuperUser = #{isSuperUser || false};
+		window.isFaculty = #{isFaculty || false};
 	script(type='text/javascript' src='/scripts/room-booking.js')  
