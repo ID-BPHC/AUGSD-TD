@@ -245,6 +245,7 @@ router.post(
         end: booking.endString
       });
     });
+    }); // Close isSuperUser callback
   }
 );
 
