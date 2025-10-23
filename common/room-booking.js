@@ -22,6 +22,17 @@ let isSuperUser = function(email, callback) {
   });
 };
 
+// Helper function to check if user is faculty (admin)
+let isFaculty = function(email, callback) {
+  adminsModel.findOne({ email: email }, function(err, admin) {
+    if (err) {
+      console.log(err);
+      return callback(false);
+    }
+    return callback(admin ? true : false); // Any admin is considered faculty
+  });
+};
+
 let weekDayHash = {
   Mon: 0,
   Tue: 1,
@@ -52,36 +63,43 @@ let checkDailyBookingLimit = function(email, bookingDate, newBookingDuration, cb
       return cb(false, 0); // No limit for superUsers
     }
     
-    const startOfDay = moment(bookingDate).startOf('day');
-    const endOfDay = moment(bookingDate).endOf('day');
-    
-    bookingsModel.find({
-      bookedBy: email,
-      start: {
-        $gte: startOfDay.toDate(),
-        $lt: endOfDay.toDate()
-      },
-      approval: {
-        $ne: "R" // Exclude rejected bookings
-      }
-    }, function(err, existingBookings) {
-      if (err) {
-        console.log(err);
-        throw err;
+    // Skip all limits for faculty
+    isFaculty(email, function(isFac) {
+      if (isFac) {
+        return cb(false, 0); // No limit for faculty
       }
       
-      let totalDuration = 0;
-      existingBookings.forEach(function(booking) {
-        const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
-        totalDuration += duration.asHours();
+      const startOfDay = moment(bookingDate).startOf('day');
+      const endOfDay = moment(bookingDate).endOf('day');
+      
+      bookingsModel.find({
+        bookedBy: email,
+        start: {
+          $gte: startOfDay.toDate(),
+          $lt: endOfDay.toDate()
+        },
+        approval: {
+          $ne: "R" // Exclude rejected bookings
+        }
+      }, function(err, existingBookings) {
+        if (err) {
+          console.log(err);
+          throw err;
+        }
+        
+        let totalDuration = 0;
+        existingBookings.forEach(function(booking) {
+          const duration = moment.duration(moment(booking.end).diff(moment(booking.start)));
+          totalDuration += duration.asHours();
+        });
+        
+        // Check if adding new booking would exceed 2-hour daily limit
+        if (totalDuration + newBookingDuration > 2) {
+          return cb(true, totalDuration); // Limit exceeded
+        } else {
+          return cb(false, totalDuration); // Within limit
+        }
       });
-      
-      // Check if adding new booking would exceed 2-hour daily limit
-      if (totalDuration + newBookingDuration > 2) {
-        return cb(true, totalDuration); // Limit exceeded
-      } else {
-        return cb(false, totalDuration); // Within limit
-      }
     });
   });
 };
@@ -274,35 +292,44 @@ let getRooms = function(booking, callback) {
     });
   };
 
-  // Skip all duration and daily limits for superUsers
+  // Skip all duration and daily limits for superUsers and faculty
   isSuperUser(booking.email, function(isSuper) {
     if (isSuper) {
       // Skip all checks for superUsers, directly proceed to room availability
       proceedWithRoomCheck();
       return;
     }
-    
-    // Check if booking duration exceeds 2 hours for regular users
-    const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
-    const hours = duration.asHours();
-    if (hours > 2) {
-      return callback(false, { 
-        durationExceeded: 1,
-        message: "Booking duration cannot exceed 2 hours"
-      });
-    }
 
-    // Check daily booking limit (2 hours per day per email)
-    checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
-      if (limitExceeded) {
-        return callback(false, {
-          dailyLimitExceeded: 1,
-          message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+    // Check if user is faculty
+    isFaculty(booking.email, function(isFac) {
+      if (isFac) {
+        // Skip duration limits for faculty, directly proceed to room availability
+        proceedWithRoomCheck();
+        return;
+      }
+      
+      // Check if booking duration exceeds 2 hours for students only
+      const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+      const hours = duration.asHours();
+      if (hours > 2) {
+        return callback(false, { 
+          durationExceeded: 1,
+          message: "Booking duration cannot exceed 2 hours"
         });
       }
 
-      // Proceed with room checking for regular users
-      proceedWithRoomCheck();
+      // Check daily booking limit (2 hours per day per email) for students only
+      checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+        if (limitExceeded) {
+          return callback(false, {
+            dailyLimitExceeded: 1,
+            message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+          });
+        }
+
+        // Proceed with room checking for students
+        proceedWithRoomCheck();
+      });
     });
   });
 };
@@ -400,35 +427,44 @@ let makeBooking = function(booking, rooms, callback) {
     });
   };
 
-  // Skip all duration and daily limits for superUsers
+  // Skip all duration and daily limits for superUsers and faculty
   isSuperUser(booking.email, function(isSuper) {
     if (isSuper) {
       // Skip all checks for superUsers, directly proceed to booking
       proceedWithBooking();
       return;
     }
-    
-    // Check if booking duration exceeds 2 hours for regular users
-    const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
-    const hours = duration.asHours();
-    if (hours > 2) {
-      return callback(false, { 
-        durationExceeded: 1,
-        message: "Booking duration cannot exceed 2 hours"
-      });
-    }
 
-    // Check daily booking limit (2 hours per day per email)
-    checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
-      if (limitExceeded) {
-        return callback(false, {
-          dailyLimitExceeded: 1,
-          message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+    // Check if user is faculty
+    isFaculty(booking.email, function(isFac) {
+      if (isFac) {
+        // Skip duration limits for faculty, directly proceed to booking
+        proceedWithBooking();
+        return;
+      }
+      
+      // Check if booking duration exceeds 2 hours for students only
+      const duration = moment.duration(moment(booking.endTimeObj).diff(moment(booking.startTimeObj)));
+      const hours = duration.asHours();
+      if (hours > 2) {
+        return callback(false, { 
+          durationExceeded: 1,
+          message: "Booking duration cannot exceed 2 hours"
         });
       }
 
-      // Proceed with booking for regular users
-      proceedWithBooking();
+      // Check daily booking limit (2 hours per day per email) for students only
+      checkDailyBookingLimit(booking.email, booking.startTimeObj, hours, function(limitExceeded, currentDuration) {
+        if (limitExceeded) {
+          return callback(false, {
+            dailyLimitExceeded: 1,
+            message: `Daily booking limit exceeded. You have already booked ${currentDuration.toFixed(1)} hours today. Maximum allowed is 2 hours per day.`
+          });
+        }
+
+        // Proceed with booking for students
+        proceedWithBooking();
+      });
     });
   });
 };
