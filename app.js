@@ -38,10 +38,11 @@ app.use(
     }
   })
 );
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '10mb'
   })
 );
 app.use(expressSanitizer());
@@ -50,10 +51,29 @@ app.use(express.static(path.join(__dirname, "public", config.siteMode)));
 
 mongoose.connect(
   config.mongooseConnection,
-  { useNewUrlParser: true,
-    useUnifiedTopology: true
+  { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    connectTimeoutMS: 10000
   }
 );
+
+// Handle MongoDB connection errors
+mongoose.connection.on('error', function(err) {
+  console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', function() {
+  console.log('MongoDB disconnected');
+});
+
+mongoose.connection.on('connected', function() {
+  console.log('MongoDB connected successfully');
+});
 
 var admin = require("./routes/admin");
 var dashboard = require("./routes/dashboard");

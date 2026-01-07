@@ -246,8 +246,6 @@ router.post(
       });
     });
     }); // Close isSuperUser callback
-  }
-);
 
 router.post("/submit", async function (req, res, next) {
   const dates = req.session.booking.dates;
