@@ -54,8 +54,8 @@ mongoose.connect(
   { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    maxPoolSize: 50,  // Increased to handle concurrent users
-    minPoolSize: 5,   // Keep more connections ready
+    maxPoolSize: 50,
+    minPoolSize: 5,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
     connectTimeoutMS: 10000
