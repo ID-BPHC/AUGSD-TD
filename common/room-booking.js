@@ -162,9 +162,9 @@ let checkIfAllBlocked = function(startTime, endTime, cb) {
 };
 
 let checkAvailability = function(room, booking, cb) {
-  // Updated to reflect new working hours: weekdays until 4:30 PM (startHour 8), Saturday until 11:30 AM (startHour 3)
-  let maxWorkingHour = booking.weekDay === 6 ? 3 : 8; // Saturday: 11:30 AM, Weekdays: 4:30 PM
-  if (!booking.holiday && booking.startHour <= maxWorkingHour) {
+  // Check for fixed classes (preoccupied rooms) regardless of working hours
+  // Fixed classes should always be respected, even outside official working hours
+  if (!booking.holiday) {
     for (i = booking.startHour; i <= booking.endHour; i++) {
       if (
         i >= 0 &&

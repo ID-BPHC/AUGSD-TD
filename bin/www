@@ -23,12 +23,23 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * Set server timeout to prevent hanging connections
+ */
+server.timeout = 60000; // 60 seconds
+server.keepAliveTimeout = 65000; // 65 seconds
+server.headersTimeout = 66000; // 66 seconds
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+server.on('clientError', function(err, socket) {
+  console.error('Client error:', err);
+  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+});
 
 /**
  * Normalize a port into a number, string, or false.
