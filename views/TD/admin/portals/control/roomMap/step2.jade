@@ -121,12 +121,24 @@ block content
                     li.className = 'mdl-menu__item';
                     li.setAttribute('data-val', room);
                     li.textContent = room;
+                    
+                    // Add click handler for getmdl-select compatibility
+                    li.addEventListener('click', function() {
+                        roomSwitcherInput.value = room;
+                        roomSwitcherInput.parentElement.classList.add('is-dirty');
+                    });
+                    
                     roomSwitcherList.appendChild(li);
                 });
                 
-                // Reinitialize MDL menu if needed
+                // Reinitialize MDL components
                 if (window.componentHandler) {
                     window.componentHandler.upgradeElement(roomSwitcherList);
+                    // Also upgrade the parent textfield
+                    var textfieldParent = roomSwitcherInput.parentElement;
+                    if (textfieldParent && !textfieldParent.MaterialTextfield) {
+                        window.componentHandler.upgradeElement(textfieldParent);
+                    }
                 }
             }
 
