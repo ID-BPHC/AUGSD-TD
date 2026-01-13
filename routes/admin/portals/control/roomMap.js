@@ -108,30 +108,41 @@ router.post(
     // Check if room is provided via query parameter (for room switching)
     const roomNumber = req.query.room || req.sanitize(req.body.room);
     
-    roomsModel.find(
-      {
-        number: roomNumber
-      },
-      function(err, data) {
-        if (err) {
-          console.log(err);
-          return res.terminate(err);
-        } else {
-          let weekDayHash = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-          let numberHash = [];
-          for (let i = 1; i <= 12; i++) {
-            numberHash.push(i);
-          }
-          return res.renderState("admin/portals/control/roomMap/step2", {
-            classes: data[0].fixedClasses,
-            room: data[0].number,
-            rooms: rooms,
-            weekDayHash: weekDayHash,
-            numberHash: numberHash
-          });
-        }
+    // Get all rooms for the dropdown
+    roomsModel.distinct("number", function(err, allRooms) {
+      if (err) {
+        console.log(err);
+        return res.terminate(err);
       }
-    );
+      
+      rooms = allRooms;
+      
+      // Find the specific room data
+      roomsModel.find(
+        {
+          number: roomNumber
+        },
+        function(err, data) {
+          if (err) {
+            console.log(err);
+            return res.terminate(err);
+          } else {
+            let weekDayHash = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+            let numberHash = [];
+            for (let i = 1; i <= 12; i++) {
+              numberHash.push(i);
+            }
+            return res.renderState("admin/portals/control/roomMap/step2", {
+              classes: data[0].fixedClasses,
+              room: data[0].number,
+              rooms: rooms,
+              weekDayHash: weekDayHash,
+              numberHash: numberHash
+            });
+          }
+        }
+      );
+    });
   }
 );
 router.post("/:room/changeClass", function(req, res, next) {
