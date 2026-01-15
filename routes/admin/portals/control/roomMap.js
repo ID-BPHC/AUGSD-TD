@@ -7,6 +7,30 @@ let moment = require("moment");
 const { check, validationResult } = require("express-validator/check");
 
 let rooms = [];
+
+// Natural sort function for room numbers (F101, F102, G101, etc.)
+function naturalSort(a, b) {
+  // Extract building letter and room number
+  const regex = /([A-Za-z]+)(\d+)/;
+  const matchA = a.match(regex);
+  const matchB = b.match(regex);
+  
+  if (!matchA || !matchB) {
+    // Fallback to string comparison if pattern doesn't match
+    return a.localeCompare(b);
+  }
+  
+  const [, buildingA, numA] = matchA;
+  const [, buildingB, numB] = matchB;
+  
+  // First compare building letters
+  if (buildingA !== buildingB) {
+    return buildingA.localeCompare(buildingB);
+  }
+  
+  // If same building, compare numbers numerically
+  return parseInt(numA) - parseInt(numB);
+}
 router.get("/", function(req, res, next) {
   return res.redirect("/admin/control/room-map/step1");
 });
@@ -15,7 +39,10 @@ router.get("/step1", function(req, res, next) {
   roomsModel.distinct("number", function(err, result) {
     if (err) console.log(err);
     else {
+      // Sort rooms naturally (F101, F102, ..., G101, G102, ...)
+      result.sort(naturalSort);
       rooms = result;
+      
       // Filter results based on search query
       let filteredResult = result;
       if (searchQuery) {
@@ -37,6 +64,9 @@ router.get("/search", function(req, res, next) {
     if (err) {
       return res.json({ error: "Database error" });
     }
+    // Sort rooms naturally
+    result.sort(naturalSort);
+    
     // Filter results based on search query
     let filteredResult = result;
     if (searchQuery) {
@@ -61,6 +91,8 @@ router.get("/step2", function(req, res, next) {
       return res.redirect("/admin/control/room-map/step1");
     }
     
+    // Sort rooms naturally
+    allRooms.sort(naturalSort);
     rooms = allRooms;
     
     // Find the specific room data
@@ -115,6 +147,8 @@ router.post(
         return res.terminate(err);
       }
       
+      // Sort rooms naturally
+      allRooms.sort(naturalSort);
       rooms = allRooms;
       
       // Find the specific room data
@@ -206,26 +240,29 @@ router.post("/:room/changeClass", function(req, res, next) {
     });
   }
   let newSubs = changeReqObjToArray(postObj);
-  let p;
+  
   async function bookings() {
     for (let day = 0; day < 7; day++) {
       for (let hour = 0; hour < 12; hour++) {
         if (newSubs[day][hour]) {
-          p = await checkRoomBookings(presentRoom, day + 1, hour + 1);
+          await checkRoomBookings(presentRoom, day + 1, hour + 1);
         }
       }
     }
-    return p;
+    return roomBookings;
   }
-  bookings().then(function(p) {
-    roomBookings = [];
-    p.forEach(booking => {
-      booking = JSON.parse(booking);
-      roomBookings.push(booking);
+  
+  bookings().then(function(bookings) {
+    // Parse and deduplicate bookings
+    let uniqueBookings = [];
+    bookings.forEach(bookingStr => {
+      let booking = JSON.parse(bookingStr);
+      uniqueBookings.push(booking);
     });
-    if (roomBookings[0] && roomBookings.length > 0) {
+    
+    if (uniqueBookings.length > 0) {
       return res.renderState("admin/portals/control/roomMap/existingBookings", {
-        bookings: roomBookings
+        bookings: uniqueBookings
       });
     } else {
       roomsModel.update(
@@ -236,10 +273,17 @@ router.post("/:room/changeClass", function(req, res, next) {
           fixedClasses: newSubs
         },
         function(err) {
+          if (err) {
+            console.log(err);
+            return res.terminate(err);
+          }
           res.redirect(req.get("referer"));
         }
       );
     }
+  }).catch(function(err) {
+    console.log(err);
+    return res.terminate(err);
   });
 });
 module.exports = router;
