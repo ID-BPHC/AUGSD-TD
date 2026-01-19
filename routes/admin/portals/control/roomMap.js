@@ -4,7 +4,7 @@ let fq = require("fuzzquire");
 let roomsModel = fq("schemas/rooms");
 let bookingsModel = fq("schemas/room-bookings");
 let moment = require("moment");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator/check");
 
 let rooms = [];
 
@@ -226,7 +226,6 @@ router.post("/:room/changeClass", function(req, res, next) {
                   moment(booking.end).hours() -
                   7 +
                   moment(booking.end).minutes() / 60;
-                // hour is 0-indexed (0-11), startTime and endTime are also 0-indexed
                 if (hour >= startTime && hour < endTime) {
                   if (!roomBookings.includes(JSON.stringify(booking))) {
                     // for comparing objects it is better to convert them to strings.
@@ -257,34 +256,19 @@ router.post("/:room/changeClass", function(req, res, next) {
     
     let oldClasses = roomData.fixedClasses || [[], [], [], [], [], [], []];
     
-    // Ensure oldClasses is properly initialized with nested arrays
-    for (let d = 0; d < 7; d++) {
-      if (!oldClasses[d]) {
-        oldClasses[d] = [];
-      }
-      for (let h = 0; h < 12; h++) {
-        if (oldClasses[d][h] === undefined || oldClasses[d][h] === null) {
-          oldClasses[d][h] = "";
-        }
-      }
-    }
-    
     async function checkNewBookings() {
-      console.log("=== Starting booking check for room:", presentRoom);
       for (let day = 0; day < 7; day++) {
         for (let hour = 0; hour < 12; hour++) {
-          // Get old and new values
-          let oldValue = (oldClasses[day][hour] || "").toString().trim();
-          let newValue = (newSubs[day][hour] || "").toString().trim();
+          // Only check slots that have NEW or CHANGED classes
+          let oldValue = oldClasses[day] && oldClasses[day][hour] ? oldClasses[day][hour].trim() : "";
+          let newValue = newSubs[day][hour].trim();
           
-          // Only check if a previously empty slot is being filled with a new class
-          if (newValue && !oldValue) {
-            console.log(`Checking booking for Day ${day+1}, Hour ${hour} (${7+hour}:00): new="${newValue}", old="${oldValue}"`);
-            await checkRoomBookings(presentRoom, day + 1, hour);
+          // If there's a new class being added where there wasn't one before, or the class changed
+          if (newValue && newValue !== oldValue) {
+            await checkRoomBookings(presentRoom, day + 1, hour + 1);
           }
         }
       }
-      console.log("=== Total bookings found:", roomBookings.length);
       return roomBookings;
     }
     
@@ -296,20 +280,17 @@ router.post("/:room/changeClass", function(req, res, next) {
         uniqueBookings.push(booking);
       });
       
-      console.log("=== Unique bookings count:", uniqueBookings.length);
       if (uniqueBookings.length > 0) {
-        console.log("=== Showing existingBookings page");
         return res.renderState("admin/portals/control/roomMap/existingBookings", {
           bookings: uniqueBookings
         });
       } else {
-        console.log("=== No conflicts, updating room classes");
-        roomsModel.updateOne(
+        roomsModel.update(
           {
             number: presentRoom
           },
           {
-            $set: { fixedClasses: newSubs }
+            fixedClasses: newSubs
           },
           function(err) {
             if (err) {
