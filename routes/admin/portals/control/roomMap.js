@@ -181,7 +181,6 @@ router.post(
 );
 router.post("/:room/changeClass", function(req, res, next) {
   let presentRoom = req.sanitize(req.params.room);
-  let roomBookings = [];
   let postObj = req.body;
 
   Object.keys(postObj).map(function(key, index) {
@@ -210,7 +209,13 @@ router.post("/:room/changeClass", function(req, res, next) {
             res.terminate(err);
             reject(err);
           } else {
+            let conflictingBookings = [];
             bookings.forEach(booking => {
+              // Skip administrative blocks (blockAll: true) - only check real bookings
+              if (booking.blockAll === true) {
+                return; // Skip this booking
+              }
+              
               let nowDate = moment();
               let bookingDate = moment(booking.start);
               if (
@@ -227,14 +232,11 @@ router.post("/:room/changeClass", function(req, res, next) {
                   7 +
                   moment(booking.end).minutes() / 60;
                 if (hour >= startTime && hour < endTime) {
-                  if (!roomBookings.includes(JSON.stringify(booking))) {
-                    // for comparing objects it is better to convert them to strings.
-                    roomBookings.push(JSON.stringify(booking));
-                  }
+                  conflictingBookings.push(booking);
                 }
               }
             });
-            resolve(roomBookings);
+            resolve(conflictingBookings);
           }
         }
       );
@@ -257,6 +259,8 @@ router.post("/:room/changeClass", function(req, res, next) {
     let oldClasses = roomData.fixedClasses || [[], [], [], [], [], [], []];
     
     async function checkNewBookings() {
+      let allConflictingBookings = [];
+      
       for (let day = 0; day < 7; day++) {
         for (let hour = 0; hour < 12; hour++) {
           // Only check slots that have NEW or CHANGED classes
@@ -265,24 +269,30 @@ router.post("/:room/changeClass", function(req, res, next) {
           
           // If there's a new class being added where there wasn't one before, or the class changed
           if (newValue && newValue !== oldValue) {
-            await checkRoomBookings(presentRoom, day + 1, hour + 1);
+            let bookings = await checkRoomBookings(presentRoom, day + 1, hour + 1);
+            // Add any conflicting bookings to our list
+            bookings.forEach(booking => {
+              // Check if this booking is already in our list (compare by unique fields)
+              let isDuplicate = allConflictingBookings.some(existingBooking => 
+                existingBooking.number === booking.number &&
+                existingBooking.start === booking.start &&
+                existingBooking.end === booking.end &&
+                existingBooking.purpose === booking.purpose
+              );
+              if (!isDuplicate) {
+                allConflictingBookings.push(booking);
+              }
+            });
           }
         }
       }
-      return roomBookings;
+      return allConflictingBookings;
     }
     
     checkNewBookings().then(function(bookings) {
-      // Parse and deduplicate bookings
-      let uniqueBookings = [];
-      bookings.forEach(bookingStr => {
-        let booking = JSON.parse(bookingStr);
-        uniqueBookings.push(booking);
-      });
-      
-      if (uniqueBookings.length > 0) {
+      if (bookings.length > 0) {
         return res.renderState("admin/portals/control/roomMap/existingBookings", {
-          bookings: uniqueBookings
+          bookings: bookings
         });
       } else {
         roomsModel.update(
