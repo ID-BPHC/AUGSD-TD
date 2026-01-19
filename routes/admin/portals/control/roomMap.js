@@ -197,124 +197,24 @@ router.post("/:room/changeClass", function(req, res, next) {
     return arr;
   }
   
-  function checkRoomBookings(room, day, hour) {
-    return new Promise((resolve, reject) => {
-      bookingsModel.find(
-        {
-          number: room
-        },
-        function(err, bookings) {
-          if (err) {
-            console.log(err);
-            res.terminate(err);
-            reject(err);
-          } else {
-            let conflictingBookings = [];
-            bookings.forEach(booking => {
-              // Skip administrative blocks (blockAll: true) - only check real bookings
-              if (booking.blockAll === true) {
-                return; // Skip this booking
-              }
-              
-              let nowDate = moment();
-              let bookingDate = moment(booking.start);
-              if (
-                moment(booking.start).isoWeekday() == day && // 1 - Monday .... 7 - Sunday
-                bookingDate.diff(nowDate) > 0
-              ) {
-                let startTime =
-                  moment(booking.start).hours() -
-                  7 +
-                  moment(booking.start).minutes() / 60;
-
-                let endTime =
-                  moment(booking.end).hours() -
-                  7 +
-                  moment(booking.end).minutes() / 60;
-                if (hour >= startTime && hour < endTime) {
-                  conflictingBookings.push(booking);
-                }
-              }
-            });
-            resolve(conflictingBookings);
-          }
-        }
-      );
-    });
-  }
-  
   let newSubs = changeReqObjToArray(postObj);
   
-  // First, get the existing classes for this room to compare
-  roomsModel.findOne({ number: presentRoom }, function(err, roomData) {
-    if (err) {
-      console.log(err);
-      return res.terminate(err);
-    }
-    
-    if (!roomData) {
-      return res.status(404).send("Room not found");
-    }
-    
-    let oldClasses = roomData.fixedClasses || [[], [], [], [], [], [], []];
-    
-    async function checkNewBookings() {
-      let allConflictingBookings = [];
-      
-      for (let day = 0; day < 7; day++) {
-        for (let hour = 0; hour < 12; hour++) {
-          // Only check slots that have NEW or CHANGED classes
-          let oldValue = oldClasses[day] && oldClasses[day][hour] ? oldClasses[day][hour].trim() : "";
-          let newValue = newSubs[day][hour].trim();
-          
-          // If there's a new class being added where there wasn't one before, or the class changed
-          if (newValue && newValue !== oldValue) {
-            let bookings = await checkRoomBookings(presentRoom, day + 1, hour + 1);
-            // Add any conflicting bookings to our list
-            bookings.forEach(booking => {
-              // Check if this booking is already in our list (compare by unique fields)
-              let isDuplicate = allConflictingBookings.some(existingBooking => 
-                existingBooking.number === booking.number &&
-                existingBooking.start === booking.start &&
-                existingBooking.end === booking.end &&
-                existingBooking.purpose === booking.purpose
-              );
-              if (!isDuplicate) {
-                allConflictingBookings.push(booking);
-              }
-            });
-          }
-        }
+  // Update the room map directly without checking bookings
+  // The room map defines the regular timetable, and the booking system should respect it
+  roomsModel.update(
+    {
+      number: presentRoom
+    },
+    {
+      fixedClasses: newSubs
+    },
+    function(err) {
+      if (err) {
+        console.log(err);
+        return res.terminate(err);
       }
-      return allConflictingBookings;
+      res.redirect(req.get("referer"));
     }
-    
-    checkNewBookings().then(function(bookings) {
-      if (bookings.length > 0) {
-        return res.renderState("admin/portals/control/roomMap/existingBookings", {
-          bookings: bookings
-        });
-      } else {
-        roomsModel.update(
-          {
-            number: presentRoom
-          },
-          {
-            fixedClasses: newSubs
-          },
-          function(err) {
-            if (err) {
-              console.log(err);
-              return res.terminate(err);
-            }
-            res.redirect(req.get("referer"));
-          }
-        );
-      }
-    }).catch(function(err) {
-      console.log(err);
-      return res.terminate(err);
-    });
-  });
+  );
 });
 module.exports = router;
