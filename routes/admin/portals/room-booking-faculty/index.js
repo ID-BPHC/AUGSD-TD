@@ -8,8 +8,20 @@ let Moment = require("moment");
 let MomentRange = require("moment-range");
 let moment = MomentRange.extendMoment(Moment);
 let holidaysModel = fq("schemas/holidays");
+let adminsModel = fq("schemas/admins");
 
 const { check, validationResult } = require("express-validator/check");
+
+// Helper function to check if user is a superUser
+let isSuperUser = function(email, callback) {
+  adminsModel.findOne({email: email, superUser: true}, function(err, admin) {
+    if (err) {
+      console.log(err);
+      return callback(false);
+    }
+    return callback(admin ? true : false);
+  });
+};
 
 // GET Requests
 
@@ -18,7 +30,13 @@ router.get("/", function(req, res, next) {
 });
 
 router.get("/book", function(req, res, next) {
-  res.renderState("room-booking/book");
+  // Check if user is a superUser and pass to template
+  isSuperUser(req.user.email, function(isSuper) {
+    res.renderState("room-booking/book", {
+      isSuperUser: isSuper,
+      isFaculty: true
+    });
+  });
 });
 
 router.get("/view", function(req, res, next) {
@@ -102,12 +120,14 @@ router.post(
       .withMessage("No Start Time Specified")
       .custom((value) => {
         const startTime = moment(value, "HH:mm");
-        if (startTime.isSameOrBefore(moment("06:00", "HH:mm")) && startTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+        // Check if time is between 9:30 PM and 6:00 AM
+        if ((startTime.isSameOrAfter(moment("21:30", "HH:mm")) && startTime.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (startTime.isSameOrAfter(moment("00:00", "HH:mm")) && startTime.isSameOrBefore(moment("06:00", "HH:mm")))) {
           return false;
         }
         return true;
       })
-      .withMessage("Start time must not be between 12:00 AM and 6:00 AM"),
+      .withMessage("Start time must not be between 9:30 PM and 6:00 AM"),
     check("time-end")
       .exists()
       .withMessage("No End Time Specified")
@@ -116,12 +136,15 @@ router.post(
       .withMessage("No End Time Specified")
       .custom((value) => {
         const endTime = moment(value, "HH:mm");
-        if (endTime.isSameOrBefore(moment("06:00", "HH:mm")) && endTime.isSameOrAfter(moment("00:00", "HH:mm"))) {
+        // Check if time is between 9:30 PM and 6:00 AM
+        if ((endTime.isSameOrAfter(moment("21:30", "HH:mm")) && endTime.isSameOrBefore(moment("23:59", "HH:mm"))) ||
+            (endTime.isSameOrAfter(moment("00:00", "HH:mm")) && endTime.isSameOrBefore(moment("06:00", "HH:mm")))) {
           return false;
         }
         return true;
       })
-      .withMessage("End time must not be between 12:00 AM and 6:00 AM"),
+      .withMessage("End time must not be between 9:30 PM and 6:00 AM"),
+    // Note: Duration validation removed for faculty - they can book for any length of time
     check("date")
       .exists()
       .withMessage("No Date Specified")
@@ -179,9 +202,22 @@ router.post(
       });
     }
 
+    // Faculty can book for any duration - no time limits
     roomBookingFaculty.getRooms(booking, function(err, rooms) {
       if (err) {
         return res.terminate("Error");
+      }
+
+      if (rooms.durationExceeded == 1) {
+        return res.renderState("room-booking/errors", {
+          message: rooms.message || "Booking duration cannot exceed 2 hours"
+        });
+      }
+
+      if (rooms.dailyLimitExceeded == 1) {
+        return res.renderState("room-booking/errors", {
+          message: rooms.message || "Daily booking limit exceeded. Maximum allowed is 2 hours per day."
+        });
       }
 
       if (rooms.allBlocked == 1) {
@@ -209,8 +245,7 @@ router.post(
         end: booking.endString
       });
     });
-  }
-);
+    }); // Close isSuperUser callback
 
 router.post("/submit", async function (req, res, next) {
   const dates = req.session.booking.dates;
@@ -231,7 +266,7 @@ router.post("/submit", async function (req, res, next) {
     if (results.length === dates.length) {
       let bookedFlag = false;
       for (const result of results) {
-        if (result.partialBooking || result.noWorkingHours || result.allBlocked) {
+        if (result.partialBooking || result.noWorkingHours || result.allBlocked || result.durationExceeded || result.dailyLimitExceeded) {
           bookedFlag = true;
           return res.json(result);
         }
