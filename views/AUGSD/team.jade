@@ -201,8 +201,8 @@ html(lang='en')
 			gtag('js', new Date());
 			gtag('config', 'UA-107202501-1');
 		script.
-			let stage1 = ["https://code.getmdl.io/1.3.0/material.min.js"];
-			let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "https://code.getmdl.io/1.3.0/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
+		let stage1 = ["/scripts/material.min.js"];
+		let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "/stylesheets/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
 			let asyncLoad = new CSSLoader();
 			stage2.forEach((item) => {asyncLoad.add(item)});
 			asyncLoad.load();
