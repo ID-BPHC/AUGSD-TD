@@ -147,10 +147,14 @@ html(lang='en')
 		let stage1 = ["/scripts/material.min.js"];
 	let stage2 = ["/stylesheets/icon.css", "/stylesheets/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
 		let asyncLoad = new CSSLoader();
-		stage2.forEach(function(item){asyncLoad.add(item)});
-			asyncLoad.load();
-			asyncLoad = new ScriptLoader();
-			stage1.forEach((item) => {asyncLoad.add(item)});
+		for(var i=0; i<stage2.length; i++){
+			asyncLoad.add(stage2[i])
+		}
+		asyncLoad.load();
+		asyncLoad = new ScriptLoader();
+		for(var i=0; i<stage1.length; i++){
+			asyncLoad.add(stage1[i])
+		}
 			asyncLoad.load(function(){
 				window.onload = function(){
 				body_main.classList.remove('hidden');

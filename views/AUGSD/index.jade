@@ -454,10 +454,14 @@ html(lang='en')
 		let stage1 = ["/scripts/material.min.js","/scripts/jquery-3.2.1.slim.js","/scripts/outdatedbrowser.min.js"];
 		let stage2 = ["/stylesheets/outdatedbrowser.min.css", "https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en", "/stylesheets/icon.css", "/stylesheets/material.min.css", "/stylesheets/indexstyle.css"]
 		let asyncLoad = new CSSLoader();
-		stage2.forEach(function(item){asyncLoad.add(item)});
+		for(var i=0; i<stage2.length; i++){
+			asyncLoad.add(stage2[i])
+		}
 		asyncLoad.load();
 		asyncLoad = new ScriptLoader();
-		stage1.forEach(function(item){asyncLoad.add(item)});
+		for(var i=0; i<stage1.length; i++){
+			asyncLoad.add(stage1[i])
+		}
 			asyncLoad.load(addLoadEvent(function(){
 				outdatedBrowser({
 					bgColor: '#f25648',
