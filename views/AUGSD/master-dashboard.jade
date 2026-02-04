@@ -258,8 +258,8 @@ html
 				});
 			}
 			loadScript("/scripts/jquery-3.2.1.slim.js").then(() => {
-				let stage1 = ["/scripts/jquery.validate.min.js", "https://code.getmdl.io/1.3.0/material.min.js", "/scripts/select.js", "/scripts/material-alerts.js"];
-				let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css", "/stylesheets/select.css", "/stylesheets/stepper.min.css", "/stylesheets/dashboard.css", "/stylesheets/material-alerts.css"]
+				let stage1 = ["/scripts/jquery.validate.min.js", "/scripts/material.min.js", "/scripts/select.js", "/scripts/material-alerts.js"];
+				let stage2 = ["/stylesheets/icon.css", "/stylesheets/material.blue-light_blue.min.css", "/stylesheets/select.css", "/stylesheets/stepper.min.css", "/stylesheets/dashboard.css", "/stylesheets/material-alerts.css"]
 				let asyncLoad = new CSSLoader();
 				stage2.forEach((item) => {asyncLoad.add(item)});
 				asyncLoad.load();
