@@ -202,12 +202,12 @@ html(lang='en')
 			gtag('config', 'UA-107202501-1');
 		script.
 		let stage1 = ["/scripts/material.min.js"];
-		let stage2 = ["https://fonts.googleapis.com/icon?family=Material+Icons", "/stylesheets/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
-			let asyncLoad = new CSSLoader();
-			stage2.forEach((item) => {asyncLoad.add(item)});
-			asyncLoad.load();
-			asyncLoad = new ScriptLoader();
-			stage1.forEach((item) => {asyncLoad.add(item)});
+		let stage2 = ["/stylesheets/icon.css", "/stylesheets/material.indigo-blue.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
+		let asyncLoad = new CSSLoader();
+		stage2.forEach(function(item){asyncLoad.add(item)});
+		asyncLoad.load();
+		asyncLoad = new ScriptLoader();
+		stage1.forEach(function(item){asyncLoad.add(item)});
 			asyncLoad.load(function(){
 				window.onload = function(){
 				body_main.classList.remove('hidden');
