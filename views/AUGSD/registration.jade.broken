@@ -117,33 +117,33 @@ html(lang='en')
 			.container
 				.mdl-grid
 					.mdl-cell.mdl-cell--4-col
-						button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(style='width: 64px; height: 64px; min-width: initial;' onclick='location.href="/"')
+						//button.mdl-button.mdl-js-button.mdl-button--icon.mdl-js-ripple-effect(style='width: 64px; height: 64px; min-width: initial;' onclick='location.href="/"')
 							i.material-icons arrow_back
 					.mdl-cell.mdl-cell--4-col
 						.at-section
-							.at-section__title FD Thesis
+							.at-section__title Registration
 				.mdl-grid
 
 					.mdl-cell.mdl-cell--12-col.center
 						center
 							h5
-								| Forms and Guidelines for Thesis:
+								| Important documents for Registration
 								
 								br
-								ul 
+								a.mdl-navigation__link(href='/registration/Bulletin-2021-22.pdf') <h5>Bulletin</h5>
+								//ul 
 									if forms
 										for form in forms
 												a(href="/fd-thesis/" + form)
 													li
 														h5 #{form}
-							hr 			
-				
+							hr
+							a.mdl-navigation__link(href='https://erp.bits-pilani.ac.in') <h5>Link for Registration</h5> 					
 		script.
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 			gtag('config', 'UA-107202501-1');
-		script.
 		script.
 			let stage1 = ["/scripts/material.min.js"];
 			let stage2 = ["/stylesheets/icon.css", "/stylesheets/material.min.css", "/stylesheets/stepper.min.css", "/stylesheets/indexstyle.css", "/stylesheets/team.css"]
@@ -158,8 +158,8 @@ html(lang='en')
 				loader.classList.add('hidden');
 			}
 			});
+				body_main.classList.remove('hidden');
 			function ScriptLoader() {
-				var promises = [];
 				this.add = function(url) {
 					var promise = new Promise(function(resolve, reject) {
 						var script = document.createElement('script');
