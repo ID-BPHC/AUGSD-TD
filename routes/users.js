@@ -39,12 +39,12 @@ let users = {
         avatar: "/images/team/21.png",
         social: {}
       },
-      "Prof. K Venkata Ratnam": {
-        name: "Dr. K Venkata Ratnam",
-        title: "Timetable Nucleus Member",
-        avatar: "/images/team/17.jpg",
-        social: {}
-      },
+      // "Prof. K Venkata Ratnam": {
+      //   name: "Dr. K Venkata Ratnam",
+      //   title: "Timetable Nucleus Member",
+      //   avatar: "/images/team/17.jpg",
+      //   social: {}
+      // },
       "Dr. Dipanjan Chakraborty": {
         name: "Dr. Dipanjan Chakraborty",
         title: "Software Head",
@@ -57,15 +57,15 @@ let users = {
         avatar: "/images/team/DrSupradeepan.jpeg",
         social: {}
       },
-      "Mr. Anil Zedia": {
-        name: "Mr. Anil Zedia",
-        title: "Programmer",
-        avatar: "/images/team/13.jpg",
-        social: {}
-      },
+      // "Mr. Anil Zedia": {
+      //   name: "Mr. Anil Zedia",
+      //   title: "Programmer",
+      //   avatar: "/images/team/13.jpg",
+      //   social: {}
+      // },
       "Mrs. N Srilakshmi": {
         name: "Mrs. N Srilakshmi",
-        title: "Office Assistant",
+        title: "Junior Office Assistant",
         avatar: "/images/team/14.jpg",
         social: {}
       },
