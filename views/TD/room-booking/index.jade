@@ -1,6 +1,7 @@
 extends ../master-dashboard
 
 block content
+  //- Main Room Booking Content
   div.mdl-cell.mdl-cell--12-col
     h2 Room Booking
 
@@ -28,19 +29,125 @@ block content
             i.material-icons.mdl-list__item-icon warning
             | Post opening a room booking request, students are required to send an email to their club/dept FIC seeking permission for the same (also cc timetable@hyderabad.bits-pilani.ac.in). Requests for reservations of rooms will not be fulfilled unless authorized by the relevant FIC.
 
+  //- Booking Buttons
   div.mdl-cell.mdl-cell--12-col.mdl-grid
     div.mdl-cell.mdl-cell--4-col.center
-      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/book')")
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="showInstructions('#{rootURL}/#{reqPortal}/book')")
         i.material-icons add
         | New Booking
 
     if dashboard.type != 'Student'
       div.mdl-cell.mdl-cell--4-col.center
-        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('https://reprography.bits-hyderabad.ac.in')")
+        button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="showInstructions('https://reprography.bits-hyderabad.ac.in')")
           i.material-icons add
           | Reprography Room Booking
 
     div.mdl-cell.mdl-cell--4-col.center
-      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="window.location.replace('#{rootURL}/#{reqPortal}/view')")
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--primary(onclick="showInstructions('#{rootURL}/#{reqPortal}/view')")
         i.material-icons settings
         | Manage Bookings
+
+  //- Instructions Dialog
+  dialog#instructionsDialog.mdl-dialog
+    h4.mdl-dialog__title Room Booking Instructions
+    div.mdl-dialog__content
+      div.instructions-section
+        h5 Room Booking Policy:
+        ul
+          li Classroom bookings can only be made by faculty members.
+          li If students need to book a room, a faculty member from SWD or the relevant committee must make the booking on their behalf, clearly stating the purpose of the reservation.
+          li The faculty member making the booking on behalf of students will be fully responsible for the condition and use of the room during the booking.
+          li Please note that removing benches or other furniture from classrooms is strictly prohibited.
+
+      div.instructions-section
+        h5 Permitted Purposes for Room Bookings:
+        ol
+          li Conducting a quiz
+          li Paper distribution
+          li Workshops, seminars, or conferences
+          li Academic-related meetings
+          li Other: If the purpose is not listed above, please specify the reason.
+
+      div.instructions-section
+        h5 Additional Guidelines:
+        ol
+          li
+            strong Classroom Booking Hours:
+            p Classroom bookings are allowed only until 10:00 PM. All activities must be completed by this time, as extensions will not be granted.
+          li
+            strong Duration of Bookings:
+            p Each booking is limited to a maximum of 2 hours. Please plan accordingly to ensure compliance with this time limit.
+          li
+            strong Prohibition of Food & Beverages:
+            p Food and beverages are strictly prohibited in classrooms to maintain cleanliness and protect our facilities. Violations of this rule will result in disciplinary action.
+
+      p.notice We appreciate your cooperation in adhering to these guidelines to ensure the smooth functioning and maintenance of our classrooms.
+
+    div.mdl-dialog__actions
+      button.mdl-button.close(type='button') Cancel
+      button.mdl-button.mdl-button--raised.mdl-button--colored.proceed(type='button') Proceed
+
+  style.
+    .mdl-dialog {
+      width: 80%; 
+      min-width: 80%;         
+      max-width: 800px;
+      height: 75vh;
+      overflow-y: auto;
+    }
+    .instructions-section {
+      margin-bottom: 24px;
+    }
+    .instructions-section h5 {
+      color: #2196F3;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .instructions-section ul,
+    .instructions-section ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .instructions-section li {
+      margin-bottom: 8px;
+    }
+    .instructions-section strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .notice {
+      font-style: italic;
+      color: #666;
+      margin-top: 24px;
+    }
+    .mdl-dialog__actions {
+      padding: 16px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+  script.
+    var dialog = document.querySelector('#instructionsDialog');
+    var pendingRedirect = null;
+
+    if (!dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+
+    function showInstructions(redirectUrl) {
+      pendingRedirect = redirectUrl;
+      dialog.showModal();
+    }
+
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+      pendingRedirect = null;
+    });
+
+    dialog.querySelector('.proceed').addEventListener('click', function() {
+      if (pendingRedirect) {
+        window.location.replace(pendingRedirect);
+      }
+      dialog.close();
+    });

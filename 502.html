@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Temporarily Unavailable</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #667eea;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #555;
+        }
+        p {
+            color: #777;
+            line-height: 1.6;
+        }
+        .reload-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .reload-btn:hover {
+            background: #5568d3;
+        }
+        .spinner {
+            margin: 2rem auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>502</h1>
+        <h2>Service Temporarily Unavailable</h2>
+        <div class="spinner"></div>
+        <p>We're experiencing high traffic or performing maintenance. The service will be back shortly.</p>
+        <p>Please try again in a few moments.</p>
+        <a href="javascript:location.reload()" class="reload-btn">Reload Page</a>
+    </div>
+    
+    <script>
+        // Auto-reload after 5 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>

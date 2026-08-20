@@ -1,7 +1,8 @@
 extends ../../../master-dashboard
 
 block content
-	link(rel='stylesheet', href='/stylesheets/date-picker/mdDateTimePicker.css')
+	link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')
+	link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css')
 	div.mdl-cell.mdl-cell--12-col
 		h2 Manage Holidays
 	div.mdl-cell.mdl-cell--12-col
@@ -36,26 +37,17 @@ block content
 						span.mdl-button__ripple-container
 							span.mdl-ripple
 	script(src='/scripts/date-picker/moment.min.js')
-	script(src='/scripts/date-picker/scroll-into-view-if-needed.min.js')
-	script(src='/scripts/date-picker/draggabilly.pkgd.min.js')
-	script(src='/scripts/date-picker/mdDateTimePicker.min.js')
+	script(src='https://cdn.jsdelivr.net/npm/flatpickr')
 	script(type='text/javascript').
 		(function() {
 		
-		var datePicker = new mdDateTimePicker.default({
-			type: 'date',
-			future: moment().add(6, 'months')
-		});
-
-		document.getElementById('date').addEventListener('focus', function() {
-			datePicker.toggle();
-		});
-
-		datePicker.trigger = document.getElementById('date');
-
-		document.getElementById('date').addEventListener('onOk', function() {
-			this.value = moment(datePicker.time).format('ddd DD MMM YYYY');
-			this.parentNode.classList.add('is-dirty');
+		var datePicker = flatpickr('#date', {
+			dateFormat: 'D d M Y',
+			maxDate: moment().add(6, 'months').toDate(),
+			onChange: function(selectedDates, dateStr) {
+				document.getElementById('date').value = dateStr;
+				document.getElementById('date').parentNode.classList.add('is-dirty');
+			}
 		});
 
 		}).call(this);

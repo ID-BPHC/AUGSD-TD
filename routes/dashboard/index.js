@@ -142,8 +142,23 @@ router.get(
             });
           }
         } else {
-          // console.log(req.user);
-          req.session.profileImage = req.sanitize(req.user._json.image.url);
+          console.log("User object structure:", JSON.stringify(req.user, null, 2));
+          
+          // Handle different profile image structures from passport-google-oauth20
+          let profileImage = '';
+          if (req.user && req.user._json && req.user._json.picture) {
+            profileImage = req.user._json.picture;
+          } else if (req.user && req.user.photos && req.user.photos.length > 0) {
+            profileImage = req.user.photos[0].value;
+          } else if (req.user && req.user._json && req.user._json.image && req.user._json.image.url) {
+            profileImage = req.user._json.image.url;
+          } else {
+            console.log("No profile image found, using empty string");
+            profileImage = '';
+          }
+          
+          console.log("Profile image extracted:", profileImage);
+          req.session.profileImage = req.sanitize(profileImage);
           req.session.userType = "user";
           res.redirect(originalPath);
         }

@@ -20,154 +20,79 @@
     defaultDate = moment();
   }
 
-  var datePicker = new mdDateTimePicker.default({
-    type: "date",
-    defaultDate: defaultDate,
-    past: defaultDate, // Set the default date
-    future: moment().add(6, "months"),
+  var datePicker = flatpickr("#date", {
+    dateFormat: "D d M Y",
+    defaultDate: defaultDate.toDate(),
+    minDate: defaultDate.toDate(),
+    maxDate: moment().add(6, "months").toDate(),
+    onChange: function() {
+      document.getElementById("date").parentNode.classList.add("is-dirty");
+      document.getElementById("resDiv").innerHTML = "";
+      document.getElementById("time-end").value = "";
+      document.getElementById("time-end").parentNode.classList.remove("is-dirty");
+      document.getElementById("time-start").value = "";
+      document.getElementById("time-start").parentNode.classList.remove("is-dirty");
+    }
   });
 
-  var datePickerEnd = new mdDateTimePicker.default({
-    type: "date",
-    defaultDate: defaultDate,
-    past: defaultDate, // Set the default date
-    future: moment().add(6, "months"),
+  var datePickerEnd = flatpickr("#date-end", {
+    dateFormat: "D d M Y",
+    defaultDate: defaultDate.toDate(),
+    minDate: defaultDate.toDate(),
+    maxDate: moment().add(6, "months").toDate(),
+    onChange: function() {
+      document.getElementById("date-end").parentNode.classList.add("is-dirty");
+      document.getElementById("resDiv").innerHTML = "";
+      document.getElementById("time-end").value = "";
+      document.getElementById("time-end").parentNode.classList.remove("is-dirty");
+      document.getElementById("time-start").value = "";
+      document.getElementById("time-start").parentNode.classList.remove("is-dirty");
+    }
   });
 
 
-  var startTimePicker = new mdDateTimePicker.default({
-    type: "time",
+  var startTimePicker = flatpickr("#time-start", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    time_24hr: true,
+    defaultDate: moment().endOf("hour").add(1, "minute").toDate(),
+    onChange: function() {
+      document.getElementById("time-start").parentNode.classList.add("is-dirty");
+      document.getElementById("resDiv").innerHTML = "";
+      document.getElementById("time-end").value = "";
+      document.getElementById("time-end").parentNode.classList.remove("is-dirty");
+    }
   });
 
-  var endTimePicker = new mdDateTimePicker.default({
-    type: "time",
-  });
-
-  document.getElementById("date").addEventListener("focus", function() {
-    document.getElementById("date").blur();
-    document.getElementById("dateBtn").click();
-  });
-
-  document.getElementById("date-end").addEventListener("focus", function() {
-    document.getElementById("date-end").blur();
-    document.getElementById("dateBtnEnd").click();
-  });
-
-  document.getElementById("time-start").addEventListener("focus", function() {
-    document.getElementById("time-start").blur();
-    document.getElementById("startBtn").click();
-  });
-
-  document.getElementById("time-end").addEventListener("focus", function() {
-    document.getElementById("time-end").blur();
-    document.getElementById("endBtn").click();
+  var endTimePicker = flatpickr("#time-end", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    time_24hr: true,
+    onChange: function() {
+      document.getElementById("time-end").parentNode.classList.add("is-dirty");
+      document.getElementById("resDiv").innerHTML = "";
+    }
   });
 
   document.getElementById("dateBtn").addEventListener("click", function() {
-    datePicker.toggle();
-    document.getElementById("resDiv").innerHTML = "";
-    document.getElementById("time-end").value = "";
-    document.getElementById("time-end").parentNode.classList.remove("is-dirty");
-    document.getElementById("time-start").value = "";
-    document
-      .getElementById("time-start")
-      .parentNode.classList.remove("is-dirty");
+    datePicker.open();
   });
 
   document.getElementById("dateBtnEnd").addEventListener("click", function() {
-    datePickerEnd.toggle();
-    document.getElementById("resDiv").innerHTML = "";
-    document.getElementById("time-end").value = "";
-    document.getElementById("time-end").parentNode.classList.remove("is-dirty");
-    document.getElementById("time-start").value = "";
-    document
-      .getElementById("time-start")
-      .parentNode.classList.remove("is-dirty");
+    datePickerEnd.open();
   });
 
   document.getElementById("startBtn").addEventListener("click", function() {
-    startTimePicker.time = moment()
-      .endOf("hour")
-      .add(1, "minute");
-    document.getElementById("resDiv").innerHTML = "";
-
-    var selectedDate = parseInt(datePicker.time.get("date").toString());
-    var selectedMonth = parseInt(datePicker.time.get("month").toString());
-    var todayDate = parseInt(
-      moment()
-        .get("date")
-        .toString()
-    );
-    var todayMonth = parseInt(
-      moment()
-        .get("month")
-        .toString()
-    );
-    var hours = document.getElementById("mddtp-time__hourView").childNodes;
-
-    var i = 1;
-    startTimePicker.toggle();
-
-    for (i = 1; i <= 24; i++) {
-      hours[i - 1].style.visibility = "visible";
-    }
-
-    if (selectedDate == todayDate && selectedMonth == todayMonth) {
-      var nowHour = parseInt(
-        moment()
-          .get("hour")
-          .toString()
-      );
-      for (i = 1; i <= nowHour; i++) {
-        // hours[i - 1].style.visibility = "hidden";
-      }
-    }
-
-    document.getElementById("time-end").value = "";
-    document.getElementById("time-end").parentNode.classList.remove("is-dirty");
+    startTimePicker.open();
   });
 
   document.getElementById("endBtn").addEventListener("click", function() {
-    document.getElementById("resDiv").innerHTML = "";
-    endTimePicker.time = startTimePicker.time;
-    var hours = document.getElementById("mddtp-time__hourView").childNodes;
-    endTimePicker.toggle();
-    var startHour = parseInt(startTimePicker.time.get("hour").toString());
-    var i = 1;
-    for (i = 1; i <= startHour - 1; i++) {
-      // hours[i - 1].style.visibility = "hidden";
+    if (document.getElementById("time-start").value) {
+      endTimePicker.setDate(document.getElementById("time-start").value);
     }
-  });
-
-  datePicker.time = defaultDate;
-  datePicker.toggle();
-
-  datePickerEnd.time = defaultDate;
-  datePickerEnd.toggle();
-
-  datePicker.trigger = document.getElementById("date");
-  datePickerEnd.trigger = document.getElementById("date-end");
-  startTimePicker.trigger = document.getElementById("time-start");
-  endTimePicker.trigger = document.getElementById("time-end");
-
-  document.getElementById("date").addEventListener("onOk", function() {
-    this.value = moment(datePicker.time).format("ddd DD MMM YYYY");
-    this.parentNode.classList.add("is-dirty");
-  });
-
-  document.getElementById("date-end").addEventListener("onOk", function() {
-    this.value = moment(datePickerEnd.time).format("ddd DD MMM YYYY");
-    this.parentNode.classList.add("is-dirty");
-  });
-
-  document.getElementById("time-start").addEventListener("onOk", function() {
-    this.value = moment(startTimePicker.time).format("HH:mm");
-    this.parentNode.classList.add("is-dirty");
-  });
-
-  document.getElementById("time-end").addEventListener("onOk", function() {
-    this.value = moment(endTimePicker.time).format("HH:mm");
-    this.parentNode.classList.add("is-dirty");
+    endTimePicker.open();
   });
 
   function enumerateDaysBetweenDates(startDate, endDate) {

@@ -10,13 +10,13 @@ let appRoot = require("app-root-path");
 router.get("/", function(req, res, next) {
   res.render("index");
 });
-router.get("/team", function(req, res, next) {
-  res.render("team", {
-    users: users[config.siteMode],
-    column: 3,
-    totalModules: 17
-  });
-});
+//router.get("/team", function(req, res, next) {
+//  res.render("team", {
+//   users: users[config.siteMode],
+//   column: 3,
+//   totalModules: 17
+//  });
+//});
 router.get("/type", function(req, res, next) {
   res.render("type");
 });

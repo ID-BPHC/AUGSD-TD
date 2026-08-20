@@ -14,45 +14,19 @@ let users = {
           avatar: "/images/team/Sharan.jpg",
           social: {}
         },
-        "Sohail Rajdev": {
-          name: "Sohail Rajdev",
-          title: "System Administrator & Software Developer",
-          avatar: "/images/team/16.jpg",
-          social: {}
-        },
-        "Ashish AVS": {
-          name: "Ashish AVS",
-          title: "Ex-Student Team",
-          avatar: "/images/team/Ashish.jpeg",
-          social: {}
-        },
-        "Harshavardhan Madineni": {
-          name: "Harshavardhan Madineni",
-          title: "Ex-Student Team",
-          avatar: "/images/team/Harsha.jpg",
-          social: {}
-        },
-
       },
-      members: {
-
-        "Divyateja Pasupuleti": {
-          name: "Divyateja Pasupuleti",
+      members: {        
+        "Achal Jhawar": {
+          name: "Achal Jhawar",
           title: "Member",
-          avatar: "/images/team/Divyateja.jpg",
-          social: {}
-        },
-        "Palaniappan R": {
-          name: "Palaniappan R",
-          title: "Member",
-          avatar: "/images/team/Palaniappan.jpg",
+          avatar: "/images/team/Achal.jpg",
           social: {}
         },
 
-        "Karthik Prakash": {
-          name: "Karthik Prakash",
+        "Harshit Agrawal": {
+          name: "Harshit Agrawal",
           title: "Member",
-          avatar: "/images/team/Karthik.jpg",
+          avatar: "/images/team/Harshit.jpg",
           social: {}
         },
 
@@ -73,12 +47,12 @@ let users = {
         avatar: "/images/team/21.png",
         social: {}
       },
-      "Prof. K Venkata Ratnam": {
-        name: "Dr. K Venkata Ratnam",
-        title: "Timetable Nucleus Member",
-        avatar: "/images/team/17.jpg",
-        social: {}
-      },
+      // "Prof. K Venkata Ratnam": {
+      //   name: "Dr. K Venkata Ratnam",
+      //   title: "Timetable Nucleus Member",
+      //   avatar: "/images/team/17.jpg",
+      //   social: {}
+      // },
       "Dr. Dipanjan Chakraborty": {
         name: "Dr. Dipanjan Chakraborty",
         title: "Software Head",
@@ -91,15 +65,15 @@ let users = {
         avatar: "/images/team/DrSupradeepan.jpeg",
         social: {}
       },
-      "Mr. Anil Zedia": {
-        name: "Mr. Anil Zedia",
-        title: "Programmer",
-        avatar: "/images/team/13.jpg",
-        social: {}
-      },
+      // "Mr. Anil Zedia": {
+      //   name: "Mr. Anil Zedia",
+      //   title: "Programmer",
+      //   avatar: "/images/team/13.jpg",
+      //   social: {}
+      // },
       "Mrs. N Srilakshmi": {
         name: "Mrs. N Srilakshmi",
-        title: "Office Assistant",
+        title: "Junior Office Assistant",
         avatar: "/images/team/14.jpg",
         social: {}
       },
