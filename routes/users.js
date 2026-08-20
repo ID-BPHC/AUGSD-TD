@@ -29,7 +29,15 @@ let users = {
           avatar: "/images/team/Harshit.jpg",
           social: {}
         },
-        
+
+        "Harshit Agrawal": {
+          name: "Harshit Agrawal",
+          title: "Member",
+          avatar: "/images/team/Harshit.jpg",
+          social: {}
+        },
+
+
       }
     },
     staff: {
