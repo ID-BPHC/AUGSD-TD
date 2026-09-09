@@ -15,7 +15,7 @@
     "/scripts/select.js"
   ];
 
-  var staticCacheName = "instruction-division-v2";
+  var staticCacheName = "instruction-division-v3";
 
   self.addEventListener("install", function(event) {
     console.log("Attempting to install service worker and cache static assets");
@@ -28,6 +28,10 @@
 
   self.addEventListener("fetch", function(event) {
     console.log("Fetch event for ", event.request.url);
+    if (event.request.mode === "navigate") {
+      event.respondWith(fetch(event.request));
+      return;
+    }
     event.respondWith(
       caches
         .match(event.request)

@@ -11,8 +11,25 @@ router.get("/", function(req, res, next) {
   res.render("index");
 });
 router.get("/team", function(req, res, next) {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.set("Pragma", "no-cache");
+  res.set("Expires", "0");
+  var portalUsers = users[config.siteMode] || users.TD;
+  var students = portalUsers.students || {};
   res.render("team", {
-    users: users[config.siteMode],
+    users: {
+      staff: Object.keys(portalUsers.staff || {}).map(function(name) {
+        return portalUsers.staff[name];
+      }),
+      students: {
+        coordinator: Object.keys(students.coordinator || {}).map(function(name) {
+          return students.coordinator[name];
+        }),
+        members: Object.keys(students.members || {}).map(function(name) {
+          return students.members[name];
+        })
+      }
+    },
     column: 3,
     totalModules: 17
   });
