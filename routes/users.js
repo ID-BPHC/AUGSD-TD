@@ -16,6 +16,7 @@ let users = {
           // avatar: "/images/team/Arnav.jpg",
           social: {}          
         }
+      }
     },
     staff: {
       "Prof. K. Bhargav Kumar ": {
@@ -114,7 +115,6 @@ let users = {
       },    
     },
   },
-},
-}
+  }
 
 module.exports = users;
