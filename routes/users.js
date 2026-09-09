@@ -9,7 +9,7 @@ let users = {
           social: {}
         },
       },
-      students: {
+      members: {
         "Arnav Dutta": {
           name: "Arnav Dutta",
           title: "Member",
