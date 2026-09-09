@@ -2,75 +2,40 @@ let users = {
   TD: {
     students: {
       coordinator: {
-        "Shobhan Dash": {
-          name: "Shobhan Dash",
+        "Harshit Agrawal": {
+          name: "Harshit Agrawal",
           title: "Coordinator",
-          avatar: "/images/team/Shobhan.jpg",
-          social:{}
-        },
-        "Sharan K": {
-          name: "Sharan K",
-          title: "Coordinator",
-          avatar: "/images/team/Sharan.jpg",
+          avatar: "/images/team/Harshit.jpg",
           social: {}
         },
       },
-      members: {        
-        "Achal Jhawar": {
-          name: "Achal Jhawar",
+      students: {
+        "Arnav Dutta": {
+          name: "Arnav Dutta",
           title: "Member",
-          avatar: "/images/team/Achal.jpg",
-          social: {}
-        },
-
-        "Harshit Agrawal": {
-          name: "Harshit Agrawal",
-          title: "Member",
-          avatar: "/images/team/Harshit.jpg",
-          social: {}
-        },
-
-        "Harshit Agrawal": {
-          name: "Harshit Agrawal",
-          title: "Member",
-          avatar: "/images/team/Harshit.jpg",
-          social: {}
-        },
-
-
-      }
+          // avatar: "/images/team/Arnav.jpg",
+          social: {}          
+        }
     },
     staff: {
-      "Prof. Runa Kumari ": {
-        name: "Dr. Runa Kumari",
+      "Prof. K. Bhargav Kumar ": {
+        name: "Prof. K. Bhargav Kumar",
         title: "Faculty in-charge, Timetable Division",
-        avatar: "/images/team/21.png",
+        avatar: "/images/team/bhargav.png",
         social: {}
       },
-      // "Prof. K Venkata Ratnam": {
-      //   name: "Dr. K Venkata Ratnam",
-      //   title: "Timetable Nucleus Member",
-      //   avatar: "/images/team/17.jpg",
-      //   social: {}
-      // },
+      "Prof. Arshad Javed": {
+        name: "Prof. Arshad Javed",
+        title: "Timetable Nucleus Member",
+        avatar: "/images/team/arshad.jpg",
+        social: {}
+      },
       "Dr. Dipanjan Chakraborty": {
         name: "Dr. Dipanjan Chakraborty",
-        title: "Software Head",
+        title: "Reprography Nucleus Member",
         avatar: "/images/team/Dr. Dipanjan Chakraborty .jpeg",
         social: {}
       },
-      "Dr. Supradeepan": {
-        name: "Dr. Supradeepan",
-        title: "Software Nucleus Member",
-        avatar: "/images/team/DrSupradeepan.jpeg",
-        social: {}
-      },
-      // "Mr. Anil Zedia": {
-      //   name: "Mr. Anil Zedia",
-      //   title: "Programmer",
-      //   avatar: "/images/team/13.jpg",
-      //   social: {}
-      // },
       "Mrs. N Srilakshmi": {
         name: "Mrs. N Srilakshmi",
         title: "Junior Office Assistant",
@@ -111,12 +76,6 @@ let users = {
         avatar: "/images/team/1.jpg",
         social: {}
       },
-      "Prof. D Sriram": {
-        name: "Prof. D Sriram",
-        title: "In-charge, Feedback & Monitoring & ACB",
-        avatar: "/images/team/2.jpg",
-        social: {}
-      },
       "Prof. K Srinivasa Raju": {
         name: "Prof. K Srinivasa Raju",
         title: "In-charge, Data Analytics",
@@ -155,6 +114,7 @@ let users = {
       },    
     },
   },
-};
+},
+}
 
 module.exports = users;
