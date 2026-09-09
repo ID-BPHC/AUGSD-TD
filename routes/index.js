@@ -16,18 +16,19 @@ router.get("/team", function(req, res, next) {
   res.set("Expires", "0");
   var portalUsers = users[config.siteMode] || users.TD;
   var students = portalUsers.students || {};
+  var staff = portalUsers.staff || (users.TD && users.TD.staff) || {};
+  var toList = function(records) {
+    if (Array.isArray(records)) return records;
+    return Object.keys(records || {}).map(function(name) {
+      return records[name];
+    });
+  };
   res.render("team", {
     users: {
-      staff: Object.keys(portalUsers.staff || {}).map(function(name) {
-        return portalUsers.staff[name];
-      }),
+      staff: toList(staff),
       students: {
-        coordinator: Object.keys(students.coordinator || {}).map(function(name) {
-          return students.coordinator[name];
-        }),
-        members: Object.keys(students.members || {}).map(function(name) {
-          return students.members[name];
-        })
+        coordinator: toList(students.coordinator),
+        members: toList(students.members)
       }
     },
     column: 3,
