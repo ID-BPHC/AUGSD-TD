@@ -22,7 +22,7 @@ let users = {
       "Prof. K. Bhargav Kumar ": {
         name: "Prof. K. Bhargav Kumar",
         title: "Faculty in-charge, Timetable Division",
-        avatar: "/images/team/bhargav.png",
+        avatar: "/images/team/bhargav.jpg",
         social: {}
       },
       "Prof. Arshad Javed": {
