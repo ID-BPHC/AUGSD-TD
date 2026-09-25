@@ -6,6 +6,13 @@ block content
 	div.mdl-cell.mdl-cell--12-col
 		h2 Your Upcoming Room Bookings
 
+	- function formatBookingDate(date) {
+	- 	var hour = date.getHours();
+	- 	var meridiem = hour >= 12 ? "PM" : "AM";
+	- 	hour = hour % 12 || 12;
+	- 	return date.toString().substring(0, 15) + " " + hour + ":" + ("0" + date.getMinutes()).slice(-2) + meridiem;
+	- }
+
 	for booking in bookings
 		div.mdl-cell.mdl-cell--12-col
 			div.mdl-grid.application
@@ -14,9 +21,9 @@ block content
 						div.mdl-cell.mdl-cell--6-col.head Rooms :
 						div.mdl-cell.mdl-cell--6-col.value #{booking.number}
 						div.mdl-cell.mdl-cell--6-col.head Start Time :
-						div.mdl-cell.mdl-cell--6-col.value #{booking.start.toString().substring(0, booking.start.toString().indexOf("GMT"))}
+						div.mdl-cell.mdl-cell--6-col.value #{formatBookingDate(booking.start)}
 						div.mdl-cell.mdl-cell--6-col.head End Time :
-						div.mdl-cell.mdl-cell--6-col.value #{booking.end.toString().substring(0, booking.end.toString().indexOf("GMT"))}
+						div.mdl-cell.mdl-cell--6-col.value #{formatBookingDate(booking.end)}
 						div.mdl-cell.mdl-cell--6-col.head Status :
 						div.mdl-cell.mdl-cell--6-col.value #{booking.approval == "P" ? "Pending" : booking.approval == "A" ? "Approved" : "Rejected"}
 						div.mdl-cell.mdl-cell--6-col.head Audio / Visual :
